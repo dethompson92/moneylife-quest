@@ -60,7 +60,7 @@ The repository includes `.github/workflows/deploy.yml`. After pushing to `main`,
 - `VITE_GITHUB_ISSUES_URL`
 - `VITE_SUPPORT_EMAIL`
 
-The workflow installs dependencies, runs tests, builds the Vite app, uploads `dist`, and deploys Pages.
+The workflow installs dependencies, runs unit tests, installs Playwright Chromium, runs the browser smoke test, builds the Vite app, uploads `dist`, and deploys Pages.
 
 ## Sources and Originality
 
