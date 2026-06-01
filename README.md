@@ -31,7 +31,7 @@ Teacher-facing tools are hidden behind a classroom password. Set it during local
 VITE_TEACHER_PASSWORD="choose-your-password" pnpm run build
 ```
 
-If no build variable is set, the development fallback is:
+If no build variable is set, the production Teacher Tools panel stays locked. Local development and tests use this fallback:
 
 ```text
 future-life-budget

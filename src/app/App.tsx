@@ -25,7 +25,7 @@ import { ageUp } from "../features/game/gameActions";
 import { runActivity } from "../features/activities/activityDefinitions";
 import { clearGame, loadGame, loadSettings, saveGame, saveSettings } from "../lib/storage";
 import { parseClassParams } from "../lib/queryParams";
-import { isTeacherUnlocked, lockTeacherMode, unlockTeacherMode, validateTeacherPassword } from "../lib/teacherAccess";
+import { isTeacherUnlocked, lockTeacherMode, teacherPasswordAvailable, unlockTeacherMode, validateTeacherPassword } from "../lib/teacherAccess";
 import type { GameMode, GameSettings, GameState } from "../types/game";
 import type { Screen } from "./routes";
 
@@ -164,6 +164,7 @@ export function App() {
       if (!teacherUnlocked) {
         return (
           <TeacherGate
+            passwordAvailable={teacherPasswordAvailable()}
             onUnlock={(password) => {
               if (!validateTeacherPassword(password)) return false;
               unlockTeacherMode();
@@ -256,7 +257,7 @@ function HomeScreen({
   );
 }
 
-function TeacherGate({ onUnlock }: { onUnlock: (password: string) => boolean }) {
+function TeacherGate({ passwordAvailable, onUnlock }: { passwordAvailable: boolean; onUnlock: (password: string) => boolean }) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
 
@@ -279,14 +280,19 @@ function TeacherGate({ onUnlock }: { onUnlock: (password: string) => boolean }) 
           <input
             type="password"
             value={password}
+            disabled={!passwordAvailable}
             autoComplete="off"
             onChange={(event) => setPassword(event.target.value)}
           />
         </label>
-        {error ? <p className="form-error" role="alert">{error}</p> : null}
-        <Button type="submit">Unlock Teacher Tools</Button>
+        {!passwordAvailable ? (
+          <p className="form-error" role="alert">Teacher password is not configured for this deployment yet.</p>
+        ) : error ? (
+          <p className="form-error" role="alert">{error}</p>
+        ) : null}
+        <Button type="submit" disabled={!passwordAvailable}>Unlock Teacher Tools</Button>
       </form>
-      <p className="teacher-gate__note">Set the shared classroom password during deployment with VITE_TEACHER_PASSWORD.</p>
+      <p className="teacher-gate__note">Set the shared classroom password during deployment with VITE_TEACHER_PASSWORD. Local development uses a fallback for testing.</p>
     </section>
   );
 }

@@ -25,7 +25,16 @@ export function lockTeacherMode(): void {
   }
 }
 
+export function teacherPasswordAvailable(): boolean {
+  return Boolean(getTeacherPassword());
+}
+
 export function validateTeacherPassword(input: string): boolean {
-  const configured = import.meta.env.VITE_TEACHER_PASSWORD || DEFAULT_TEACHER_PASSWORD;
-  return input.trim() === configured;
+  const configured = getTeacherPassword();
+  return Boolean(configured) && input.trim() === configured;
+}
+
+function getTeacherPassword(): string {
+  if (import.meta.env.VITE_TEACHER_PASSWORD?.trim()) return import.meta.env.VITE_TEACHER_PASSWORD.trim();
+  return import.meta.env.DEV ? DEFAULT_TEACHER_PASSWORD : "";
 }
