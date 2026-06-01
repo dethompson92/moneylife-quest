@@ -188,7 +188,7 @@ export function App() {
     if (screen === "settings") return <SettingsScreen settings={settings} onSettings={updateSettings} onReset={resetGame} />;
     if (!game) return <HomeScreen hasSave={false} saveError={null} classMode={false} onStart={() => setScreen("setup")} onContinue={() => undefined} onTeacher={() => setScreen("teacher")} onPrivacy={() => setScreen("privacy")} onClearBadSave={resetGame} />;
     if (screen === "summary") return <SummaryScreen game={game} onCopy={copyText} onRestart={resetGame} />;
-    if (screen === "activities") return <ActivitiesHub game={game} onRunActivity={(id) => setGame(runActivity(game, id))} />;
+    if (screen === "activities") return <ActivitiesHub game={game} onRunActivity={(id) => setGame(runActivity(game, id))} onNavigate={setScreen} />;
     if (screen === "money") return <BudgetScreen game={game} onPreset={runBudgetPreset} onNavigate={setScreen} />;
     if (screen === "bank") return <BankScreen game={game} onAction={(id) => setGame(runActivity(game, id))} />;
     if (screen === "credit") return <CreditScreen game={game} onAction={(id) => setGame(runActivity(game, id))} />;
@@ -382,7 +382,17 @@ function Dashboard({
             {game.pendingFeedback ? (
               <article className="feedback-card">
                 <Brain aria-hidden="true" />
-                <span><strong>What I learned</strong>{game.pendingFeedback}</span>
+                <span>
+                  <strong>What I learned</strong>
+                  {game.pendingFeedback}
+                  {game.pendingEffectSummary?.length ? (
+                    <span className="effect-reveal-list" aria-label="Revealed choice effects">
+                      {game.pendingEffectSummary.slice(0, 6).map((effect) => (
+                        <small key={effect}>{effect}</small>
+                      ))}
+                    </span>
+                  ) : null}
+                </span>
               </article>
             ) : null}
             {game.log.map((entry) => (

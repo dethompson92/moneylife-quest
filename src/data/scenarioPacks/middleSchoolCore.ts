@@ -2,6 +2,7 @@ import type { Choice, Effect, Requirement, ScenarioEvent, Topic } from "../../ty
 import { adultOutcomeEvents } from "./adultOutcomeExpansion";
 import { banzaiExpansionEvents } from "./banzaiExpansion";
 import { mathExpansionEvents } from "./mathExpansion";
+import { officialResearchExpansionEvents } from "./officialResearchExpansion";
 import { questExpansionEvents } from "./questExpansion";
 
 type EventOptions = {
@@ -482,5 +483,6 @@ export const scenarioEvents = [
   ...questExpansionEvents,
   ...banzaiExpansionEvents,
   ...adultOutcomeEvents,
-  ...mathExpansionEvents
+  ...mathExpansionEvents,
+  ...officialResearchExpansionEvents
 ];

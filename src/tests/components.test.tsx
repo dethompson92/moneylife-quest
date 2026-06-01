@@ -19,15 +19,31 @@ describe("app components", () => {
     expect(screen.getByText(/full source index/i)).toBeInTheDocument();
   });
 
-  it("starts a new life and opens an event choice flow", async () => {
+  it("starts a new life and reveals choice effects after selection", async () => {
     localStorage.clear();
-    render(<App />);
+    const { container } = render(<App />);
     await userEvent.click(screen.getByRole("button", { name: /start new life/i }));
     await userEvent.click(screen.getByRole("button", { name: /choose goal/i }));
     await userEvent.click(screen.getByRole("button", { name: /start life/i }));
     expect(screen.getByText(/life skills/i)).toBeInTheDocument();
     await userEvent.click(screen.getByRole("button", { name: /age up/i }));
     expect(screen.getByRole("dialog", { name: /new event/i })).toBeInTheDocument();
+    expect(screen.getAllByText(/effects revealed after you choose/i).length).toBeGreaterThan(0);
+    const firstAvailableChoice = container.querySelector<HTMLButtonElement>(".choice-card:not(:disabled)");
+    expect(firstAvailableChoice).not.toBeNull();
+    await userEvent.click(firstAvailableChoice!);
+    expect(container.querySelector('[aria-label="Revealed choice effects"]')).not.toBeNull();
+  });
+
+  it("lets activity shortcut links open the correct money sections", async () => {
+    localStorage.clear();
+    render(<App />);
+    await userEvent.click(screen.getByRole("button", { name: /start new life/i }));
+    await userEvent.click(screen.getByRole("button", { name: /choose goal/i }));
+    await userEvent.click(screen.getByRole("button", { name: /start life/i }));
+    await userEvent.click(screen.getByRole("button", { name: /activities/i }));
+    await userEvent.click(screen.getByRole("button", { name: /bank \/ save/i }));
+    expect(screen.getByRole("heading", { name: /bank \/ save/i })).toBeInTheDocument();
   });
 
   it("opens the static-safe issue reporter", async () => {

@@ -3,8 +3,8 @@ import { scenarioEvents } from "../data/scenarioPacks/middleSchoolCore";
 import { validateScenarioEvents } from "../features/events/eventValidation";
 
 describe("scenario validation", () => {
-  it("includes at least 300 valid original events with reflection fields", () => {
-    expect(scenarioEvents.length).toBeGreaterThanOrEqual(300);
+  it("includes at least 340 valid original events with reflection fields", () => {
+    expect(scenarioEvents.length).toBeGreaterThanOrEqual(340);
     expect(validateScenarioEvents(scenarioEvents)).toEqual([]);
     expect(scenarioEvents.every((event) => event.reflectionPrompt.length > 12)).toBe(true);
     expect(scenarioEvents.flatMap((event) => event.choices).flatMap((choice) => choice.outcomes).every((outcome) => outcome.explanation.length > 12)).toBe(true);
@@ -50,5 +50,19 @@ describe("scenario validation", () => {
     expect(prompts).toContain("percent");
     expect(prompts).toContain("unit");
     expect(prompts).toContain("interest");
+  });
+
+  it("includes an official-source research expansion pack for future adult outcomes", () => {
+    const researchEvents = scenarioEvents.filter((event) => event.id.startsWith("research-"));
+    const researchChoices = researchEvents.flatMap((event) => event.choices);
+    const researchOutcomes = researchChoices.flatMap((choice) => choice.outcomes);
+
+    expect(researchEvents.length).toBeGreaterThanOrEqual(40);
+    expect(researchEvents.every((event) => event.sourceNote?.includes("CFPB"))).toBe(true);
+    expect(researchEvents.every((event) => event.lifeStages?.includes("adult"))).toBe(true);
+    expect(researchEvents.every((event) => event.ageRange.max >= 35)).toBe(true);
+    expect(researchChoices.filter((choice) => choice.requirements?.length).length).toBeGreaterThanOrEqual(40);
+    expect(researchChoices.filter((choice) => choice.outcomes.length > 1).length).toBeGreaterThanOrEqual(40);
+    expect(researchOutcomes.some((outcome) => outcome.effects.some((effect) => effect.type === "flag"))).toBe(true);
   });
 });

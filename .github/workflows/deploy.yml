@@ -37,6 +37,8 @@ jobs:
         run: pnpm exec playwright install --with-deps chromium
       - name: Run Playwright smoke test
         run: pnpm run test:e2e
+        env:
+          VITE_BASE_PATH: /
       - name: Build
         run: pnpm run build
         env:

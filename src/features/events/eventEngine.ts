@@ -21,6 +21,7 @@ export function resolveChoice(state: GameState, eventId: string, choiceId: strin
   next.pendingEventId = undefined;
   next.status = "active";
   next.pendingFeedback = `${outcome.explanation} Reflection: ${event.reflectionPrompt}`;
+  next.pendingEffectSummary = summarizeEffects(outcome.effects);
   next.log = [
     {
       id: `log-${event.id}-${Date.now()}`,

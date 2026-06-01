@@ -205,6 +205,7 @@ export type GameState = {
   flags: Record<string, boolean | string | number>;
   pendingEventId?: string;
   pendingFeedback?: string;
+  pendingEffectSummary?: string[];
   completedEventIds: string[];
   log: LogEntry[];
   achievements: string[];

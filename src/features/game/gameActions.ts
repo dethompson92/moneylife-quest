@@ -73,6 +73,7 @@ export function ageUp(state: GameState): GameState {
   next.character.age += getAgeIncrement(next);
   next.character.lifeStage = getLifeStage(next.character.age);
   next.pendingFeedback = undefined;
+  next.pendingEffectSummary = undefined;
   next = applyPassiveFinancialUpdates(next, rng);
   next = checkGoalProgress(next);
   next = checkAchievements(next);

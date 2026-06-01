@@ -75,6 +75,17 @@ Representative QOD-style prompts used for original scenario inspiration:
 - Become a Young Entrepreneur: https://banzai.org/wellness/resources/become-a-young-entrepreneur
 - Digital Spending Traps: https://banzai.org/wellness/resources/digital-spending-traps
 
+## Official Public Finance Education Sources
+
+- CFPB Youth Financial Education: https://www.consumerfinance.gov/youth-financial-education/
+- FDIC Money Smart for Young People: https://www.fdic.gov/resources/consumers/money-smart/teach-money-smart/money-smart-for-young-people/
+- FTC Consumer Advice: https://consumer.ftc.gov/
+- Investor.gov: https://www.investor.gov/
+- Federal Student Aid: https://studentaid.gov/
+- IRS Understanding Taxes: https://apps.irs.gov/app/understandingTaxes/
+
+These sources informed a new official-source research scenario pack around spending plans, checking/savings accounts, payment-app and impostor scams, credit reports, investing risk, student aid, taxes, insurance, and career path tradeoffs. All game prompts, choices, and feedback remain original MoneyLife Quest text.
+
 ## Teacher-Provided Google Docs
 
 - NGPF Middle School Personal Finance Dictionary: https://docs.google.com/document/d/16JX29Ei17XkvPCmPKazAY7ZFWOkclvoqiVVscfLYu0s/edit?tab=t.0#heading=h.95lzvkix4ogg

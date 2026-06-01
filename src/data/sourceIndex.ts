@@ -74,6 +74,45 @@ const finCapLinks: TeacherResource[] = [
   }
 ];
 
+const officialPublicFinanceLinks: TeacherResource[] = [
+  {
+    title: "CFPB Youth Financial Education",
+    topic: "Youth financial capability",
+    url: "https://www.consumerfinance.gov/youth-financial-education/",
+    classroomUse: "Use for public youth financial education framing around decision habits, planning, and money skills."
+  },
+  {
+    title: "FDIC Money Smart for Young People",
+    topic: "Banking and saving",
+    url: "https://www.fdic.gov/resources/consumers/money-smart/teach-money-smart/money-smart-for-young-people/",
+    classroomUse: "Use for public banking, saving, borrowing, and money management topic coverage."
+  },
+  {
+    title: "FTC Consumer Advice",
+    topic: "Scams and identity theft",
+    url: "https://consumer.ftc.gov/",
+    classroomUse: "Use for broad public scam, fraud, identity theft, and consumer protection themes."
+  },
+  {
+    title: "Investor.gov",
+    topic: "Investing basics",
+    url: "https://www.investor.gov/",
+    classroomUse: "Use for public investor education around diversification, risk, compound interest, and investment fraud."
+  },
+  {
+    title: "Federal Student Aid",
+    topic: "College and career path costs",
+    url: "https://studentaid.gov/",
+    classroomUse: "Use for public college cost, aid, grants, loans, and repayment topic framing."
+  },
+  {
+    title: "IRS Understanding Taxes",
+    topic: "Taxes and paychecks",
+    url: "https://apps.irs.gov/app/understandingTaxes/",
+    classroomUse: "Use for public tax education around paychecks, withholding, refunds, and filing concepts."
+  }
+];
+
 const teacherGoogleDocLinks: TeacherResource[] = [
   {
     title: "NGPF Middle School Personal Finance Dictionary",
@@ -222,6 +261,12 @@ export const sourceCategories: SourceCategory[] = [
       },
       ...finCapLinks
     ]
+  },
+  {
+    id: "official-public-finance",
+    title: "Official Public Finance Education",
+    note: "Government and official public education pages used as broad context for original future-adult scenarios.",
+    links: officialPublicFinanceLinks
   },
   {
     id: "banzai-context",
