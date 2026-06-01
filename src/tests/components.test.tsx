@@ -1,0 +1,42 @@
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { describe, expect, it } from "vitest";
+import { App } from "../app/App";
+
+describe("app components", () => {
+  it("disables continue without a save and password-gates teacher tools", async () => {
+    localStorage.clear();
+    sessionStorage.clear();
+    render(<App />);
+    expect(screen.getByRole("button", { name: /continue saved life/i })).toBeDisabled();
+    await userEvent.click(screen.getByRole("button", { name: /teacher tools/i }));
+    expect(screen.getByRole("heading", { name: /teacher tools locked/i })).toBeInTheDocument();
+    await userEvent.type(screen.getByLabelText(/teacher password/i), "future-life-budget");
+    await userEvent.click(screen.getByRole("button", { name: /unlock teacher tools/i }));
+    expect(screen.getByRole("heading", { name: /teacher guide/i })).toBeInTheDocument();
+    expect(screen.getByText(/question of the day discussion sparks/i)).toBeInTheDocument();
+    expect(screen.getByText(/banzai topic extensions/i)).toBeInTheDocument();
+    expect(screen.getByText(/full source index/i)).toBeInTheDocument();
+  });
+
+  it("starts a new life and opens an event choice flow", async () => {
+    localStorage.clear();
+    render(<App />);
+    await userEvent.click(screen.getByRole("button", { name: /start new life/i }));
+    await userEvent.click(screen.getByRole("button", { name: /choose goal/i }));
+    await userEvent.click(screen.getByRole("button", { name: /start life/i }));
+    expect(screen.getByText(/life skills/i)).toBeInTheDocument();
+    await userEvent.click(screen.getByRole("button", { name: /age up/i }));
+    expect(screen.getByRole("dialog", { name: /new event/i })).toBeInTheDocument();
+  });
+
+  it("opens the static-safe issue reporter", async () => {
+    localStorage.clear();
+    render(<App />);
+    await userEvent.click(screen.getByRole("button", { name: /report a bug or issue/i }));
+    expect(screen.getByRole("dialog", { name: /bug or issue reporter/i })).toBeInTheDocument();
+    expect(screen.getByText(/not include student names/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/optional contact/i)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /copy report/i })).toBeDisabled();
+  });
+});

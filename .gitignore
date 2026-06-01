@@ -1,0 +1,16 @@
+node_modules/
+dist/
+.pnpm-store/
+test-results/
+playwright-report/
+.pnpm-debug.log
+.DS_Store
+.env
+.env.*
+*.tsbuildinfo
+playwright.config.js
+playwright.config.d.ts
+vite.config.js
+vite.config.d.ts
+vitest.config.js
+vitest.config.d.ts

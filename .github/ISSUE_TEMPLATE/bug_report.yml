@@ -1,0 +1,45 @@
+name: MoneyLife Quest Bug Report
+description: Report a bug, content issue, accessibility issue, or confusing moment.
+title: "MoneyLife Quest Bug: "
+labels: ["bug", "moneylife"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping improve MoneyLife Quest. Please do not include student names, class rosters, private contact information, or saved-game data beyond the safe diagnostics copied from the app.
+  - type: dropdown
+    id: issue_type
+    attributes:
+      label: Issue type
+      options:
+        - Something broke
+        - Content issue
+        - Accessibility
+        - Confusing moment
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: what_happened
+    attributes:
+      label: What happened?
+      description: Describe the issue in a few sentences.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to repeat it
+      description: What did you click or do before the issue happened?
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Safe diagnostics from app
+      description: Paste the copied diagnostics from the Bug or issue reporter if available.
+  - type: checkboxes
+    id: privacy_check
+    attributes:
+      label: Privacy check
+      options:
+        - label: I did not include student names, private student information, class rosters, or passwords.
+          required: true

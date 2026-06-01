@@ -1,0 +1,16 @@
+export type Screen =
+  | "home"
+  | "setup"
+  | "goal-select"
+  | "dashboard"
+  | "activities"
+  | "money"
+  | "bank"
+  | "credit"
+  | "invest"
+  | "protect"
+  | "goals"
+  | "summary"
+  | "teacher"
+  | "privacy"
+  | "settings";
