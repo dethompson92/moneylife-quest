@@ -1,6 +1,7 @@
 import type { Choice, Effect, Requirement, ScenarioEvent, Topic } from "../../types/game";
 import { adultOutcomeEvents } from "./adultOutcomeExpansion";
 import { banzaiExpansionEvents } from "./banzaiExpansion";
+import { mathExpansionEvents } from "./mathExpansion";
 import { questExpansionEvents } from "./questExpansion";
 
 type EventOptions = {
@@ -476,4 +477,10 @@ export const middleSchoolCoreEvents: ScenarioEvent[] = [
   ], { lifeStages: ["high-school", "postsecondary", "early-career"] })
 ];
 
-export const scenarioEvents = [...middleSchoolCoreEvents, ...questExpansionEvents, ...banzaiExpansionEvents, ...adultOutcomeEvents];
+export const scenarioEvents = [
+  ...middleSchoolCoreEvents,
+  ...questExpansionEvents,
+  ...banzaiExpansionEvents,
+  ...adultOutcomeEvents,
+  ...mathExpansionEvents
+];

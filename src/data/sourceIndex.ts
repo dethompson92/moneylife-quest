@@ -173,6 +173,13 @@ const teacherProjectFiles: TeacherResource[] = [
     topic: "Future-life budget products",
     url: "local:Pathway 1/4/5/6 student exemplar PDFs",
     classroomUse: "Used only to understand the kind of future-adult budget outcomes students may create."
+  },
+  {
+    title: "Humble Math Financial Literacy",
+    topic: "7th-grade financial math",
+    url: "local:Humble_Math_Financial_Literacy.pdf",
+    classroomUse:
+      "Used for broad math-skill inspiration: decimals, percentages, discounts, sales tax, tipping, unit rates, budgets, subscriptions, interest, loans, inflation, and profit."
   }
 ];
 

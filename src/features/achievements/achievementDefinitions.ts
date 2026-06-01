@@ -4,6 +4,7 @@ export const achievements: AchievementDefinition[] = [
   { id: "first-budget", title: "First Budget", description: "Created or adjusted a budget plan." },
   { id: "saved-100", title: "Saved Your First $100", description: "Built savings past $100." },
   { id: "emergency-started", title: "Emergency Fund Started", description: "Set aside money for surprises." },
+  { id: "emergency-fund-started", title: "Emergency Fund Started", description: "Calculated and started a future emergency cushion." },
   { id: "scam-spotted", title: "Scam Spotted", description: "Avoided a suspicious message or offer." },
   { id: "paid-in-full", title: "Paid in Full", description: "Handled a credit balance responsibly." },
   { id: "credit-climber", title: "Credit Climber", description: "Improved your credit score." },
@@ -31,7 +32,10 @@ export const achievements: AchievementDefinition[] = [
   { id: "tax-translator", title: "Tax Translator", description: "Connected paychecks, taxes, and take-home pay." },
   { id: "refund-ready", title: "Refund Ready", description: "Made a thoughtful tax refund plan." },
   { id: "entrepreneurial-thinker", title: "Entrepreneurial Thinker", description: "Tested an earning idea with costs in mind." },
-  { id: "balanced-planner", title: "Balanced Planner", description: "Protected wellbeing while improving money habits." }
+  { id: "balanced-planner", title: "Balanced Planner", description: "Protected wellbeing while improving money habits." },
+  { id: "subscription-sleuth", title: "Subscription Sleuth", description: "Converted small recurring charges into a yearly cost." },
+  { id: "pay-yourself-first", title: "Pay Yourself First", description: "Moved money into savings before spending extras." },
+  { id: "young-entrepreneur", title: "Young Entrepreneur", description: "Checked revenue, expenses, and profit before launching an idea." }
 ];
 
 export function getAchievement(id: string): AchievementDefinition | undefined {

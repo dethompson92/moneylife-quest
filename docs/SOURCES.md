@@ -97,6 +97,7 @@ Local files provided by the teacher were read as classroom context only:
 - Future_Life_Budget_Project_Daily_Board_Slides_Days_2_15_REVISED.pdf
 - Future_Life_Budget_Project_Daily_Research_Resources_Days_1_15.pdf
 - Napkin Finance - Tina Hay.pdf
+- Humble_Math_Financial_Literacy.pdf
 - Pathway 1 Student Exemplar.pdf
 - Pathway 4 Student Exemplar.pdf
 - Pathway 5 & 4 mixed Student Exemplar.pdf
@@ -104,3 +105,5 @@ Local files provided by the teacher were read as classroom context only:
 - OCR/image-page versions of the Future Life Budget logbook and slide materials.
 
 The adult-outcome scenario pack intentionally echoes broad math-project themes: pathway selection, income, taxes, net pay, pathway cost, credit, housing, transportation, utilities, insurance, food, lifestyle spending, savings, investing, budget revision, and final reflection.
+
+The 7th-grade financial math expansion uses broad practice categories from the Humble Math financial literacy PDF as inspiration only: earning calculations, adult work hours, education cost and payback, subscription totals, budgeting percentages, emergency-fund targets, discounts, sales tax, tipping estimates, unit rates, simple and compound interest, loan interest, inflation, investing risk, receipt checking, and business profit.

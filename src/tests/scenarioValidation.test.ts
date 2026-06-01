@@ -3,8 +3,8 @@ import { scenarioEvents } from "../data/scenarioPacks/middleSchoolCore";
 import { validateScenarioEvents } from "../features/events/eventValidation";
 
 describe("scenario validation", () => {
-  it("includes at least 250 valid original events with reflection fields", () => {
-    expect(scenarioEvents.length).toBeGreaterThanOrEqual(250);
+  it("includes at least 300 valid original events with reflection fields", () => {
+    expect(scenarioEvents.length).toBeGreaterThanOrEqual(300);
     expect(validateScenarioEvents(scenarioEvents)).toEqual([]);
     expect(scenarioEvents.every((event) => event.reflectionPrompt.length > 12)).toBe(true);
     expect(scenarioEvents.flatMap((event) => event.choices).flatMap((choice) => choice.outcomes).every((outcome) => outcome.explanation.length > 12)).toBe(true);
@@ -33,5 +33,22 @@ describe("scenario validation", () => {
     const adultFutureEvents = scenarioEvents.filter((event) => event.id.startsWith("adult-"));
     expect(adultFutureEvents.length).toBeGreaterThanOrEqual(80);
     expect(adultFutureEvents.every((event) => event.ageRange.max >= 35)).toBe(true);
+  });
+
+  it("includes a Humble Math-informed seventh-grade financial math pack", () => {
+    const mathEvents = scenarioEvents.filter((event) => event.id.startsWith("math-"));
+    const mathChoices = mathEvents.flatMap((event) => event.choices);
+    const mathOutcomes = mathChoices.flatMap((choice) => choice.outcomes);
+    const prompts = mathEvents.map((event) => `${event.prompt} ${event.reflectionPrompt}`).join(" ").toLowerCase();
+
+    expect(mathEvents.length).toBeGreaterThanOrEqual(48);
+    expect(mathEvents.every((event) => event.sourceNote?.includes("Humble Math"))).toBe(true);
+    expect(mathEvents.every((event) => event.ageRange.max >= 35)).toBe(true);
+    expect(mathChoices.filter((choice) => choice.requirements?.length).length).toBeGreaterThanOrEqual(40);
+    expect(mathChoices.filter((choice) => choice.outcomes.length > 1).length).toBeGreaterThanOrEqual(40);
+    expect(mathOutcomes.some((outcome) => outcome.effects.some((effect) => effect.type === "flag"))).toBe(true);
+    expect(prompts).toContain("percent");
+    expect(prompts).toContain("unit");
+    expect(prompts).toContain("interest");
   });
 });
