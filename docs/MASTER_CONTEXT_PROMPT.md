@@ -17,6 +17,8 @@ Current app facts:
 - Current stats: wellbeing, moneyKnowledge, discipline, trustSafety, opportunity, creditScore/null, cash, checking, savings, investments, debtTotal, netWorth.
 - Current relationship/support-circle idea: family/caregiver, friend, mentor, and pet support. Keep it school-safe and finance-connected.
 - Current glossary layer: Money Words cards should appear when finance vocabulary comes up. Definitions must be original, 7th-grade-friendly, source-attributed, and connected to math when useful.
+- Current score guide layer: each 0-100 life-skill score needs student-friendly range meanings for 0-20, 21-40, 41-60, 61-80, and 81-100. Credit uses a separate 300-850 range.
+- Identity and context rule: do not ask students for ethnicity, race, sex, gender identity, exact location, family income, religion, disability status, immigration status, or other sensitive identifiers. If life context matters, model it through fictional support/access/cost variables, not real student demographics.
 - Desired tone: middle-school readable, specific, realistic, kind, never shaming, and full of tradeoffs where more than one choice can be reasonable.
 
 Research themes to use as inspiration:
@@ -96,13 +98,16 @@ Requirements for this scenario bank:
 5. Relationship and Support Circle Ideas
 Suggest 25 school-safe ways family/caregiver, friend, mentor, and pet relationships can affect finance gameplay. Include interactions, possible benefits, possible costs, and reflection questions.
 
-6. Assets and Net Worth Ideas
+6. Score Ranges and Life Context
+For Money Know-How, Wellbeing, Safety, Discipline, Opportunity, and Credit, suggest clear student-facing explanations for each range. Also suggest 15 fictional context variables that can affect gameplay without collecting sensitive student identity data, such as support access, transportation access, local cost level, school resource availability, internet reliability, starting emergency cushion, mentor access, family schedule pressure, and community program access.
+
+7. Assets and Net Worth Ideas
 Suggest 25 age-appropriate assets or ownership concepts for the game, such as bike, phone, laptop, certification, tools, car fund, emergency supplies, small business inventory, savings bond-like placeholder, diversified fund placeholder, renter deposit, etc. For each explain how it can gain/lose value and what math it teaches.
 
-7. Teacher Discussion Prompts
+8. Teacher Discussion Prompts
 Create 30 discussion prompts. Mix quick warm-ups, pair-share questions, exit-ticket reflections, and compare-outcomes prompts.
 
-8. Glossary and Vocabulary Supports
+9. Glossary and Vocabulary Supports
 Create 40 glossary recommendations for terms students may see in the scenarios. For each include:
 - term
 - student-friendly original definition
@@ -111,13 +116,13 @@ Create 40 glossary recommendations for terms students may see in the scenarios. 
 - where it should appear in the app
 - source category to attribute, without copying source wording
 
-9. Balance and Ethics Notes
+10. Balance and Ethics Notes
 List 15 balancing rules that keep the game fair, non-shaming, realistic, and replayable. Include how to avoid implying that wealth equals character, how to represent constraints, and how to show recovery from mistakes.
 
-10. Source and Originality Notes
+11. Source and Originality Notes
 List the public source categories that inspired the batch. Do not quote long passages. Include a reminder that the app should write original scenario text and should not imply endorsement by any source.
 
-11. Implementation Handoff for Codex
+12. Implementation Handoff for Codex
 Summarize the top 20 most implementable items from this batch as a concise engineering handoff. Include suggested files/modules if helpful, but do not assume the exact codebase.
 
 Optional previous-batch context to avoid repeating:

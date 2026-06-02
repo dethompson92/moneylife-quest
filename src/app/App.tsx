@@ -7,6 +7,7 @@ import { StatBar } from "../components/ui/StatBar";
 import { CharacterHeader } from "../features/character/CharacterHeader";
 import { SupportCirclePanel } from "../features/character/SupportCirclePanel";
 import { TermSpotlight } from "../features/glossary/TermSpotlight";
+import { ScoreGuidePanel } from "../features/stats/ScoreGuidePanel";
 import { EventModal } from "../features/events/EventModal";
 import { ActivitiesHub } from "../features/activities/ActivitiesHub";
 import { BudgetScreen } from "../features/finance/BudgetScreen";
@@ -379,6 +380,7 @@ function Dashboard({
           <StatBar label="Safety" value={game.stats.trustSafety} icon="🛡" />
           <StatBar label="Discipline" value={game.stats.discipline} icon="◎" />
           <StatBar label="Opportunity" value={game.stats.opportunity} icon="↗" />
+          <ScoreGuidePanel stats={game.stats} />
           <div className="streak-card">
             <Trophy aria-hidden="true" />
             <span><strong>Badges: {game.achievements.length}</strong><small>Keep making smart choices.</small></span>
@@ -439,6 +441,7 @@ function PrivacyScreen() {
       </div>
       <div className="teacher-notes">
         <p>MoneyLife Quest does not ask for full names, emails, phone numbers, school IDs, addresses, or locations.</p>
+        <p>It also does not ask for or store ethnicity, race, sex, gender identity, income background, disability status, religion, immigration status, or other real demographic identifiers.</p>
         <p>Progress is saved only in this browser using localStorage. It is not sent to a server.</p>
         <p>Issue reports are created locally and are not sent automatically. A teacher can copy, download, or open a prefilled report link intentionally.</p>
         <p>MoneyLife Quest has no ads, no analytics, no in-app purchases, and no external data APIs.</p>

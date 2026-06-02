@@ -521,6 +521,86 @@ textarea {
   background: linear-gradient(90deg, var(--teal), var(--yellow));
 }
 
+.score-guide {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #f7fbfc;
+}
+
+.score-guide__header {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.score-guide__header h2,
+.score-guide p {
+  margin: 0;
+}
+
+.score-guide > p {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.score-guide__list {
+  display: grid;
+  gap: 8px;
+}
+
+.score-guide__card {
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius) - 4px);
+  background: var(--surface);
+}
+
+.score-guide__card summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 10px;
+}
+
+.score-guide__card summary::-webkit-details-marker {
+  display: none;
+}
+
+.score-guide__card summary span,
+.score-guide__card small {
+  display: block;
+}
+
+.score-guide__card summary small,
+.score-guide__card > small,
+.score-guide__card p {
+  color: var(--muted);
+}
+
+.score-guide__card p,
+.score-guide__card > small,
+.score-guide__ranges {
+  padding: 0 10px;
+}
+
+.score-guide__ranges {
+  display: grid;
+  gap: 8px;
+  margin: 10px 0 12px;
+  padding-left: 28px;
+}
+
+.score-guide__ranges li {
+  padding-left: 2px;
+}
+
+.score-guide__ranges span {
+  display: block;
+  color: var(--muted);
+}
+
 .streak-card {
   display: flex;
   gap: 10px;
@@ -545,6 +625,20 @@ textarea {
 
 .support-panel h2 {
   margin-bottom: 0;
+}
+
+.support-panel__context {
+  margin: 0;
+  padding: 10px;
+  border: 1px solid #b9ebe1;
+  border-radius: var(--radius);
+  background: #f1fbf8;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.support-panel__context strong {
+  color: var(--navy);
 }
 
 .support-list {

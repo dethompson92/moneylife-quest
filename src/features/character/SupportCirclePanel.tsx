@@ -4,6 +4,9 @@ export function SupportCirclePanel({ game }: { game: GameState }) {
   return (
     <section className="support-panel" aria-label="Support circle">
       <h2>Support Circle</h2>
+      <p className="support-panel__context">
+        <strong>Context, not identity:</strong> MoneyLife uses fictional support, access, and cost situations to show that life is not equal for everyone. It does not ask students to enter real ethnicity, sex, location, family income, or demographic identifiers.
+      </p>
       <div className="support-list">
         {game.relationships.map((relationship) => (
           <article className="support-card" key={relationship.id}>

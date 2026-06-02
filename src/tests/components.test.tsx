@@ -22,6 +22,8 @@ describe("app components", () => {
     await userEvent.click(screen.getByRole("button", { name: /choose goal/i }));
     await userEvent.click(screen.getByRole("button", { name: /start life/i }));
     expect(screen.getByText(/life skills/i)).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /score guide/i })).toBeInTheDocument();
+    expect(screen.getByText(/context, not identity/i)).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /money words/i })).toBeInTheDocument();
     await userEvent.click(screen.getByRole("button", { name: /age up/i }));
     expect(screen.getByRole("dialog", { name: /new event/i })).toBeInTheDocument();
