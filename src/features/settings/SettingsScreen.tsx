@@ -6,11 +6,13 @@ import type { GameSettings } from "../../types/game";
 export function SettingsScreen({
   settings,
   onSettings,
-  onReset
+  onReset,
+  onWalkthrough
 }: {
   settings: GameSettings;
   onSettings: (settings: GameSettings) => void;
   onReset: () => void;
+  onWalkthrough: () => void;
 }) {
   const [confirming, setConfirming] = useState(false);
   return (
@@ -48,7 +50,10 @@ export function SettingsScreen({
           </select>
         </label>
       </div>
-      <Button variant="danger" onClick={() => setConfirming(true)}>Reset Saved Game</Button>
+      <div style={{ display: "grid", gap: "12px", marginTop: "24px" }}>
+        <Button variant="secondary" onClick={onWalkthrough}>Launch How-to-Play Walkthrough</Button>
+        <Button variant="danger" onClick={() => setConfirming(true)}>Reset Saved Game</Button>
+      </div>
       {confirming ? (
         <ConfirmDialog
           title="Reset saved game?"

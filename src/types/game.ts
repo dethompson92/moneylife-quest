@@ -162,6 +162,8 @@ export type ScenarioEvent = {
   choices: Choice[];
   reflectionPrompt: string;
   sourceNote?: string;
+  randomized?: boolean;
+  tradeoffNote?: string;
 };
 
 export type LogEntry = {
@@ -202,6 +204,15 @@ export type GameSettings = {
   textSize: "standard" | "large" | "extra-large";
 };
 
+export type FinanceHistoryEntry = {
+  age: number;
+  netWorth: number;
+  cash: number;
+  savings: number;
+  debt: number;
+  investments: number;
+};
+
 export type GameState = {
   version: number;
   id: string;
@@ -226,6 +237,7 @@ export type GameState = {
   goalObjectives: GoalObjective[];
   endingReason?: string;
   settings: GameSettings;
+  financeHistory: FinanceHistoryEntry[];
   createdAt: string;
   updatedAt: string;
 };

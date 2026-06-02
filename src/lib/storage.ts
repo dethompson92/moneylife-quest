@@ -32,6 +32,9 @@ export function loadGame(): StorageResult<GameState> {
     if (!parsed.relationships?.length) {
       parsed.relationships = createSupportCircle(createSeededRng(parsed.seed ?? parsed.id));
     }
+    if (!parsed.financeHistory) {
+      parsed.financeHistory = [];
+    }
     return { ok: true, value: parsed };
   } catch {
     return { ok: false, error: "Saved game could not be read." };

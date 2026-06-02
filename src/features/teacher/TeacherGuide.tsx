@@ -29,8 +29,10 @@ import {
 import { sourceCategories } from "../../data/sourceIndex";
 import { buildClassLink, topicOptions } from "../../lib/queryParams";
 import { goals } from "../goals/goalDefinitions";
+import { decodeReflectionCode } from "../summary/summaryGenerator";
+import { formatMoney } from "../../lib/formatMoney";
 
-type Tab = "planner" | "prompts" | "resources";
+type Tab = "planner" | "prompts" | "resources" | "decoder";
 
 const discussionQuestions = [
   { id: "q1", text: "What made one choice safer, cheaper, or more flexible than another?" },
@@ -46,6 +48,10 @@ export function TeacherGuide({ onCopy, onLock }: { onCopy: (text: string) => voi
   const [selectedProvider, setSelectedProvider] = useState("all");
   const [copiedPromptId, setCopiedPromptId] = useState<string | null>(null);
   const [copiedLink, setCopiedLink] = useState(false);
+
+  const [inputCode, setInputCode] = useState("");
+  const [decodeError, setDecodeError] = useState<string | null>(null);
+  const [decodedList, setDecodedList] = useState<Array<{ nickname: string; netWorth: number; objectives: number; badges: number; credit: number | null }>>([]);
 
   const [seed, setSeed] = useState("period-3-moneylife");
   const [topic, setTopic] = useState("all");
@@ -265,6 +271,17 @@ export function TeacherGuide({ onCopy, onLock }: { onCopy: (text: string) => voi
         >
           <BookOpen size={18} aria-hidden="true" />
           <span>Resource Directory</span>
+        </button>
+        <button
+          className={`tab-btn ${activeTab === "decoder" ? "is-active" : ""}`}
+          onClick={() => {
+            setActiveTab("decoder");
+            setSearchTerm("");
+            setDecodeError(null);
+          }}
+        >
+          <Search size={18} aria-hidden="true" />
+          <span>Code Decoder</span>
         </button>
       </div>
 
@@ -625,6 +642,146 @@ export function TeacherGuide({ onCopy, onLock }: { onCopy: (text: string) => voi
                   </Button>
                 </div>
               )}
+            </div>
+          </div>
+        )}
+
+        {activeTab === "decoder" && (
+          <div className="decoder-view" style={{ display: "grid", gap: "24px" }}>
+            <div className="dashboard-card" style={{ padding: "20px" }}>
+              <h3 style={{ margin: "0 0 8px 0", color: "var(--navy)" }}>Student Code Decoder</h3>
+              <p style={{ margin: 0, color: "var(--muted)", fontSize: "0.9rem", lineHeight: 1.5 }}>
+                Students copy their <strong>Reflection Code</strong> from the completion screen (e.g. <code>MLQ-DEV-14CO-ACR</code>) and share it with you.
+                Pasting it here extracts their score metrics locally. This helps you build a live classroom leaderboard without student accounts or database setup.
+              </p>
+            </div>
+
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px", alignItems: "start" }}>
+              {/* Paste Form & Stats Summary */}
+              <div style={{ display: "grid", gap: "20px" }}>
+                <div className="dashboard-card" style={{ padding: "20px" }}>
+                  <h4 style={{ margin: "0 0 12px 0", color: "var(--navy)" }}>Enter Code</h4>
+                  <div style={{ display: "flex", gap: "10px" }}>
+                    <input
+                      type="text"
+                      placeholder="e.g. MLQ-DEV-14CO-ACR"
+                      value={inputCode}
+                      onChange={(e) => setInputCode(e.target.value)}
+                      style={{ flex: 1, padding: "8px 12px", border: "1px solid var(--line)", borderRadius: "var(--radius)", fontSize: "0.95rem" }}
+                    />
+                    <Button
+                      onClick={() => {
+                        const res = decodeReflectionCode(inputCode);
+                        if (!res.ok) {
+                          setDecodeError(res.error || "Failed to decode");
+                          return;
+                        }
+                        const exists = decodedList.some(
+                          (s) =>
+                            s.nickname === res.data.nickname &&
+                            s.netWorth === res.data.netWorth &&
+                            s.objectives === res.data.objectives &&
+                            s.badges === res.data.badges &&
+                            s.credit === res.data.credit
+                        );
+                        if (!exists) {
+                          setDecodedList((prev) => [res.data, ...prev]);
+                        }
+                        setInputCode("");
+                        setDecodeError(null);
+                      }}
+                    >
+                      Decode & Add
+                    </Button>
+                  </div>
+                  {decodeError && (
+                    <div style={{ marginTop: "10px", color: "var(--coral)", fontSize: "0.85rem", fontWeight: "bold" }}>
+                      ⚠️ {decodeError}
+                    </div>
+                  )}
+                </div>
+
+                {/* Aggregated averages */}
+                {decodedList.length > 0 && (
+                  <div className="dashboard-card" style={{ padding: "20px", display: "grid", gap: "12px" }}>
+                    <h4 style={{ margin: 0, color: "var(--navy)" }}>Class Summary Averages</h4>
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "10px", textAlign: "center", marginTop: "5px" }}>
+                      <div style={{ padding: "10px", background: "rgba(0,0,0,0.02)", borderRadius: "var(--radius)" }}>
+                        <small style={{ color: "var(--muted)", display: "block" }}>Students</small>
+                        <strong style={{ fontSize: "1.2rem", color: "var(--navy)" }}>{decodedList.length}</strong>
+                      </div>
+                      <div style={{ padding: "10px", background: "rgba(0,0,0,0.02)", borderRadius: "var(--radius)" }}>
+                        <small style={{ color: "var(--muted)", display: "block" }}>Avg Net Worth</small>
+                        <strong style={{ fontSize: "1.2rem", color: "var(--teal-dark)" }}>
+                          {formatMoney(Math.round(decodedList.reduce((sum, s) => sum + s.netWorth, 0) / decodedList.length))}
+                        </strong>
+                      </div>
+                      <div style={{ padding: "10px", background: "rgba(0,0,0,0.02)", borderRadius: "var(--radius)" }}>
+                        <small style={{ color: "var(--muted)", display: "block" }}>Avg Badges</small>
+                        <strong style={{ fontSize: "1.2rem", color: "var(--navy)" }}>
+                          {(decodedList.reduce((sum, s) => sum + s.badges, 0) / decodedList.length).toFixed(1)}
+                        </strong>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Roster list */}
+              <div className="dashboard-card" style={{ padding: "20px" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px" }}>
+                  <h4 style={{ margin: 0, color: "var(--navy)" }}>Class Roster ({decodedList.length})</h4>
+                  {decodedList.length > 0 && (
+                    <button
+                      onClick={() => setDecodedList([])}
+                      style={{ background: "none", border: "none", color: "var(--coral)", cursor: "pointer", fontSize: "0.82rem", fontWeight: "bold" }}
+                    >
+                      Clear All
+                    </button>
+                  )}
+                </div>
+
+                {decodedList.length === 0 ? (
+                  <div style={{ textAlign: "center", padding: "30px 10px", color: "var(--muted)", fontSize: "0.9rem" }}>
+                    No student codes decoded yet. Paste a completed game code to start tracking performance metrics.
+                  </div>
+                ) : (
+                  <div style={{ overflowX: "auto" }}>
+                    <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.88rem" }}>
+                      <thead>
+                        <tr style={{ borderBottom: "1px solid var(--line)", textAlign: "left" }}>
+                          <th style={{ padding: "8px 4px", color: "var(--muted)" }}>Student</th>
+                          <th style={{ padding: "8px 4px", color: "var(--muted)" }}>Net Worth</th>
+                          <th style={{ padding: "8px 4px", color: "var(--muted)" }}>Goals Met</th>
+                          <th style={{ padding: "8px 4px", color: "var(--muted)" }}>Badges</th>
+                          <th style={{ padding: "8px 4px", color: "var(--muted)" }}>Credit</th>
+                          <th style={{ padding: "8px 4px", width: "30px" }}></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {decodedList.map((item, idx) => (
+                          <tr key={idx} style={{ borderBottom: "1px solid rgba(0,0,0,0.03)" }}>
+                            <td style={{ padding: "10px 4px", fontWeight: "bold", color: "var(--navy)" }}>{item.nickname}</td>
+                            <td style={{ padding: "10px 4px", color: "var(--teal-dark)", fontWeight: "bold" }}>{formatMoney(item.netWorth)}</td>
+                            <td style={{ padding: "10px 4px" }}>{item.objectives}</td>
+                            <td style={{ padding: "10px 4px" }}>{item.badges}</td>
+                            <td style={{ padding: "10px 4px" }}>{item.credit ?? "No history"}</td>
+                            <td style={{ padding: "10px 4px", textAlign: "right" }}>
+                              <button
+                                onClick={() => setDecodedList((prev) => prev.filter((_, i) => i !== idx))}
+                                style={{ background: "none", border: "none", color: "var(--muted)", cursor: "pointer", fontSize: "1rem" }}
+                                aria-label="Delete student"
+                              >
+                                &times;
+                              </button>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         )}

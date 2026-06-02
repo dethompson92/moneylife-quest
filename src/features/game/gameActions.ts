@@ -4,7 +4,7 @@ import { createSeededRng, randomSeed } from "../../lib/rng";
 import { createId, generateCharacter, getLifeStage } from "../character/characterFactory";
 import { createSupportCircle } from "../character/supportCircle";
 import { checkAchievements } from "../achievements/achievementEngine";
-import { applyPassiveFinancialUpdates, getInitialFinances, getInitialStats } from "../finance/financeEngine";
+import { applyPassiveFinancialUpdates, getInitialFinances, getInitialStats, syncFinanceHistory } from "../finance/financeEngine";
 import { getGoal } from "../goals/goalDefinitions";
 import { evaluateGoalObjectives, goalCompleted } from "../goals/goalEngine";
 import { selectNextEvent } from "../events/eventSelection";
@@ -61,10 +61,11 @@ export function createNewGame(options: NewGameOptions = {}): GameState {
     achievements: [],
     goalObjectives: goal.objectives.map((objective) => ({ ...objective, complete: false })),
     settings: defaultSettings,
+    financeHistory: [],
     createdAt: now,
     updatedAt: now
   };
-  return checkGoalProgress(state);
+  return syncFinanceHistory(checkGoalProgress(state));
 }
 
 export function ageUp(state: GameState): GameState {
@@ -79,6 +80,7 @@ export function ageUp(state: GameState): GameState {
   next = applyPassiveFinancialUpdates(next, rng);
   next = checkGoalProgress(next);
   next = checkAchievements(next);
+  next = syncFinanceHistory(next);
   const selected = selectNextEvent(next, scenarioEvents, rng);
   next.rngState = rng.state();
   if (selected) {

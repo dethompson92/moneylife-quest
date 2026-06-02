@@ -13,4 +13,5 @@ export type Screen =
   | "summary"
   | "teacher"
   | "privacy"
-  | "settings";
+  | "settings"
+  | "networth";

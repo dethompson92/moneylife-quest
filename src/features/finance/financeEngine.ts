@@ -130,7 +130,7 @@ export function applyEffects(state: GameState, effects: Effect[]): GameState {
   normalizeMoney(next);
   next.stats.creditScore = calculateCreditScore(next);
   next.updatedAt = new Date().toISOString();
-  return next;
+  return syncFinanceHistory(next);
 }
 
 export function normalizeMoney(state: GameState): GameState {
@@ -238,4 +238,29 @@ function createSystemLog(state: GameState, title: string, body: string) {
     body,
     createdAt: new Date().toISOString()
   };
+}
+
+export function syncFinanceHistory(state: GameState): GameState {
+  const next: GameState = {
+    ...state,
+    financeHistory: state.financeHistory ? [...state.financeHistory] : []
+  };
+  const currentAge = next.character.age;
+  const netWorth = calculateNetWorth(next.finances);
+  const entry = {
+    age: currentAge,
+    netWorth,
+    cash: next.finances.cash + next.finances.checking,
+    savings: next.finances.savings,
+    debt: next.finances.debtTotal,
+    investments: next.finances.investments
+  };
+
+  const existingIndex = next.financeHistory.findIndex((h) => h.age === currentAge);
+  if (existingIndex !== -1) {
+    next.financeHistory[existingIndex] = entry;
+  } else {
+    next.financeHistory.push(entry);
+  }
+  return next;
 }

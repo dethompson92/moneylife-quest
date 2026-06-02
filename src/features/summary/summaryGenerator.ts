@@ -31,8 +31,27 @@ export function generateSummary(state: GameState): string {
     `Biggest win: ${biggestWin}`,
     `Biggest mistake or hardest tradeoff: ${biggestMistake}`,
     `One money lesson I can explain: choices have tradeoffs, and a plan gives future me more options.`,
-    `Reflection code: ${state.id.slice(-6).toUpperCase()}-${completeObjectives}${state.achievements.length}`
+    `Reflection code: ${encodeReflectionCode(state)}`
   ].join("\n");
+}
+
+export function encodeReflectionCode(state: GameState): string {
+  const namePart = (state.character.displayName || "XYZ").slice(0, 3).replace(/\s/g, "").toUpperCase();
+  const nwRaw = calculateNetWorth(state.finances);
+  const nwShifted = Math.max(0, nwRaw + 50000);
+  const nwPart = nwShifted.toString(36).toUpperCase();
+
+  const objectivesMet = state.goalObjectives.filter((obj) => obj.complete).length;
+  const objPart = objectivesMet.toString(36).toUpperCase();
+
+  const badgeCount = state.achievements.length;
+  const badgePart = badgeCount.toString(36).toUpperCase();
+
+  const credit = state.stats.creditScore;
+  const creditShifted = credit === null ? 0 : credit - 300 + 1;
+  const creditPart = creditShifted.toString(36).toUpperCase();
+
+  return `MLQ-${namePart}-${nwPart}-${objPart}${badgePart}${creditPart}`;
 }
 
 function creditBandLabel(score: number | null): string {
@@ -58,4 +77,45 @@ function pickBiggestMistake(state: GameState): string {
   if (state.stats.wellbeing < 45) return "money stress got too high";
   if (state.stats.trustSafety < 50) return "security habits needed more attention";
   return "balancing wants, goals, and stress took practice";
+}
+
+export function decodeReflectionCode(code: string): { ok: true; data: any } | { ok: false; error: string } {
+  try {
+    const clean = code.trim().toUpperCase();
+    if (!clean.startsWith("MLQ-")) {
+      return { ok: false, error: "Invalid code format. Codes must start with 'MLQ-'" };
+    }
+    const parts = clean.split("-");
+    if (parts.length < 4) {
+      return { ok: false, error: "Invalid structure. Code should have 4 segments (e.g. MLQ-DEV-14CO-ACR)" };
+    }
+    const nickname = parts[1];
+    const nwShifted = parseInt(parts[2], 36);
+    if (isNaN(nwShifted)) {
+      return { ok: false, error: "Invalid Net Worth encoding." };
+    }
+    const netWorth = nwShifted - 50000;
+
+    const trailing = parts[3];
+    if (trailing.length < 3) {
+      return { ok: false, error: "Invalid trailing statistics." };
+    }
+    const objectives = parseInt(trailing[0], 36);
+    const badges = parseInt(trailing[1], 36);
+    const creditShifted = parseInt(trailing.slice(2), 36);
+    const credit = creditShifted === 0 ? null : creditShifted + 300 - 1;
+
+    return {
+      ok: true,
+      data: {
+        nickname,
+        netWorth,
+        objectives,
+        badges,
+        credit
+      }
+    };
+  } catch (e) {
+    return { ok: false, error: "Unexpected parse failure. Check spelling." };
+  }
 }

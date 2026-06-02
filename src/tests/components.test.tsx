@@ -17,6 +17,7 @@ describe("app components", () => {
 
   it("starts a new life and reveals choice effects after selection", async () => {
     localStorage.clear();
+    localStorage.setItem("moneylife.skipTutorial", "true");
     const { container } = render(<App />);
     await userEvent.click(screen.getByRole("button", { name: /start new life/i }));
     await userEvent.click(screen.getByRole("button", { name: /choose goal/i }));
@@ -36,6 +37,7 @@ describe("app components", () => {
 
   it("lets activity shortcut links open the correct money sections", async () => {
     localStorage.clear();
+    localStorage.setItem("moneylife.skipTutorial", "true");
     render(<App />);
     await userEvent.click(screen.getByRole("button", { name: /start new life/i }));
     await userEvent.click(screen.getByRole("button", { name: /choose goal/i }));
@@ -53,5 +55,26 @@ describe("app components", () => {
     expect(screen.getByText(/not include student names/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/optional contact/i)).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /copy report/i })).toBeDisabled();
+  });
+
+  it("shows walkthrough modal on start and respects skip action", async () => {
+    localStorage.clear();
+    render(<App />);
+    await userEvent.click(screen.getByRole("button", { name: /start new life/i }));
+    await userEvent.click(screen.getByRole("button", { name: /choose goal/i }));
+    await userEvent.click(screen.getByRole("button", { name: /start life/i }));
+    
+    // Walkthrough Modal should display welcome slide
+    expect(screen.getByText(/How to Play Guide/i)).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /Welcome to MoneyLife Quest/i })).toBeInTheDocument();
+
+    // Click Next
+    await userEvent.click(screen.getByRole("button", { name: /next/i }));
+    expect(screen.getByRole("heading", { name: /Your Life Skills & Stats/i })).toBeInTheDocument();
+
+    // Click Skip
+    await userEvent.click(screen.getByRole("button", { name: /^skip$/i }));
+    expect(screen.queryByText(/How to Play Guide/i)).not.toBeInTheDocument();
+    expect(screen.getByText(/life skills/i)).toBeInTheDocument();
   });
 });

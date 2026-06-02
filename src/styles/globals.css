@@ -2314,3 +2314,43 @@ textarea {
     animation: none !important;
   }
 }
+
+/* Balanced Budget Card Polish */
+.budget-builder-card--balanced {
+  box-shadow: 0 0 20px rgba(45, 212, 191, 0.25);
+  border-color: var(--teal) !important;
+}
+
+.budget-total-banner--balanced {
+  background: linear-gradient(135deg, #2dd4bf 0%, #0d9488 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 10px rgba(13, 148, 136, 0.2);
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.02); opacity: 0.95; }
+}
+
+.animate-pulse {
+  animation: pulse 2.5s infinite ease-in-out;
+}
+
+@keyframes buttonGlow {
+  0%, 100% { box-shadow: 0 0 5px rgba(45, 212, 191, 0.4); }
+  50% { box-shadow: 0 0 15px rgba(45, 212, 191, 0.8); }
+}
+
+.btn-glow-pulse {
+  animation: buttonGlow 2s infinite ease-in-out;
+  border-color: var(--teal-dark) !important;
+}
+
+.budget-success-modal {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

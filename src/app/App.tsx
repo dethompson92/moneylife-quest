@@ -15,6 +15,8 @@ import { BankScreen } from "../features/finance/BankScreen";
 import { CreditScreen } from "../features/finance/CreditScreen";
 import { InvestScreen } from "../features/finance/InvestScreen";
 import { ProtectScreen } from "../features/finance/ProtectScreen";
+import { NetWorthScreen } from "../features/finance/NetWorthScreen";
+import { HowToPlayModal } from "../features/help/HowToPlayModal";
 import { GoalSelection } from "../features/goals/GoalSelection";
 import { GoalsScreen } from "../features/goals/GoalsScreen";
 import { SummaryScreen } from "../features/summary/SummaryScreen";
@@ -42,6 +44,7 @@ export function App() {
   const classParams = useMemo(() => parseClassParams(), []);
   const [screen, setScreen] = useState<Screen>("home");
   const [game, setGame] = useState<GameState | null>(null);
+  const [showWalkthrough, setShowWalkthrough] = useState(false);
   const [settings, setSettings] = useState<GameSettings>(() => loadSettings());
   const [saveError, setSaveError] = useState<string | null>(null);
   const [toast, setToast] = useState<string | null>(null);
@@ -93,6 +96,9 @@ export function App() {
     });
     setGame(next);
     setScreen("dashboard");
+    if (localStorage.getItem("moneylife.skipTutorial") !== "true") {
+      setShowWalkthrough(true);
+    }
   }
 
   function updateSettings(next: GameSettings) {
@@ -176,6 +182,7 @@ export function App() {
           onTeacher={() => setScreen("teacher")}
           onPrivacy={() => setScreen("privacy")}
           onClearBadSave={resetGame}
+          onWalkthrough={() => setShowWalkthrough(true)}
         />
       );
     }
@@ -210,8 +217,8 @@ export function App() {
       );
     }
     if (screen === "privacy") return <PrivacyScreen />;
-    if (screen === "settings") return <SettingsScreen settings={settings} onSettings={updateSettings} onReset={resetGame} />;
-    if (!game) return <HomeScreen hasSave={false} saveError={null} classMode={false} onStart={() => setScreen("setup")} onContinue={() => undefined} onTeacher={() => setScreen("teacher")} onPrivacy={() => setScreen("privacy")} onClearBadSave={resetGame} />;
+    if (screen === "settings") return <SettingsScreen settings={settings} onSettings={updateSettings} onReset={resetGame} onWalkthrough={() => setShowWalkthrough(true)} />;
+    if (!game) return <HomeScreen hasSave={false} saveError={null} classMode={false} onStart={() => setScreen("setup")} onContinue={() => undefined} onTeacher={() => setScreen("teacher")} onPrivacy={() => setScreen("privacy")} onClearBadSave={resetGame} onWalkthrough={() => setShowWalkthrough(true)} />;
     if (screen === "summary") return <SummaryScreen game={game} onCopy={copyText} onRestart={resetGame} />;
     if (screen === "activities") return <ActivitiesHub game={game} onRunActivity={(id) => setGame(runActivity(game, id))} onNavigate={setScreen} />;
     if (screen === "money") return <BudgetScreen game={game} onPreset={runBudgetPreset} onSaveCustomBudget={updateBudget} onNavigate={setScreen} />;
@@ -219,6 +226,7 @@ export function App() {
     if (screen === "credit") return <CreditScreen game={game} onAction={(id) => setGame(runActivity(game, id))} />;
     if (screen === "invest") return <InvestScreen game={game} onAction={(id) => setGame(runActivity(game, id))} />;
     if (screen === "protect") return <ProtectScreen game={game} onAction={(id) => setGame(runActivity(game, id))} />;
+    if (screen === "networth") return <NetWorthScreen game={game} onNavigate={setScreen} />;
     if (screen === "goals") return <GoalsScreen game={game} />;
     return (
       <Dashboard
@@ -234,6 +242,16 @@ export function App() {
       {renderScreen()}
       <IssueReporter game={game} onCopy={copyText} />
       {toast ? <div className="toast" role="status">{toast}</div> : null}
+      {showWalkthrough && (
+        <HowToPlayModal
+          onClose={(dontShowAgain) => {
+            if (dontShowAgain) {
+              localStorage.setItem("moneylife.skipTutorial", "true");
+            }
+            setShowWalkthrough(false);
+          }}
+        />
+      )}
     </AppShell>
   );
 }
@@ -246,7 +264,8 @@ function HomeScreen({
   onContinue,
   onTeacher,
   onPrivacy,
-  onClearBadSave
+  onClearBadSave,
+  onWalkthrough
 }: {
   hasSave: boolean;
   saveError: string | null;
@@ -256,6 +275,7 @@ function HomeScreen({
   onTeacher: () => void;
   onPrivacy: () => void;
   onClearBadSave: () => void;
+  onWalkthrough: () => void;
 }) {
   return (
     <section className="home-screen">
@@ -267,7 +287,8 @@ function HomeScreen({
         <div className="button-column">
           <Button onClick={onStart} icon={<Sparkles aria-hidden="true" />}>Start New Life</Button>
           <Button variant="secondary" onClick={onContinue} disabled={!hasSave}>Continue Saved Life</Button>
-          <Button variant="ghost" onClick={onTeacher} icon={<BookOpen aria-hidden="true" />}>Teacher Tools</Button>
+          <Button variant="secondary" onClick={onWalkthrough} icon={<BookOpen aria-hidden="true" />}>How to Play</Button>
+          <Button variant="ghost" onClick={onTeacher} icon={<LockKeyhole aria-hidden="true" />}>Teacher Tools</Button>
           <Button variant="ghost" onClick={onPrivacy}>Privacy</Button>
         </div>
         {saveError ? (
