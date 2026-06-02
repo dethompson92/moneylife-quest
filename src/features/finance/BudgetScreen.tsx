@@ -1,10 +1,12 @@
 import { Button } from "../../components/ui/Button";
 import { formatMoney } from "../../lib/formatMoney";
+import { calculateNetWorth } from "./financeEngine";
 import type { GameState } from "../../types/game";
 
 export function BudgetScreen({ game, onPreset, onNavigate }: { game: GameState; onPreset: (preset: "balanced" | "save" | "fun") => void; onNavigate: (screen: "bank" | "credit" | "invest" | "protect") => void }) {
   const budget = game.finances.budget;
   const netIncome = Math.max(0, game.finances.annualIncome - game.finances.annualTaxes);
+  const assetValue = game.finances.assets.reduce((sum, asset) => sum + asset.value, 0);
   return (
     <section className="screen-panel">
       <div className="section-heading">
@@ -16,6 +18,12 @@ export function BudgetScreen({ game, onPreset, onNavigate }: { game: GameState; 
         <Button variant="secondary" onClick={() => onNavigate("credit")}>Credit / Debt</Button>
         <Button variant="secondary" onClick={() => onNavigate("invest")}>Invest</Button>
         <Button variant="secondary" onClick={() => onNavigate("protect")}>Protect</Button>
+      </div>
+      <div className="detail-grid">
+        <article><small>Net Worth</small><strong>{formatMoney(calculateNetWorth(game.finances))}</strong></article>
+        <article><small>Assets</small><strong>{formatMoney(assetValue)}</strong></article>
+        <article><small>Investments</small><strong>{formatMoney(game.finances.investments)}</strong></article>
+        <article><small>Debt</small><strong>{formatMoney(game.finances.debtTotal)}</strong></article>
       </div>
       <div className="budget-layout">
         <div className="budget-meter">

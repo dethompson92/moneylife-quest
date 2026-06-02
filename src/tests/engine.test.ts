@@ -37,6 +37,15 @@ describe("game engine", () => {
     expect(calculateCreditScore(next)).toBeGreaterThanOrEqual(300);
   });
 
+  it("updates support circle relationships through effects", () => {
+    const game = createNewGame({ seed: "support-circle" });
+    const family = game.relationships.find((relationship) => relationship.id === "family")!;
+    const next = applyEffects(game, [{ type: "relationship", relationshipId: "family", closeness: 5, support: 4 }]);
+    const updatedFamily = next.relationships.find((relationship) => relationship.id === "family")!;
+    expect(updatedFamily.closeness).toBeGreaterThan(family.closeness);
+    expect(updatedFamily.support).toBeGreaterThan(family.support);
+  });
+
   it("age up selects an event and resolving it updates log and saveable state", () => {
     const game = createNewGame({ seed: "event-flow", topicFilter: ["money-values"] });
     const pending = ageUp(game);

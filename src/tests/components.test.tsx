@@ -4,19 +4,15 @@ import { describe, expect, it } from "vitest";
 import { App } from "../app/App";
 
 describe("app components", () => {
-  it("disables continue without a save and password-gates teacher tools", async () => {
+  it("disables continue without a save and keeps teacher tools locked when no hash is configured", async () => {
     localStorage.clear();
     sessionStorage.clear();
     render(<App />);
     expect(screen.getByRole("button", { name: /continue saved life/i })).toBeDisabled();
     await userEvent.click(screen.getByRole("button", { name: /teacher tools/i }));
     expect(screen.getByRole("heading", { name: /teacher tools locked/i })).toBeInTheDocument();
-    await userEvent.type(screen.getByLabelText(/teacher password/i), "future-life-budget");
-    await userEvent.click(screen.getByRole("button", { name: /unlock teacher tools/i }));
-    expect(screen.getByRole("heading", { name: /teacher guide/i })).toBeInTheDocument();
-    expect(screen.getByText(/question of the day discussion sparks/i)).toBeInTheDocument();
-    expect(screen.getByText(/banzai topic extensions/i)).toBeInTheDocument();
-    expect(screen.getByText(/full source index/i)).toBeInTheDocument();
+    expect(screen.getByText(/teacher password hash is not configured/i)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /unlock teacher tools/i })).toBeDisabled();
   });
 
   it("starts a new life and reveals choice effects after selection", async () => {

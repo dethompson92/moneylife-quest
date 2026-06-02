@@ -2,6 +2,7 @@ import { scenarioEvents } from "../../data/scenarioPacks/middleSchoolCore";
 import { defaultSettings } from "../../lib/storage";
 import { createSeededRng, randomSeed } from "../../lib/rng";
 import { createId, generateCharacter, getLifeStage } from "../character/characterFactory";
+import { createSupportCircle } from "../character/supportCircle";
 import { checkAchievements } from "../achievements/achievementEngine";
 import { applyPassiveFinancialUpdates, getInitialFinances, getInitialStats } from "../finance/financeEngine";
 import { getGoal } from "../goals/goalDefinitions";
@@ -43,6 +44,7 @@ export function createNewGame(options: NewGameOptions = {}): GameState {
     activeTopicFilter: options.topicFilter?.length ? options.topicFilter : allTopics,
     stats: getInitialStats(character.background.startingMoneyKnowledge),
     finances: getInitialFinances(),
+    relationships: createSupportCircle(rng),
     flags: {},
     completedEventIds: [],
     log: [

@@ -5,6 +5,7 @@ import { Button } from "../components/ui/Button";
 import { MoneyChip } from "../components/ui/MoneyChip";
 import { StatBar } from "../components/ui/StatBar";
 import { CharacterHeader } from "../features/character/CharacterHeader";
+import { SupportCirclePanel } from "../features/character/SupportCirclePanel";
 import { EventModal } from "../features/events/EventModal";
 import { ActivitiesHub } from "../features/activities/ActivitiesHub";
 import { BudgetScreen } from "../features/finance/BudgetScreen";
@@ -165,8 +166,8 @@ export function App() {
         return (
           <TeacherGate
             passwordAvailable={teacherPasswordAvailable()}
-            onUnlock={(password) => {
-              if (!validateTeacherPassword(password)) return false;
+            onUnlock={async (password) => {
+              if (!(await validateTeacherPassword(password))) return false;
               unlockTeacherMode();
               setTeacherUnlocked(true);
               return true;
@@ -257,14 +258,20 @@ function HomeScreen({
   );
 }
 
-function TeacherGate({ passwordAvailable, onUnlock }: { passwordAvailable: boolean; onUnlock: (password: string) => boolean }) {
+function TeacherGate({ passwordAvailable, onUnlock }: { passwordAvailable: boolean; onUnlock: (password: string) => Promise<boolean> }) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [isChecking, setIsChecking] = useState(false);
 
-  function submit(event: FormEvent<HTMLFormElement>) {
+  async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const ok = onUnlock(password);
-    setError(ok ? null : "That password did not unlock teacher tools.");
+    setIsChecking(true);
+    try {
+      const ok = await onUnlock(password);
+      setError(ok ? null : "That password did not unlock teacher tools.");
+    } finally {
+      setIsChecking(false);
+    }
   }
 
   return (
@@ -286,13 +293,13 @@ function TeacherGate({ passwordAvailable, onUnlock }: { passwordAvailable: boole
           />
         </label>
         {!passwordAvailable ? (
-          <p className="form-error" role="alert">Teacher password is not configured for this deployment yet.</p>
+          <p className="form-error" role="alert">Teacher password hash is not configured for this deployment yet.</p>
         ) : error ? (
           <p className="form-error" role="alert">{error}</p>
         ) : null}
-        <Button type="submit" disabled={!passwordAvailable}>Unlock Teacher Tools</Button>
+        <Button type="submit" disabled={!passwordAvailable || isChecking}>{isChecking ? "Checking..." : "Unlock Teacher Tools"}</Button>
       </form>
-      <p className="teacher-gate__note">Set the shared classroom password during deployment with VITE_TEACHER_PASSWORD. Local development uses a fallback for testing.</p>
+      <p className="teacher-gate__note">Teacher tools use a one-way deployment hash. Do not place private answer keys, rosters, grades, or sensitive student information in a public static build.</p>
     </section>
   );
 }
@@ -375,9 +382,17 @@ function Dashboard({
             <Trophy aria-hidden="true" />
             <span><strong>Badges: {game.achievements.length}</strong><small>Keep making smart choices.</small></span>
           </div>
+          <SupportCirclePanel game={game} />
         </aside>
         <section className="life-log">
           <h2>Your Life</h2>
+          <Button
+            className={`age-up-button${game.status === "event-pending" ? " age-up-button--pending" : ""}`}
+            onClick={onAgeUp}
+            disabled={game.status !== "active"}
+          >
+            {game.status === "event-pending" ? "Choose an Event Option" : game.status === "ended" ? "Summary Ready" : "Age Up"}
+          </Button>
           <div className="log-list" aria-live="polite">
             {game.pendingFeedback ? (
               <article className="feedback-card">
@@ -408,13 +423,6 @@ function Dashboard({
           </div>
         </section>
       </div>
-      <Button
-        className={`age-up-button${game.status === "event-pending" ? " age-up-button--pending" : ""}`}
-        onClick={onAgeUp}
-        disabled={game.status !== "active"}
-      >
-        {game.status === "event-pending" ? "Choose an Event Option" : game.status === "ended" ? "Summary Ready" : "Age Up"}
-      </Button>
       {game.pendingEventId ? <EventModal game={game} onResolve={onResolve} /> : null}
     </div>
   );

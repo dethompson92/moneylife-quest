@@ -30,6 +30,18 @@ export type PlayerStats = {
   creditScore: number | null;
 };
 
+export type RelationshipRole = "family" | "friend" | "mentor" | "pet";
+
+export type Relationship = {
+  id: string;
+  name: string;
+  role: RelationshipRole;
+  icon: string;
+  closeness: number;
+  support: number;
+  note: string;
+};
+
 export type Budget = {
   needsPercent: number;
   wantsPercent: number;
@@ -118,6 +130,7 @@ export type Effect =
   | { type: "stat"; stat: keyof PlayerStats; amount: number }
   | { type: "creditScore"; amount: number }
   | { type: "flag"; key: string; value: boolean | string | number }
+  | { type: "relationship"; relationshipId: string; closeness?: number; support?: number }
   | { type: "achievement"; achievementId: string };
 
 export type Outcome = {
@@ -202,6 +215,7 @@ export type GameState = {
   activeTopicFilter: Topic[];
   stats: PlayerStats;
   finances: FinanceProfile;
+  relationships: Relationship[];
   flags: Record<string, boolean | string | number>;
   pendingEventId?: string;
   pendingFeedback?: string;

@@ -1,4 +1,6 @@
 import type { GameSettings, GameState, StorageResult } from "../types/game";
+import { createSeededRng } from "./rng";
+import { createSupportCircle } from "../features/character/supportCircle";
 
 export const SAVE_KEY = "moneylife.save.v1";
 export const SETTINGS_KEY = "moneylife.settings.v1";
@@ -26,6 +28,9 @@ export function loadGame(): StorageResult<GameState> {
     const parsed = JSON.parse(raw) as GameState;
     if (!parsed || parsed.version !== CURRENT_SAVE_VERSION || !parsed.character || !parsed.finances) {
       return { ok: false, error: "Saved game is from an unsupported version." };
+    }
+    if (!parsed.relationships?.length) {
+      parsed.relationships = createSupportCircle(createSeededRng(parsed.seed ?? parsed.id));
     }
     return { ok: true, value: parsed };
   } catch {

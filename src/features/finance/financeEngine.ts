@@ -1,5 +1,6 @@
 import { clamp, clampMoney } from "../../lib/clamp";
 import { createSeededRng, type Rng } from "../../lib/rng";
+import { updateRelationship } from "../character/supportCircle";
 import type { Effect, FinanceProfile, GameState, PlayerStats } from "../../types/game";
 
 export function getInitialStats(startingMoneyKnowledge = 45): PlayerStats {
@@ -68,6 +69,7 @@ export function summarizeEffects(effects: Effect[]): string[] {
     if (effect.type === "stat") return `${effect.stat} ${effect.amount >= 0 ? "+" : ""}${effect.amount}`;
     if (effect.type === "creditScore") return `credit ${effect.amount >= 0 ? "+" : ""}${effect.amount}`;
     if (effect.type === "flag") return `${effect.key} set`;
+    if (effect.type === "relationship") return `${effect.relationshipId} support changed`;
     if (effect.type === "achievement") return `achievement: ${effect.achievementId}`;
     return `${effect.type} ${effect.amount >= 0 ? "+" : ""}${effect.amount}`;
   });
@@ -112,6 +114,12 @@ export function applyEffects(state: GameState, effects: Effect[]): GameState {
         break;
       case "flag":
         next.flags[effect.key] = effect.value;
+        break;
+      case "relationship":
+        next.relationships = updateRelationship(next.relationships, effect.relationshipId, {
+          closeness: effect.closeness,
+          support: effect.support
+        });
         break;
       case "achievement":
         if (!next.achievements.includes(effect.achievementId)) next.achievements.push(effect.achievementId);

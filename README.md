@@ -25,19 +25,26 @@ pnpm run test:e2e
 
 ## Teacher Password
 
-Teacher-facing tools are hidden behind a classroom password. Set it during local builds or GitHub Pages deployment:
+Teacher-facing tools are hidden behind a classroom password gate. Do not place the plaintext password in source code, `.env` files that will be committed, or GitHub Pages variables.
 
-```bash
-VITE_TEACHER_PASSWORD="choose-your-password" pnpm run build
-```
-
-If no build variable is set, the production Teacher Tools panel stays locked. Local development and tests use this fallback:
+For GitHub Pages, set a repository secret named:
 
 ```text
-future-life-budget
+TEACHER_TOOLS_PASSWORD
 ```
 
-Important: because this is a static public site, this is a classroom gate, not high-security authentication. Do not put confidential teacher-only answers, student data, rosters, grades, or private records in the deployed app.
+Set its value to your classroom password. The deploy workflow turns that secret into a one-way SHA-256 hash at build time and publishes only the hash, not the plaintext password.
+
+For local development, generate a hash and pass only the hash:
+
+```bash
+node -e "console.log(require('node:crypto').createHash('sha256').update(process.argv[1]).digest('hex'))" "your-password"
+VITE_TEACHER_PASSWORD_HASH="paste-generated-hash" pnpm run build
+```
+
+If no hash is configured, the Teacher Tools panel stays locked.
+
+Important: because this is a static public site, this is a classroom gate, not high-security authentication. A determined student can inspect and modify client-side JavaScript. Do not put confidential teacher-only answers, student data, rosters, grades, or private records in the deployed app.
 
 ## Bug Reporter
 
@@ -56,9 +63,9 @@ If either is set, the app can open a prefilled issue or email. Copy and download
 
 The repository includes `.github/workflows/deploy.yml`. After pushing to `main`, configure GitHub Pages to use GitHub Actions, then set repository variables if desired:
 
-- `VITE_TEACHER_PASSWORD`
-- `VITE_GITHUB_ISSUES_URL`
-- `VITE_SUPPORT_EMAIL`
+- Secret: `TEACHER_TOOLS_PASSWORD`
+- Variable: `VITE_GITHUB_ISSUES_URL`
+- Variable: `VITE_SUPPORT_EMAIL`
 
 The workflow installs dependencies, runs unit tests, installs Playwright Chromium, runs the browser smoke test, builds the Vite app, uploads `dist`, and deploys Pages.
 
