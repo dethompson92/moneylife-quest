@@ -31,11 +31,6 @@ jobs:
           cache: pnpm
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-      - name: Prepare teacher tools password hash
-        run: |
-          node -e "const crypto=require('node:crypto'); const fs=require('node:fs'); const password=(process.env.TEACHER_TOOLS_PASSWORD || '').trim(); if (password) fs.appendFileSync(process.env.GITHUB_ENV, 'VITE_TEACHER_PASSWORD_HASH=' + crypto.createHash('sha256').update(password).digest('hex') + '\n');"
-        env:
-          TEACHER_TOOLS_PASSWORD: ${{ secrets.TEACHER_TOOLS_PASSWORD }}
       - name: Run tests
         run: pnpm test
       - name: Install Playwright Chromium
@@ -44,6 +39,11 @@ jobs:
         run: pnpm run test:e2e
         env:
           VITE_BASE_PATH: /
+      - name: Prepare teacher tools password hash
+        run: |
+          node -e "const crypto=require('node:crypto'); const fs=require('node:fs'); const password=(process.env.TEACHER_TOOLS_PASSWORD || '').trim(); if (password) fs.appendFileSync(process.env.GITHUB_ENV, 'VITE_TEACHER_PASSWORD_HASH=' + crypto.createHash('sha256').update(password).digest('hex') + '\n');"
+        env:
+          TEACHER_TOOLS_PASSWORD: ${{ secrets.TEACHER_TOOLS_PASSWORD }}
       - name: Build
         run: pnpm run build
         env:
