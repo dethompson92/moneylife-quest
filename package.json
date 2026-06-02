@@ -5,9 +5,12 @@
   "packageManager": "pnpm@11.5.0",
   "type": "module",
   "scripts": {
+    "predev": "node scripts/parseContext.js",
     "dev": "vite",
+    "prebuild": "node scripts/parseContext.js",
     "build": "tsc --noEmit -p tsconfig.app.json && vite build",
     "preview": "vite preview --host 127.0.0.1",
+    "pretest": "node scripts/parseContext.js",
     "test": "vitest run",
     "test:run": "vitest run",
     "test:e2e": "VITE_BASE_PATH=/ pnpm run build && playwright test"

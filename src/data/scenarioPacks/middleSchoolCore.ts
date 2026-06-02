@@ -5,6 +5,7 @@ import { earlyHighSchoolExpansionEvents } from "./earlyHighSchoolExpansion";
 import { mathExpansionEvents } from "./mathExpansion";
 import { officialResearchExpansionEvents } from "./officialResearchExpansion";
 import { questExpansionEvents } from "./questExpansion";
+import { contextScenariosEvents } from "./contextScenarios";
 
 type EventOptions = {
   lifeStages?: ScenarioEvent["lifeStages"];
@@ -486,5 +487,6 @@ export const scenarioEvents = [
   ...earlyHighSchoolExpansionEvents,
   ...adultOutcomeEvents,
   ...mathExpansionEvents,
-  ...officialResearchExpansionEvents
+  ...officialResearchExpansionEvents,
+  ...contextScenariosEvents
 ];

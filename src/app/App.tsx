@@ -29,7 +29,7 @@ import { runActivity } from "../features/activities/activityDefinitions";
 import { clearGame, loadGame, loadSettings, saveGame, saveSettings } from "../lib/storage";
 import { parseClassParams } from "../lib/queryParams";
 import { isTeacherUnlocked, lockTeacherMode, teacherPasswordAvailable, unlockTeacherMode, validateTeacherPassword } from "../lib/teacherAccess";
-import type { GameMode, GameSettings, GameState } from "../types/game";
+import type { GameMode, GameSettings, GameState, Budget } from "../types/game";
 import type { Screen } from "./routes";
 
 type SetupDraft = {
@@ -142,6 +142,28 @@ export function App() {
     });
   }
 
+  function updateBudget(newBudget: Budget) {
+    if (!game) return;
+    setGame({
+      ...game,
+      finances: { ...game.finances, budget: newBudget },
+      log: [
+        {
+          id: `budget-${Date.now()}`,
+          turn: game.turn,
+          age: game.character.age,
+          title: "Budget Customized",
+          body: `You set a custom budget allocation: Needs ${newBudget.needsPercent}%, Wants ${newBudget.wantsPercent}%, Savings ${newBudget.savingsPercent}%, Giving ${newBudget.givingPercent}%, Debt ${newBudget.debtPaymentPercent}%.`,
+          topic: "budgeting",
+          createdAt: new Date().toISOString()
+        },
+        ...game.log
+      ]
+    });
+    setToast("Custom budget saved!");
+    window.setTimeout(() => setToast(null), 1800);
+  }
+
   function renderScreen() {
     if (screen === "home") {
       return (
@@ -192,7 +214,7 @@ export function App() {
     if (!game) return <HomeScreen hasSave={false} saveError={null} classMode={false} onStart={() => setScreen("setup")} onContinue={() => undefined} onTeacher={() => setScreen("teacher")} onPrivacy={() => setScreen("privacy")} onClearBadSave={resetGame} />;
     if (screen === "summary") return <SummaryScreen game={game} onCopy={copyText} onRestart={resetGame} />;
     if (screen === "activities") return <ActivitiesHub game={game} onRunActivity={(id) => setGame(runActivity(game, id))} onNavigate={setScreen} />;
-    if (screen === "money") return <BudgetScreen game={game} onPreset={runBudgetPreset} onNavigate={setScreen} />;
+    if (screen === "money") return <BudgetScreen game={game} onPreset={runBudgetPreset} onSaveCustomBudget={updateBudget} onNavigate={setScreen} />;
     if (screen === "bank") return <BankScreen game={game} onAction={(id) => setGame(runActivity(game, id))} />;
     if (screen === "credit") return <CreditScreen game={game} onAction={(id) => setGame(runActivity(game, id))} />;
     if (screen === "invest") return <InvestScreen game={game} onAction={(id) => setGame(runActivity(game, id))} />;
