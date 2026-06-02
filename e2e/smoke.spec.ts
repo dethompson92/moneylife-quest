@@ -20,7 +20,9 @@ test("student can play one turn and reload the save", async ({ page }) => {
   await page.getByRole("button", { name: /^age up$/i }).click();
   await expect(page.getByRole("dialog", { name: /new event/i })).toBeVisible();
   await expect(page.getByText(/effects revealed after you choose/i).first()).toBeVisible();
-  await page.locator(".choice-card").first().click();
+  const enabledChoice = page.locator(".choice-card:not([disabled])").first();
+  await expect(enabledChoice).toBeVisible();
+  await enabledChoice.click();
   await expect(page.getByText(/what i learned/i)).toBeVisible();
   await expect(page.locator('[aria-label="Revealed choice effects"]')).toBeVisible();
   await page.reload();
