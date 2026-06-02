@@ -6,6 +6,7 @@ import { MoneyChip } from "../components/ui/MoneyChip";
 import { StatBar } from "../components/ui/StatBar";
 import { CharacterHeader } from "../features/character/CharacterHeader";
 import { SupportCirclePanel } from "../features/character/SupportCirclePanel";
+import { TermSpotlight } from "../features/glossary/TermSpotlight";
 import { EventModal } from "../features/events/EventModal";
 import { ActivitiesHub } from "../features/activities/ActivitiesHub";
 import { BudgetScreen } from "../features/finance/BudgetScreen";
@@ -382,6 +383,7 @@ function Dashboard({
             <Trophy aria-hidden="true" />
             <span><strong>Badges: {game.achievements.length}</strong><small>Keep making smart choices.</small></span>
           </div>
+          <TermSpotlight termIds={["budget", "saving", "debt", "credit-score", "net-worth", "emergency-fund"]} maxTerms={4} />
           <SupportCirclePanel game={game} />
         </aside>
         <section className="life-log">

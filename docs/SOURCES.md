@@ -12,6 +12,7 @@ MoneyLife Quest uses the resources below as teacher-facing context and attributi
 ## NGPF Middle School and Curriculum Hubs
 
 - NGPF Middle School Course: https://www.ngpf.org/courses/middle-school-course/
+- NGPF Middle School Personal Finance Dictionary: https://docs.google.com/document/d/16JX29Ei17XkvPCmPKazAY7ZFWOkclvoqiVVscfLYu0s/edit?tab=t.0#heading=h.z6ne0og04bp5
 - NGPF Curriculum: https://www.ngpf.org/curriculum/
 - Banking: https://www.ngpf.org/curriculum/banking/
 - Behavioral Economics: https://www.ngpf.org/curriculum/behavioral-economics/
@@ -85,6 +86,10 @@ Representative QOD-style prompts used for original scenario inspiration:
 - IRS Understanding Taxes: https://apps.irs.gov/app/understandingTaxes/
 
 These sources informed a new official-source research scenario pack around spending plans, checking/savings accounts, payment-app and impostor scams, credit reports, investing risk, student aid, taxes, insurance, and career path tradeoffs. All game prompts, choices, and feedback remain original MoneyLife Quest text.
+
+## Glossary and Vocabulary Support
+
+The in-app Money Words feature uses the NGPF Personal Finance Dictionary, NGPF middle-school units, Napkin Finance, Humble Math Financial Literacy, Banzai public topic pages, and official public finance education sites as vocabulary/topic references only. Student-facing definitions are short original MoneyLife Quest explanations, not copied dictionary or PDF text. Each term can also show a math connection so words like interest, discount, unit price, premium, deductible, assets, debt, and net worth connect back to 7th-grade math skills.
 
 ## Teacher-Provided Google Docs
 

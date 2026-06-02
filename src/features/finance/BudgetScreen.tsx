@@ -1,5 +1,6 @@
 import { Button } from "../../components/ui/Button";
 import { formatMoney } from "../../lib/formatMoney";
+import { TermSpotlight } from "../glossary/TermSpotlight";
 import { calculateNetWorth } from "./financeEngine";
 import type { GameState } from "../../types/game";
 
@@ -25,6 +26,7 @@ export function BudgetScreen({ game, onPreset, onNavigate }: { game: GameState; 
         <article><small>Investments</small><strong>{formatMoney(game.finances.investments)}</strong></article>
         <article><small>Debt</small><strong>{formatMoney(game.finances.debtTotal)}</strong></article>
       </div>
+      <TermSpotlight termIds={["budget", "net-worth", "asset", "investment", "debt", "net-income", "tax", "needs", "wants"]} maxTerms={5} />
       <div className="budget-layout">
         <div className="budget-meter">
           <strong>Annual take-home estimate</strong>

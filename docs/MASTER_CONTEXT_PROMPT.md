@@ -3,19 +3,20 @@
 Copy this prompt into GPT-5.5 Pro, Claude Opus, or another high-reasoning model whenever you want a fresh batch of rich scenario ideas, teacher context, and feature recommendations for MoneyLife Quest. Paste the result back into Codex.
 
 ```text
-You are an expert middle-school financial literacy curriculum designer, text-life-sim game writer, classroom UX researcher, 7th-grade math teacher, educational game systems designer, and originality/licensing reviewer.
+You are an expert 7th-10th-grade financial literacy curriculum designer, text-life-sim game writer, classroom UX researcher, middle-school/high-school bridge math teacher, educational game systems designer, and originality/licensing reviewer.
 
-I am building MoneyLife Quest, a school-safe browser game for 7th-grade students. It is a financial-literacy life simulator inspired only by broad text-life-sim mechanics: fictional character, age-up loop, life log, stats, modal decisions, activities, goals, badges, compounding consequences, and final reflection. Do not copy BitLife branding, UI, artwork, names, event text, source code, mature themes, or protected expression. Do not copy NGPF, Banzai, Napkin Finance, worksheets, answer keys, game scripts, or slide text. Use public resources only as topic inspiration and write original student-facing material.
+I am building MoneyLife Quest, a school-safe browser game for 7th-grade students, with optional scenario variety that can reach early high school decisions through 10th grade. It is a financial-literacy life simulator inspired only by broad text-life-sim mechanics: fictional character, age-up loop, life log, stats, modal decisions, activities, goals, badges, compounding consequences, vocabulary supports, and final reflection. Do not copy BitLife branding, UI, artwork, names, event text, source code, mature themes, or protected expression. Do not copy NGPF, Banzai, Napkin Finance, Humble Math, worksheets, answer keys, game scripts, definitions, or slide text. Use public resources only as topic inspiration and write original student-facing material.
 
 Current app facts:
 - Static React/Vite/TypeScript app deployed on GitHub Pages.
 - No backend, login, ads, analytics, external APIs, or student data collection.
 - Saves use localStorage only.
-- Audience: 7th-grade students, classroom Chromebooks, 15-45 minute lessons.
+- Audience: primarily 7th-grade students on classroom Chromebooks, with school-safe extension scenarios through 10th grade for authenticity and replay value.
 - Teacher materials are only for classroom planning and must not include confidential answers, student data, rosters, or grades.
 - Current gameplay starts at age 12 and ages through future adult outcomes.
 - Current stats: wellbeing, moneyKnowledge, discipline, trustSafety, opportunity, creditScore/null, cash, checking, savings, investments, debtTotal, netWorth.
 - Current relationship/support-circle idea: family/caregiver, friend, mentor, and pet support. Keep it school-safe and finance-connected.
+- Current glossary layer: Money Words cards should appear when finance vocabulary comes up. Definitions must be original, 7th-grade-friendly, source-attributed, and connected to math when useful.
 - Desired tone: middle-school readable, specific, realistic, kind, never shaming, and full of tradeoffs where more than one choice can be reasonable.
 
 Research themes to use as inspiration:
@@ -30,6 +31,8 @@ Research themes to use as inspiration:
 - Insurance, premiums, deductibles, renter/auto/health/phone insurance, risk pooling, when savings can self-insure.
 - Career and life after high school, resumes, interviews, soft skills, salary negotiation, AI/job shifts, trade/community college/4-year/work-first/military/apprenticeship pathways, scholarships, FAFSA, student loans.
 - 7th-grade math skills: percentages, decimals, unit rates, proportional reasoning, simple interest, compound growth intuition, tax/tip/discount, budgets, tables, graphs, interpreting totals, multi-step word problems.
+- Early high school bridge skills through 10th grade: paychecks, pathway costs, transportation budgets, career exploration, simple tax forms, credit utilization, loan term comparison, insurance deductibles, investing risk, inflation, entrepreneurship profit/loss, and source evaluation.
+- Vocabulary supports: build from public dictionary/topic inspiration and teacher-provided PDFs, but write original definitions. Useful terms include budget, income, net income, gross pay, tax, saving, savings account, emergency fund, checking account, bank, deposit, fee, overdraft, credit, credit card, credit score, utilization, debt, loan, principal, interest, minimum payment, asset, net worth, investment, diversification, risk, inflation, insurance, premium, deductible, scam, identity theft, receipt, discount, unit price, needs, wants, and opportunity cost.
 
 Use reputable/public source categories as context. Prefer official or primary sources when making factual claims: CFPB, FDIC Money Smart, FTC Consumer Advice, Investor.gov/SEC, Federal Student Aid, IRS Understanding Taxes, state insurance/consumer education pages, NGPF public hub pages, Banzai public topic pages. Attribute source categories but do not copy their wording.
 
@@ -66,7 +69,7 @@ For each chain include:
 - Possible endings
 
 4. Fresh Scenario Bank
-Generate 75 original scenarios. Each scenario must be a future-life or near-future decision students could imagine eventually facing. Use this schema:
+Generate 75 original scenarios. Each scenario must be a future-life or near-future decision students could imagine eventually facing from 7th grade through 10th grade, plus safe future-adult outcomes they are planning toward. Use this schema:
 - id slug
 - title
 - age range
@@ -76,6 +79,7 @@ Generate 75 original scenarios. Each scenario must be a future-life or near-futu
 - for each choice: label, short description, visible locked requirement if any, outcome summary, effects in plain language, feedback, reflection prompt
 - randomized outcome? yes/no
 - future flag set? yes/no and flag name
+- glossary terms: 2-5 finance words that should appear in the Money Words card, with one-sentence original student-friendly definitions if the current app glossary may not already include them
 - tradeoff note explaining why the choice is not simply right/wrong
 
 Requirements for this scenario bank:
@@ -85,6 +89,7 @@ Requirements for this scenario bank:
 - At least 20 scenarios must set a future flag.
 - At least 12 scenarios must include a relationship/support-circle element.
 - At least 12 scenarios must use 7th-grade math explicitly.
+- At least 15 scenarios must be appropriate 8th-10th-grade extension situations while still playable/readable for a 7th-grade class.
 - At least 10 scenarios must involve assets, net worth, or ownership decisions.
 - Avoid mature content, dating/sex, drugs, crime-as-gameplay, gambling, alcohol, or student PII.
 
@@ -97,13 +102,22 @@ Suggest 25 age-appropriate assets or ownership concepts for the game, such as bi
 7. Teacher Discussion Prompts
 Create 30 discussion prompts. Mix quick warm-ups, pair-share questions, exit-ticket reflections, and compare-outcomes prompts.
 
-8. Balance and Ethics Notes
+8. Glossary and Vocabulary Supports
+Create 40 glossary recommendations for terms students may see in the scenarios. For each include:
+- term
+- student-friendly original definition
+- math connection
+- common misconception
+- where it should appear in the app
+- source category to attribute, without copying source wording
+
+9. Balance and Ethics Notes
 List 15 balancing rules that keep the game fair, non-shaming, realistic, and replayable. Include how to avoid implying that wealth equals character, how to represent constraints, and how to show recovery from mistakes.
 
-9. Source and Originality Notes
+10. Source and Originality Notes
 List the public source categories that inspired the batch. Do not quote long passages. Include a reminder that the app should write original scenario text and should not imply endorsement by any source.
 
-10. Implementation Handoff for Codex
+11. Implementation Handoff for Codex
 Summarize the top 20 most implementable items from this batch as a concise engineering handoff. Include suggested files/modules if helpful, but do not assume the exact codebase.
 
 Optional previous-batch context to avoid repeating:

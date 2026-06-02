@@ -231,6 +231,22 @@ const additionalQodLinks: TeacherResource[] = additionalQuestionSparkUrls.map((u
 
 export const sourceCategories: SourceCategory[] = [
   {
+    id: "glossary-vocabulary",
+    title: "Glossary and Vocabulary Support",
+    note: "Vocabulary references used to create original MoneyLife Quest definitions and math connections in the Money Words cards.",
+    links: [
+      teacherGoogleDocLinks[0],
+      {
+        title: "NGPF Middle School Course",
+        topic: "Vocabulary context",
+        url: "https://www.ngpf.org/courses/middle-school-course/",
+        classroomUse: "Use to align glossary terms to middle-school units without copying student-facing definitions."
+      },
+      teacherProjectFiles.find((resource) => resource.title.includes("Napkin Finance"))!,
+      teacherProjectFiles.find((resource) => resource.title.includes("Humble Math"))!
+    ]
+  },
+  {
     id: "middle-school-units",
     title: "Middle School Units",
     note: "Public NGPF pages used to align the original scenario bank to common middle-school finance topics.",

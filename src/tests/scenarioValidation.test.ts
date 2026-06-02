@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { glossaryTerms } from "../data/glossaryTerms";
 import { scenarioEvents } from "../data/scenarioPacks/middleSchoolCore";
 import { validateScenarioEvents } from "../features/events/eventValidation";
 
@@ -64,5 +65,26 @@ describe("scenario validation", () => {
     expect(researchChoices.filter((choice) => choice.requirements?.length).length).toBeGreaterThanOrEqual(40);
     expect(researchChoices.filter((choice) => choice.outcomes.length > 1).length).toBeGreaterThanOrEqual(40);
     expect(researchOutcomes.some((outcome) => outcome.effects.some((effect) => effect.type === "flag"))).toBe(true);
+  });
+
+  it("includes school-safe 8th-10th-grade bridge scenarios", () => {
+    const highSchoolBridgeEvents = scenarioEvents.filter((event) => event.id.startsWith("hs-"));
+    const highSchoolBridgeChoices = highSchoolBridgeEvents.flatMap((event) => event.choices);
+
+    expect(highSchoolBridgeEvents.length).toBeGreaterThanOrEqual(12);
+    expect(highSchoolBridgeEvents.every((event) => event.ageRange.min >= 13 && event.ageRange.max <= 16)).toBe(true);
+    expect(highSchoolBridgeEvents.every((event) => event.lifeStages?.includes("high-school"))).toBe(true);
+    expect(highSchoolBridgeEvents.every((event) => event.sourceNote?.includes("8th-10th-grade"))).toBe(true);
+    expect(highSchoolBridgeChoices.filter((choice) => choice.requirements?.length).length).toBeGreaterThanOrEqual(8);
+    expect(highSchoolBridgeChoices.filter((choice) => choice.outcomes.length > 1).length).toBeGreaterThanOrEqual(2);
+  });
+
+  it("includes a student-friendly glossary for recurring finance terms", () => {
+    expect(glossaryTerms.length).toBeGreaterThanOrEqual(40);
+    expect(glossaryTerms.every((term) => term.definition.length > 20)).toBe(true);
+    expect(glossaryTerms.some((term) => term.id === "compound-interest")).toBe(true);
+    expect(glossaryTerms.some((term) => term.id === "unit-price")).toBe(true);
+    expect(glossaryTerms.some((term) => term.id === "net-worth")).toBe(true);
+    expect(glossaryTerms.every((term) => term.sources.length > 0)).toBe(true);
   });
 });

@@ -604,6 +604,80 @@ textarea {
   background: var(--yellow);
 }
 
+.term-spotlight {
+  display: grid;
+  gap: 10px;
+  margin: 14px 0;
+  padding: 14px;
+  border: 1px solid #b9ebe1;
+  border-radius: var(--radius);
+  background: #f1fbf8;
+}
+
+.term-spotlight__header {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: var(--teal-dark);
+}
+
+.term-spotlight__header h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.term-spotlight__header svg {
+  width: 20px;
+  height: 20px;
+}
+
+.term-list {
+  display: grid;
+  gap: 8px;
+}
+
+.term-card {
+  padding: 10px;
+  border: 1px solid rgba(15, 157, 138, 0.22);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.term-card strong {
+  display: block;
+  color: var(--navy);
+}
+
+.term-card p {
+  margin: 4px 0;
+  color: var(--text);
+}
+
+.term-card small {
+  display: block;
+  color: var(--teal-dark);
+  font-weight: 800;
+}
+
+.term-card__sources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.term-card__sources a,
+.term-card__sources span {
+  padding: 4px 8px;
+  border: 1px solid rgba(11, 31, 58, 0.08);
+  border-radius: 999px;
+  background: white;
+  color: var(--navy);
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
 .life-log {
   min-height: 460px;
 }
