@@ -18,6 +18,7 @@ export function SummaryScreen({
 }) {
   const summary = generateSummary(game);
   const goal = getGoal(game.activeGoalId);
+  const isOpenLife = goal.openEnded === true;
   return (
     <section className="screen-panel summary-screen">
       <div className="section-heading">
@@ -25,7 +26,7 @@ export function SummaryScreen({
         <p>{highlightGlossaryTerms(game.endingReason ?? "Your quick class playthrough is complete.")}</p>
       </div>
       <div className="summary-stats">
-        <article><small>{highlightGlossaryTerms("Goal")}</small><strong>{highlightGlossaryTerms(goal.title)}</strong></article>
+        <article><small>{highlightGlossaryTerms(isOpenLife ? "Play Style" : "Goal")}</small><strong>{highlightGlossaryTerms(goal.title)}</strong></article>
         <article><small>{highlightGlossaryTerms("Net Worth")}</small><strong>{formatMoney(calculateNetWorth(game.finances))}</strong></article>
         <article><small>{highlightGlossaryTerms("Debt")}</small><strong>{formatMoney(game.finances.debtTotal)}</strong></article>
         <article><small>{highlightGlossaryTerms("Credit")}</small><strong>{game.stats.creditScore ?? "No history"}</strong></article>
@@ -40,7 +41,7 @@ export function SummaryScreen({
         <h3>{highlightGlossaryTerms("Discussion Prompts")}</h3>
         <p>{highlightGlossaryTerms("Which choice had the biggest tradeoff?")}</p>
         <p>{highlightGlossaryTerms("What would you try differently in a replay?")}</p>
-        <p>{highlightGlossaryTerms("How did your goal change your decisions?")}</p>
+        <p>{highlightGlossaryTerms(isOpenLife ? "What custom goal did you quietly follow while playing?" : "How did your goal change your decisions?")}</p>
       </div>
       <div className="button-row">
         <Button icon={<Clipboard aria-hidden="true" />} onClick={() => onCopy(summary)}>Copy Summary</Button>

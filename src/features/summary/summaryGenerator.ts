@@ -5,8 +5,18 @@ import type { GameState } from "../../types/game";
 
 export function generateSummary(state: GameState): string {
   const goal = getGoal(state.activeGoalId);
+  const isOpenLife = goal.openEnded === true;
   const completeObjectives = state.goalObjectives.filter((objective) => objective.complete).length;
-  const goalResult = completeObjectives === state.goalObjectives.length ? "Completed" : completeObjectives > 0 ? "In progress" : "Started";
+  const goalResult = isOpenLife
+    ? "Self-directed playthrough"
+    : completeObjectives === state.goalObjectives.length
+      ? "Completed"
+      : completeObjectives > 0
+        ? "In progress"
+        : "Started";
+  const goalLine = isOpenLife
+    ? `Play style: ${goal.title} - ${goalResult}; the player chose their own definition of success.`
+    : `Goal result: ${goal.title} - ${goalResult} (${completeObjectives}/${state.goalObjectives.length} objectives complete)`;
   const badges = state.achievements
     .map((id) => getAchievement(id)?.title)
     .filter(Boolean)
@@ -20,7 +30,7 @@ export function generateSummary(state: GameState): string {
   return [
     `MoneyLife Quest Reflection`,
     `Character: ${state.character.displayName}, age ${state.character.age}`,
-    `Goal result: ${goal.title} - ${goalResult} (${completeObjectives}/${state.goalObjectives.length} objectives complete)`,
+    goalLine,
     `Net worth: $${netWorth.toLocaleString("en-US")}`,
     `Savings: $${Math.round(state.finances.savings).toLocaleString("en-US")}`,
     `Debt: $${Math.round(state.finances.debtTotal).toLocaleString("en-US")}`,

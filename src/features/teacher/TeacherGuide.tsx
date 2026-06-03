@@ -344,12 +344,16 @@ export function TeacherGuide({ onCopy, onLock }: { onCopy: (text: string) => voi
                       </div>
                       {selectedGoalDef && (
                         <div className="helper-item">
-                          <strong>Goal Objectives:</strong>
-                          <ul>
-                            {selectedGoalDef.objectives.map((obj) => (
-                              <li key={obj.id}>{obj.label}</li>
-                            ))}
-                          </ul>
+                          <strong>{selectedGoalDef.openEnded ? "Play Style:" : "Goal Objectives:"}</strong>
+                          {selectedGoalDef.openEnded ? (
+                            <p>Open Life gives students no preset win condition; they play toward a custom personal goal and reflect on the outcomes.</p>
+                          ) : (
+                            <ul>
+                              {selectedGoalDef.objectives.map((obj) => (
+                                <li key={obj.id}>{obj.label}</li>
+                              ))}
+                            </ul>
+                          )}
                         </div>
                       )}
                     </div>
@@ -802,4 +806,3 @@ function formatQuestionUrl(url: string): string {
   if (!slug) return "Question of the Day";
   return slug.charAt(0).toUpperCase() + slug.slice(1);
 }
-

@@ -2,6 +2,28 @@ import type { GoalDefinition } from "../../types/game";
 
 export const goals: GoalDefinition[] = [
   {
+    id: "open-life",
+    title: "Open Life",
+    description: "No preset goal. Make choices toward your own custom future and watch the outcomes unfold.",
+    relatedTopics: [
+      "money-values",
+      "consumer-skills",
+      "budgeting",
+      "banking",
+      "credit",
+      "saving",
+      "investing",
+      "insurance",
+      "scams",
+      "career",
+      "life-after-high-school",
+      "taxes"
+    ],
+    objectives: [],
+    completionMessage: "You played an open-ended money life and built your own definition of success.",
+    openEnded: true
+  },
+  {
     id: "emergency-fund-hero",
     title: "Emergency Fund Hero",
     description: "Build a cushion for surprise costs without letting debt take over.",
@@ -101,4 +123,8 @@ export const goals: GoalDefinition[] = [
 
 export function getGoal(goalId?: string): GoalDefinition {
   return goals.find((goal) => goal.id === goalId) ?? goals[0];
+}
+
+export function isOpenEndedGoal(goalId?: string): boolean {
+  return getGoal(goalId).openEnded === true;
 }

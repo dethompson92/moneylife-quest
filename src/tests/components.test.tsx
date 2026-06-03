@@ -34,6 +34,21 @@ describe("app components", () => {
     expect(container.querySelector('[aria-label="Revealed choice effects"]')).not.toBeNull();
   });
 
+  it("allows a student to start Open Life free play with no preset checklist", async () => {
+    localStorage.clear();
+    localStorage.setItem("moneylife.skipTutorial", "true");
+    render(<App />);
+    await userEvent.click(screen.getByRole("button", { name: /start new life/i }));
+    await userEvent.click(screen.getByRole("button", { name: /choose goal/i }));
+    await userEvent.click(screen.getByRole("button", { name: /open life/i }));
+    await userEvent.click(screen.getByRole("button", { name: /start open life/i }));
+    expect(screen.getByText(/play style/i)).toBeInTheDocument();
+    expect(screen.getByText(/open-ended/i)).toBeInTheDocument();
+    await userEvent.click(screen.getByRole("button", { name: /goals/i }));
+    expect(screen.getByRole("heading", { name: /open life \/ achievements/i })).toBeInTheDocument();
+    expect(screen.getByText(/set your own private win condition/i)).toBeInTheDocument();
+  });
+
   it("lets activity shortcut links open the correct money sections", async () => {
     localStorage.clear();
     localStorage.setItem("moneylife.skipTutorial", "true");

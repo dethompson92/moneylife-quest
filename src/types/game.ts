@@ -190,6 +190,7 @@ export type GoalDefinition = {
   relatedTopics: Topic[];
   objectives: Omit<GoalObjective, "complete">[];
   completionMessage: string;
+  openEnded?: boolean;
 };
 
 export type AchievementDefinition = {

@@ -15,8 +15,11 @@ test("student can play one turn and reload the save", async ({ page }) => {
   const startButton = await openApp(page);
   await startButton.click();
   await page.getByRole("button", { name: /choose goal/i }).click();
-  await page.getByRole("button", { name: /start life/i }).click();
+  await page.getByRole("button", { name: /open life/i }).click();
+  await page.getByRole("button", { name: /start open life/i }).click();
   await expect(page.getByText(/life skills/i)).toBeVisible();
+  await expect(page.getByText(/play style/i)).toBeVisible();
+  await expect(page.getByText(/open-ended/i)).toBeVisible();
   const skipWalkthrough = page.getByRole("button", { name: /^skip$/i });
   if (await skipWalkthrough.isVisible({ timeout: 1000 }).catch(() => false)) {
     await skipWalkthrough.click();

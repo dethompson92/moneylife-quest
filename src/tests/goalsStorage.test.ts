@@ -32,12 +32,23 @@ describe("goals, achievements, and storage", () => {
   });
 
   it("generates a copyable summary without personal fields", () => {
-    const game = createNewGame({ nickname: "Ace" });
+    const game = createNewGame({ nickname: "Ace", goalId: "emergency-fund-hero" });
     const summary = generateSummary(game);
     expect(summary).toContain("MoneyLife Quest Reflection");
     expect(summary).toContain("Goal result");
     expect(summary).toContain("Credit band");
     expect(summary).not.toContain("@");
+  });
+
+  it("supports Open Life as a self-directed play style without required objectives", () => {
+    const game = createNewGame({ nickname: "Ace", goalId: "open-life" });
+    const progressed = checkGoalProgress(checkAchievements(game));
+    const summary = generateSummary(progressed);
+    expect(progressed.activeGoalId).toBe("open-life");
+    expect(progressed.goalObjectives).toEqual([]);
+    expect(progressed.flags.goalCompleted).not.toBe(true);
+    expect(summary).toContain("Play style: Open Life - Self-directed playthrough");
+    expect(summary).not.toContain("0/0 objectives complete");
   });
 
   it("saves, loads, clears, and handles corrupt save data", () => {

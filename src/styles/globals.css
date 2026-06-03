@@ -369,6 +369,22 @@ textarea {
   color: var(--teal);
 }
 
+.goal-card--open {
+  background: linear-gradient(135deg, #f4fffd 0%, #fff9e6 100%);
+}
+
+.goal-card__tag,
+.goal-strip__freeplay {
+  width: fit-content;
+  padding: 6px 10px;
+  border: 1px solid rgba(15, 157, 138, 0.28);
+  border-radius: 999px;
+  background: rgba(15, 157, 138, 0.1);
+  color: var(--teal-dark);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
 .character-strip {
   display: grid;
   grid-template-columns: minmax(230px, 1fr) minmax(260px, 0.9fr);
@@ -1187,6 +1203,22 @@ textarea {
 .objective.is-complete {
   background: #edf9f6;
   border-color: #9fddd2;
+}
+
+.objective-list--open .objective {
+  align-items: flex-start;
+  background: #f7fffd;
+}
+
+.objective-list--open .objective span:first-child {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  background: var(--yellow);
+  color: var(--navy);
+  font-weight: 900;
 }
 
 .badge {
