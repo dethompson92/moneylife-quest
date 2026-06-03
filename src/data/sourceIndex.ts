@@ -233,7 +233,7 @@ export const sourceCategories: SourceCategory[] = [
   {
     id: "glossary-vocabulary",
     title: "Glossary and Vocabulary Support",
-    note: "Vocabulary references used to create original MoneyLife Quest definitions and math connections in the Money Words cards.",
+    note: "Vocabulary references used to create original MoneyLife Quest definitions and math connections in the inline glossary tooltips.",
     links: [
       teacherGoogleDocLinks[0],
       {

@@ -1,4 +1,5 @@
 import { clamp } from "../../lib/clamp";
+import { highlightGlossaryTerms } from "../../features/glossary/GlossaryTooltip";
 
 export function StatBar({
   label,
@@ -14,7 +15,7 @@ export function StatBar({
     <div className="stat-bar" aria-label={`${label}: ${clamped} out of 100`}>
       <div className="stat-bar__row">
         <span className="stat-bar__label">
-          <span aria-hidden="true">{icon}</span> {label}
+          <span aria-hidden="true">{icon}</span> {highlightGlossaryTerms(label)}
         </span>
         <span className="stat-bar__value">{clamped} / 100</span>
       </div>

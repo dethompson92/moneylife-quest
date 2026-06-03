@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { formatMoney } from "../../lib/formatMoney";
+import { highlightGlossaryTerms } from "../../features/glossary/GlossaryTooltip";
 
 export function MoneyChip({
   label,
@@ -18,7 +19,7 @@ export function MoneyChip({
         {icon}
       </span>
       <span>
-        <span className="money-chip__label">{label}</span>
+        <span className="money-chip__label">{highlightGlossaryTerms(label)}</span>
         <strong>{typeof value === "number" ? formatMoney(value) : value}</strong>
       </span>
     </div>

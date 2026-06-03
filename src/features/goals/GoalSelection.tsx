@@ -1,6 +1,7 @@
 import { Target } from "lucide-react";
 import { Button } from "../../components/ui/Button";
 import { goals } from "./goalDefinitions";
+import { highlightGlossaryTerms } from "../glossary/GlossaryTooltip";
 
 export function GoalSelection({
   selectedGoal,
@@ -14,8 +15,8 @@ export function GoalSelection({
   return (
     <section className="screen-panel">
       <div className="section-heading">
-        <h2>Choose Your Money Goal</h2>
-        <p>Your goal changes which events and progress badges matter most.</p>
+        <h2>{highlightGlossaryTerms("Choose Your Money Goal")}</h2>
+        <p>{highlightGlossaryTerms("Your goal changes which events and progress badges matter most.")}</p>
       </div>
       <div className="goal-grid">
         {goals.map((goal) => (

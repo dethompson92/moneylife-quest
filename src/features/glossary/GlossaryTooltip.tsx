@@ -1,9 +1,8 @@
-import { useState, useRef, useEffect, type ReactNode } from "react";
+import { useId, useState, useRef, useEffect, useLayoutEffect, type CSSProperties, type ReactNode } from "react";
 import { glossaryTerms } from "../../data/glossaryTerms";
 import { contextGlossaryTerms } from "../../data/contextGlossary";
 import type { GlossaryTerm } from "../../data/glossaryTerms";
 
-// Combine local and context terms to ensure a comprehensive list
 const allTerms: GlossaryTerm[] = [...glossaryTerms];
 for (const cTerm of contextGlossaryTerms) {
   if (!allTerms.some((t) => t.id === cTerm.id)) {
@@ -11,7 +10,6 @@ for (const cTerm of contextGlossaryTerms) {
   }
 }
 
-// Build a flat list of phrase-to-term mappings
 const phraseList: Array<{ phrase: string; term: GlossaryTerm }> = [];
 for (const term of allTerms) {
   phraseList.push({ phrase: term.term.toLowerCase(), term });
@@ -22,147 +20,145 @@ for (const term of allTerms) {
   }
 }
 
-// Sort by phrase length descending to ensure longer phrases match first
-// E.g. "checking account" matches before "checking"
 phraseList.sort((a, b) => b.phrase.length - a.phrase.length);
 
-// Escape RegExp special characters
 function escapeRegExp(string: string): string {
   return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
-// Construct RegExp with word boundaries
 const regexParts = phraseList.map((item) => escapeRegExp(item.phrase));
 const splitRegex = regexParts.length > 0 ? new RegExp(`\\b(${regexParts.join("|")})\\b`, "gi") : null;
 
 export function GlossaryTooltip({ term, children }: { term: GlossaryTerm; children: string }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [bubbleStyle, setBubbleStyle] = useState<CSSProperties>({});
   const containerRef = useRef<HTMLSpanElement>(null);
+  const pinnedRef = useRef(false);
+  const tooltipId = useId();
+
+  const pinOpen = () => {
+    pinnedRef.current = true;
+    setIsOpen(true);
+  };
+
+  const close = () => {
+    pinnedRef.current = false;
+    setIsOpen(false);
+  };
 
   useEffect(() => {
     if (!isOpen) return;
     const handleClickOutside = (event: MouseEvent) => {
       if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
+        close();
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isOpen]);
 
-  const handleToggle = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setIsOpen((prev) => !prev);
+  useLayoutEffect(() => {
+    if (!isOpen || !containerRef.current) return;
+
+    const updatePosition = () => {
+      const rect = containerRef.current?.getBoundingClientRect();
+      if (!rect) return;
+      const margin = 16;
+      const width = Math.min(270, window.innerWidth - margin * 2);
+      const idealLeft = rect.left + rect.width / 2 - width / 2;
+      const left = Math.min(Math.max(idealLeft, margin), window.innerWidth - width - margin);
+      const top = Math.max(12, rect.top - 10);
+      const caretLeft = Math.min(Math.max(rect.left + rect.width / 2 - left, 14), width - 14);
+
+      setBubbleStyle({
+        "--glossary-left": `${left}px`,
+        "--glossary-top": `${top}px`,
+        "--glossary-width": `${width}px`,
+        "--glossary-caret-left": `${caretLeft}px`
+      } as CSSProperties);
+    };
+
+    updatePosition();
+    window.addEventListener("resize", updatePosition);
+    window.addEventListener("scroll", updatePosition, true);
+    return () => {
+      window.removeEventListener("resize", updatePosition);
+      window.removeEventListener("scroll", updatePosition, true);
+    };
+  }, [isOpen]);
+
+  const handleOpen = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    pinOpen();
   };
 
   return (
     <span
       ref={containerRef}
       className="glossary-term-wrapper"
-      style={{
-        position: "relative",
-        display: "inline",
-        whiteSpace: "normal"
-      }}
       onMouseEnter={() => setIsOpen(true)}
-      onMouseLeave={() => setIsOpen(false)}
+      onMouseLeave={() => {
+        if (!pinnedRef.current) setIsOpen(false);
+      }}
+      onFocus={() => setIsOpen(true)}
+      onBlur={(event) => {
+        if (!pinnedRef.current && !containerRef.current?.contains(event.relatedTarget as Node | null)) {
+          setIsOpen(false);
+        }
+      }}
     >
-      <span
-        role="button"
-        tabIndex={0}
+      <button
+        type="button"
+        aria-describedby={isOpen ? tooltipId : undefined}
+        aria-expanded={isOpen}
         className="glossary-term-trigger"
-        onClick={handleToggle}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            // Trigger same behavior
-            setIsOpen((prev) => !prev);
-          }
+        onPointerDown={(event) => {
+          event.stopPropagation();
+          pinOpen();
         }}
-        style={{
-          borderBottom: "1.5px dashed var(--teal)",
-          color: "var(--teal-dark)",
-          padding: 0,
-          font: "inherit",
-          fontWeight: "inherit",
-          cursor: "help",
-          display: "inline",
-          outline: "none",
-          verticalAlign: "baseline"
+        onMouseDown={(event) => {
+          event.stopPropagation();
+          pinOpen();
+        }}
+        onTouchStart={(event) => {
+          event.stopPropagation();
+          pinOpen();
+        }}
+        onClick={handleOpen}
+        onKeyDown={(event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            pinOpen();
+          }
+          if (event.key === "Escape") {
+            close();
+          }
         }}
       >
         {children}
-      </span>
+      </button>
 
       {isOpen && (
         <span
+          id={tooltipId}
           className="glossary-tooltip-bubble"
           role="tooltip"
-          style={{
-            position: "absolute",
-            bottom: "calc(100% + 8px)",
-            left: "50%",
-            transform: "translateX(-50%)",
-            width: "240px",
-            backgroundColor: "rgba(255, 255, 255, 0.98)",
-            backdropFilter: "blur(12px)",
-            border: "1px solid var(--line)",
-            borderRadius: "8px",
-            boxShadow: "0 8px 24px rgba(0, 0, 0, 0.12)",
-            padding: "10px 12px",
-            zIndex: 1000,
-            textAlign: "left",
-            fontSize: "0.82rem",
-            lineHeight: "1.4",
-            color: "var(--navy)",
-            fontWeight: "normal",
-            display: "block",
-            whiteSpace: "normal"
-          }}
+          style={bubbleStyle}
         >
-          <strong style={{ display: "block", color: "var(--teal-dark)", fontSize: "0.88rem", marginBottom: "4px" }}>
-            {term.term}
-          </strong>
+          <strong>{term.term}</strong>
           <span>{term.definition}</span>
           {term.mathConnection && (
-            <small
-              style={{
-                display: "block",
-                marginTop: "6px",
-                color: "var(--muted)",
-                fontStyle: "italic",
-                borderTop: "1px solid var(--line)",
-                paddingTop: "4px"
-              }}
-            >
-              💡 Math: {term.mathConnection}
+            <small>
+              Math: {term.mathConnection}
             </small>
           )}
-          {/* Caret Arrow pointing down */}
-          <span
-            style={{
-              position: "absolute",
-              top: "100%",
-              left: "50%",
-              transform: "translateX(-50%)",
-              borderWidth: "6px",
-              borderStyle: "solid",
-              borderColor: "rgba(255, 255, 255, 0.98) transparent transparent transparent",
-              display: "block",
-              width: 0,
-              height: 0
-            }}
-          />
+          <span className="glossary-tooltip-bubble__caret" aria-hidden="true" />
         </span>
       )}
     </span>
   );
 }
 
-/**
- * Utility function to automatically highlight glossary terms in a text string.
- * Returns an array of ReactNodes (plain strings and GlossaryTooltip components).
- */
 export function highlightGlossaryTerms(text: string | undefined | null): ReactNode {
   if (!text) return "";
   if (!splitRegex) return text;

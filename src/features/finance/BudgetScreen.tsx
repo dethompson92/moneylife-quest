@@ -3,6 +3,7 @@ import { Button } from "../../components/ui/Button";
 import { Modal } from "../../components/ui/Modal";
 import { formatMoney } from "../../lib/formatMoney";
 import { calculateNetWorth } from "./financeEngine";
+import { highlightGlossaryTerms } from "../glossary/GlossaryTooltip";
 import type { GameState, Budget } from "../../types/game";
 
 function ConfettiCanvas({ active }: { active: boolean }) {
@@ -161,8 +162,8 @@ export function BudgetScreen({
       <ConfettiCanvas active={confettiActive} />
       
       <div className="section-heading">
-        <h2>Money Plan</h2>
-        <p>Use simple percentages so the numbers stay readable in class.</p>
+        <h2>{highlightGlossaryTerms("Money Plan")}</h2>
+        <p>{highlightGlossaryTerms("Use simple percentages so the numbers stay readable in class.")}</p>
       </div>
       <div className="money-tabs">
         <Button variant="secondary" onClick={() => onNavigate("bank")}>Bank / Save</Button>
@@ -172,23 +173,23 @@ export function BudgetScreen({
         <Button variant="secondary" onClick={() => onNavigate("networth")}>Net Worth / Trends</Button>
       </div>
       <div className="detail-grid">
-        <article><small>Net Worth</small><strong>{formatMoney(calculateNetWorth(game.finances))}</strong></article>
-        <article><small>Assets</small><strong>{formatMoney(assetValue)}</strong></article>
-        <article><small>Investments</small><strong>{formatMoney(game.finances.investments)}</strong></article>
-        <article><small>Debt</small><strong>{formatMoney(game.finances.debtTotal)}</strong></article>
+        <article><small>{highlightGlossaryTerms("Net Worth")}</small><strong>{formatMoney(calculateNetWorth(game.finances))}</strong></article>
+        <article><small>{highlightGlossaryTerms("Assets")}</small><strong>{formatMoney(assetValue)}</strong></article>
+        <article><small>{highlightGlossaryTerms("Investments")}</small><strong>{formatMoney(game.finances.investments)}</strong></article>
+        <article><small>{highlightGlossaryTerms("Debt")}</small><strong>{formatMoney(game.finances.debtTotal)}</strong></article>
       </div>
       
       <div className="budget-layout" style={{ display: "grid", gap: "20px", marginTop: "20px" }}>
         <div className="budget-meter">
-          <strong>Annual take-home estimate</strong>
+          <strong>{highlightGlossaryTerms("Annual take-home estimate")}</strong>
           <span>{formatMoney(netIncome)}</span>
-          <small>Income minus estimated taxes</small>
+          <small>{highlightGlossaryTerms("Income minus estimated taxes")}</small>
         </div>
 
         <div className={`budget-builder-card ${isBalanced ? "budget-builder-card--balanced" : ""}`} style={{ padding: "20px", border: "1px solid var(--line)", borderRadius: "var(--radius)", backgroundColor: "#ffffff", transition: "box-shadow 0.3s ease, border-color 0.3s ease" }}>
-          <h3 style={{ margin: "0 0 15px 0", color: "var(--navy)" }}>Interactive Budget Builder</h3>
+          <h3 style={{ margin: "0 0 15px 0", color: "var(--navy)" }}>{highlightGlossaryTerms("Interactive Budget Builder")}</h3>
           <p style={{ margin: "0 0 20px 0", fontSize: "0.9rem", color: "var(--muted)" }}>
-            Adjust your allocation to equal <strong>exactly 100%</strong>. Aim for the <strong>50/30/20 rule</strong> (50% Needs, 30% Wants, 20% Savings/Giving/Debt).
+            {highlightGlossaryTerms("Adjust your allocation to equal exactly 100%. Aim for the 50/30/20 rule: 50% Needs, 30% Wants, 20% Savings/Giving/Debt.")}
           </p>
 
           <div className="budget-sliders-list" style={{ display: "grid", gap: "16px" }}>
@@ -202,8 +203,8 @@ export function BudgetScreen({
               <div key={item.id} style={{ display: "grid", gap: "6px" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                   <div>
-                    <strong style={{ color: "var(--navy)" }}>{item.label}</strong>
-                    <span style={{ display: "block", fontSize: "0.78rem", color: "var(--muted)" }}>{item.tip}</span>
+                    <strong style={{ color: "var(--navy)" }}>{highlightGlossaryTerms(item.label)}</strong>
+                    <span style={{ display: "block", fontSize: "0.78rem", color: "var(--muted)" }}>{highlightGlossaryTerms(item.tip)}</span>
                   </div>
                   <strong style={{ fontSize: "1.1rem", color: "var(--teal-dark)" }}>{item.value}%</strong>
                 </div>
@@ -269,7 +270,7 @@ export function BudgetScreen({
               transition: "all 0.3s ease"
             }}
           >
-            <span>Total Allocated:</span>
+            <span>{highlightGlossaryTerms("Total Allocated:")}</span>
             <span style={{ fontSize: "1.2rem" }}>{total}% / 100%</span>
           </div>
 
@@ -304,14 +305,14 @@ export function BudgetScreen({
         <Modal title="🎉 Budget Locked In!" onClose={() => setShowSuccessModal(false)}>
           <div className="budget-success-modal" style={{ padding: "10px 0" }}>
             <p style={{ marginBottom: "20px", color: "var(--muted)", fontSize: "0.95rem" }}>
-              Your custom money plan is active. Fictional year-end returns will now auto-allocate net earnings according to these weights:
+              {highlightGlossaryTerms("Your custom money plan is active. Fictional year-end returns will now auto-allocate net earnings according to these weights:")}
             </p>
             <div style={{ display: "grid", gap: "12px", background: "rgba(0,0,0,0.02)", padding: "16px", borderRadius: "var(--radius)", border: "1px dashed var(--line)" }}>
-              <div style={{ display: "flex", justifyContent: "space-between" }}><strong>Needs:</strong> <span>{needs}%</span></div>
-              <div style={{ display: "flex", justifyContent: "space-between" }}><strong>Wants:</strong> <span>{wants}%</span></div>
-              <div style={{ display: "flex", justifyContent: "space-between" }}><strong>Savings:</strong> <span>{savings}%</span></div>
-              <div style={{ display: "flex", justifyContent: "space-between" }}><strong>Giving:</strong> <span>{giving}%</span></div>
-              <div style={{ display: "flex", justifyContent: "space-between" }}><strong>Debt Paydown:</strong> <span>{debt}%</span></div>
+              <div style={{ display: "flex", justifyContent: "space-between" }}><strong>{highlightGlossaryTerms("Needs:")}</strong> <span>{needs}%</span></div>
+              <div style={{ display: "flex", justifyContent: "space-between" }}><strong>{highlightGlossaryTerms("Wants:")}</strong> <span>{wants}%</span></div>
+              <div style={{ display: "flex", justifyContent: "space-between" }}><strong>{highlightGlossaryTerms("Savings:")}</strong> <span>{savings}%</span></div>
+              <div style={{ display: "flex", justifyContent: "space-between" }}><strong>{highlightGlossaryTerms("Giving:")}</strong> <span>{giving}%</span></div>
+              <div style={{ display: "flex", justifyContent: "space-between" }}><strong>{highlightGlossaryTerms("Debt Paydown:")}</strong> <span>{debt}%</span></div>
             </div>
             <div style={{ marginTop: "20px", textAlign: "center" }}>
               <p style={{ fontStyle: "italic", fontSize: "0.9rem", color: "var(--teal-dark)" }}>

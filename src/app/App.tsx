@@ -482,12 +482,12 @@ function PrivacyScreen() {
         <p>Plain-English privacy for classroom use.</p>
       </div>
       <div className="teacher-notes">
-        <p>MoneyLife Quest does not ask for full names, emails, phone numbers, school IDs, addresses, or locations.</p>
-        <p>It also does not ask for or store ethnicity, race, sex, gender identity, income background, disability status, religion, immigration status, or other real demographic identifiers.</p>
-        <p>Progress is saved only in this browser using localStorage. It is not sent to a server.</p>
-        <p>Issue reports are created locally and are not sent automatically. A teacher can copy, download, or open a prefilled report link intentionally.</p>
-        <p>MoneyLife Quest has no ads, no analytics, no in-app purchases, and no external data APIs.</p>
-        <p>The investing section is an educational simulation and is not financial advice.</p>
+        <p>{highlightGlossaryTerms("MoneyLife Quest does not ask for full names, emails, phone numbers, school IDs, addresses, or locations.")}</p>
+        <p>{highlightGlossaryTerms("It also does not ask for or store ethnicity, race, sex, gender identity, income background, disability status, religion, immigration status, or other real demographic identifiers.")}</p>
+        <p>{highlightGlossaryTerms("Progress is saved only in this browser using localStorage. It is not sent to a server.")}</p>
+        <p>{highlightGlossaryTerms("Issue reports are created locally and are not sent automatically. A teacher can copy, download, or open a prefilled report link intentionally.")}</p>
+        <p>{highlightGlossaryTerms("MoneyLife Quest has no ads, no analytics, no in-app purchases, and no external data APIs.")}</p>
+        <p>{highlightGlossaryTerms("The investing section is an educational simulation and is not financial advice.")}</p>
       </div>
     </section>
   );

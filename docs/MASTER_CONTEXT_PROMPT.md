@@ -16,7 +16,7 @@ Current app facts:
 - Current gameplay starts at age 12 and ages through future adult outcomes.
 - Current stats: wellbeing, moneyKnowledge, discipline, trustSafety, opportunity, creditScore/null, cash, checking, savings, investments, debtTotal, netWorth.
 - Current relationship/support-circle idea: family/caregiver, friend, mentor, and pet support. Keep it school-safe and finance-connected.
-- Current glossary layer: Money Words cards should appear when finance vocabulary comes up. Definitions must be original, 7th-grade-friendly, source-attributed, and connected to math when useful.
+- Current glossary layer: finance vocabulary should become inline glossary links wherever the words appear. Hovering, focusing, or clicking a term should show a speech-bubble definition. Definitions must be original, 7th-grade-friendly, source-attributed, and connected to math when useful.
 - Current score guide layer: each 0-100 life-skill score needs student-friendly range meanings for 0-20, 21-40, 41-60, 61-80, and 81-100. Credit uses a separate 300-850 range.
 - Identity and context rule: do not ask students for ethnicity, race, sex, gender identity, exact location, family income, religion, disability status, immigration status, or other sensitive identifiers. If life context matters, model it through fictional support/access/cost variables, not real student demographics.
 - Desired tone: middle-school readable, specific, realistic, kind, never shaming, and full of tradeoffs where more than one choice can be reasonable.
@@ -81,7 +81,7 @@ Generate 75 original scenarios. Each scenario must be a future-life or near-futu
 - for each choice: label, short description, visible locked requirement if any, outcome summary, effects in plain language, feedback, reflection prompt
 - randomized outcome? yes/no
 - future flag set? yes/no and flag name
-- glossary terms: 2-5 finance words that should appear in the Money Words card, with one-sentence original student-friendly definitions if the current app glossary may not already include them
+- glossary terms: 2-5 finance words that should appear as inline glossary links, with one-sentence original student-friendly definitions if the current app glossary may not already include them
 - tradeoff note explaining why the choice is not simply right/wrong
 
 Requirements for this scenario bank:

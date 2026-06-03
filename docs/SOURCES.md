@@ -89,7 +89,7 @@ These sources informed a new official-source research scenario pack around spend
 
 ## Glossary and Vocabulary Support
 
-The in-app Money Words feature uses the NGPF Personal Finance Dictionary, NGPF middle-school units, Napkin Finance, Humble Math Financial Literacy, Banzai public topic pages, and official public finance education sites as vocabulary/topic references only. Student-facing definitions are short original MoneyLife Quest explanations, not copied dictionary or PDF text. Each term can also show a math connection so words like interest, discount, unit price, premium, deductible, assets, debt, and net worth connect back to 7th-grade math skills.
+The in-app inline glossary links use the NGPF Personal Finance Dictionary, NGPF middle-school units, Napkin Finance, Humble Math Financial Literacy, Banzai public topic pages, and official public finance education sites as vocabulary/topic references only. Student-facing definitions are short original MoneyLife Quest explanations, not copied dictionary or PDF text. Each term can also show a math connection so words like interest, discount, unit price, premium, deductible, assets, debt, and net worth connect back to 7th-grade math skills.
 
 ## Teacher-Provided Google Docs
 

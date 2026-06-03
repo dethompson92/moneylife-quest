@@ -1,5 +1,6 @@
 import { Trophy } from "lucide-react";
 import { getAchievement } from "../../features/achievements/achievementDefinitions";
+import { highlightGlossaryTerms } from "../../features/glossary/GlossaryTooltip";
 
 export function Badge({ id, locked = false }: { id: string; locked?: boolean }) {
   const achievement = getAchievement(id);
@@ -7,8 +8,8 @@ export function Badge({ id, locked = false }: { id: string; locked?: boolean }) 
     <div className={`badge ${locked ? "badge--locked" : ""}`}>
       <Trophy aria-hidden="true" />
       <span>
-        <strong>{achievement?.title ?? id}</strong>
-        <small>{achievement?.description ?? "Achievement"}</small>
+        <strong>{highlightGlossaryTerms(achievement?.title ?? id)}</strong>
+        <small>{highlightGlossaryTerms(achievement?.description ?? "Achievement")}</small>
       </span>
     </div>
   );

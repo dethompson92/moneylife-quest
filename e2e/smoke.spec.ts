@@ -17,6 +17,13 @@ test("student can play one turn and reload the save", async ({ page }) => {
   await page.getByRole("button", { name: /choose goal/i }).click();
   await page.getByRole("button", { name: /start life/i }).click();
   await expect(page.getByText(/life skills/i)).toBeVisible();
+  const skipWalkthrough = page.getByRole("button", { name: /^skip$/i });
+  if (await skipWalkthrough.isVisible({ timeout: 1000 }).catch(() => false)) {
+    await skipWalkthrough.click();
+  }
+  await page.getByRole("button", { name: "Savings" }).click();
+  await expect(page.getByText("Setting money aside instead of spending it right away.")).toBeVisible();
+  await page.keyboard.press("Escape");
   await page.getByRole("button", { name: /^age up$/i }).click();
   await expect(page.getByRole("dialog", { name: /new event/i })).toBeVisible();
   await expect(page.getByText(/effects revealed after you choose/i).first()).toBeVisible();

@@ -1,6 +1,7 @@
 import { Target } from "lucide-react";
 import { getGoal } from "../goals/goalDefinitions";
 import { getGoalProgressPercent } from "../game/gameSelectors";
+import { highlightGlossaryTerms } from "../glossary/GlossaryTooltip";
 import type { GameState } from "../../types/game";
 
 export function CharacterHeader({ game }: { game: GameState }) {
@@ -23,7 +24,7 @@ export function CharacterHeader({ game }: { game: GameState }) {
         <Target aria-hidden="true" />
         <span>
           <small>Active goal</small>
-          <strong>{goal.title}</strong>
+          <strong>{highlightGlossaryTerms(goal.title)}</strong>
         </span>
         <div className="goal-strip__progress" aria-label={`${progress}% of goal objectives complete`}>
           <span style={{ width: `${progress}%` }} />

@@ -88,20 +88,17 @@ describe("GlossaryTooltip and highlighting", () => {
     expect(trigger).toBeInTheDocument();
   });
 
-  it("toggles the tooltip bubble on click", async () => {
+  it("opens the tooltip bubble on click and closes it with Escape", async () => {
     const text = "Let's learn about budgeting.";
     render(<div>{highlightGlossaryTerms(text)}</div>);
     const trigger = screen.getByRole("button", { name: /budgeting/i });
     expect(screen.queryByRole("tooltip")).not.toBeInTheDocument();
     
-    // Click to open
     fireEvent.click(trigger);
     expect(screen.getByRole("tooltip")).toBeInTheDocument();
     expect(screen.getByText(/how income will be used/i)).toBeInTheDocument();
 
-    // Click to close
-    fireEvent.click(trigger);
+    fireEvent.keyDown(trigger, { key: "Escape" });
     expect(screen.queryByRole("tooltip")).not.toBeInTheDocument();
   });
 });
-

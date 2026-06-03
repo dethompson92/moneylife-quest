@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { TrendingUp, ShieldCheck, PiggyBank, AlertCircle, DollarSign, Info } from "lucide-react";
 import { Button } from "../../components/ui/Button";
 import { formatMoney } from "../../lib/formatMoney";
+import { highlightGlossaryTerms } from "../glossary/GlossaryTooltip";
 import type { GameState } from "../../types/game";
 
 export function NetWorthScreen({
@@ -93,8 +94,8 @@ export function NetWorthScreen({
   return (
     <section className="screen-panel net-worth-screen" style={{ position: "relative" }}>
       <div className="section-heading">
-        <h2>Net Worth & Trends</h2>
-        <p>Monitor your assets minus liabilities over the years to track strategy impact.</p>
+        <h2>{highlightGlossaryTerms("Net Worth & Trends")}</h2>
+        <p>{highlightGlossaryTerms("Monitor your assets minus liabilities over the years to track strategy impact.")}</p>
       </div>
 
       <div className="money-tabs">
@@ -111,7 +112,7 @@ export function NetWorthScreen({
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "15px" }}>
             <h3 style={{ margin: 0, display: "flex", alignItems: "center", gap: "8px" }}>
               <TrendingUp size={20} className="text-teal" />
-              <span>Net Worth Over Time</span>
+              <span>{highlightGlossaryTerms("Net Worth Over Time")}</span>
             </h3>
             {hoveredPoint && (
               <span style={{ fontSize: "0.85rem", background: "var(--navy)", color: "white", padding: "4px 8px", borderRadius: "4px" }}>
@@ -175,7 +176,7 @@ export function NetWorthScreen({
             </div>
           ) : (
             <div style={{ height: "180px", display: "flex", justifyContent: "center", alignItems: "center", color: "var(--muted)" }}>
-              No history recorded yet. Age up to build your trajectory.
+              {highlightGlossaryTerms("No history recorded yet. Age up to build your trajectory.")}
             </div>
           )}
         </div>
@@ -186,15 +187,15 @@ export function NetWorthScreen({
           <div className="dashboard-card" style={{ padding: "20px" }}>
             <h3 style={{ margin: "0 0 12px 0", display: "flex", alignItems: "center", gap: "8px" }}>
               <PiggyBank size={20} className="text-teal" />
-              <span>Liquidity & Emergency Cushion</span>
+              <span>{highlightGlossaryTerms("Liquidity & Emergency Cushion")}</span>
             </h3>
 
             <div style={{ background: liquidityStatus.bgColor, color: liquidityStatus.color, padding: "10px 16px", borderRadius: "var(--radius)", fontWeight: "bold", display: "inline-block", marginBottom: "15px" }}>
-              Cushion Rating: {liquidityStatus.label}
+              {highlightGlossaryTerms("Cushion Rating")}: {liquidityStatus.label}
             </div>
 
             <p style={{ margin: 0, fontSize: "0.88rem", color: "var(--muted)", lineHeight: 1.5 }}>
-              {liquidityStatus.description}
+              {highlightGlossaryTerms(liquidityStatus.description)}
             </p>
           </div>
 
@@ -202,18 +203,17 @@ export function NetWorthScreen({
           <div className="dashboard-card" style={{ padding: "20px" }}>
             <h3 style={{ margin: "0 0 12px 0", display: "flex", alignItems: "center", gap: "8px" }}>
               <ShieldCheck size={20} className="text-navy" />
-              <span>Strategy Brief: Doubling Rule</span>
+              <span>{highlightGlossaryTerms("Strategy Brief: Doubling Rule")}</span>
             </h3>
             
             <p style={{ margin: "0 0 15px 0", fontSize: "0.88rem", color: "var(--muted)", lineHeight: 1.5 }}>
-              <strong>The Rule of 72:</strong> Divide 72 by your annual interest rate to find when your money doubles.
-              At a basic 3% savings interest, it takes <strong>24 years</strong> to double. At a 9% investing return, it takes only <strong>8 years</strong>!
+              {highlightGlossaryTerms("The Rule of 72: Divide 72 by your annual interest rate to find when your money doubles. At a basic 3% savings interest, it takes 24 years to double. At a 9% investing return, it takes only 8 years!")}
             </p>
 
             <div style={{ display: "flex", alignItems: "flex-start", gap: "8px", background: "rgba(0,0,0,0.02)", padding: "10px", borderRadius: "var(--radius)", fontSize: "0.82rem", color: "var(--navy)" }}>
               <Info size={16} style={{ flexShrink: 0, marginTop: "2px" }} />
               <span>
-                <strong>Net Worth Check:</strong> To accelerate growth, focus on high-yield saving, stock diversification, and pay off any debts carrying an interest rate above 6%.
+                {highlightGlossaryTerms("Net Worth Check: To accelerate growth, focus on high-yield saving, stock diversification, and pay off any debts carrying an interest rate above 6%.")}
               </span>
             </div>
           </div>

@@ -1,5 +1,6 @@
 import { activities } from "./activityDefinitions";
 import { Button } from "../../components/ui/Button";
+import { highlightGlossaryTerms } from "../glossary/GlossaryTooltip";
 import type { GameState } from "../../types/game";
 import type { Screen } from "../../app/routes";
 
@@ -32,7 +33,7 @@ export function ActivitiesHub({
     <section className="screen-panel">
       <div className="section-heading">
         <h2>Activities</h2>
-        <p>Use actions between age-ups to steer your money life.</p>
+        <p>{highlightGlossaryTerms("Use actions between age-ups to steer your money life.")}</p>
       </div>
       <nav className="activity-shortcuts" aria-label="Activity section shortcuts">
         {activityShortcuts.map((shortcut) => (
@@ -52,8 +53,8 @@ export function ActivitiesHub({
                 const lockReason = activity.lockReason?.(game);
                 return (
                   <article className="activity-card" key={activity.id}>
-                    <strong>{activity.title}</strong>
-                    <p>{activity.description}</p>
+                    <strong>{highlightGlossaryTerms(activity.title)}</strong>
+                    <p>{highlightGlossaryTerms(activity.description)}</p>
                     <Button variant="secondary" disabled={Boolean(lockReason)} onClick={() => onRunActivity(activity.id)}>
                       {lockReason ?? "Do Activity"}
                     </Button>

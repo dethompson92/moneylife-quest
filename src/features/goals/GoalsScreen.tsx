@@ -1,6 +1,7 @@
 import { Badge } from "../../components/ui/Badge";
 import { achievements } from "../achievements/achievementDefinitions";
 import { getGoal } from "./goalDefinitions";
+import { highlightGlossaryTerms } from "../glossary/GlossaryTooltip";
 import type { GameState } from "../../types/game";
 
 export function GoalsScreen({ game }: { game: GameState }) {
@@ -8,14 +9,14 @@ export function GoalsScreen({ game }: { game: GameState }) {
   return (
     <section className="screen-panel">
       <div className="section-heading">
-        <h2>Goals / Achievements</h2>
-        <p>{goal.description}</p>
+        <h2>{highlightGlossaryTerms("Goals / Achievements")}</h2>
+        <p>{highlightGlossaryTerms(goal.description)}</p>
       </div>
       <div className="objective-list">
         {game.goalObjectives.map((objective) => (
           <div className={objective.complete ? "objective is-complete" : "objective"} key={objective.id}>
             <span aria-hidden="true">{objective.complete ? "✓" : "○"}</span>
-            <span>{objective.label}</span>
+            <span>{highlightGlossaryTerms(objective.label)}</span>
           </div>
         ))}
       </div>

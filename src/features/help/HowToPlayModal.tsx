@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { BookOpen, Trophy, ShieldAlert, Sliders, Info, X, ChevronRight, ChevronLeft } from "lucide-react";
 import { Button } from "../../components/ui/Button";
+import { highlightGlossaryTerms } from "../glossary/GlossaryTooltip";
 
 type Slide = {
   title: string;
@@ -23,10 +24,10 @@ export function HowToPlayModal({
       content: (
         <div style={{ display: "grid", gap: "12px" }}>
           <p>
-            Welcome, student! In this game, you will step into a fictional simulator, making major financial and life decisions as you age from <strong>12 to 22+</strong>.
+            {highlightGlossaryTerms("Welcome, student! In this game, you will step into a fictional simulator, making major financial and life decisions as you age from 12 to 22+.")}
           </p>
           <p>
-            Every choice you make shapes your financial profile, relationships, and ultimate success. There are no simple "right answers"—instead, you will learn to manage real-life tradeoffs!
+            {highlightGlossaryTerms("Every choice you make shapes your financial profile, relationships, and ultimate success. There are no simple right answers; instead, you will learn to manage real-life tradeoffs!")}
           </p>
         </div>
       )
@@ -36,12 +37,12 @@ export function HowToPlayModal({
       icon: <Info size={44} className="text-navy" />,
       content: (
         <div style={{ display: "grid", gap: "10px" }}>
-          <p>You have four primary skills to balance:</p>
+          <p>{highlightGlossaryTerms("You have four primary skills to balance:")}</p>
           <ul style={{ paddingLeft: "20px", display: "grid", gap: "6px", margin: 0 }}>
-            <li>💡 <strong>Money Know-How:</strong> Your literacy. Higher scores unlock smarter financial opportunities.</li>
-            <li>♥ <strong>Wellbeing:</strong> Happiness. Stressful spending or crushing debt will lower this. Keep it high!</li>
-            <li>🛡 <strong>Safety:</strong> Scam defense. Protects your cash and identity from digital scams.</li>
-            <li>◎ <strong>Discipline:</strong> Consistency. Helps you stick to savings habits and make thoughtful decisions.</li>
+            <li>💡 {highlightGlossaryTerms("Money Know-How: Your literacy. Higher scores unlock smarter financial opportunities.")}</li>
+            <li>♥ {highlightGlossaryTerms("Wellbeing: Happiness. Stressful spending or crushing debt will lower this. Keep it high!")}</li>
+            <li>🛡 {highlightGlossaryTerms("Safety: Scam defense. Protects your cash and identity from digital scams.")}</li>
+            <li>◎ {highlightGlossaryTerms("Discipline: Consistency. Helps you stick to savings habits and make thoughtful decisions.")}</li>
           </ul>
         </div>
       )
@@ -54,13 +55,13 @@ export function HowToPlayModal({
           <div>
             <strong className="text-teal-dark">🏆 How to Win:</strong>
             <p style={{ margin: "4px 0 0 0" }}>
-              At start, you choose a <strong>Life Goal</strong> (e.g. build a $500 emergency buffer, save for college, or invest). Achieve 100% of your Goal Objectives by the final year to win!
+              {highlightGlossaryTerms("At start, you choose a Life Goal, like build a $500 emergency buffer, save for college, or invest. Achieve 100% of your Goal Objectives by the final year to win!")}
             </p>
           </div>
           <div>
             <strong style={{ color: "var(--coral)" }}>⚠️ How to Lose:</strong>
             <p style={{ margin: "4px 0 0 0" }}>
-              The game ends early if your <strong>Wellbeing</strong> hits 0 (burnout), or if you run out of cash and get buried under mounting credit card and loan debt.
+              {highlightGlossaryTerms("The game ends early if your Wellbeing hits 0, or if you run out of cash and get buried under mounting credit card and loan debt.")}
             </p>
           </div>
         </div>
@@ -71,11 +72,11 @@ export function HowToPlayModal({
       icon: <Sliders size={44} className="text-teal" />,
       content: (
         <div style={{ display: "grid", gap: "10px" }}>
-          <p>Utilize these specialized helpers inside the app:</p>
+          <p>{highlightGlossaryTerms("Use these specialized helpers inside the app:")}</p>
           <ul style={{ paddingLeft: "20px", display: "grid", gap: "6px", margin: 0 }}>
-            <li>📊 <strong>Interactive Budget Plan:</strong> Adjust ranges (Needs, Wants, Savings). You must allocate exactly 100% of your earnings to lock in.</li>
-            <li>🏷 <strong>Reversibility Tags:</strong> Scans event choices to flag if a cost is <em>Easy to Undo</em> (Cash), <em>Hard to Undo</em> (Subscription), or <em>Can't Undo</em> (Debt/Contract).</li>
-            <li>🧮 <strong>Math breakout:</strong> Click "Show Math Helper" during percent questions to see conversion calculations step-by-step.</li>
+            <li>📊 {highlightGlossaryTerms("Interactive Budget Plan: Adjust ranges for Needs, Wants, and Savings. You must allocate exactly 100% of your earnings to lock in.")}</li>
+            <li>🏷 {highlightGlossaryTerms("Reversibility Tags: Event choices flag if a cost is Easy to Undo, Hard to Undo like a Subscription, or Can't Undo like Debt or a Contract.")}</li>
+            <li>🧮 {highlightGlossaryTerms("Math breakout: Click Show Math Helper during percent questions to see conversion calculations step by step.")}</li>
           </ul>
         </div>
       )
@@ -86,10 +87,10 @@ export function HowToPlayModal({
       content: (
         <div style={{ display: "grid", gap: "12px" }}>
           <p>
-            <strong>School-Safe Privacy:</strong> The app never asks for real names, emails, or personal identifiers. Choose a fun fictional nickname!
+            {highlightGlossaryTerms("School-Safe Privacy: The app never asks for real names, emails, or personal identifiers. Choose a fun fictional nickname!")}
           </p>
           <p>
-            <strong>Local Auto-Save:</strong> Your progress is saved only in this browser (using local storage). You can resume or restart at any time.
+            {highlightGlossaryTerms("Local Auto-Save: Your progress is saved only in this browser using local storage. You can resume or restart at any time.")}
           </p>
         </div>
       )
