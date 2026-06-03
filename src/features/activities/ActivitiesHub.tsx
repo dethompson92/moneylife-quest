@@ -1,6 +1,5 @@
 import { activities } from "./activityDefinitions";
 import { Button } from "../../components/ui/Button";
-import { TermSpotlight } from "../glossary/TermSpotlight";
 import type { GameState } from "../../types/game";
 import type { Screen } from "../../app/routes";
 
@@ -43,7 +42,6 @@ export function ActivitiesHub({
           </button>
         ))}
       </nav>
-      <TermSpotlight termIds={["budget", "checking", "saving", "credit", "debt", "investment", "risk", "scam", "insurance"]} maxTerms={5} />
       <div className="activity-grid">
         {categories.map((category) => (
           <div className="activity-column" key={category}>

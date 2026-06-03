@@ -1000,15 +1000,20 @@ textarea {
   background: var(--surface);
   color: var(--text);
   text-align: left;
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.choice-card:not(:disabled):hover {
+.choice-card:not(:disabled):not(.is-locked):hover {
   border-color: var(--teal);
   box-shadow: 0 10px 20px rgba(9, 31, 58, 0.08);
 }
 
-.choice-card:disabled {
+.choice-card:disabled,
+.choice-card.is-locked {
   opacity: 0.72;
+  cursor: not-allowed;
 }
 
 .choice-card__number {

@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from "react";
 import { Button } from "../../components/ui/Button";
 import { Modal } from "../../components/ui/Modal";
 import { formatMoney } from "../../lib/formatMoney";
-import { TermSpotlight } from "../glossary/TermSpotlight";
 import { calculateNetWorth } from "./financeEngine";
 import type { GameState, Budget } from "../../types/game";
 
@@ -178,7 +177,6 @@ export function BudgetScreen({
         <article><small>Investments</small><strong>{formatMoney(game.finances.investments)}</strong></article>
         <article><small>Debt</small><strong>{formatMoney(game.finances.debtTotal)}</strong></article>
       </div>
-      <TermSpotlight termIds={["budget", "net-worth", "asset", "investment", "debt", "net-income", "tax", "needs", "wants"]} maxTerms={5} />
       
       <div className="budget-layout" style={{ display: "grid", gap: "20px", marginTop: "20px" }}>
         <div className="budget-meter">

@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
 import { App } from "../app/App";
@@ -25,7 +25,6 @@ describe("app components", () => {
     expect(screen.getByText(/life skills/i)).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /score guide/i })).toBeInTheDocument();
     expect(screen.getByText(/context, not identity/i)).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /money words/i })).toBeInTheDocument();
     await userEvent.click(screen.getByRole("button", { name: /age up/i }));
     expect(screen.getByRole("dialog", { name: /new event/i })).toBeInTheDocument();
     expect(screen.getAllByText(/effects revealed after you choose/i).length).toBeGreaterThan(0);
@@ -78,3 +77,31 @@ describe("app components", () => {
     expect(screen.getByText(/life skills/i)).toBeInTheDocument();
   });
 });
+
+import { highlightGlossaryTerms } from "../features/glossary/GlossaryTooltip";
+
+describe("GlossaryTooltip and highlighting", () => {
+  it("renders text with glossary term highlighted as a trigger button", () => {
+    const text = "You need a checking account to write checks.";
+    render(<div>{highlightGlossaryTerms(text)}</div>);
+    const trigger = screen.getByRole("button", { name: /checking account/i });
+    expect(trigger).toBeInTheDocument();
+  });
+
+  it("toggles the tooltip bubble on click", async () => {
+    const text = "Let's learn about budgeting.";
+    render(<div>{highlightGlossaryTerms(text)}</div>);
+    const trigger = screen.getByRole("button", { name: /budgeting/i });
+    expect(screen.queryByRole("tooltip")).not.toBeInTheDocument();
+    
+    // Click to open
+    fireEvent.click(trigger);
+    expect(screen.getByRole("tooltip")).toBeInTheDocument();
+    expect(screen.getByText(/how income will be used/i)).toBeInTheDocument();
+
+    // Click to close
+    fireEvent.click(trigger);
+    expect(screen.queryByRole("tooltip")).not.toBeInTheDocument();
+  });
+});
+

@@ -2,6 +2,7 @@ import { Lock, ChevronRight } from "lucide-react";
 import type { Choice, GameState } from "../../types/game";
 import { formatRequirement } from "../../features/events/requirementText";
 import { requirementsMet } from "../../features/events/eventSelection";
+import { highlightGlossaryTerms } from "../../features/glossary/GlossaryTooltip";
 
 function getReversibilityTag(label: string, description?: string) {
   const text = `${label} ${description || ""}`.toLowerCase();
@@ -73,11 +74,26 @@ export function ChoiceCard({
   const tag = getReversibilityTag(choice.label, choice.description);
 
   return (
-    <button className="choice-card" type="button" onClick={onChoose} disabled={locked}>
+    <div
+      className={`choice-card ${locked ? "is-locked" : ""}`}
+      role="button"
+      tabIndex={locked ? -1 : 0}
+      onClick={locked ? undefined : onChoose}
+      onKeyDown={
+        locked
+          ? undefined
+          : (e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                onChoose();
+              }
+            }
+      }
+    >
       <span className="choice-card__number">{index + 1}</span>
       <span className="choice-card__copy">
-        <strong>{choice.label}</strong>
-        {choice.description ? <small>{choice.description}</small> : null}
+        <strong>{highlightGlossaryTerms(choice.label)}</strong>
+        {choice.description ? <small>{highlightGlossaryTerms(choice.description)}</small> : null}
         {tag && (
           <span
             className={`reversibility-tag reversibility-tag--${tag.type}`}
@@ -109,6 +125,6 @@ export function ChoiceCard({
         )}
       </span>
       {!locked ? <ChevronRight aria-hidden="true" /> : null}
-    </button>
+    </div>
   );
 }

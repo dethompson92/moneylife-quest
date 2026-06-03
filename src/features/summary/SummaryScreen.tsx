@@ -3,7 +3,6 @@ import { Button } from "../../components/ui/Button";
 import { formatMoney } from "../../lib/formatMoney";
 import { getGoal } from "../goals/goalDefinitions";
 import { calculateNetWorth } from "../finance/financeEngine";
-import { TermSpotlight } from "../glossary/TermSpotlight";
 import { generateSummary } from "./summaryGenerator";
 import type { GameState } from "../../types/game";
 
@@ -32,7 +31,6 @@ export function SummaryScreen({
         <article><small>Safety</small><strong>{game.stats.trustSafety}/100</strong></article>
         <article><small>Badges</small><strong>{game.achievements.length}</strong></article>
       </div>
-      <TermSpotlight termIds={["net-worth", "debt", "credit-score", "saving", "opportunity-cost"]} maxTerms={5} />
       <label className="summary-box">
         <span>Copyable student summary</span>
         <textarea readOnly value={summary} />
