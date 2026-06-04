@@ -81,8 +81,20 @@ export function App() {
     if (game?.status === "ended") setScreen("summary");
   }, [game?.status]);
 
+  useEffect(() => {
+    if (!navigator.userAgent.includes("jsdom")) {
+      window.scrollTo(0, 0);
+    }
+  }, [screen]);
+
   function navigate(next: Screen) {
     setScreen(next);
+  }
+
+  function handleAgeUp() {
+    if (!game || game.status !== "active") return;
+    setGame(ageUp(game));
+    setScreen("dashboard");
   }
 
   function startNewGame() {
@@ -231,14 +243,13 @@ export function App() {
     return (
       <Dashboard
         game={game}
-        onAgeUp={() => setGame(ageUp(game))}
         onResolve={(eventId, choiceId) => setGame(resolveChoice(game, eventId, choiceId))}
       />
     );
   }
 
   return (
-    <AppShell screen={screen} game={game} onNavigate={navigate}>
+    <AppShell screen={screen} game={game} onNavigate={navigate} onAgeUp={handleAgeUp}>
       {renderScreen()}
       <IssueReporter game={game} onCopy={copyText} />
       {toast ? <div className="toast" role="status">{toast}</div> : null}
@@ -399,11 +410,9 @@ function NewLifeSetup({
 
 function Dashboard({
   game,
-  onAgeUp,
   onResolve
 }: {
   game: GameState;
-  onAgeUp: () => void;
   onResolve: (eventId: string, choiceId: string) => void;
 }) {
   return (
@@ -415,60 +424,64 @@ function Dashboard({
         <MoneyChip label="Debt" value={game.finances.debtTotal} tone="coral" icon={<CreditCard />} />
         <MoneyChip label="Credit" value={game.stats.creditScore ? `${game.stats.creditScore}` : "No history"} tone="navy" icon={<ShieldCheck />} />
       </section>
-      <div className="dashboard-grid">
-        <aside className="stats-panel">
+      <section className="life-log">
+        <div className="life-log__header">
+          <h2>Your Life</h2>
+          <small>Age {game.character.age} · Year {game.turn}</small>
+        </div>
+        <div className="log-list" aria-live="polite">
+          {game.pendingFeedback ? (
+            <article className="feedback-card">
+              <Brain aria-hidden="true" />
+              <span>
+                <strong>What I learned</strong>
+                {highlightGlossaryTerms(game.pendingFeedback)}
+                {game.pendingEffectSummary?.length ? (
+                  <span className="effect-reveal-list" aria-label="Revealed choice effects">
+                    {game.pendingEffectSummary.slice(0, 6).map((effect) => (
+                      <small key={effect}>{effect}</small>
+                    ))}
+                  </span>
+                ) : null}
+              </span>
+            </article>
+          ) : null}
+          {game.log.map((entry) => (
+            <article className="log-entry" key={entry.id}>
+              <span className="log-entry__icon" aria-hidden="true">{topicIcon(entry.topic)}</span>
+              <div>
+                <strong>Age {entry.age}: {entry.title}</strong>
+                <p>{highlightGlossaryTerms(entry.body)}</p>
+                {entry.effects?.length ? <small>{entry.effects.slice(0, 3).join(" · ")}</small> : null}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+      <section className="stats-panel">
+        <div className="section-heading section-heading--compact">
           <h2>Life Skills</h2>
+          <p>Scores are game feedback, not a judgment of a person.</p>
+        </div>
+        <div className="stat-stack">
           <StatBar label="Money Know-How" value={game.stats.moneyKnowledge} icon="💡" />
           <StatBar label="Wellbeing" value={game.stats.wellbeing} icon="♥" />
           <StatBar label="Safety" value={game.stats.trustSafety} icon="🛡" />
           <StatBar label="Discipline" value={game.stats.discipline} icon="◎" />
           <StatBar label="Opportunity" value={game.stats.opportunity} icon="↗" />
+        </div>
+        <div className="streak-card">
+          <Trophy aria-hidden="true" />
+          <span><strong>Badges: {game.achievements.length}</strong><small>Keep making smart choices.</small></span>
+        </div>
+      </section>
+      <details className="dashboard-drawer">
+        <summary>Score Guide and Support Circle</summary>
+        <div className="dashboard-drawer__content">
           <ScoreGuidePanel stats={game.stats} />
-          <div className="streak-card">
-            <Trophy aria-hidden="true" />
-            <span><strong>Badges: {game.achievements.length}</strong><small>Keep making smart choices.</small></span>
-          </div>
           <SupportCirclePanel game={game} />
-        </aside>
-        <section className="life-log">
-          <h2>Your Life</h2>
-          <Button
-            className={`age-up-button${game.status === "event-pending" ? " age-up-button--pending" : ""}`}
-            onClick={onAgeUp}
-            disabled={game.status !== "active"}
-          >
-            {game.status === "event-pending" ? "Choose an Event Option" : game.status === "ended" ? "Summary Ready" : "Age Up"}
-          </Button>
-          <div className="log-list" aria-live="polite">
-            {game.pendingFeedback ? (
-              <article className="feedback-card">
-                <Brain aria-hidden="true" />
-                <span>
-                  <strong>What I learned</strong>
-                  {highlightGlossaryTerms(game.pendingFeedback)}
-                  {game.pendingEffectSummary?.length ? (
-                    <span className="effect-reveal-list" aria-label="Revealed choice effects">
-                      {game.pendingEffectSummary.slice(0, 6).map((effect) => (
-                        <small key={effect}>{effect}</small>
-                      ))}
-                    </span>
-                  ) : null}
-                </span>
-              </article>
-            ) : null}
-            {game.log.map((entry) => (
-              <article className="log-entry" key={entry.id}>
-                <span className="log-entry__icon" aria-hidden="true">{topicIcon(entry.topic)}</span>
-                <div>
-                  <strong>Age {entry.age}: {entry.title}</strong>
-                  <p>{highlightGlossaryTerms(entry.body)}</p>
-                  {entry.effects?.length ? <small>{entry.effects.slice(0, 3).join(" · ")}</small> : null}
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-      </div>
+        </div>
+      </details>
       {game.pendingEventId ? <EventModal game={game} onResolve={onResolve} /> : null}
     </div>
   );

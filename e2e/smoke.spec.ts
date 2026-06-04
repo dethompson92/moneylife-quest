@@ -1,10 +1,10 @@
 import { test, expect, type Page } from "@playwright/test";
 
 async function openApp(page: Page) {
-  await page.goto("/");
+  await page.goto("/?seed=e2e-smoke&mode=quick&topic=all");
   let startButton = page.getByRole("button", { name: /start new life/i });
   if (!(await startButton.isVisible({ timeout: 5000 }).catch(() => false))) {
-    await page.goto("/moneylife-quest/");
+    await page.goto("/moneylife-quest/?seed=e2e-smoke&mode=quick&topic=all");
     startButton = page.getByRole("button", { name: /start new life/i });
   }
   await expect(startButton).toBeVisible();
@@ -30,7 +30,7 @@ test("student can play one turn and reload the save", async ({ page }) => {
   await page.getByRole("button", { name: /^age up$/i }).click();
   await expect(page.getByRole("dialog", { name: /new event/i })).toBeVisible();
   await expect(page.getByText(/effects revealed after you choose/i).first()).toBeVisible();
-  const enabledChoice = page.locator(".choice-card:not([disabled])").first();
+  const enabledChoice = page.locator(".choice-card:not(.is-locked)").first();
   await expect(enabledChoice).toBeVisible();
   await enabledChoice.click();
   await expect(page.getByText(/what i learned/i)).toBeVisible();

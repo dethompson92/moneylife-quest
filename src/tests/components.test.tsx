@@ -23,8 +23,7 @@ describe("app components", () => {
     await userEvent.click(screen.getByRole("button", { name: /choose goal/i }));
     await userEvent.click(screen.getByRole("button", { name: /start life/i }));
     expect(screen.getByText(/life skills/i)).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /score guide/i })).toBeInTheDocument();
-    expect(screen.getByText(/context, not identity/i)).toBeInTheDocument();
+    expect(screen.getByText(/score guide and support circle/i)).toBeInTheDocument();
     await userEvent.click(screen.getByRole("button", { name: /age up/i }));
     expect(screen.getByRole("dialog", { name: /new event/i })).toBeInTheDocument();
     expect(screen.getAllByText(/effects revealed after you choose/i).length).toBeGreaterThan(0);
@@ -44,7 +43,7 @@ describe("app components", () => {
     await userEvent.click(screen.getByRole("button", { name: /start open life/i }));
     expect(screen.getByText(/play style/i)).toBeInTheDocument();
     expect(screen.getByText(/open-ended/i)).toBeInTheDocument();
-    await userEvent.click(screen.getByRole("button", { name: /goals/i }));
+    await userEvent.click(screen.getByRole("button", { name: /badges/i }));
     expect(screen.getByRole("heading", { name: /open life \/ achievements/i })).toBeInTheDocument();
     expect(screen.getByText(/set your own private win condition/i)).toBeInTheDocument();
   });

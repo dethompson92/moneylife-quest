@@ -1,5 +1,5 @@
 import { activities } from "./activityDefinitions";
-import { Button } from "../../components/ui/Button";
+import { ChevronRight } from "lucide-react";
 import { highlightGlossaryTerms } from "../glossary/GlossaryTooltip";
 import type { GameState } from "../../types/game";
 import type { Screen } from "../../app/routes";
@@ -19,6 +19,29 @@ const activityShortcuts: ActivityShortcut[] = [
   { label: "Goals", description: "Badges and reflection progress", screen: "goals" }
 ];
 
+const shortcutIcons: Record<ActivityShortcut["screen"], string> = {
+  money: "📋",
+  bank: "🏦",
+  credit: "💳",
+  invest: "📈",
+  protect: "🛡",
+  goals: "🏆"
+};
+
+const categoryIcons: Record<string, string> = {
+  School: "🎓",
+  Work: "💼",
+  Bank: "🏦",
+  Budget: "📋",
+  Shop: "🛒",
+  Credit: "💳",
+  Save: "🐷",
+  Invest: "📈",
+  Protect: "🛡",
+  Future: "🧭",
+  Support: "🤝"
+};
+
 export function ActivitiesHub({
   game,
   onRunActivity,
@@ -30,38 +53,45 @@ export function ActivitiesHub({
 }) {
   const categories = Array.from(new Set(activities.map((activity) => activity.category)));
   return (
-    <section className="screen-panel">
+    <section className="screen-panel list-screen">
       <div className="section-heading">
         <h2>Activities</h2>
         <p>{highlightGlossaryTerms("Use actions between age-ups to steer your money life.")}</p>
       </div>
-      <nav className="activity-shortcuts" aria-label="Activity section shortcuts">
+      <nav className="activity-shortcuts menu-row-list" aria-label="Activity section shortcuts">
         {activityShortcuts.map((shortcut) => (
-          <button type="button" key={shortcut.screen} onClick={() => onNavigate(shortcut.screen)}>
-            <strong>{shortcut.label}</strong>
-            <span>{shortcut.description}</span>
+          <button type="button" className="menu-row" key={shortcut.screen} onClick={() => onNavigate(shortcut.screen)}>
+            <span className="menu-row__icon" aria-hidden="true">{shortcutIcons[shortcut.screen]}</span>
+            <span className="menu-row__copy">
+              <strong>{shortcut.label}</strong>
+              <small>{shortcut.description}</small>
+            </span>
+            <ChevronRight aria-hidden="true" />
           </button>
         ))}
       </nav>
-      <div className="activity-grid">
+      <div className="activity-list">
         {categories.map((category) => (
-          <div className="activity-column" key={category}>
+          <section className="activity-section" key={category}>
             <h3>{category}</h3>
             {activities
               .filter((activity) => activity.category === category)
               .map((activity) => {
                 const lockReason = activity.lockReason?.(game);
                 return (
-                  <article className="activity-card" key={activity.id}>
-                    <strong>{highlightGlossaryTerms(activity.title)}</strong>
-                    <p>{highlightGlossaryTerms(activity.description)}</p>
-                    <Button variant="secondary" disabled={Boolean(lockReason)} onClick={() => onRunActivity(activity.id)}>
-                      {lockReason ?? "Do Activity"}
-                    </Button>
+                  <article className={`menu-row activity-row${lockReason ? " is-locked" : ""}`} key={activity.id}>
+                    <span className="menu-row__icon" aria-hidden="true">{categoryIcons[activity.category] ?? "💡"}</span>
+                    <span className="menu-row__copy">
+                      <strong>{highlightGlossaryTerms(activity.title)}</strong>
+                      <small>{highlightGlossaryTerms(lockReason ?? activity.description)}</small>
+                    </span>
+                    <button type="button" className="menu-row__action" disabled={Boolean(lockReason)} onClick={() => onRunActivity(activity.id)} aria-label={`${lockReason ?? "Do activity"}: ${activity.title}`}>
+                      <ChevronRight aria-hidden="true" />
+                    </button>
                   </article>
                 );
               })}
-          </div>
+          </section>
         ))}
       </div>
     </section>
