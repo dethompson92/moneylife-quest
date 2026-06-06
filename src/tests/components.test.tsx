@@ -45,7 +45,7 @@ describe("app components", () => {
     expect(screen.getByText(/open-ended/i)).toBeInTheDocument();
     await userEvent.click(screen.getByRole("button", { name: /badges/i }));
     expect(screen.getByRole("heading", { name: /open life \/ achievements/i })).toBeInTheDocument();
-    expect(screen.getByText(/set your own private win condition/i)).toBeInTheDocument();
+    expect(screen.getAllByText((_, element) => element?.textContent?.match(/set your own private win condition/i) !== null).length).toBeGreaterThan(0);
   });
 
   it("lets activity shortcut links open the correct money sections", async () => {

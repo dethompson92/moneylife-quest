@@ -6027,3 +6027,7210 @@ The app should not imply endorsement, partnership, approval, sponsorship, review
 18. Create glossaryMosaicCompass58.ts — Add the 40 glossary entries with definition, math connection, misconception, app location, and source category.
 19. Add contentOriginalityLint.ts — Check for duplicate slugs, banned real brands in scenarios, sensitive identifier fields, mature-theme terms, and missing source categories.
 20. Add teacherDiscussionPrompts.ts — Store the 30 prompts by type: warmup, pairShare, exitTicket, compareOutcomes, with no student data.
+
+Creative Seed: ORBIT-HARBOR-47 — “Orbit” pushes this batch toward systems, loops, timing, and long-range consequences. “Harbor” pushes toward safe planning, docking points, support networks, and calm recovery after rough water. “47” biases the math toward awkward classroom-friendly numbers instead of round totals.
+
+Novelty guard: I used the uploaded prior-batch file as a duplicate-avoidance baseline. It already lists earlier spines such as subscription creep, emergency funds, credit history, first apartment, car ownership, payment apps, identity theft, investing downturns, pathway planning, default traps, refund roulette, whole-term affordability, proof/documentation, collectible liquidity, and several others, so this batch avoids reusing those exact prompts, slugs, and chain structures.   Ideas marked [NEW] are new to this batch; ideas marked [TWIST] revisit a required financial-literacy topic with a different mechanic, age, or classroom purpose.
+
+⸻
+
+1. Executive Research Synthesis
+
+1. Make timing visible, not just totals. Many finance mistakes are calendar mistakes: pay arrives Friday, the fee hits Thursday, the deposit is held for 10 days. For 7th graders, a “money calendar” makes cash flow feel concrete.
+2. Use fictional constraints as design variety, not student labels. Context variables like “internet reliability,” “transportation access,” and “starting cushion” create replay value without asking for sensitive identity information. This matches the privacy direction already present in the prior batches: no rosters, grades, analytics, sensitive identifiers, or student-data exports.  
+3. Teach “proof habits” through small stakes. Saving receipts, confirmation numbers, screenshots, and written agreements can feel boring until a later refund, dispute, or deposit event depends on them. The gameplay should reward proof without turning the game into paperwork.
+4. Middle-school banking should center balance timing. Students need to see available balance, pending charge, transfer delay, alert threshold, and fee timing before they can reason well about overdraft or account fees. FDIC Money Smart for Young People provides age-banded financial education resources, including grades 6–8 material on budgeting and personal decision-making.  
+5. Scam lessons should teach calm routines, not fear. The game should practice “pause, verify, document, report, recover.” FTC consumer guidance repeatedly emphasizes pressure, impersonation, payment-app risk, and getting help from a trusted adult as key scam-safety themes.  
+6. Credit should feel like a tool, not a moral score. The app’s credit meter should be labeled “simplified for learning.” CFPB explains that many credit scores range from 300 to 850 and that higher scores can affect loan access and interest rates, but different companies use different scoring systems.  
+7. Gross vs. net pay needs repeated exposure. The first reveal is powerful, but students need it again in budgets, commuting comparisons, taxes, refunds, side hustles, and work-study. IRS Understanding Taxes describes gross pay as earnings before deductions and net pay as take-home pay after deductions.  
+8. Insurance works best as a “what cost can you carry?” simulation. Premiums and deductibles become understandable when students compare small monthly certainty with rare large uncertainty. NAIC consumer resources define deductibles as the amount paid out of pocket before coverage pays on a claim.  
+9. Investing content should delay excitement and foreground uncertainty. Before “growth,” students should see fees, volatility, diversification, and time horizon. Investor.gov explains that diversification can reduce risk but cannot guarantee against losses, and that investment fees reduce portfolio value over time.  
+10. Aid and pathway planning must avoid real family-income entry. Federal Student Aid distinguishes grants, scholarships, work-study, and loans; the game can model these through fictional aid tiers rather than asking students for private family information.  
+11. BNPL and installment choices should be cash-flow lessons. CFPB notes that many BNPL products may not charge interest but can charge late fees if payments are missed. In-game, the key lesson should be “Can you carry every payment on time?” not simply “BNPL is bad.”  
+12. Support-circle systems should show mutuality. A mentor, caregiver, friend, or pet can help with confidence, reminders, transportation, or wellbeing, but support also asks for communication, time, trust, and planning.
+13. Math should be embedded in consequences. A student should see that 8 rides × $2.75 matters because the card runs short, not because the app suddenly became a worksheet.
+14. Locked choices are teaching moments. A visible lock should say “Needs $50 cushion,” “Needs mentor support,” or “Needs proof saved,” not “You failed.” That preserves dignity and turns constraints into goals.
+15. Randomness should separate luck from decision quality. A good plan can still get unlucky; a risky plan can sometimes turn out fine. The feedback should name both the plan and the luck.
+16. Net worth should never become self-worth. The final report should say that assets minus debts is a money snapshot, not a measure of character, intelligence, kindness, effort, or future potential.
+
+⸻
+
+2. New Feature Recommendations
+
+1. [NEW] Cash-Flow Harbor Calendar
+Student-facing purpose: Shows paydays, bill dates, pending charges, holds, and transfer delays on a 30-day timeline.
+Teacher value: Makes timing problems visible for budgeting discussions.
+Data/state needed: cashFlowEvents[], pendingCharges[], paySchedule, billSchedule.
+Risk or privacy concern: No real calendar import; only fictional events.
+MVP version: Text-based 30-day list.
+Stretch version: Calendar view with “safe,” “tight,” and “stormy” cash-flow days.
+
+2. [NEW] Proof Anchor System
+Student-facing purpose: Lets players collect fictional proof items: receipt, confirmation number, pay stub, agreement note, warranty card.
+Teacher value: Teaches documentation without requiring uploads.
+Data/state needed: proofItems[], proofRequiredFor[].
+Risk or privacy concern: Never allow real photos, uploads, or student documents.
+MVP version: Automatically generated proof tokens.
+Stretch version: Later events check whether the correct proof was saved.
+
+3. [NEW] Locked Choice Preview
+Student-facing purpose: Shows what would unlock a choice.
+Teacher value: Turns constraints into planning goals.
+Data/state needed: choice.requirements[], visibleLockedText.
+Risk or privacy concern: Avoid shame language.
+MVP version: Gray locked button with one requirement.
+Stretch version: “How to unlock this later” route hint.
+
+4. [NEW] Liquidity Meter
+Student-facing purpose: Separates “valuable” from “spendable now.”
+Teacher value: Helps explain why an asset can raise net worth but not solve today’s cash need.
+Data/state needed: assets[].liquidity, resaleValue, cash, checking, savings.
+Risk or privacy concern: Avoid wealth ranking.
+MVP version: Asset cards tagged high/medium/low liquidity.
+Stretch version: Simulated sale time and quick-sale discount.
+
+5. [TWIST] QR Confirm Modal
+Student-facing purpose: Before sending money, confirm recipient, amount, and purpose.
+Teacher value: Payment-app safety in three simple checks.
+Data/state needed: paymentEvent, recipientVerified, amountConfirmed.
+Risk or privacy concern: Use fictional recipients only.
+MVP version: Three checkboxes before risky send.
+Stretch version: Different scam outcomes based on which checks were skipped.
+
+6. [NEW] Utility Weather Meter
+Student-facing purpose: Shows how heating, cooling, laundry, and device use affect a fictional utility bill.
+Teacher value: Connects percent, estimation, and conservation.
+Data/state needed: utilityUsage, season, context.costLevel.
+Risk or privacy concern: Avoid asking exact location or household details.
+MVP version: Monthly estimate card.
+Stretch version: Seasonal variation with random weather spikes.
+
+7. [NEW] Support Script Cards
+Student-facing purpose: Gives school-safe sentence starters for asking a caregiver, friend, or mentor for help.
+Teacher value: Builds financial communication and SEL.
+Data/state needed: supportCircle, scriptSeen[].
+Risk or privacy concern: Keep roles fictional; no personal disclosure required.
+MVP version: One sentence starter per support choice.
+Stretch version: Tone options: polite, firm, grateful, clarifying.
+
+8. [NEW] Fee Weather Report
+Student-facing purpose: Shows where fees came from: late, service, transfer, shipping, restocking, overdraft, convenience.
+Teacher value: Helps students classify hidden costs.
+Data/state needed: fees[] with category and cause.
+Risk or privacy concern: No real account data.
+MVP version: End-of-age fee summary.
+Stretch version: Warnings before repeat fee patterns.
+
+9. [NEW] Aid Offer Decoder
+Student-facing purpose: Sorts fictional aid into “free if rules met,” “earned through work,” “borrowed,” and “gap.”
+Teacher value: Postsecondary vocabulary without student PII.
+Data/state needed: fictionalAidOffer[], pathway, aidTier.
+Risk or privacy concern: Do not ask real income, family size, or FAFSA details.
+MVP version: Drag-and-drop sorting.
+Stretch version: Four-year total-cost comparison.
+
+10. [NEW] Spendable vs. Useful Value Panel
+Student-facing purpose: Shows that a laptop, bike, credential, or tool kit may be useful even if resale value is low.
+Teacher value: Broadens “asset” beyond rich-person investing.
+Data/state needed: assets[].usefulness, assets[].resaleValue, condition.
+Risk or privacy concern: Do not rank students by owned items.
+MVP version: Two columns: useful value and resale value.
+Stretch version: Scenario unlocks from usefulness, not just dollars.
+
+11. [TWIST] Calm Check Button
+Student-facing purpose: Adds a one-tap pause before rushed, emotional, or pressured decisions.
+Teacher value: Links self-regulation to money choices.
+Data/state needed: pauseUsed, decisionPressureType.
+Risk or privacy concern: Never diagnose emotions.
+MVP version: Optional “pause and check” choice.
+Stretch version: End-of-run pattern: “Pausing helped you avoid X.”
+
+12. [NEW] Pay-Frequency Converter
+Student-facing purpose: Converts weekly, biweekly, semimonthly, and monthly pay into comparable amounts.
+Teacher value: Helps students compare jobs and budgets.
+Data/state needed: payRate, hours, payFrequency.
+Risk or privacy concern: Simplified tax labels.
+MVP version: Pay frequency calculator.
+Stretch version: Budget stress test with bill dates.
+
+13. [NEW] Deposit Tracker
+Student-facing purpose: Tracks refundable, partly refundable, and nonrefundable money.
+Teacher value: Teaches liquidity and move-in costs.
+Data/state needed: deposits[], conditionsForReturn, returnDate.
+Risk or privacy concern: Avoid real landlord/legal claims.
+MVP version: Deposit card with return rules.
+Stretch version: Inspection/proof affects return amount.
+
+14. [NEW] Source Trust Ladder
+Student-facing purpose: Ranks fictional sources: official, school/teacher, mentor, sponsored, anonymous, viral.
+Teacher value: Media literacy for scams, investing, aid, and jobs.
+Data/state needed: sourceChecks[], sourceType.
+Risk or privacy concern: Use fictional sources and no real social feeds.
+MVP version: Pick the most reliable source.
+Stretch version: Conflicting-source comparison.
+
+15. [NEW] Asset Condition Bar
+Student-facing purpose: Shows how care, storage, maintenance, and use affect value.
+Teacher value: Teaches depreciation and maintenance math.
+Data/state needed: asset.condition, maintenanceEvents[].
+Risk or privacy concern: None.
+MVP version: Good/fair/poor condition label.
+Stretch version: Condition affects resale, repair, and usefulness.
+
+16. [NEW] Randomness Explainer Card
+Student-facing purpose: After a random outcome, shows “Your choice changed the odds; luck set this result.”
+Teacher value: Prevents students from overlearning one anecdote.
+Data/state needed: odds, rngOutcome, choiceQuality.
+Risk or privacy concern: Avoid gambling framing.
+MVP version: One sentence after random events.
+Stretch version: Class-safe distribution preview.
+
+17. [NEW] Whole-Route Comparison
+Student-facing purpose: Compares two paths over several ages, not one choice at a time.
+Teacher value: Supports “compare outcomes” discussion.
+Data/state needed: routeSnapshots[], flags, netWorthHistory.
+Risk or privacy concern: Local only; no leaderboard.
+MVP version: Before/after route card.
+Stretch version: Branch replay without saving student identity.
+
+18. [NEW] Kind Boundary Prompts
+Student-facing purpose: Gives wording for saying no, asking to split costs, or setting repayment terms.
+Teacher value: Protects friendships and teaches boundaries.
+Data/state needed: supportCircle.friend, boundaryUsed.
+Risk or privacy concern: Keep fictional and not therapy-like.
+MVP version: Three canned scripts.
+Stretch version: Relationship trust changes based on clarity.
+
+19. [NEW] Fictional Context Seed Cards
+Student-facing purpose: Start runs with context like “spotty transit,” “strong mentor access,” or “higher local costs.”
+Teacher value: Shows circumstances shape choices.
+Data/state needed: contextSeed, contextVariables.
+Risk or privacy concern: Must not ask real demographics.
+MVP version: Three presets.
+Stretch version: Random seed generator with teacher preview.
+
+20. [NEW] Content Safety & Originality Linter
+Student-facing purpose: Invisible, but keeps content school-safe.
+Teacher value: Prevents accidental real brands, PII fields, mature themes, copied phrases, or duplicate slugs.
+Data/state needed: Scenario/glossary text, banned-term list, source-category fields.
+Risk or privacy concern: None if local/dev only.
+MVP version: Script checks slugs and banned fields.
+Stretch version: Reports duplicate mechanics and missing tradeoff notes.
+
+⸻
+
+3. Scenario Systems and Chains
+
+Chain 1 — Utility Bill Seasons [NEW]
+Learning target: Budgeting for variable costs and smoothing irregular bills.
+Trigger ages/life stages: 16–adult planning.
+Required flags: hasBudget or rentedApartment.
+Events in order: (1) First utility estimate; (2) hotter/colder month changes usage; (3) bill arrives higher than average; (4) choose conserve, average-bill plan, or buffer fund; (5) next season tests the plan.
+How choices compound: Ignoring seasonality creates cash-flow crunches; building a utility buffer protects checking.
+Possible endings: Season Planner, Average-Bill User, Surprised but Recovered.
+
+Chain 2 — QR Code Confidence [NEW/TWIST: payment safety without repeating generic payment-app chains]
+Learning target: Verify recipient, amount, and purpose before sending money.
+Trigger ages/life stages: 14–18.
+Required flags: usesDigitalWallet.
+Events in order: (1) Scan a payment QR; (2) similar-looking recipient appears; (3) friend asks for quick send; (4) confirmation modal catches or misses the error; (5) recovery/documentation step.
+How choices compound: Verifying early prevents loss; skipping verification increases scam/error odds.
+Possible endings: Confirmed Sender, Wrong Recipient Recovered, Costly Rush.
+
+Chain 3 — Deposit Comes Back? [NEW]
+Learning target: Refundable vs. nonrefundable money; condition and proof.
+Trigger ages/life stages: 15–adult planning.
+Required flags: hasDeposit.
+Events in order: (1) Pay a deposit; (2) learn return conditions; (3) save or skip proof; (4) item/space returned; (5) full, partial, or no deposit return.
+How choices compound: Proof and care raise the chance of return; unclear rules lower it.
+Possible endings: Full Return, Partial Return, Lesson Learned.
+
+Chain 4 — Pay Frequency Puzzle [NEW]
+Learning target: Same pay can feel different depending on timing.
+Trigger ages/life stages: 16–18.
+Required flags: hasIncome.
+Events in order: (1) Weekly vs. biweekly job comparison; (2) bills land between checks; (3) budget by paycheck or by month; (4) low-week test; (5) pay-cycle reflection.
+How choices compound: Monthly planning smooths uneven weeks; paycheck-only planning can run short.
+Possible endings: Calendar Budgeter, Payday Drifter, Rebalanced.
+
+Chain 5 — Gear Library Route [NEW]
+Learning target: Access without ownership, deposits, late fees, and shared resources.
+Trigger ages/life stages: 12–16.
+Required flags: communityProgramAccess.
+Events in order: (1) Borrow gear; (2) deposit and due date appear; (3) return early/on time/late; (4) damage or normal use outcome; (5) future access affected.
+How choices compound: Good return history unlocks access; late fees reduce cash and trust.
+Possible endings: Trusted Borrower, Fee Reminder, Buy Instead.
+
+Chain 6 — Credential Shelf [NEW/TWIST: human-capital asset with expiration]
+Learning target: Certifications as assets that can expire or require renewal.
+Trigger ages/life stages: 16–adult planning.
+Required flags: pathwayCareerTraining.
+Events in order: (1) Choose a short certification; (2) pay fee and study time; (3) first job unlock; (4) renewal deadline; (5) renew, let expire, or upgrade.
+How choices compound: Credentials open opportunities, but expiration creates future costs.
+Possible endings: Current Credential, Expired but Recoverable, Upgraded Skill.
+
+Chain 7 — Aid Offer Decoder [NEW/TWIST: no-PII aid simulation]
+Learning target: Grants, scholarships, work-study, loans, and remaining gap.
+Trigger ages/life stages: 16–18.
+Required flags: pathwayCollegeOrCareerSchool.
+Events in order: (1) Receive fictional aid offer; (2) sort aid types; (3) compare yearly and total cost; (4) choose work-study, lower-cost path, or loan amount; (5) repayment preview.
+How choices compound: Misreading borrowed money as free creates later debt; sorting clearly protects choices.
+Possible endings: Low-Gap Planner, Borrowed Carefully, Aid Confusion Repaired.
+
+Chain 8 — Marketplace Seller Route [NEW]
+Learning target: Selling items safely, shipping costs, returns, records, and profit.
+Trigger ages/life stages: 15–18.
+Required flags: hasItemToSell.
+Events in order: (1) Set price; (2) choose shipping/meetup rules; (3) buyer asks for off-platform shortcut; (4) return/dispute or smooth sale; (5) profit after fees.
+How choices compound: Clear rules and records reduce disputes; rushing can erase profit.
+Possible endings: Clean Sale, Dispute Resolved, Profit Was Smaller.
+
+Chain 9 — Transportation Backup [NEW]
+Learning target: Opportunity cost of missed rides; backup funds and time planning.
+Trigger ages/life stages: 14–18.
+Required flags: needsTransport.
+Events in order: (1) Pick main transport; (2) delay or weather event; (3) choose backup ride, wait, or reschedule; (4) job/school opportunity affected; (5) create backup fund or routine.
+How choices compound: Backup planning protects opportunity; repeated missed trips reduce trust/opportunity.
+Possible endings: Backup Ready, Scrambled but Safe, Missed Opportunity.
+
+Chain 10 — Work Hours vs. Human Energy [NEW]
+Learning target: Income, wellbeing, school effort, and schedule limits.
+Trigger ages/life stages: 16–18.
+Required flags: hasIncome.
+Events in order: (1) Extra shift offered; (2) homework/rest conflict; (3) short-term cash gain; (4) performance/wellbeing consequence; (5) schedule redesign.
+How choices compound: Overwork raises cash but can lower wellbeing and opportunity; boundaries preserve energy.
+Possible endings: Balanced Schedule, Cash-Heavy Tired, Rebuilt Boundaries.
+
+Chain 11 — Renter Inventory [NEW/TWIST: first apartment via documentation and assets, not rent choice]
+Learning target: Personal property value, renter insurance, proof, and claims.
+Trigger ages/life stages: adult planning.
+Required flags: rentedApartment.
+Events in order: (1) Inventory belongings; (2) decide renter coverage; (3) water/theft event randomized; (4) claim needs proof; (5) replace, repair, or absorb loss.
+How choices compound: Inventory and coverage protect recovery; no proof slows or limits claims.
+Possible endings: Documented Recovery, Partial Recovery, Self-Insured Lesson.
+
+Chain 12 — Cooperative Ownership [NEW]
+Learning target: Shared ownership, agreements, depreciation, repair responsibilities.
+Trigger ages/life stages: 13–18.
+Required flags: supportCircle.friend.
+Events in order: (1) Friends share a useful item; (2) agree or skip rules; (3) item breaks or schedules conflict; (4) repair/sell/rotate decision; (5) friendship and money outcome.
+How choices compound: Clear agreements protect relationships; vague sharing creates tension.
+Possible endings: Clear Co-op, Friendship Strained, Buy-Solo Later.
+
+Chain 13 — Deductible Pocket [NEW/TWIST: insurance readiness rather than claim choice]
+Learning target: A policy only helps if you can afford the deductible.
+Trigger ages/life stages: 16–adult planning.
+Required flags: hasPolicy.
+Events in order: (1) Choose deductible; (2) create or skip deductible pocket; (3) covered loss occurs; (4) pay deductible or delay repair; (5) rebuild pocket.
+How choices compound: Higher deductible lowers premium but requires cash readiness.
+Possible endings: Covered and Ready, Covered but Stuck, Lower-Deductible Planner.
+
+Chain 14 — Source Check Showdown [NEW]
+Learning target: Evaluate money claims from official, sponsored, viral, mentor, and anonymous sources.
+Trigger ages/life stages: 14–18.
+Required flags: none.
+Events in order: (1) Viral money claim; (2) compare sources; (3) choose action; (4) outcome reveals hidden motive or real value; (5) trust ladder reflection.
+How choices compound: Source-check habits unlock safer choices in jobs, investing, aid, and scams.
+Possible endings: Careful Checker, Viral Detour, Mentor-Verified.
+
+Chain 15 — Values Map Capstone [NEW]
+Learning target: Money choices reflect values, constraints, and tradeoffs.
+Trigger ages/life stages: end of run.
+Required flags: any 5 completed scenario flags.
+Events in order: (1) Review top choices; (2) tag reasons; (3) compare cash, wellbeing, safety, opportunity, and support; (4) choose one recovery or growth goal; (5) final reflection.
+How choices compound: The capstone connects earlier flags without ranking the student.
+Possible endings: Safety-Focused Planner, Opportunity Builder, Balanced Navigator, Recovery Climber.
+
+⸻
+
+4. Fresh Scenario Bank
+
+Scenario key: MT = mixed tradeoff; L = locked choice; R = randomized; FF = future flag; SC = support circle; M = explicit 7th-grade math; EXT = 8th–10th extension; AN = asset/net-worth.
+
+1. library-hotspot-deposit — “The Borrowed Hotspot” — Age 12–14 — Topics: access, deposits, internet reliability [NEW, MT, L, SC, FF]
+
+Prompt: A community program lends a portable hotspot for schoolwork. It is free to use, but a $15 refundable deposit is held until it comes back on time and undamaged. Your internet has been unreliable this month.
+
+Choices:
+
+* A. Borrow it and set a return reminder. Req: communityProgramAccess. Outcome/effects: School access improves; $15 is temporarily not spendable. Feedback: “Free access can still tie up cash until the deposit returns.” Reflect: “How is a refundable deposit different from a price?”
+* B. Ask a caregiver or mentor to help track the due date. Req: supportCircle.family or supportCircle.mentor. Outcome/effects: Trust and safety rise; you practice asking for support. Feedback: “Support can turn a good resource into a reliable plan.” Reflect: “What help made the plan easier?”
+* C. Skip it and use public computers only. Req: none. Outcome/effects: Cash stays free; schedule flexibility drops. Feedback: “Skipping the deposit protects cash, but access may be less convenient.” Reflect: “When is convenience worth tying up money?”
+
+Randomized outcome? No.
+Future flag set? Yes: usedBorrowedTech.
+Glossary terms: Deposit — money held and possibly returned later; Refundable — able to come back if conditions are met; Access — the ability to use a resource.
+Tradeoff note: Borrowing is not “free” if the deposit creates a cash squeeze, but it can protect school opportunity.
+
+2. utility-smoothing-plan — “The Uneven Utility Bill” — Age 16–adult planning — Topics: utilities, budgeting, variable cost [NEW, MT, R, M, FF, EXT]
+
+Prompt: Your fictional apartment budget expects a $47 utility bill, but a hotter month could push it near $69. You can budget for the average or build a buffer.
+
+Choices:
+
+* A. Budget exactly $47. Req: none. Outcome/effects: More cash available now; random heat spike may cause a shortfall. Feedback: “Averages help, but a real bill can land above average.” Reflect: “What number would make you feel prepared?”
+* B. Budget $60 each month and roll extra forward. Req: cash flow can cover $60. Outcome/effects: Spending money drops; future bill shock is lower. Feedback: “$60 − $47 = $13 buffer in a normal month.” Reflect: “How does a small buffer change later choices?”
+* C. Use conservation habits first. Req: none. Outcome/effects: Bill may drop; comfort or convenience may dip. Feedback: “Lower use can help, but weather still adds uncertainty.” Reflect: “What can you control, and what can’t you?”
+
+Randomized outcome? Yes.
+Future flag set? Yes: utilityBufferStarted.
+Glossary terms: Variable cost — a cost that changes; Average — a typical amount, not a guarantee; Buffer — extra money saved for a likely difference.
+Tradeoff note: Budgeting the average is efficient; budgeting above the average protects against surprise.
+
+3. qr-cashier-check — “Scan Before You Send” — Age 14–18 — Topics: payment safety, digital wallet, verification [NEW, R, FF, EXT]
+
+Prompt: At a fundraiser table, a QR code asks for $12. Two similar payment names appear, and the line behind you is moving fast.
+
+Choices:
+
+* A. Confirm the name with the cashier before sending. Req: none. Outcome/effects: Safety rises; the line takes a few extra seconds. Feedback: “A short pause can prevent money from going to the wrong place.” Reflect: “What did you verify?”
+* B. Send to the first matching name. Req: none. Outcome/effects: Fast; randomized wrong-recipient risk. Feedback: “Speed helped the line, but it raised the chance of an error.” Reflect: “When does fast become risky?”
+* C. Pay cash from your envelope instead. Req: cash ≥ $12. Outcome/effects: No digital risk; cash on hand drops. Feedback: “Cash avoids app errors but gives you less digital proof.” Reflect: “Which proof would you want later?”
+
+Randomized outcome? Yes.
+Future flag set? Yes: verifiedPaymentRecipient.
+Glossary terms: Digital wallet — an app or device feature used to pay; Verification — checking that details are correct; Receipt — proof that a payment happened.
+Tradeoff note: Digital payment is convenient; the safer move is adding friction before sending.
+
+4. fare-cap-week — “Will You Hit the Fare Cap?” — Age 13–16 — Topics: transportation, break-even, repeated cost [NEW, MT, M, FF]
+
+Prompt: A transit card charges $2.75 per ride but caps weekly spending at $22. You expect 7 or 9 rides this week.
+
+Choices:
+
+* A. Pay per ride and track it. Req: none. Outcome/effects: 7 rides cost $19.25; 9 rides hit the $22 cap. Feedback: “7 × $2.75 = $19.25, but 9 rides would be capped.” Reflect: “At what ride number does the cap help?”
+* B. Buy a weekly pass for $24. Req: cash ≥ $24. Outcome/effects: Simple, but may cost more than the cap. Feedback: “Simple is useful, but this pass costs $2 more than the cap.” Reflect: “When is simplicity worth paying for?”
+* C. Ask a mentor to map rides before loading money. Req: supportCircle.mentor. Outcome/effects: Opportunity and money knowledge rise. Feedback: “Planning the route first helps you buy the right amount.” Reflect: “How did planning change the total?”
+
+Randomized outcome? No.
+Future flag set? Yes: transportCostPlanner.
+Glossary terms: Fare cap — a maximum amount charged in a period; Break-even — the point where two choices cost the same; Transit card — stored money or pass for rides.
+Tradeoff note: The cheapest plan depends on how many rides actually happen.
+
+5. meal-kit-or-grocery — “Three Dinners, Two Ways” — Age 15–18 — Topics: food budget, convenience, unit cost [NEW, MT, M]
+
+Prompt: A three-dinner kit costs $39. Buying ingredients yourself costs about $27, but takes an extra hour to plan and prep.
+
+Choices:
+
+* A. Choose the kit. Req: cash ≥ $39. Outcome/effects: Cash down more; time and stress down. Feedback: “You paid $12 more to save time and planning.” Reflect: “What was your time worth here?”
+* B. Shop ingredients yourself. Req: cash ≥ $27. Outcome/effects: Cash saved; time cost rises. Feedback: “$39 − $27 = $12 saved, but not free time.” Reflect: “Would you trade one hour for $12?”
+* C. Cook one meal and use leftovers. Req: Discipline ≥ 45. Outcome/effects: Cash and time both improve if the plan works. Feedback: “Planning leftovers stretches ingredients.” Reflect: “How can one choice help two meals?”
+
+Randomized outcome? No.
+Future flag set? No.
+Glossary terms: Convenience cost — extra money paid to save time or effort; Unit cost — cost per serving or item; Opportunity cost — what you give up when choosing one option.
+Tradeoff note: Convenience is not wasteful when time or energy is tight; it just has a price.
+
+6. community-gear-library — “Borrow the Project Gear” — Age 12–15 — Topics: access, borrowing, assets [NEW, MT, L, SC, AN, FF]
+
+Prompt: A community gear library has a camera tripod you need for a school project. Buying one is $33; borrowing is free with a $10 late fee if returned late.
+
+Choices:
+
+* A. Borrow and set two reminders. Req: communityProgramAccess. Outcome/effects: Cash saved; discipline rises. Feedback: “Borrowing gives access without ownership, but the due date matters.” Reflect: “What makes borrowing responsible?”
+* B. Buy a basic tripod. Req: cash ≥ $33. Outcome/effects: Asset gained; cash drops. Feedback: “Owning gives flexibility but ties up money.” Reflect: “Will you use it enough to justify owning?”
+* C. Borrow with a friend as return partner. Req: supportCircle.friend. Outcome/effects: Support rises; shared responsibility added. Feedback: “A buddy system can protect against late fees.” Reflect: “How can shared reminders help?”
+
+Randomized outcome? No.
+Future flag set? Yes: trustedBorrower.
+Glossary terms: Asset — something owned or useful that has value; Late fee — extra cost for missing a due date; Borrowing — using something temporarily with rules.
+Tradeoff note: Borrowing can beat buying, but only if the rules fit your routine.
+
+7. school-club-treasurer — “Club Snack Money” — Age 13–15 — Topics: records, budgeting, support [NEW, M, SC, FF]
+
+Prompt: Your club collects $3 from each of 17 members for snacks. You volunteer to help track the money.
+
+Choices:
+
+* A. Make a simple record: 17 × $3 = $51. Req: none. Outcome/effects: Trust and money knowledge rise. Feedback: “A clear record protects everyone.” Reflect: “Why does public money need extra clarity?”
+* B. Put cash in one envelope with no list. Req: none. Outcome/effects: Faster; confusion risk rises. Feedback: “The total may be right, but missing names can cause problems.” Reflect: “What proof would solve a disagreement?”
+* C. Ask the advisor to count it with you. Req: supportCircle.mentor. Outcome/effects: Support and safety rise. Feedback: “Two-person counting reduces mistakes.” Reflect: “How did support protect trust?”
+
+Randomized outcome? No.
+Future flag set? Yes: keepsGroupRecords.
+Glossary terms: Record — a written or digital note of what happened; Total — the complete amount; Trust — confidence built by clear actions.
+Tradeoff note: Extra tracking takes time, but group money needs more proof than personal money.
+
+8. summer-heat-bill — “The Hot Month Spike” — Age 16–adult planning — Topics: utilities, conservation, cash flow [NEW, R, M, FF, EXT]
+
+Prompt: Your fictional summer bill is usually $54. A heat wave may add 15% to 35%.
+
+Choices:
+
+* A. Set aside $70 just in case. Req: cash flow can cover $70. Outcome/effects: Less spending now; bill stress drops. Feedback: “$54 + 30% is about $70.20, so $70 is close.” Reflect: “How did estimating help?”
+* B. Wait for the bill before adjusting. Req: none. Outcome/effects: More cash now; randomized bill shock risk. Feedback: “Waiting keeps money flexible but may crowd the next paycheck.” Reflect: “What bill size would feel too late?”
+* C. Change usage habits and set aside $10. Req: Discipline ≥ 40. Outcome/effects: Balanced plan; randomized savings. Feedback: “Small behavior changes plus a mini-buffer reduce risk.” Reflect: “Why combine habits and savings?”
+
+Randomized outcome? Yes.
+Future flag set? Yes: seasonalBillAware.
+Glossary terms: Percent increase — how much a number grows compared with the original; Cash flow — money moving in and out over time; Utility bill — charge for services like power or water.
+Tradeoff note: Comfort, cost, and uncertainty all matter.
+
+9. tool-borrow-deposit — “The Tool You Only Need Once” — Age 14–17 — Topics: borrowing, deposit, repair [NEW, MT, R, SC, AN]
+
+Prompt: A repair project needs a $48 tool. A neighbor will lend one with a $15 deposit, but you must return it clean.
+
+Choices:
+
+* A. Borrow it and clean it before return. Req: supportCircle.family or supportCircle.mentor. Outcome/effects: Cash saved; relationship trust can rise. Feedback: “Borrowing protects cash when you need something once.” Reflect: “What makes borrowing fair?”
+* B. Buy the tool. Req: cash ≥ $48. Outcome/effects: Asset gained; cash drops. Feedback: “Ownership helps if future projects are likely.” Reflect: “How many uses would make buying worth it?”
+* C. Skip the repair for now. Req: none. Outcome/effects: Cash protected; item may lose usefulness. Feedback: “Delaying can be smart, but some repairs get worse.” Reflect: “What is the cost of waiting?”
+
+Randomized outcome? Yes.
+Future flag set? No.
+Glossary terms: Deposit — money held until rules are met; Ownership — having something as yours; Maintenance — work that keeps something useful.
+Tradeoff note: Buying is not always better than access; borrowing depends on trust and care.
+
+10. micro-cert-renewal-date — “The Certification Clock” — Age 16–18 — Topics: career, credentials, renewal [NEW, MT, L, EXT, AN, FF]
+
+Prompt: A short online certification costs $47 and could help with a future job, but it expires in two years unless renewed.
+
+Choices:
+
+* A. Earn it now. Req: cash ≥ $47 and Discipline ≥ 50. Outcome/effects: Opportunity rises; future renewal flag starts. Feedback: “A credential can be an asset, but it may need upkeep.” Reflect: “How long will this value last?”
+* B. Wait until closer to applying. Req: none. Outcome/effects: Cash protected; opportunity delayed. Feedback: “Waiting can reduce expiration risk.” Reflect: “When is timing more important than speed?”
+* C. Find a free intro course first. Req: communityProgramAccess. Outcome/effects: Money knowledge rises; no credential yet. Feedback: “Testing interest before paying lowers risk.” Reflect: “What did you learn before spending?”
+
+Randomized outcome? No.
+Future flag set? Yes: credentialClockStarted.
+Glossary terms: Certification — proof of completing training; Renewal — keeping something active after a deadline; Human capital — skills and knowledge that can create opportunity.
+Tradeoff note: Credentials can open doors, but paying too early can waste time-limited value.
+
+11. marketplace-return-window — “The Return Window Is Closing” — Age 15–18 — Topics: resale, returns, proof [NEW, R, MT, AN, FF]
+
+Prompt: You bought a used calculator for $31, but a key sticks. The seller allows returns within 5 days if you kept the receipt.
+
+Choices:
+
+* A. Return it now with the receipt. Req: proofItems.receipt. Outcome/effects: Cash likely restored; problem solved. Feedback: “Proof turns a complaint into a clear request.” Reflect: “What did the receipt make possible?”
+* B. Try to fix it yourself first. Req: none. Outcome/effects: Possible repair; return window may close. Feedback: “Trying first might work, but time is part of the decision.” Reflect: “When does waiting reduce options?”
+* C. Resell it honestly as imperfect. Req: none. Outcome/effects: Some money recovered; reputation stays safe. Feedback: “Honesty protects trust, even if resale is lower.” Reflect: “How does condition affect value?”
+
+Randomized outcome? Yes.
+Future flag set? Yes: tracksReturnWindows.
+Glossary terms: Return window — time allowed to return an item; Resale value — what something may sell for later; Receipt — proof of purchase.
+Tradeoff note: Repairing can save hassle, but a deadline can make quick action better.
+
+12. bank-alert-threshold — “The $25 Alert” — Age 16–18 — Topics: banking, alerts, checking [NEW, M, FF, EXT]
+
+Prompt: Your checking account can text you when the balance drops below $25, $50, or $100. You usually spend about $18 at a time.
+
+Choices:
+
+* A. Set alert at $25. Req: hasChecking. Outcome/effects: Fewer alerts; less warning time. Feedback: “One $18 purchase after a $25 alert could leave only $7.” Reflect: “Is that enough warning?”
+* B. Set alert at $50. Req: hasChecking. Outcome/effects: Balanced warning level. Feedback: “$50 gives room for two small purchases before danger.” Reflect: “What balance helps you pause?”
+* C. Set alert at $100. Req: hasChecking. Outcome/effects: More alerts; stronger cushion. Feedback: “More reminders can help or annoy you into ignoring them.” Reflect: “When do reminders become noise?”
+
+Randomized outcome? No.
+Future flag set? Yes: balanceAlertsOn.
+Glossary terms: Checking account — account for everyday spending; Balance — money available in an account; Alert — message that warns you about account activity.
+Tradeoff note: Alerts only help if the threshold matches real spending.
+
+13. digital-receipt-folder — “The Receipt Folder” — Age 13–16 — Topics: proof, organization, refunds [NEW, FF]
+
+Prompt: You can turn on a simple in-game receipt folder. It does not collect real receipts; it only stores fictional proof from game events.
+
+Choices:
+
+* A. Turn it on. Req: none. Outcome/effects: Future disputes/refunds easier; small organization habit gained. Feedback: “Proof is easier to use when it is saved before you need it.” Reflect: “What proof would you want later?”
+* B. Skip it. Req: none. Outcome/effects: Cleaner interface; less help later. Feedback: “Skipping tools is fine if you have another system.” Reflect: “How would you remember details?”
+* C. Turn it on only for purchases over $20. Req: Discipline ≥ 40. Outcome/effects: Less clutter; big purchases protected. Feedback: “A rule can make organization easier.” Reflect: “Why choose a threshold?”
+
+Randomized outcome? No.
+Future flag set? Yes: proofFolderEnabled.
+Glossary terms: Proof — evidence that something happened; Threshold — a point where a rule starts; Refund — money returned after a valid return or correction.
+Tradeoff note: Tracking everything can feel cluttered; tracking nothing can leave you stuck.
+
+14. pay-frequency-puzzle — “Same Pay, Different Timing” — Age 16–18 — Topics: paychecks, budgeting, timing [NEW, M, FF, EXT]
+
+Prompt: Job A pays $120 weekly. Job B pays $240 every two weeks. The total is the same, but your bills are weekly.
+
+Choices:
+
+* A. Choose weekly pay. Req: none. Outcome/effects: Timing matches bills; less money per check. Feedback: “Weekly pay can make small bills easier to match.” Reflect: “How did timing matter?”
+* B. Choose biweekly pay and budget by week. Req: Discipline ≥ 45. Outcome/effects: Same income; requires splitting the check. Feedback: “$240 ÷ 2 = $120 per week if you hold half.” Reflect: “What keeps you from spending the second week’s money?”
+* C. Choose based on commute and schedule instead. Req: none. Outcome/effects: Whole-life comparison improves. Feedback: “Pay timing matters, but it is not the only factor.” Reflect: “What else belongs in a job choice?”
+
+Randomized outcome? No.
+Future flag set? Yes: understandsPayTiming.
+Glossary terms: Pay frequency — how often pay arrives; Budget — plan for money; Cash flow — timing of money in and out.
+Tradeoff note: Same total pay can feel different if bills land before the next check.
+
+15. shift-swap-kindness — “Can You Cover My Shift?” — Age 16–18 — Topics: work, support, wellbeing [NEW, MT, R, SC, FF, EXT]
+
+Prompt: A coworker asks you to cover a shift. It adds $42 before deductions, but you planned study time and rest.
+
+Choices:
+
+* A. Cover the shift. Req: none. Outcome/effects: Cash rises; wellbeing or school prep may drop. Feedback: “Extra income has a time cost.” Reflect: “What did the money replace?”
+* B. Say no kindly. Req: none. Outcome/effects: Time protected; relationship depends on tone. Feedback: “A clear no can protect your schedule without being rude.” Reflect: “What wording made it respectful?”
+* C. Trade shifts for a better day. Req: supportCircle.friend or workplace trust ≥ 50. Outcome/effects: Balanced outcome possible. Feedback: “Negotiation can create a third option.” Reflect: “How did changing timing help?”
+
+Randomized outcome? Yes.
+Future flag set? Yes: setsWorkBoundaries.
+Glossary terms: Gross pay — pay before deductions; Boundary — a clear limit; Opportunity cost — what one choice gives up.
+Tradeoff note: Helping can build trust, but overcommitting can cost energy and performance.
+
+16. cash-envelope-digital — “Three Digital Envelopes” — Age 13–16 — Topics: budgeting, categories, saving [NEW, M, FF]
+
+Prompt: You split $47 into three fictional envelopes: spend now, save soon, and give/help. You choose the percentages.
+
+Choices:
+
+* A. 50/30/20 split. Req: none. Outcome/effects: $23.50 spend, $14.10 save, $9.40 give/help. Feedback: “A percentage split turns values into numbers.” Reflect: “Which category felt too high or low?”
+* B. Save-heavy split: 30/60/10. Req: none. Outcome/effects: Future goal rises; current fun drops. Feedback: “Saving more now can speed a goal but shrink flexibility.” Reflect: “What goal made saving worth it?”
+* C. Flexible split you design. Req: Money Know-How ≥ 45. Outcome/effects: More ownership; more math. Feedback: “Your rule should still add to 100%.” Reflect: “How did you check the total?”
+
+Randomized outcome? No.
+Future flag set? Yes: usesEnvelopeBudget.
+Glossary terms: Budget category — a group for planned spending; Percent — parts per hundred; Giving — planned money or time used to help.
+Tradeoff note: No split is universal; a good split fits the situation.
+
+17. used-ereader-access — “Used E-Reader or App?” — Age 13–16 — Topics: assets, access, resale [NEW, MT, AN]
+
+Prompt: A used e-reader costs $38 and may resell for $24 later. A reading app is free but needs reliable internet.
+
+Choices:
+
+* A. Buy the used e-reader. Req: cash ≥ $38. Outcome/effects: Asset gained; cash drops; offline access improves. Feedback: “Net cost might be $38 − $24 = $14 if resale works.” Reflect: “How does resale change the cost?”
+* B. Use the free app. Req: internetReliability medium or high. Outcome/effects: Cash protected; access depends on internet. Feedback: “Free can be best when access is reliable.” Reflect: “What hidden cost could appear?”
+* C. Share a device schedule with family/caregiver. Req: supportCircle.family. Outcome/effects: Cash saved; planning required. Feedback: “Shared access can work when schedules are clear.” Reflect: “What rule prevents conflict?”
+
+Randomized outcome? No.
+Future flag set? No.
+Glossary terms: Resale value — money something may sell for later; Net cost — cost after subtracting money recovered; Access — ability to use something when needed.
+Tradeoff note: Owning helps access; free tools work best when the required support is reliable.
+
+18. group-project-supply-fund — “The Lab Poster Fund” — Age 12–14 — Topics: fair split, group cost, records [NEW, MT, M, SC, FF]
+
+Prompt: A group project needs $18.75 of supplies. Five group members can split evenly or choose a different plan.
+
+Choices:
+
+* A. Split evenly: $3.75 each. Req: none. Outcome/effects: Simple and fair by person. Feedback: “$18.75 ÷ 5 = $3.75.” Reflect: “When is an equal split fair?”
+* B. One person buys, group repays with a record. Req: supportCircle.friend. Outcome/effects: Faster; repayment tracking needed. Feedback: “Fronting money works better with names and amounts.” Reflect: “What would protect the buyer?”
+* C. Use class scrap materials and spend less. Req: Opportunity ≥ 45. Outcome/effects: Cost drops; design options limited. Feedback: “Using available resources can change the budget.” Reflect: “What did you give up?”
+
+Randomized outcome? No.
+Future flag set? Yes: usesFairSplit.
+Glossary terms: Fair split — dividing a cost using an agreed rule; Reimbursement — paying someone back; Record — proof of who paid what.
+Tradeoff note: Equal, usage-based, and resource-saving plans can all be fair depending on the agreement.
+
+19. internet-backup-plan — “When the Connection Drops” — Age 13–16 — Topics: planning, access, support [NEW, M, SC, FF]
+
+Prompt: You have an online assignment due. Your connection sometimes fails, so you compare backup options: bus to library $2.75 each way, ask mentor for hotspot, or risk waiting.
+
+Choices:
+
+* A. Travel to the library. Req: cash ≥ $5.50 or transit balance ≥ $5.50. Outcome/effects: Cost rises; deadline risk drops. Feedback: “Two rides cost $5.50 total.” Reflect: “When is paying for backup worth it?”
+* B. Ask a mentor about a hotspot. Req: supportCircle.mentor. Outcome/effects: Support and opportunity rise. Feedback: “Asking early gives people time to help.” Reflect: “How did timing affect support?”
+* C. Wait and hope the connection holds. Req: none. Outcome/effects: Cash saved; deadline risk rises. Feedback: “Waiting costs nothing unless the risk happens.” Reflect: “What was the chance worth to you?”
+
+Randomized outcome? No.
+Future flag set? Yes: hasAccessBackup.
+Glossary terms: Backup plan — a second option if the first fails; Deadline — a due date; Transportation cost — money spent to get somewhere.
+Tradeoff note: A backup can cost money or social effort, but it protects opportunity.
+
+20. fee-free-atm-map — “The Out-of-Network Fee” — Age 16–18 — Topics: banking, fees, map planning [NEW, M, L, FF, EXT]
+
+Prompt: The nearest ATM charges $3.50. A fee-free ATM is 12 minutes farther away. You need $20 cash.
+
+Choices:
+
+* A. Use the fee ATM. Req: hasChecking. Outcome/effects: Fast; $20 withdrawal costs $23.50 total. Feedback: “The fee is 17.5% of the cash you needed.” Reflect: “Was speed worth $3.50?”
+* B. Walk to the fee-free ATM. Req: timeAvailable ≥ 15 minutes. Outcome/effects: Cash saved; time spent. Feedback: “You traded 12 minutes for $3.50.” Reflect: “What is your time worth here?”
+* C. Use debit instead of cash. Req: merchant accepts debit. Outcome/effects: Avoids ATM; may reduce spending awareness. Feedback: “Payment method can change both fees and habits.” Reflect: “Why might cash help some budgets?”
+
+Randomized outcome? No.
+Future flag set? Yes: avoidsNetworkFees.
+Glossary terms: ATM fee — charge for using a cash machine; Debit card — card that pays from checking; Percent — a part of 100.
+Tradeoff note: Paying a fee can be reasonable when safety, time, or access matters.
+
+21. repair-cafe-laptop — “The Repair Café Slot” — Age 15–18 — Topics: repair, asset condition, support [NEW, MT, R, SC, AN, FF, EXT]
+
+Prompt: Your laptop hinge is loose. A repair café may help for a $7 parts donation, but the fix is not guaranteed. A shop repair costs $86.
+
+Choices:
+
+* A. Try the repair café. Req: communityProgramAccess. Outcome/effects: Low cost; randomized success. Feedback: “Community repair lowers cost but not uncertainty.” Reflect: “What risk did you accept?”
+* B. Pay the shop. Req: cash ≥ $86. Outcome/effects: Higher cost; more reliable repair. Feedback: “Professional repair costs more but reduces uncertainty.” Reflect: “When is certainty worth paying for?”
+* C. Ask a mentor to help compare repair vs. replace. Req: supportCircle.mentor. Outcome/effects: Money knowledge rises. Feedback: “A second view can prevent a rushed replacement.” Reflect: “What information changed the choice?”
+
+Randomized outcome? Yes.
+Future flag set? Yes: maintainsTechAsset.
+Glossary terms: Repair — fixing something to keep it useful; Asset condition — how worn or usable something is; Replacement cost — cost to buy another one.
+Tradeoff note: Low-cost repair can be smart even when it is not guaranteed.
+
+22. energy-vampire-audit — “The Plug-In Audit” — Age 13–16 — Topics: utilities, estimation, habits [NEW, M, FF]
+
+Prompt: A teacher says some plugged-in devices use a little energy even when idle. Your fictional household can save about $4 per month with a power strip habit.
+
+Choices:
+
+* A. Build the habit. Req: Discipline ≥ 35. Outcome/effects: Small monthly savings; discipline rises. Feedback: “$4 × 12 = $48 per year.” Reflect: “Why do small repeated savings matter?”
+* B. Skip it. Req: none. Outcome/effects: Simpler routine; savings missed. Feedback: “Skipping may be fine if the habit is too annoying.” Reflect: “What habit is worth $48/year?”
+* C. Try it for one month, then decide. Req: none. Outcome/effects: Low commitment; future comparison. Feedback: “A trial can test effort before making a rule.” Reflect: “What did the trial teach?”
+
+Randomized outcome? No.
+Future flag set? Yes: tracksEnergyHabits.
+Glossary terms: Annualize — turn a monthly amount into a yearly amount; Habit — repeated action; Utility cost — cost for services like electricity.
+Tradeoff note: Not every small saving deserves attention; the best habits are easy enough to keep.
+
+23. work-shoes-cost-per-shift — “Shoes for the Shift” — Age 16–18 — Topics: job costs, durability, assets [NEW, MT, M, AN, EXT]
+
+Prompt: A job requires plain black shoes. One pair is $29 and may last 20 shifts; another is $54 and may last 60 shifts.
+
+Choices:
+
+* A. Buy the $29 pair. Req: cash ≥ $29. Outcome/effects: Lower cost now; higher cost per shift. Feedback: “$29 ÷ 20 = about $1.45 per shift.” Reflect: “Did lower price mean lower cost?”
+* B. Buy the $54 pair. Req: cash ≥ $54. Outcome/effects: More cash now; lower cost per shift. Feedback: “$54 ÷ 60 = $0.90 per shift.” Reflect: “When is durability worth it?”
+* C. Ask if the workplace has a discount or closet. Req: Opportunity ≥ 50. Outcome/effects: Possible lower cost; confidence rises. Feedback: “Asking about resources can reduce job-start costs.” Reflect: “Why might people miss available help?”
+
+Randomized outcome? No.
+Future flag set? No.
+Glossary terms: Durability — how long something lasts; Cost per use — cost divided by number of uses; Job-start cost — money needed before earning.
+Tradeoff note: The cheaper pair may be best if cash is tight, even if the durable pair is better long-term.
+
+24. portfolio-hosting-choice — “Where Your Portfolio Lives” — Age 15–18 — Topics: career, digital tools, recurring cost [NEW, MT, M, AN, FF, EXT]
+
+Prompt: You want a simple online portfolio for future applications. A free option has a long address; a paid option is $3.75/month.
+
+Choices:
+
+* A. Use the free option. Req: none. Outcome/effects: Cash protected; less polished link. Feedback: “Free works if it meets the goal.” Reflect: “What matters more than polish?”
+* B. Pay for the short link. Req: cash flow can cover $3.75/month. Outcome/effects: Professional feel; annual cost $45. Feedback: “$3.75 × 12 = $45 per year.” Reflect: “Is the yearly cost worth it?”
+* C. Ask a mentor to review the free version first. Req: supportCircle.mentor. Outcome/effects: Opportunity rises without immediate cost. Feedback: “Feedback may improve value before spending.” Reflect: “What did review add?”
+
+Randomized outcome? No.
+Future flag set? Yes: hasPortfolioAsset.
+Glossary terms: Portfolio — collection of work samples; Recurring cost — cost that repeats; Annual cost — yearly total.
+Tradeoff note: Paying for presentation can be worthwhile, but only after the content is strong.
+
+25. small-claim-vs-cash — “Tiny Claim, Big Question” — Age 16–adult planning — Topics: insurance, claims, deductibles [NEW, MT, R, L, M, FF, EXT]
+
+Prompt: A covered item has $92 damage. Your deductible is $75, and filing might affect future premiums in the simplified game model.
+
+Choices:
+
+* A. File the claim. Req: hasPolicy. Outcome/effects: Pay $75; possible future premium change. Feedback: “Insurance helps only after the deductible.” Reflect: “Was saving $17 worth a claim?”
+* B. Pay $92 yourself. Req: cash ≥ $92. Outcome/effects: More cost now; policy history untouched. Feedback: “For small losses, self-paying can be cleaner.” Reflect: “What size loss would change your mind?”
+* C. Ask the insurer questions before deciding. Req: Money Know-How ≥ 50. Outcome/effects: Safety and knowledge rise. Feedback: “Information can be worth more than guessing.” Reflect: “What question mattered most?”
+
+Randomized outcome? Yes.
+Future flag set? Yes: understandsSmallClaims.
+Glossary terms: Claim — request for insurance to cover a loss; Deductible — amount paid before insurance helps; Premium — regular payment for coverage.
+Tradeoff note: Insurance is for risk protection, but not every small loss should become a claim.
+
+26. roommate-utility-split-by-use — “The Utility Split Talk” — Age adult planning — Topics: roommates, utilities, proportional reasoning [NEW, MT, L, SC, M, FF, EXT]
+
+Prompt: A shared utility bill is $84. You were away one week; your roommate used extra heat for a project. You need a fair split.
+
+Choices:
+
+* A. Split 50/50: $42 each. Req: hasRoommate. Outcome/effects: Simple; may ignore different use. Feedback: “Equal splits are easy to understand.” Reflect: “When is equal fair?”
+* B. Split by estimated use: $35/$49. Req: Money Know-How ≥ 55. Outcome/effects: More precise; requires agreement. Feedback: “A proportional split can match use better.” Reflect: “What evidence makes it fair?”
+* C. Keep 50/50 but agree on future rules. Req: supportCircle.friend or roommate trust ≥ 45. Outcome/effects: Relationship protected; future clarity improves. Feedback: “Sometimes the best fix is a future rule.” Reflect: “What rule would prevent repeat conflict?”
+
+Randomized outcome? No.
+Future flag set? Yes: setsSharedBillRules.
+Glossary terms: Proportional — based on size, use, or share; Utility bill — shared service cost; Agreement — clear rule accepted by people involved.
+Tradeoff note: Fairness may mean equal, proportional, or future-focused depending on the relationship.
+
+27. aid-offer-color-sort — “What Is Free, Earned, or Borrowed?” — Age 16–18 — Topics: financial aid, loans, grants [NEW, L, M, FF, EXT]
+
+Prompt: A fictional aid offer lists: $1,200 grant, $800 scholarship, $900 work-study, $2,000 loan, and $700 remaining gap.
+
+Choices:
+
+* A. Sort each line by type. Req: pathwayCollegeOrCareerSchool. Outcome/effects: Money knowledge rises; loan confusion drops. Feedback: “Grant and scholarship are different from borrowed money.” Reflect: “Which line must be repaid?”
+* B. Accept everything without sorting. Req: none. Outcome/effects: Fast; future debt surprise risk. Feedback: “Fast choices can hide borrowed money.” Reflect: “What did you need to slow down for?”
+* C. Ask a counselor/mentor to review. Req: supportCircle.mentor. Outcome/effects: Opportunity and safety rise. Feedback: “Aid language is easier with support.” Reflect: “What did the helper clarify?”
+
+Randomized outcome? No.
+Future flag set? Yes: decodedAidOffer.
+Glossary terms: Grant — aid that usually does not need repayment if rules are met; Scholarship — aid often based on criteria; Loan — borrowed money to repay; Work-study — aid earned through work.
+Tradeoff note: Aid can lower cost, but only if the player understands what is free, earned, borrowed, or still missing.
+
+28. campus-book-bundle — “The Book Bundle Choice” — Age 16–18 — Topics: course costs, bundles, access [NEW, MT, M, EXT]
+
+Prompt: A career-school class offers a $118 book bundle. Buying used copies separately may cost $89, but one book might arrive late.
+
+Choices:
+
+* A. Buy the bundle. Req: cash ≥ $118. Outcome/effects: More cost; lower delay risk. Feedback: “You pay $29 more for reliability.” Reflect: “When is certainty worth extra cost?”
+* B. Buy used separately. Req: cash ≥ $89. Outcome/effects: Cash saved; timing risk. Feedback: “Used can be cheaper, but access timing matters.” Reflect: “What happens if a book is late?”
+* C. Ask whether the library has reserve copies. Req: Opportunity ≥ 50. Outcome/effects: Possible lower cost; time planning needed. Feedback: “Shared resources can reduce cost when available.” Reflect: “What rule would make borrowing work?”
+
+Randomized outcome? No.
+Future flag set? No.
+Glossary terms: Bundle — group sold together; Used price — resale price for previously owned item; Access timing — whether you can use something when needed.
+Tradeoff note: Cheap is not always best if delay harms performance.
+
+29. paid-training-unpaid-course — “Training That Pays or Costs” — Age 16–18 — Topics: career pathways, opportunity cost [NEW, MT, FF, EXT]
+
+Prompt: You compare paid training at $11/hour for 8 hours/week with a free unpaid course that could lead to higher pay later.
+
+Choices:
+
+* A. Choose paid training. Req: none. Outcome/effects: Income now; slower credential path. Feedback: “Earning while learning helps cash flow.” Reflect: “Why did current income matter?”
+* B. Choose the unpaid course. Req: savings cushion ≥ $80. Outcome/effects: Opportunity may rise; short-term cash pressure. Feedback: “A cushion can make unpaid learning possible.” Reflect: “What made the risk manageable?”
+* C. Combine a shorter course with fewer work hours. Req: Discipline ≥ 55. Outcome/effects: Balanced but busy. Feedback: “Hybrid plans trade speed for stability.” Reflect: “What schedule pressure appears?”
+
+Randomized outcome? No.
+Future flag set? Yes: pathwayCareerTraining.
+Glossary terms: Opportunity cost — what you give up; Training — learning job skills; Cushion — savings that protect choices.
+Tradeoff note: Paid routes and unpaid routes can both be smart depending on cash, time, and goals.
+
+30. ride-share-surge-plan — “The Price Jump Ride” — Age 16–18 — Topics: transportation, surge pricing, planning [NEW, R, M, EXT]
+
+Prompt: A ride usually costs $11, but during a busy time it may jump by 40% to 80%. You need to get to a fictional appointment.
+
+Choices:
+
+* A. Leave earlier using transit for $3. Req: timeAvailable ≥ 35 minutes. Outcome/effects: Cash saved; time spent. Feedback: “Planning earlier can beat price spikes.” Reflect: “What did time save?”
+* B. Wait and hope the ride price drops. Req: none. Outcome/effects: Random cost; possible delay. Feedback: “Waiting can help or backfire.” Reflect: “What risk did you accept?”
+* C. Use the ride now. Req: cash ≥ $20. Outcome/effects: Faster; cash may drop sharply. Feedback: “An $11 ride with 80% surge is $19.80.” Reflect: “When is speed worth the cost?”
+
+Randomized outcome? Yes.
+Future flag set? No.
+Glossary terms: Surge pricing — higher price when demand is high; Percent increase — amount added compared with original; Transportation budget — money planned for getting places.
+Tradeoff note: Transportation decisions mix money, time, reliability, and stress.
+
+31. rainy-day-ride-fund — “Backup Ride Money” — Age 14–18 — Topics: emergency planning, transport, opportunity [NEW, R, L, M, FF]
+
+Prompt: Your main ride plan is usually free, but delays happen. You can keep a $14 backup ride fund.
+
+Choices:
+
+* A. Keep the $14 backup fund. Req: savings ≥ $14. Outcome/effects: Less spendable cash; opportunity protected. Feedback: “A small backup can prevent a missed event.” Reflect: “What did the fund protect besides money?”
+* B. Spend the $14 now. Req: none. Outcome/effects: More enjoyment; random transport risk later. Feedback: “Spending now is real value, but it removes protection.” Reflect: “What future event could need it?”
+* C. Ask a caregiver/mentor to plan a backup route. Req: supportCircle.family or supportCircle.mentor. Outcome/effects: Support and safety rise. Feedback: “Backup plans do not always require cash.” Reflect: “What non-money support helped?”
+
+Randomized outcome? Yes.
+Future flag set? Yes: transportBackupFund.
+Glossary terms: Backup fund — money set aside for a second option; Opportunity — a chance to do or gain something; Risk — chance of an unwanted result.
+Tradeoff note: A backup fund may sit unused, which can mean it worked.
+
+32. pet-sitting-calendar — “Pet-Sitting Schedule Math” — Age 13–16 — Topics: income, responsibility, pets [NEW, R, M, SC, FF]
+
+Prompt: A neighbor offers $9 per visit to feed a pet. You can do 6 visits, but one conflicts with a family plan.
+
+Choices:
+
+* A. Accept all 6 and ask family to adjust. Req: supportCircle.family. Outcome/effects: Up to $54 gross; family trust may strain or improve. Feedback: “Income choices can affect other people’s schedules.” Reflect: “Who else did the job affect?”
+* B. Accept 5 visits only. Req: none. Outcome/effects: $45 income; lower conflict. Feedback: “You gave up $9 to protect a commitment.” Reflect: “Was the tradeoff worth it?”
+* C. Share one visit with a trusted friend. Req: supportCircle.friend. Outcome/effects: Income split; reliability randomized. Feedback: “Delegating requires clear rules.” Reflect: “What makes shared work trustworthy?”
+
+Randomized outcome? Yes.
+Future flag set? Yes: handlesPetResponsibility.
+Glossary terms: Gross income — money earned before any costs; Schedule conflict — two commitments at the same time; Delegating — asking someone else to handle a task.
+Tradeoff note: More income is not automatically better if it strains reliability or trust.
+
+33. inventory-markdown — “The Unsold Stickers” — Age 15–18 — Topics: entrepreneurship, markdowns, inventory [NEW, MT, R, M, AN, FF, EXT]
+
+Prompt: You made 40 sticker packs for $0.80 each and planned to sell them for $2. Some are not selling.
+
+Choices:
+
+* A. Keep the $2 price. Req: none. Outcome/effects: Higher profit per sale; random slow sales. Feedback: “High margin only helps if items sell.” Reflect: “What does inventory sitting cost?”
+* B. Mark down to $1.50. Req: none. Outcome/effects: Faster sales possible; profit per pack drops. Feedback: “$1.50 − $0.80 = $0.70 profit per sold pack.” Reflect: “Why might lower price earn more total?”
+* C. Bundle 3 packs for $4. Req: Money Know-How ≥ 50. Outcome/effects: Moves inventory; math gets trickier. Feedback: “$4 ÷ 3 is about $1.33 each.” Reflect: “How did bundling change value?”
+
+Randomized outcome? Yes.
+Future flag set? Yes: managesInventory.
+Glossary terms: Inventory — items held to sell; Markdown — lowering a price; Margin — difference between selling price and cost.
+Tradeoff note: Profit per item and total profit are not the same.
+
+34. invoice-before-favor — “Before You Help” — Age 15–18 — Topics: side work, records, friendship [NEW, MT, SC, FF]
+
+Prompt: A friend’s family asks you to design a simple flyer for $20. They say, “We’ll pay you later.”
+
+Choices:
+
+* A. Write a simple agreement first. Req: none. Outcome/effects: Trust may feel formal; payment clarity rises. Feedback: “Clear terms protect both sides.” Reflect: “Why can a written note be kind?”
+* B. Do it with no agreement. Req: supportCircle.friend. Outcome/effects: Faster and friendly; payment confusion risk. Feedback: “Friendliness does not replace clarity.” Reflect: “What could become awkward later?”
+* C. Offer it as a gift and expect no payment. Req: none. Outcome/effects: Wellbeing/support rises; cash not expected. Feedback: “Calling it a gift prevents resentment.” Reflect: “Why label gift vs. paid work?”
+
+Randomized outcome? No.
+Future flag set? Yes: usesSimpleAgreements.
+Glossary terms: Invoice — a request for payment; Agreement — clear terms; Gift — something given without expecting repayment.
+Tradeoff note: The healthiest choice depends on whether the work is paid, gifted, or traded.
+
+35. source-screenshot-claim — “The Viral Money Claim” — Age 14–18 — Topics: source evaluation, media literacy [NEW, L, FF, EXT]
+
+Prompt: A viral post says, “This one trick guarantees $500 a month.” It includes screenshots but no official source.
+
+Choices:
+
+* A. Check an official or educational source before acting. Req: Money Know-How ≥ 45. Outcome/effects: Safety rises; scam risk drops. Feedback: “Screenshots are not proof of a trustworthy claim.” Reflect: “What source did you trust?”
+* B. Follow the steps immediately. Req: none. Outcome/effects: Fast; safety drops. Feedback: “Guaranteed money claims deserve extra checking.” Reflect: “What made it tempting?”
+* C. Ask a mentor to evaluate the claim. Req: supportCircle.mentor. Outcome/effects: Support and source skill rise. Feedback: “A second reader can spot missing details.” Reflect: “What question did the mentor ask?”
+
+Randomized outcome? No.
+Future flag set? Yes: checksMoneyClaims.
+Glossary terms: Source — where information comes from; Sponsored — paid or promoted content; Guarantee — promise of a result.
+Tradeoff note: Some online tips are useful, but big claims need stronger evidence.
+
+36. deepfake-boss-message — “The Voice Message That Sounds Real” — Age 16–18 — Topics: impostor scams, AI literacy, workplace safety [NEW, R, FF, EXT]
+
+Prompt: A voice message that sounds like your manager asks you to buy digital gift codes for a “work emergency.” It says not to call because they are in a meeting.
+
+Choices:
+
+* A. Verify through the official work contact. Req: none. Outcome/effects: Safety rises; scam blocked. Feedback: “A real emergency can survive a verification call.” Reflect: “What detail raised suspicion?”
+* B. Follow the message quickly. Req: none. Outcome/effects: Randomized loss risk; safety drops. Feedback: “Urgency and secrecy are warning signs.” Reflect: “How did pressure affect you?”
+* C. Ask a trusted adult or mentor before acting. Req: supportCircle.mentor or supportCircle.family. Outcome/effects: Support and safety rise. Feedback: “Getting help is a safety skill.” Reflect: “Why is asking not a weakness?”
+
+Randomized outcome? Yes.
+Future flag set? Yes: verifiesUrgentRequests.
+Glossary terms: Impostor scam — someone pretending to be trusted; Verification — checking through a trusted channel; Red flag — warning sign.
+Tradeoff note: The cost of checking is small compared with the risk of irreversible payment.
+
+37. account-nickname-budget — “Name the Accounts” — Age 13–16 — Topics: saving, mental accounting, goals [NEW, M, FF]
+
+Prompt: You can nickname fictional savings pockets: “Emergency,” “Trip,” “Tools,” or “Future Me.” You have $40 to divide.
+
+Choices:
+
+* A. $20 emergency, $10 goal, $10 fun. Req: none. Outcome/effects: Balanced pockets. Feedback: “Naming money can make its job clearer.” Reflect: “Which name protected the money?”
+* B. $35 goal, $5 emergency. Req: none. Outcome/effects: Goal grows faster; cushion thinner. Feedback: “Focused saving speeds one target.” Reflect: “What risk did focus create?”
+* C. Keep all $40 unnamed. Req: none. Outcome/effects: Flexible; easier to spend accidentally. Feedback: “Flexible money can solve anything, but may drift.” Reflect: “When is flexibility helpful?”
+
+Randomized outcome? No.
+Future flag set? Yes: usesNamedSavings.
+Glossary terms: Savings pocket — a named category for saved money; Goal — target you plan for; Flexibility — ability to use money for different needs.
+Tradeoff note: Naming money can help discipline, but too many pockets can feel rigid.
+
+38. minimum-balance-calendar — “The Balance That Waives the Fee” — Age 16–18 — Topics: banking fees, minimum balance, timing [NEW, L, M, FF, EXT]
+
+Prompt: An account waives a $6 monthly fee if the balance stays at least $200 every day. You have $215 now, but a $24 charge is pending.
+
+Choices:
+
+* A. Transfer $25 from savings before the charge clears. Req: hasChecking and savings ≥ $25. Outcome/effects: Fee avoided; savings dips. Feedback: “$215 − $24 = $191, so the fee rule would fail.” Reflect: “How did pending charges matter?”
+* B. Do nothing. Req: hasChecking. Outcome/effects: Savings untouched; possible $6 fee. Feedback: “The account looked safe before the pending charge.” Reflect: “What balance was really available?”
+* C. Switch to a no-minimum account. Req: Money Know-How ≥ 55. Outcome/effects: Less fee risk; maybe fewer features. Feedback: “Account fit matters more than fancy features.” Reflect: “What account rule fits your habits?”
+
+Randomized outcome? No.
+Future flag set? Yes: tracksPendingCharges.
+Glossary terms: Minimum balance — lowest amount required to avoid a fee; Pending charge — payment not fully posted yet; Fee waiver — rule that cancels a fee.
+Tradeoff note: Minimum-balance accounts can work, but only if cash timing is steady.
+
+39. return-shipping-restock — “The Return That Costs Money” — Age 14–17 — Topics: returns, fees, online shopping [NEW, MT, R, M]
+
+Prompt: You bought a $28 item that does not fit. Returning it costs $5 shipping, and a restocking fee may be 10%.
+
+Choices:
+
+* A. Return it anyway. Req: none. Outcome/effects: Some money recovered; randomized restocking fee. Feedback: “A 10% fee on $28 is $2.80, plus $5 shipping.” Reflect: “How much would you really get back?”
+* B. Resell it locally. Req: Safety ≥ 55. Outcome/effects: Possible higher recovery; more effort. Feedback: “Resale can beat return math, but takes time and care.” Reflect: “What made resale safe?”
+* C. Keep it as a backup/gift. Req: none. Outcome/effects: No cash recovered; possible useful value. Feedback: “Keeping may be reasonable if returning recovers too little.” Reflect: “When is a return not worth it?”
+
+Randomized outcome? Yes.
+Future flag set? No.
+Glossary terms: Restocking fee — charge for returning some items; Return shipping — cost to send an item back; Recovery amount — money regained after costs.
+Tradeoff note: Returning is not automatically best if fees eat the refund.
+
+40. mentor-mock-interview — “Practice Before the Interview” — Age 15–18 — Topics: career, support, opportunity [NEW, L, SC, FF, EXT]
+
+Prompt: A future internship interview is coming up. You can practice with a mentor or spend the evening earning $18 from a small task.
+
+Choices:
+
+* A. Do the mock interview. Req: supportCircle.mentor. Outcome/effects: Opportunity rises; cash opportunity missed. Feedback: “Practice can be a non-cash investment.” Reflect: “What did practice improve?”
+* B. Earn the $18. Req: none. Outcome/effects: Cash rises; interview prep lower. Feedback: “Short-term income has real value.” Reflect: “Was the cash need urgent?”
+* C. Split time: shorter practice and smaller task. Req: Discipline ≥ 50. Outcome/effects: Balanced; less depth. Feedback: “A partial plan can reduce extremes.” Reflect: “What did splitting solve?”
+
+Randomized outcome? No.
+Future flag set? Yes: preparedInterview.
+Glossary terms: Opportunity — chance that may lead to future value; Soft skills — communication and reliability skills; Investment — spending time or money for future benefit.
+Tradeoff note: Not every valuable investment is bought with money.
+
+41. app-permissions-wallet — “The Permission Pop-Up” — Age 13–17 — Topics: privacy, digital wallets, safety [NEW, FF]
+
+Prompt: A budgeting helper app asks for contacts, location, notifications, and wallet access. The game uses fictional apps only.
+
+Choices:
+
+* A. Allow only what is needed. Req: none. Outcome/effects: Safety rises; app features still work. Feedback: “Least-needed access lowers risk.” Reflect: “Which permission was actually necessary?”
+* B. Allow all permissions. Req: none. Outcome/effects: Convenience rises; privacy risk rises. Feedback: “Convenience can trade away more data than needed.” Reflect: “What did you give up?”
+* C. Skip the app and use a manual note. Req: Discipline ≥ 40. Outcome/effects: Privacy protected; more effort. Feedback: “Manual systems can be safer but require consistency.” Reflect: “Which system would you keep using?”
+
+Randomized outcome? No.
+Future flag set? Yes: limitsAppPermissions.
+Glossary terms: Permission — app access to a device feature; Privacy — control over personal information; Convenience — ease that may have costs.
+Tradeoff note: The best tool is one that helps without asking for unnecessary access.
+
+42. cloud-storage-cleanout — “Pay for Storage or Clean Up?” — Age 14–18 — Topics: recurring costs, digital organization [NEW, MT, M, FF]
+
+Prompt: A fictional cloud account is full. Extra storage is $1.99/month, or you can spend an hour deleting duplicates.
+
+Choices:
+
+* A. Pay for storage. Req: cash flow can cover $1.99/month. Outcome/effects: Convenience rises; annual cost about $23.88. Feedback: “$1.99 × 12 = $23.88.” Reflect: “Is the time saved worth the yearly cost?”
+* B. Clean it up manually. Req: timeAvailable ≥ 60 minutes. Outcome/effects: Cash saved; time spent. Feedback: “You traded an hour for about $24/year.” Reflect: “Would you make that trade again?”
+* C. Back up only important files. Req: Discipline ≥ 45. Outcome/effects: Lower clutter; requires judgment. Feedback: “Sorting by importance can shrink the problem.” Reflect: “What counted as important?”
+
+Randomized outcome? No.
+Future flag set? Yes: managesDigitalStorage.
+Glossary terms: Recurring cost — repeating cost; Annual cost — yearly total; Digital organization — system for keeping files findable.
+Tradeoff note: Paying for convenience can be smart if the time saved is worth more to you.
+
+43. shared-bike-lock — “Protect the Shared Bike” — Age 13–16 — Topics: assets, protection, shared ownership [NEW, MT, M, SC, AN, FF]
+
+Prompt: You and a friend share a used bike worth about $120. A strong lock costs $24.
+
+Choices:
+
+* A. Buy the lock together: $12 each. Req: supportCircle.friend. Outcome/effects: Asset protection rises; cash down. Feedback: “$24 is 20% of the bike’s value.” Reflect: “Is 20% protection too much or reasonable?”
+* B. Use a cheap $7 lock. Req: cash ≥ $7. Outcome/effects: Lower cost; protection lower. Feedback: “Cheap protection can be enough or not, depending on risk.” Reflect: “What risk did you accept?”
+* C. Avoid leaving the bike outside. Req: Discipline ≥ 40. Outcome/effects: No lock cost; convenience drops. Feedback: “Behavior can reduce risk, too.” Reflect: “What habit replaced spending?”
+
+Randomized outcome? No.
+Future flag set? Yes: protectsSharedAsset.
+Glossary terms: Asset protection — spending or habits that reduce loss risk; Shared ownership — more than one person owning something; Percent of value — part compared with total value.
+Tradeoff note: Protecting an asset costs money or convenience.
+
+44. scooter-repair-or-sell — “Fix, Sell, or Keep?” — Age 15–18 — Topics: repair, resale, depreciation [NEW, MT, R, M, AN, FF]
+
+Prompt: A used scooter you own could sell for $95 as-is or $145 if a $32 repair works.
+
+Choices:
+
+* A. Repair first. Req: cash ≥ $32. Outcome/effects: Possible higher resale; randomized repair success. Feedback: “If it works, $145 − $32 = $113 net before other costs.” Reflect: “What made the repair worth trying?”
+* B. Sell as-is. Req: none. Outcome/effects: Lower but certain cash. Feedback: “Certainty can beat a risky repair.” Reflect: “Why choose less money but less risk?”
+* C. Keep it for transportation. Req: needsTransport. Outcome/effects: Useful value remains; cash not recovered. Feedback: “Usefulness is value even when you do not sell.” Reflect: “How is useful value different from resale value?”
+
+Randomized outcome? Yes.
+Future flag set? Yes: weighsRepairResale.
+Glossary terms: Depreciation — loss of value over time or wear; Net amount — money left after subtracting costs; Resale value — expected sale price.
+Tradeoff note: Highest possible cash is not always the best risk-adjusted choice.
+
+45. gift-card-balance-plan — “The Almost-Empty Gift Card” — Age 12–15 — Topics: stored value, mental math, spending [NEW, M, FF]
+
+Prompt: A gift card has $6.43 left. The item you want is $8.99 before 7% tax.
+
+Choices:
+
+* A. Calculate before checkout. Req: none. Outcome/effects: Money knowledge rises; embarrassment risk drops. Feedback: “$8.99 × 1.07 is about $9.62, so the card is short.” Reflect: “How did estimating help?”
+* B. Use the card and pay the difference. Req: cash ≥ $3.19. Outcome/effects: Card cleared; cash drops. Feedback: “Clearing a balance can be tidy, but you still spent cash.” Reflect: “Was using the card the reason you bought?”
+* C. Save the card for a smaller need. Req: none. Outcome/effects: Spending delayed; balance remains. Feedback: “Waiting protects cash if the purchase is not needed.” Reflect: “What would fit the balance better?”
+
+Randomized outcome? No.
+Future flag set? Yes: checksStoredValue.
+Glossary terms: Stored value — money kept on a card or account; Sales tax — added percentage on some purchases; Estimate — rough calculation.
+Tradeoff note: Using leftover balance can be helpful or can nudge unnecessary spending.
+
+46. tutoring-rate-boundary — “What Should You Charge?” — Age 15–18 — Topics: income, pricing, support [NEW, MT, R, M, SC, FF]
+
+Prompt: You tutor a younger student. The family offers $10/hour, but similar tutoring is $14/hour. You want to be fair and confident.
+
+Choices:
+
+* A. Accept $10/hour. Req: none. Outcome/effects: Opportunity starts easily; lower income. Feedback: “Lower rates can help you build experience.” Reflect: “What did you gain besides money?”
+* B. Ask for $12/hour politely. Req: Confidence/Opportunity ≥ 45. Outcome/effects: Randomized response; income may rise. Feedback: “A respectful ask can be a skill.” Reflect: “How did your wording reduce risk?”
+* C. Ask a mentor to role-play the conversation. Req: supportCircle.mentor. Outcome/effects: Confidence rises; decision delayed. Feedback: “Practice can make negotiation kinder and clearer.” Reflect: “What phrase helped most?”
+
+Randomized outcome? Yes.
+Future flag set? Yes: practicedPricingBoundary.
+Glossary terms: Rate — pay per unit of time or work; Negotiation — discussion to reach terms; Market rate — common price for similar work.
+Tradeoff note: Charging less can be generous or strategic; charging fairly can protect your time.
+
+47. trial-class-pack — “Five Classes Before They Expire” — Age 14–17 — Topics: expiration, cost per use, planning [NEW, MT, M, FF]
+
+Prompt: A hobby center sells 5 class passes for $37, but they expire in 30 days. A single class is $9.
+
+Choices:
+
+* A. Buy the 5-pack. Req: cash ≥ $37. Outcome/effects: Cheaper only if used enough; schedule pressure. Feedback: “$37 ÷ 5 = $7.40 per class if you use all 5.” Reflect: “Can your calendar support the deal?”
+* B. Buy single classes. Req: cash ≥ $9. Outcome/effects: Higher per class; less commitment. Feedback: “Paying more per use can reduce waste.” Reflect: “Why might flexibility be worth $1.60?”
+* C. Ask a friend to plan classes with you. Req: supportCircle.friend. Outcome/effects: Follow-through may rise; social commitment added. Feedback: “Support can help a plan actually happen.” Reflect: “How did a friend change the odds?”
+
+Randomized outcome? No.
+Future flag set? Yes: checksExpirationBeforeDeal.
+Glossary terms: Expiration — date when value ends; Cost per use — total cost divided by uses; Commitment — future action you agree to.
+Tradeoff note: Bulk deals are only deals if life lets you use them.
+
+48. cashback-not-free — “Cash Back Temptation” — Age 16–18 — Topics: rewards, spending, credit/debit behavior [NEW, MT, M, EXT]
+
+Prompt: A card gives 2% cash back. You are considering a $75 purchase mostly because of the reward.
+
+Choices:
+
+* A. Skip the purchase. Req: none. Outcome/effects: Cash protected; reward missed. Feedback: “2% of $75 is only $1.50.” Reflect: “Was $1.50 enough reason to spend $75?”
+* B. Buy only if it was already planned. Req: Discipline ≥ 45. Outcome/effects: Reward becomes a small bonus. Feedback: “Rewards work best when they do not create spending.” Reflect: “Was this planned before the reward?”
+* C. Buy for the reward. Req: none. Outcome/effects: Short-term excitement; money drops. Feedback: “Cash back is not a discount big enough to justify an unwanted buy.” Reflect: “What made it feel like saving?”
+
+Randomized outcome? No.
+Future flag set? No.
+Glossary terms: Cash back — small reward based on spending; Reward rate — percent earned back; Planned purchase — purchase already in the budget.
+Tradeoff note: Rewards can be useful, but they are tiny compared with the full purchase.
+
+49. clinic-copay-choice — “The Copay and the Bill” — Age adult planning — Topics: health insurance basics, copay, planning [NEW, MT, R, M, FF, EXT]
+
+Prompt: In a simplified adult scenario, a routine visit has a $25 copay. Delaying might avoid the cost now, but could create a bigger issue later. This is not medical advice; it is a cost-planning scenario.
+
+Choices:
+
+* A. Go now and pay $25. Req: cash ≥ $25. Outcome/effects: Cash down; risk of bigger later cost drops. Feedback: “A copay is a known cost for a covered visit.” Reflect: “Why can a known cost be easier to plan for?”
+* B. Delay until next month. Req: none. Outcome/effects: Cash protected now; randomized future cost. Feedback: “Waiting helps cash flow but can add uncertainty.” Reflect: “What would make waiting reasonable?”
+* C. Use your health-cost pocket. Req: healthCostPocket ≥ $25. Outcome/effects: Planned fund works; needs rebuilding. Feedback: “A small pocket turns a bill into a planned withdrawal.” Reflect: “How did planning change the stress?”
+
+Randomized outcome? Yes.
+Future flag set? Yes: plansHealthCosts.
+Glossary terms: Copay — fixed amount paid for a covered service; Out-of-pocket — money you pay yourself; Cost pocket — savings set aside for a category.
+Tradeoff note: Health decisions should not be treated as simple money math, but money planning can reduce stress.
+
+50. renter-utility-deposit — “Move-In Utility Deposit” — Age adult planning — Topics: move-in costs, deposits, cash flow [NEW, L, M, FF, EXT, AN]
+
+Prompt: A first apartment simulation requires a $93 utility deposit plus the first bill estimate. The deposit may return later if payments stay on time.
+
+Choices:
+
+* A. Pay it from savings. Req: savings ≥ $93. Outcome/effects: Move-in possible; liquidity drops. Feedback: “A refundable deposit still reduces spendable cash now.” Reflect: “What did the deposit do to cash flow?”
+* B. Delay move-in and save for six weeks. Req: none. Outcome/effects: Opportunity delayed; cash readiness improves. Feedback: “Waiting can be a strategy, not a failure.” Reflect: “What did waiting protect?”
+* C. Split move-in timing with roommate. Req: hasRoommate. Outcome/effects: Shared planning; relationship rules needed. Feedback: “Shared bills need written agreements.” Reflect: “What rule would keep it fair?”
+
+Randomized outcome? No.
+Future flag set? Yes: tracksMoveInDeposits.
+Glossary terms: Utility deposit — money held by a service provider; Liquidity — how easy money is to use now; Move-in cost — upfront cost before regular rent.
+Tradeoff note: Being able to afford monthly rent is not the same as affording move-in.
+
+51. lease-renewal-notice — “Renew, Move, or Negotiate?” — Age adult planning — Topics: rent changes, negotiation, moving costs [NEW, MT, M, FF, EXT]
+
+Prompt: Rent would rise from $800 to $846. Moving might cost about $350 upfront but could save $40/month.
+
+Choices:
+
+* A. Renew at $846. Req: cash flow can cover new rent. Outcome/effects: Stability preserved; monthly cost rises. Feedback: “$46 more each month is $552 more per year.” Reflect: “What is stability worth?”
+* B. Move to the cheaper place. Req: savings ≥ $350. Outcome/effects: Upfront cash drops; monthly cost may fall. Feedback: “$350 ÷ $40 = about 9 months to break even.” Reflect: “How long must you stay for moving to pay off?”
+* C. Ask about a smaller increase or longer lease. Req: Opportunity ≥ 55. Outcome/effects: Negotiation may help; not guaranteed. Feedback: “A polite ask sometimes creates options.” Reflect: “What evidence supports your ask?”
+
+Randomized outcome? No.
+Future flag set? Yes: comparesMovingCosts.
+Glossary terms: Lease renewal — agreement to continue renting; Break-even — when savings recover upfront cost; Negotiation — discussion to improve terms.
+Tradeoff note: Moving can save money long-term but costs cash, time, and stress upfront.
+
+52. student-loan-interest-while-school — “Interest While You Learn” — Age 16–18 — Topics: loans, interest, pathway planning [NEW, L, M, FF, EXT]
+
+Prompt: A simplified student loan option would add interest while you are in school. Borrowing $1,000 at 6% simple interest for one year adds about $60.
+
+Choices:
+
+* A. Borrow the full $1,000. Req: pathwayCollegeOrCareerSchool. Outcome/effects: Gap covered; future repayment rises. Feedback: “Borrowing solves today’s gap but creates tomorrow’s payment.” Reflect: “What did the loan make possible?”
+* B. Borrow $500 and work for the rest. Req: Work availability ≥ 5 hrs/week. Outcome/effects: Lower debt; schedule pressure. Feedback: “Half the borrowing means less interest, but more work time.” Reflect: “What did lower debt cost?”
+* C. Choose a lower-cost route. Req: Money Know-How ≥ 55. Outcome/effects: Gap drops; pathway may change. Feedback: “Changing the route can change the debt.” Reflect: “What tradeoff did the cheaper route bring?”
+
+Randomized outcome? No.
+Future flag set? Yes: comparesStudentLoanInterest.
+Glossary terms: Principal — amount borrowed; Interest — cost of borrowing money; Simple interest — interest based on principal for a period.
+Tradeoff note: Loans can expand access, but the repayment math must be visible.
+
+53. scholarship-deadline-stack — “Three Deadlines, One Weekend” — Age 16–18 — Topics: scholarships, time management, uncertainty [NEW, R, SC, FF, EXT]
+
+Prompt: Three small scholarships are due soon. Each takes about 90 minutes. You can apply to one, two, or all three.
+
+Choices:
+
+* A. Apply to all three. Req: timeAvailable ≥ 4.5 hrs. Outcome/effects: Odds of aid rise; wellbeing may dip. Feedback: “More applications improve chances but use real time.” Reflect: “Was the time cost sustainable?”
+* B. Apply to the best-fit one. Req: none. Outcome/effects: Focus rises; fewer chances. Feedback: “Targeting can beat rushing.” Reflect: “Why did fit matter?”
+* C. Ask a mentor to review one application. Req: supportCircle.mentor. Outcome/effects: Quality improves; fewer submissions. Feedback: “Feedback can improve one strong attempt.” Reflect: “Quality or quantity—which mattered here?”
+
+Randomized outcome? Yes.
+Future flag set? Yes: managesScholarshipDeadlines.
+Glossary terms: Scholarship — aid that usually does not need repayment; Deadline — last date to submit; Fit — how well an opportunity matches criteria.
+Tradeoff note: Applying more is not always better if quality or wellbeing drops.
+
+54. apprentice-tool-payment-plan — “Tools for the Apprenticeship” — Age 16–18 — Topics: apprenticeship, tools, payment plans [NEW, L, MT, M, AN, FF, EXT]
+
+Prompt: An apprenticeship path requires a starter tool set. Buy used for $140 now, or new for $29/month for six months.
+
+Choices:
+
+* A. Buy used. Req: savings ≥ $140. Outcome/effects: No future payments; condition may be lower. Feedback: “Used costs less if it works well.” Reflect: “How would you check condition?”
+* B. Payment plan for new tools. Req: pathwayApprenticeship. Outcome/effects: Lower upfront cost; total $174. Feedback: “$29 × 6 = $174, which is $34 more than used.” Reflect: “Why might monthly still be worth it?”
+* C. Ask mentor/employer about a tool-lending program. Req: supportCircle.mentor or Opportunity ≥ 55. Outcome/effects: Potential cost drop; asking skill rises. Feedback: “Some pathways have resources if you ask.” Reflect: “What support did you uncover?”
+
+Randomized outcome? No.
+Future flag set? Yes: apprenticeToolsPlanned.
+Glossary terms: Apprenticeship — paid training while learning a trade; Payment plan — paying over time; Tool set — work asset used to earn or train.
+Tradeoff note: Upfront cash, total cost, tool condition, and pathway support all matter.
+
+55. military-benefit-briefing — “Read the Benefit Briefing” — Age 16–18 — Topics: pathway comparison, benefits, obligations [NEW, SC, FF, EXT]
+
+Prompt: In a neutral pathway-planning event, a military option includes training and benefits but also major commitments and rules. You need reliable information before comparing it with college, trade, or work-first routes.
+
+Choices:
+
+* A. Attend an official briefing and take notes. Req: none. Outcome/effects: Money knowledge rises; commitment understanding improves. Feedback: “Big commitments need official details.” Reflect: “What did you learn that was not just money?”
+* B. Decide based on a friend’s story. Req: supportCircle.friend. Outcome/effects: Personal perspective gained; incomplete information risk. Feedback: “Stories help, but one story is not the whole path.” Reflect: “What was missing?”
+* C. Compare with a mentor using a pathway chart. Req: supportCircle.mentor. Outcome/effects: Opportunity and source skill rise. Feedback: “Comparison works best when every path uses the same categories.” Reflect: “Which category mattered most?”
+
+Randomized outcome? No.
+Future flag set? Yes: comparesPathwayCommitments.
+Glossary terms: Benefits — non-wage supports or resources; Commitment — obligation over time; Pathway — route after high school.
+Tradeoff note: Pathways are not ranked; they differ in time, rules, benefits, risk, and fit.
+
+56. community-college-transfer-map — “Two Years, Then Transfer?” — Age 16–18 — Topics: college cost, transfer planning, credits [NEW, M, FF, EXT]
+
+Prompt: A two-year start costs $4,200 per year. A direct four-year route costs $11,500 per year in the simplified model.
+
+Choices:
+
+* A. Start at community college with a transfer map. Req: Money Know-How ≥ 50. Outcome/effects: Cost drops; planning required. Feedback: “Two years at $4,200 saves money only if credits transfer well.” Reflect: “What makes the map important?”
+* B. Choose direct four-year route. Req: none. Outcome/effects: Higher cost; simpler continuity. Feedback: “Simplicity and campus fit can matter.” Reflect: “What does the higher cost buy?”
+* C. Work first and revisit later. Req: none. Outcome/effects: Income first; degree delayed. Feedback: “Delaying can be a plan when goals stay visible.” Reflect: “What would keep momentum?”
+
+Randomized outcome? No.
+Future flag set? Yes: usesTransferMap.
+Glossary terms: Credit transfer — course credit accepted by another school; Tuition — cost of classes; Pathway cost — total cost of a route.
+Tradeoff note: Lower-cost starts need careful transfer planning to avoid lost credits.
+
+57. employer-match-choice — “Free Match, Not Free Cash” — Age adult planning — Topics: investing, retirement, employer benefits [NEW, L, M, AN, FF, EXT]
+
+Prompt: A future employer offers to match retirement contributions up to 3% of pay. Your simplified monthly gross pay is $1,600.
+
+Choices:
+
+* A. Contribute 3%. Req: hasSteadyIncome. Outcome/effects: $48/month saved; match added; take-home drops. Feedback: “3% of $1,600 is $48.” Reflect: “Why is the match valuable?”
+* B. Start at 1%. Req: hasSteadyIncome. Outcome/effects: Smaller habit; less match. Feedback: “Starting small can build consistency.” Reflect: “What made 1% manageable?”
+* C. Delay until emergency fund improves. Req: emergency fund below target. Outcome/effects: Cash safety first; investing delayed. Feedback: “A cushion can be the first financial shield.” Reflect: “Why might delay be reasonable?”
+
+Randomized outcome? No.
+Future flag set? Yes: understandsEmployerMatch.
+Glossary terms: Employer match — money an employer adds when you contribute; Contribution — money you put into an account; Retirement account — long-term savings account for later life.
+Tradeoff note: Matching is powerful, but cash-flow safety still matters.
+
+58. renter-deposit-photo-log — “Move-Out Proof” — Age adult planning — Topics: deposits, renter records, assets [NEW, R, AN, FF, EXT]
+
+Prompt: At move-in, you can create a fictional condition log for the apartment. It takes time but may help recover the deposit later.
+
+Choices:
+
+* A. Make the condition log. Req: rentedApartment. Outcome/effects: Proof gained; time spent. Feedback: “Proof before a problem is stronger than memory after.” Reflect: “What did the log protect?”
+* B. Skip it. Req: none. Outcome/effects: Faster move-in; randomized deposit dispute risk. Feedback: “Skipping may be fine if nothing goes wrong.” Reflect: “What risk did you accept?”
+* C. Ask roommate to review the log together. Req: hasRoommate. Outcome/effects: Shared proof; relationship clarity. Feedback: “Shared records protect shared money.” Reflect: “Why involve both people?”
+
+Randomized outcome? Yes.
+Future flag set? Yes: hasMoveInProof.
+Glossary terms: Condition log — record of starting condition; Security deposit — money held against damage; Dispute — disagreement about money or facts.
+Tradeoff note: Documentation feels slow at the start and valuable at the end.
+
+59. utility-shutoff-buffer — “The Bill Due Before Payday” — Age adult planning — Topics: bills, timing, recovery [NEW, R, M, FF, EXT]
+
+Prompt: A $67 bill is due two days before payday. You have $52 in checking and $30 in savings.
+
+Choices:
+
+* A. Move $15 from savings now. Req: savings ≥ $15. Outcome/effects: Bill covered; savings dips. Feedback: “$52 + $15 = $67.” Reflect: “How did savings protect timing?”
+* B. Wait until payday and risk a late fee. Req: none. Outcome/effects: Savings untouched; randomized fee risk. Feedback: “Two days can matter when deadlines are strict.” Reflect: “What did waiting risk?”
+* C. Call before the due date to ask about options. Req: Money Know-How ≥ 45. Outcome/effects: Opportunity for payment arrangement; confidence rises. Feedback: “Asking before a missed deadline gives more options.” Reflect: “Why does timing of the call matter?”
+
+Randomized outcome? Yes.
+Future flag set? Yes: handlesBillTiming.
+Glossary terms: Due date — date payment is required; Late fee — charge for missing a deadline; Payment arrangement — agreed plan for payment timing.
+Tradeoff note: Moving savings, waiting, and calling all have costs and benefits.
+
+60. inflation-menu-reprice — “The Menu Changed” — Age 15–18 — Topics: inflation, pricing, entrepreneurship [NEW, R, M, FF, EXT]
+
+Prompt: Your small snack table used to sell an item for $2. Costs rose from $0.95 to $1.18 each.
+
+Choices:
+
+* A. Keep price at $2. Req: none. Outcome/effects: Customer-friendly; margin shrinks. Feedback: “Profit drops from $1.05 to $0.82 per item.” Reflect: “How much margin did inflation remove?”
+* B. Raise price to $2.25. Req: none. Outcome/effects: Margin improves; demand randomized. Feedback: “$2.25 − $1.18 = $1.07 per item.” Reflect: “What might customers do?”
+* C. Shrink waste instead of raising price. Req: Discipline ≥ 50. Outcome/effects: Efficiency improves; effort rises. Feedback: “Reducing waste can protect profit without raising price.” Reflect: “What cost could you control?”
+
+Randomized outcome? Yes.
+Future flag set? Yes: adjustsForInflation.
+Glossary terms: Inflation — prices rising over time; Margin — selling price minus cost; Demand — how much people want to buy.
+Tradeoff note: Raising price, absorbing cost, and improving efficiency are all real business responses.
+
+61. vehicle-co-op-membership — “Car Access Without Owning” — Age 16–adult planning — Topics: transportation, ownership alternatives, total cost [NEW, MT, AN, FF, EXT]
+
+Prompt: A fictional vehicle co-op costs $18/month plus $7 per trip. Owning a car has much higher fixed costs but more freedom.
+
+Choices:
+
+* A. Use the co-op for rare trips. Req: needsTransport. Outcome/effects: Lower fixed cost; less flexibility. Feedback: “Access can beat ownership when use is low.” Reflect: “How many trips would change the math?”
+* B. Save toward owning later. Req: Discipline ≥ 45. Outcome/effects: Car fund grows; current access limited. Feedback: “Saving keeps options open.” Reflect: “What future cost are you preparing for?”
+* C. Stick with transit and rides from support circle. Req: supportCircle.family or transit access. Outcome/effects: Cash saved; dependence/scheduling remains. Feedback: “Low-cost transport can still cost time and coordination.” Reflect: “What non-money cost appeared?”
+
+Randomized outcome? No.
+Future flag set? Yes: comparesCarAccess.
+Glossary terms: Fixed cost — cost paid regardless of use; Access — ability to use without owning; Ownership — having something as yours.
+Tradeoff note: Owning gives control, but access models can be cheaper for occasional use.
+
+62. insurance-deductible-savings-pocket — “Can You Pay the Deductible?” — Age 16–adult planning — Topics: insurance readiness, saving [NEW, M, FF, EXT]
+
+Prompt: A simplified insurance policy has a $250 deductible. You can set aside $20/month until you reach it.
+
+Choices:
+
+* A. Start the deductible pocket. Req: cash flow can spare $20/month. Outcome/effects: Cash flow tighter; future claim readiness rises. Feedback: “$250 ÷ $20 = 12.5 months, so about 13 months.” Reflect: “Why does coverage still need cash?”
+* B. Choose a lower deductible policy. Req: hasPolicyOptions. Outcome/effects: Premium higher; claim cash need lower. Feedback: “Lower deductible often means higher premium.” Reflect: “Which cost is easier to carry?”
+* C. Wait and use general savings if needed. Req: savings ≥ $250. Outcome/effects: Flexible; less category discipline. Feedback: “General savings can work if you truly keep enough.” Reflect: “Would you protect that money?”
+
+Randomized outcome? No.
+Future flag set? Yes: deductiblePocketStarted.
+Glossary terms: Deductible — amount paid before coverage helps; Premium — regular cost to keep coverage; Sinking fund — saving gradually for a known future cost.
+Tradeoff note: Insurance does not remove every cost; it changes which costs you must prepare for.
+
+63. auto-reload-transit — “Auto-Reload or Manual?” — Age 13–18 — Topics: transit, defaults, recurring payments [NEW/TWIST, MT, L, M, FF]
+
+Prompt: Your transit card can auto-reload $20 whenever it falls below $5. That prevents being stranded but could surprise your checking balance.
+
+Choices:
+
+* A. Turn on auto-reload with alerts. Req: hasTransitCard. Outcome/effects: Transport safety rises; checking needs monitoring. Feedback: “Automation works best with alerts.” Reflect: “What alert would prevent surprise?”
+* B. Reload manually every Sunday. Req: Discipline ≥ 40. Outcome/effects: More control; forgetting risk. Feedback: “Manual systems depend on routine.” Reflect: “What routine makes it reliable?”
+* C. Keep no reload plan. Req: none. Outcome/effects: Flexible cash; risk of short balance. Feedback: “No system is simple until the card runs out.” Reflect: “What would happen on a busy morning?”
+
+Randomized outcome? No.
+Future flag set? Yes: setsReloadRule.
+Glossary terms: Auto-reload — automatic added money when balance is low; Balance — amount left; Default — pre-set action.
+Tradeoff note: Automation can protect access or create surprise charges.
+
+64. family-meal-budget-helper — “Stretch the Meal Budget” — Age 13–16 — Topics: family support, budgeting, planning [NEW, MT, M, SC, FF]
+
+Prompt: A caregiver asks for help planning three low-cost dinners with $42. You are not asked for private family income; this is a fictional support event.
+
+Choices:
+
+* A. Plan $14 per dinner. Req: supportCircle.family. Outcome/effects: Equal planning; math clarity. Feedback: “$42 ÷ 3 = $14 per dinner.” Reflect: “When does equal splitting help?”
+* B. Spend $18 on one big dinner with leftovers. Req: Money Know-How ≥ 45. Outcome/effects: Possible efficiency; planning needed. Feedback: “Leftovers can shift cost across days.” Reflect: “How did one meal serve more than once?”
+* C. Suggest one community resource meal night. Req: communityProgramAccess. Outcome/effects: Cash pressure drops; schedule coordination. Feedback: “Resources can be part of a plan without shame.” Reflect: “How can support reduce cost?”
+
+Randomized outcome? No.
+Future flag set? Yes: helpsPlanSharedBudget.
+Glossary terms: Shared budget — plan for money used by more than one person; Leftovers — extra food used later; Resource — support available in a community.
+Tradeoff note: Helping with planning is not the same as revealing real household finances.
+
+65. friend-event-budget-cap — “The Event Cap” — Age 13–16 — Topics: peer pressure, boundaries, social spending [NEW, MT, M, SC]
+
+Prompt: Friends plan an outing. Your comfortable cap is $17, but the current plan may cost $28.
+
+Choices:
+
+* A. Say your cap and suggest a lower-cost version. Req: supportCircle.friend. Outcome/effects: Cash protected; boundary skill rises. Feedback: “A number makes the boundary clear.” Reflect: “How did you say it kindly?”
+* B. Go along with the $28 plan. Req: cash ≥ $28. Outcome/effects: Social ease; savings drops. Feedback: “Fitting in can feel worth it, but it has a cost.” Reflect: “Was the social value worth $11 extra?”
+* C. Skip and suggest a free hangout later. Req: none. Outcome/effects: Cash saved; possible FOMO. Feedback: “Skipping is easier when you offer another connection.” Reflect: “How did you protect the friendship?”
+
+Randomized outcome? No.
+Future flag set? No.
+Glossary terms: Spending cap — maximum you plan to spend; Peer pressure — feeling pushed by a group; Boundary — clear personal limit.
+Tradeoff note: Social spending is not wrong, but hidden pressure can break a budget.
+
+66. mentor-tax-document-checklist — “Where Did the Form Go?” — Age 16–18 — Topics: taxes, documents, support [NEW, SC, FF, EXT]
+
+Prompt: A first job sends a tax form in the simplified game. You need it later to file.
+
+Choices:
+
+* A. Save it in your proof folder. Req: proofFolderEnabled. Outcome/effects: Future tax task easier. Feedback: “Future you benefits from present organization.” Reflect: “Where would you find it later?”
+* B. Ask mentor/caregiver what to keep. Req: supportCircle.mentor or supportCircle.family. Outcome/effects: Support and money knowledge rise. Feedback: “Adults often use checklists for important forms.” Reflect: “What rule did you learn?”
+* C. Ignore it for now. Req: none. Outcome/effects: Less effort now; future scramble risk. Feedback: “Important documents feel boring until the deadline.” Reflect: “What reminder would help?”
+
+Randomized outcome? No.
+Future flag set? Yes: keepsTaxDocuments.
+Glossary terms: Tax form — document used for tax filing; Filing — submitting tax information; Document checklist — list of papers or files to keep.
+Tradeoff note: Organization is a low-drama skill with high future value.
+
+67. work-study-hours-balance — “Work-Study Hours” — Age 16–18 — Topics: aid, work, schedule [NEW, L, M, FF, EXT]
+
+Prompt: A fictional aid offer includes work-study. You can earn up to $900 during the term, but only by working hours.
+
+Choices:
+
+* A. Schedule 6 hours/week. Req: decodedAidOffer. Outcome/effects: Earned aid grows; study time lower. Feedback: “6 hours × 10 weeks × $15 = $900.” Reflect: “How did hours become aid?”
+* B. Schedule 3 hours/week. Req: decodedAidOffer. Outcome/effects: Less money earned; more time protected. Feedback: “3 × 10 × $15 = $450.” Reflect: “What did lower hours protect?”
+* C. Decline work-study and reduce costs elsewhere. Req: Money Know-How ≥ 55. Outcome/effects: Schedule protected; gap remains. Feedback: “Aid you earn is useful only if the hours fit.” Reflect: “What tradeoff did you choose?”
+
+Randomized outcome? No.
+Future flag set? Yes: understandsWorkStudyEarned.
+Glossary terms: Work-study — aid earned through approved work; Wage — pay per hour; Aid gap — remaining cost after aid.
+Tradeoff note: Work-study is not automatic cash; it is an earning opportunity.
+
+68. renters-room-inventory — “What Would It Cost to Replace?” — Age adult planning — Topics: renter insurance, assets, net worth [NEW, L, M, AN, FF, EXT]
+
+Prompt: You list belongings in a rented room: laptop $420, clothes $260, bike $115, kitchen items $75. Replacement total matters for coverage planning.
+
+Choices:
+
+* A. Add the inventory. Req: rentedApartment. Outcome/effects: Money knowledge rises; insurance planning improves. Feedback: “$420 + $260 + $115 + $75 = $870.” Reflect: “Was the total higher than expected?”
+* B. Estimate without listing. Req: none. Outcome/effects: Faster; underestimation risk. Feedback: “People often forget small categories.” Reflect: “What item would be easy to miss?”
+* C. Ask roommate/mentor to review categories. Req: hasRoommate or supportCircle.mentor. Outcome/effects: More complete list; time spent. Feedback: “A second view catches forgotten items.” Reflect: “What did they notice?”
+
+Randomized outcome? No.
+Future flag set? Yes: knowsReplacementValue.
+Glossary terms: Replacement value — cost to replace an item; Inventory — list of belongings; Coverage — what insurance may protect.
+Tradeoff note: Replacement value is not the same as resale value or self-worth.
+
+69. debit-card-hold — “The Hold That Shrinks Your Balance” — Age 16–18 — Topics: banking, pending holds, cash flow [NEW, M, FF, EXT]
+
+Prompt: A service places a temporary $40 hold on your debit card, even though the final charge should be $23. You have $58 in checking.
+
+Choices:
+
+* A. Wait until the hold clears before more spending. Req: hasChecking. Outcome/effects: Safety rises; spending delayed. Feedback: “$58 − $40 leaves only $18 available during the hold.” Reflect: “Why did available balance matter?”
+* B. Spend as if final cost is $23. Req: none. Outcome/effects: More flexibility; fee risk rises. Feedback: “The bank may count the hold before the final charge.” Reflect: “What number did the account see?”
+* C. Use a separate spending pocket for holds. Req: Money Know-How ≥ 50. Outcome/effects: Cash-flow skill rises. Feedback: “Separating hold money prevents accidental spending.” Reflect: “What system would help?”
+
+Randomized outcome? No.
+Future flag set? Yes: understandsCardHolds.
+Glossary terms: Hold — temporary amount set aside by a merchant; Available balance — money usable right now; Debit card — card that pulls from checking.
+Tradeoff note: Temporary holds are not final spending, but they can still block cash.
+
+70. overtime-or-study-night — “Time-and-a-Half?” — Age 16–18 — Topics: overtime, school balance, wellbeing [NEW, MT, L, M, SC, FF, EXT]
+
+Prompt: A job offers 3 extra hours at time-and-a-half. Your regular pay is $12/hour, but you also have a study night.
+
+Choices:
+
+* A. Take the overtime. Req: hasIncome. Outcome/effects: Gross pay rises by $54; wellbeing/study time may drop. Feedback: “Time-and-a-half is $18/hour; 3 × $18 = $54.” Reflect: “What did the extra pay cost?”
+* B. Protect study night. Req: none. Outcome/effects: Opportunity/study protected; cash missed. Feedback: “Saying no can protect long-term opportunity.” Reflect: “Why might less money be strategic?”
+* C. Ask family/mentor to help plan the week. Req: supportCircle.family or supportCircle.mentor. Outcome/effects: Better schedule; support rises. Feedback: “Support can help you see the whole week.” Reflect: “What did planning reveal?”
+
+Randomized outcome? No.
+Future flag set? Yes: balancesWorkSchool.
+Glossary terms: Overtime — extra work hours, sometimes higher paid; Time-and-a-half — 1.5 times regular pay; Gross pay — pay before deductions.
+Tradeoff note: Higher hourly pay is attractive, but time and energy are limited resources.
+
+71. startup-refund-policy — “Your Customers Want Returns” — Age 16–18 — Topics: entrepreneurship, refund policy, cash reserve [NEW, R, M, AN, FF, EXT]
+
+Prompt: Your small approved shop sells $96 of items. You can offer no returns, 7-day returns, or returns with store credit.
+
+Choices:
+
+* A. 7-day cash returns. Req: managesInventory. Outcome/effects: Trust rises; random refund cash need. Feedback: “A return policy can increase trust but requires reserve money.” Reflect: “How much cash should you hold back?”
+* B. Store credit only. Req: none. Outcome/effects: Cash protected; some customers may hesitate. Feedback: “Store credit lowers refund pressure but may feel less flexible.” Reflect: “How would customers view it?”
+* C. Final sale with clear notice. Req: none. Outcome/effects: Simple; customer trust may drop. Feedback: “Clear rules are better than surprise rules.” Reflect: “What wording is fair?”
+
+Randomized outcome? Yes.
+Future flag set? Yes: setsRefundPolicy.
+Glossary terms: Refund policy — rules for returns; Reserve — money held back for possible costs; Store credit — value usable only with the seller.
+Tradeoff note: Customer-friendly policies can increase trust but create cash-flow risk.
+
+72. secured-card-deposit — “Credit With a Deposit” — Age 18 planning — Topics: credit, secured card, utilization [NEW/TWIST, L, M, FF, EXT]
+
+Prompt: A simplified secured card requires a $200 deposit and has a $200 limit. You are considering using it to build credit slowly.
+
+Choices:
+
+* A. Open it and use under $40 monthly, paid in full. Req: age ≥ 18 and savings ≥ $200. Outcome/effects: Credit history may build; deposit locked. Feedback: “$40 is 20% of a $200 limit.” Reflect: “Why keep use low?”
+* B. Wait until savings are stronger. Req: none. Outcome/effects: Credit delayed; liquidity protected. Feedback: “Building credit should not break cash safety.” Reflect: “What cushion would make it safer?”
+* C. Use it for a $160 purchase. Req: age ≥ 18. Outcome/effects: High utilization; score pressure in simplified model. Feedback: “$160 is 80% of the limit.” Reflect: “How did percent of limit matter?”
+
+Randomized outcome? No.
+Future flag set? Yes: understandsSecuredCredit.
+Glossary terms: Secured card — credit card backed by a deposit; Credit limit — maximum you can borrow; Utilization — share of limit being used.
+Tradeoff note: Credit-building tools are useful only when they do not harm cash flow.
+
+73. loan-cosign-pressure — “Please Co-Sign?” — Age 18 planning — Topics: loans, relationships, responsibility [NEW, L, MT, SC, FF, EXT]
+
+Prompt: A friend asks future-you to co-sign a small loan. You care about the friend, but co-signing means you may owe the money if they do not pay.
+
+Choices:
+
+* A. Decline kindly and offer budgeting help. Req: none. Outcome/effects: Safety protected; relationship handled carefully. Feedback: “A kind no can still be support.” Reflect: “What help did you offer instead?”
+* B. Co-sign after reviewing the payment plan. Req: age ≥ 18, Credit ≥ 700, trust ≥ 70. Outcome/effects: Friend helped; your credit risk rises. Feedback: “Co-signing is a real obligation, not a character reference.” Reflect: “What risk did you accept?”
+* C. Ask a mentor to talk through it first. Req: supportCircle.mentor. Outcome/effects: Money knowledge and safety rise. Feedback: “Big relationship-money choices deserve outside perspective.” Reflect: “What question changed the choice?”
+
+Randomized outcome? No.
+Future flag set? Yes: understandsCosignRisk.
+Glossary terms: Co-sign — promise to repay if someone else does not; Loan — borrowed money; Obligation — responsibility you agree to.
+Tradeoff note: Helping someone financially can be generous and risky at the same time.
+
+74. paycheck-deduction-choice — “Benefits or Take-Home?” — Age 18 planning — Topics: paycheck deductions, benefits, net pay [NEW, L, M, FF, EXT]
+
+Prompt: Future-you can choose a benefit that costs $18 per paycheck. You are paid twice a month.
+
+Choices:
+
+* A. Choose the benefit. Req: hasSteadyIncome. Outcome/effects: Protection/support rises; take-home drops by $36/month. Feedback: “$18 × 2 = $36 per month.” Reflect: “What did lower net pay buy?”
+* B. Skip it for now. Req: none. Outcome/effects: Take-home higher; protection lower. Feedback: “More take-home pay can help tight budgets.” Reflect: “What risk remains?”
+* C. Choose it after building a cushion. Req: emergency fund below target. Outcome/effects: Delayed protection; savings first. Feedback: “Sequencing choices can reduce stress.” Reflect: “Why might order matter?”
+
+Randomized outcome? No.
+Future flag set? Yes: comparesBenefitsAndNetPay.
+Glossary terms: Deduction — amount taken from pay; Net pay — take-home pay after deductions; Benefit — job-related support beyond wages.
+Tradeoff note: A lower paycheck is not automatically worse if the deduction buys useful protection.
+
+75. final-values-map — “What Your Money Choices Protected” — Age end-of-run — Topics: reflection, values, net worth, wellbeing [NEW, MT, SC, FF]
+
+Prompt: The run ends with a values map. It shows which choices protected cash, safety, wellbeing, opportunity, support, or future flexibility.
+
+Choices:
+
+* A. Choose one habit to keep. Req: completed 5+ scenarios. Outcome/effects: Reflection badge; no moral ranking. Feedback: “Habits matter more than one perfect choice.” Reflect: “Which habit helped most?”
+* B. Choose one recovery step. Req: any setback flag. Outcome/effects: Recovery path highlighted. Feedback: “A setback is not an ending; it is a route marker.” Reflect: “What would you repair first?”
+* C. Thank a support-circle role. Req: any support flag. Outcome/effects: Support awareness rises. Feedback: “Money choices often involve people, not just numbers.” Reflect: “Who helped the route?”
+
+Randomized outcome? No.
+Future flag set? Yes: completedValuesMap.
+Glossary terms: Net worth — assets minus debts; Wellbeing — how stable and healthy life feels; Recovery — actions that rebuild after a setback.
+Tradeoff note: The capstone measures patterns, not worth as a person.
+
+Scenario quota check:
+Mixed-tradeoff scenarios: 45+; locked-choice scenarios: 20+; randomized-outcome scenarios: 20+; future-flag scenarios: 55+; support-circle scenarios: 20+; explicit 7th-grade math scenarios: 50+; 8th–10th extension scenarios: 35+; asset/net-worth/ownership scenarios: 18+.
+
+⸻
+
+5. Relationship and Support Circle Ideas
+
+1. Caregiver bill-calendar tip — Benefit: helps avoid due-date fees. Cost: player must communicate schedule. Reflection: “What did asking early make easier?”
+2. Friend budget cap pact — Benefit: lowers peer-pressure spending. Cost: may require saying no to a plan. Reflection: “How can friends make budgets easier?”
+3. Mentor source-check moment — Benefit: unlocks safer investing/job/aid choices. Cost: takes time before acting. Reflection: “What question did the mentor ask?”
+4. Pet routine planner — Benefit: discipline and wellbeing rise when care is planned. Cost: recurring food/time costs. Reflection: “How does responsibility show up in a budget?”
+5. Caregiver ride backup — Benefit: reduces missed opportunity risk. Cost: player may need to give notice or help later. Reflection: “Why is backup support not automatic?”
+6. Friend shared-purchase agreement — Benefit: cheaper access to an item. Cost: rules needed for use, repair, and storage. Reflection: “What rule protects the friendship?”
+7. Mentor mock interview — Benefit: opportunity rises. Cost: gives up earning or free time. Reflection: “How can practice be an investment?”
+8. Pet emergency pocket — Benefit: surprise pet costs hurt less. Cost: money is set aside and less spendable. Reflection: “What does the fund protect?”
+9. Caregiver document checklist — Benefit: tax/job forms are easier later. Cost: organization time. Reflection: “Which document would be hard to replace?”
+10. Friend repayment reminder — Benefit: protects trust after a small loan. Cost: may feel awkward. Reflection: “How can reminders be kind?”
+11. Mentor negotiation script — Benefit: better chance of fair pay or schedule. Cost: confidence practice required. Reflection: “What wording felt respectful?”
+12. Family shared-meal planning — Benefit: budgeting and contribution skills rise. Cost: time and compromise. Reflection: “What made the plan fair?”
+13. Friend low-cost alternative invite — Benefit: keeps connection without overspending. Cost: may not be everyone’s favorite plan. Reflection: “How did you protect both money and friendship?”
+14. Mentor credit explainer — Benefit: credit choices unlock more safely. Cost: decision delayed. Reflection: “What did you understand before acting?”
+15. Pet-sitting income reliability — Benefit: income and responsibility rise. Cost: calendar conflicts and pet care obligations. Reflection: “Why does reliability matter when earning?”
+16. Caregiver account-alert setup — Benefit: overdraft/fee risk falls. Cost: player must check alerts. Reflection: “What alert level fits your habits?”
+17. Friend gear-library return buddy — Benefit: late fees less likely. Cost: shared accountability. Reflection: “How can two people help each other remember?”
+18. Mentor pathway comparison — Benefit: post-high-school options become clearer. Cost: requires neutral comparison, not quick ranking. Reflection: “Which pathway factor mattered most?”
+19. Caregiver work-hour boundary — Benefit: wellbeing protected. Cost: cash opportunity may be missed. Reflection: “What did rest protect?”
+20. Friend marketplace safety plan — Benefit: safer resale or exchange. Cost: scheduling and public-meeting rules. Reflection: “What made the transaction safer?”
+21. Mentor financial-aid decoder — Benefit: loans vs. grants understood. Cost: time reading details. Reflection: “Which aid line confused you first?”
+22. Pet supply subscription check — Benefit: recurring costs stay visible. Cost: may need manual comparison. Reflection: “When is convenience worth the monthly cost?”
+23. Family repair decision — Benefit: second opinion before replacing an item. Cost: discussion and patience. Reflection: “What information changed the repair choice?”
+24. Friend study-work accountability — Benefit: less overwork; better schedule. Cost: saying no to extra income. Reflection: “What did accountability protect?”
+25. Mentor recovery ladder — Benefit: after debt, scam, fee, or missed payment, player gets repair steps. Cost: effort and time. Reflection: “Which step gives the fastest stability?”
+
+⸻
+
+6. Score Ranges and Life Context
+
+Money Know-How, Wellbeing, Safety, Discipline, and Opportunity: 0–100 ranges
+
+Money Know-How
+0–20: You are guessing often. Money Words and math helpers appear frequently.
+21–40: You understand some basics but miss hidden costs or timing.
+41–60: You can make everyday plans and explain simple tradeoffs.
+61–80: You compare totals, timing, risk, and source quality before acting.
+81–100: You use strong habits and can explain money choices clearly to others.
+
+Wellbeing
+0–20: Your character feels stretched and needs recovery options.
+21–40: Stress is high; choices should include rest and support.
+41–60: You are managing, but big surprises still feel heavy.
+61–80: You usually balance money, time, and energy.
+81–100: Your routines protect both goals and health.
+
+Safety
+0–20: Scam, fee, and account-risk events need extra warnings.
+21–40: You know some warning signs but may rush under pressure.
+41–60: You pause for many risky decisions.
+61–80: You verify, document, and ask for help before major risks.
+81–100: You have strong safety habits and help your support circle notice risks.
+
+Discipline
+0–20: Reminders, automation, and small steps are needed.
+21–40: You start plans but may forget deadlines or routines.
+41–60: You can follow simple routines with support.
+61–80: You maintain savings, documents, calendars, and budget habits.
+81–100: You build systems that make good choices easier.
+
+Opportunity
+0–20: Few options are open; support and resource events matter.
+21–40: Some options exist but often have locks or costs.
+41–60: You can access common resources and build skills.
+61–80: You unlock training, mentor, job, and pathway choices.
+81–100: You have many routes and can compare them thoughtfully.
+
+Credit: 300–850 student-facing ranges
+
+Use a simplified model label. CFPB notes that many scores range from 300 to 850, but different companies use different ranges and scoring systems.  
+
+300–579: Rebuilding zone. Focus on on-time payments, low balances, and checking reports.
+580–669: Getting steadier. Some borrowing may be available, but terms may cost more.
+670–739: Solid range. Good habits are helping. Keep balances low and pay on time.
+740–799: Strong range. You may see better offers in the simplified model.
+800–850: Excellent range. Keep using credit carefully; the score is still only one tool.
+
+Fictional context variables that do not collect sensitive identity data
+
+1. supportAccess: low/medium/high availability of fictional support-circle help.
+2. transportAccess: limited/basic/strong access to transit, walking, biking, or rides.
+3. localCostLevel: lower/average/higher fictional price environment.
+4. schoolResourceAccess: whether school/community resources are easy to use.
+5. internetReliability: low/medium/high fictional connection reliability.
+6. startingEmergencyCushion: small/medium/strong starting buffer.
+7. mentorAccess: none/occasional/steady mentor support.
+8. schedulePressure: light/medium/heavy time commitments.
+9. communityProgramAccess: limited/available/strong resource network.
+10. financialPaperworkConfidence: low/medium/high comfort with forms and records.
+11. transportBackupOptions: none/one/several backup routes.
+12. deviceReliability: fragile/okay/strong fictional device access.
+13. cashFlowStability: variable/steady/seasonal fictional income timing.
+14. housingCostPressure: low/medium/high adult-simulation cost pressure.
+15. repairResourceAccess: no access/basic access/strong access to repair help.
+
+⸻
+
+7. Assets and Net Worth Ideas
+
+1. Borrowed hotspot deposit — Can return to cash if rules are met; teaches refundable vs. spendable money.
+2. Used e-reader — Loses resale value slowly; teaches net cost after resale.
+3. Bike plus lock — Bike can lose value through damage/theft; lock protects a larger asset; teaches percent of asset value spent on protection.
+4. Starter tool kit — Gains usefulness through jobs; loses value through wear; teaches cost per use and depreciation.
+5. Certification badge — Gains opportunity value; expires if not renewed; teaches renewal costs and human capital.
+6. Digital portfolio — Low resale value but high opportunity value; teaches non-cash assets.
+7. Laptop condition score — Value falls with damage, rises with repair; teaches repair vs. replace.
+8. Transit card balance — Useful stored value; may expire or auto-reload; teaches balance tracking.
+9. Emergency ride fund — Does not “grow,” but protects opportunity; teaches protective assets.
+10. Renter deposit — Can be returned, partly returned, or lost; teaches documentation and refundable money.
+11. Room inventory list — Not an asset itself, but protects claim recovery; teaches replacement value.
+12. Pet care fund — Spent during pet surprises; teaches recurring plus random costs.
+13. Small inventory batch — Can become revenue or markdown loss; teaches margin and demand.
+14. Reusable interview outfit — Loses resale value but gains cost-per-use value; teaches useful value.
+15. Library/gear membership card — Access asset without ownership; teaches late fees and borrowing rules.
+16. Cloud storage plan — Not owned; recurring service that protects files; teaches annualized recurring cost.
+17. Power strip/energy kit — Small upfront cost can reduce utility use; teaches break-even and annual savings.
+18. Secured-card deposit — Locked cash that supports credit-building; teaches liquidity and credit limits.
+19. Deductible pocket — Savings earmarked for insurance claim readiness; teaches target ÷ monthly contribution.
+20. Apprentice tools — Used to earn/train; condition affects value; teaches financing vs. cash purchase.
+21. Marketplace item for resale — Value depends on condition, timing, and fees; teaches net proceeds.
+22. Gift card balance — Stored value that may nudge spending; teaches tax and remaining balance.
+23. Repair skill badge — Human-capital asset; saves future repair costs; teaches avoided cost.
+24. Aid offer checklist — Prevents mistaking loans for grants; teaches cost avoidance as value.
+25. Backup device/access plan — Protects school/work continuity; teaches risk reduction, not just dollar growth.
+
+⸻
+
+8. Teacher Discussion Prompts
+
+Quick warm-ups
+
+1. What is one cost that is small once but large when repeated?
+2. When is owning something less useful than borrowing it?
+3. What does “available balance” mean in your own words?
+4. Why might a deposit be both “your money” and “not spendable”?
+5. What is one reason a free resource might still require planning?
+6. What kind of proof would help solve a money disagreement?
+7. When can waiting be a smart financial choice?
+8. Why is the cheapest sticker price not always the cheapest total?
+9. What is one example of useful value that is not resale value?
+10. How can a support person help without giving money?
+
+Pair-share questions
+11. Compare a choice that saves cash with a choice that saves time. Which would you pick today?
+12. Talk through a fair split: equal, by use, or by ability. Which feels fairest and why?
+13. Compare two jobs with the same total pay but different pay frequency.
+14. Discuss a time when a reminder or alert would prevent a fee.
+15. Explain why a card hold can make money unavailable even before final payment.
+16. Compare a high-deductible and low-deductible insurance option in student-friendly language.
+17. Talk through how a friend can make spending easier or harder.
+18. Compare “I can afford the monthly payment” with “I can carry the whole term.”
+
+Exit-ticket reflections
+19. Name one money choice where timing mattered.
+20. Write one sentence explaining liquidity.
+21. What is one locked choice you would want to unlock later?
+22. How can a good plan still get unlucky?
+23. What does a credit score not measure?
+24. Why should net worth not be treated as self-worth?
+25. What is one support script you could use in a money conversation?
+26. What source would you trust most for financial-aid information?
+
+Compare-outcomes prompts
+27. Compare a player who saved proof with one who did not. What changed later?
+28. Compare a player who borrowed gear responsibly with one who bought everything.
+29. Compare a player who used a mentor before a big choice with one who acted fast.
+30. Compare a player with high cash but low wellbeing to one with moderate cash and strong routines.
+
+⸻
+
+9. Glossary and Vocabulary Supports
+
+1. Available balance — Money that can actually be used right now. Math connection: subtract pending holds and charges. Misconception: “My account balance is always spendable.” App location: banking events. Source category: FDIC/CFPB.
+2. Pending charge — A payment that has started but is not fully posted yet. Math: current balance minus pending charge. Misconception: “It does not count yet.” App location: checking alerts. Source category: FDIC/CFPB.
+3. Deposit — Money held now that may come back if rules are met. Math: spendable cash drops until returned. Misconception: “Refundable means no cost.” App location: rentals, gear, utilities. Source category: CFPB/consumer education.
+4. Refundable — Able to be returned if conditions are met. Math: full, partial, or zero return. Misconception: “Refundable is automatic.” App location: deposit tracker. Source category: FTC/consumer education.
+5. Liquidity — How quickly value can turn into spendable money. Math: cash now vs. resale later. Misconception: “Valuable means spendable.” App location: asset shelf. Source category: Investor.gov/CFPB.
+6. Resale value — What something might sell for later. Math: original price minus depreciation. Misconception: “It is worth what I paid.” App location: marketplace and assets. Source category: Investor.gov/consumer education.
+7. Replacement value — What it would cost to buy a similar item again. Math: add item replacement costs. Misconception: “Replacement value equals resale value.” App location: renter inventory. Source category: NAIC/state insurance.
+8. Depreciation — Losing value over time, use, or damage. Math: original value minus current value. Misconception: “All assets grow.” App location: asset condition. Source category: Investor.gov/consumer education.
+9. Utility bill — Charge for services like electricity, water, or gas. Math: usage × rate plus fees. Misconception: “It is the same every month.” App location: utility seasons. Source category: FDIC/budgeting.
+10. Variable cost — A cost that changes. Math: compare low, average, and high months. Misconception: “Budgeting the average always works.” App location: utility events. Source category: CFPB/FDIC.
+11. Buffer — Extra money set aside for likely differences. Math: expected cost plus cushion. Misconception: “A buffer is wasted if unused.” App location: cash-flow calendar. Source category: CFPB.
+12. Cash flow — Timing of money coming in and going out. Math: list dates and amounts. Misconception: “Monthly total is all that matters.” App location: paycheck and bill events. Source category: FDIC/CFPB.
+13. Pay frequency — How often pay arrives. Math: weekly × 4, biweekly × 26/year. Misconception: “Same yearly pay feels the same.” App location: job comparison. Source category: IRS/FDIC.
+14. Gross pay — Pay before deductions. Math: hours × rate before subtractions. Misconception: “Gross is what I take home.” App location: job events. Source category: IRS Understanding Taxes.
+15. Net pay — Take-home pay after deductions. Math: gross pay minus deductions. Misconception: “Net and gross are close enough.” App location: paycheck reveal. Source category: IRS Understanding Taxes.
+16. Deduction — Amount subtracted from pay. Math: gross minus deductions = net. Misconception: “Deductions are random.” App location: paycheck/benefits. Source category: IRS.
+17. Benefit — Job support beyond wages, sometimes with a paycheck cost. Math: monthly cost vs. value. Misconception: “Higher take-home is always better.” App location: adult job events. Source category: IRS/CFPB.
+18. Copay — Fixed amount paid for a covered service. Math: planned out-of-pocket amount. Misconception: “Insurance means no cost.” App location: adult insurance scenario. Source category: NAIC/state insurance.
+19. Premium — Regular payment to keep insurance active. Math: monthly × 12. Misconception: “Premium is the only cost.” App location: insurance choices. Source category: NAIC.
+20. Deductible — Amount you pay before insurance helps with covered costs. Math: loss minus deductible. Misconception: “Insurance pays first.” App location: claims and deductible pocket. Source category: NAIC.
+21. Claim — Request for insurance to cover a loss. Math: covered cost after deductible. Misconception: “Every loss should be a claim.” App location: insurance events. Source category: NAIC.
+22. Work-study — Aid earned through approved work. Math: hours × wage up to an award limit. Misconception: “It is automatic free money.” App location: aid offer decoder. Source category: Federal Student Aid.
+23. Grant — Aid that usually does not need repayment if rules are met. Math: subtract from cost. Misconception: “All aid is a loan.” App location: aid sorting. Source category: Federal Student Aid.
+24. Scholarship — Aid awarded based on criteria such as skills, effort, need, or fit. Math: reduce gap by award amount. Misconception: “Scholarships are only giant awards.” App location: scholarship scenarios. Source category: Federal Student Aid.
+25. Loan — Borrowed money that must be repaid. Math: principal plus interest. Misconception: “Loan money is the same as grant money.” App location: pathway planning. Source category: Federal Student Aid/CFPB.
+26. Principal — Original amount borrowed or invested. Math: interest is often based on principal. Misconception: “Payment amount equals loan cost.” App location: loans. Source category: CFPB/Investor.gov.
+27. Interest — Cost of borrowing money or money earned on savings/investments. Math: principal × rate × time in simple models. Misconception: “Interest is always tiny.” App location: loans/savings. Source category: CFPB/Investor.gov.
+28. Utilization — Share of a credit limit being used. Math: balance ÷ limit. Misconception: “Only the dollar amount matters.” App location: secured-card scenario. Source category: CFPB.
+29. Secured card — Credit card backed by a deposit. Math: deposit and limit comparison. Misconception: “The deposit is a fee.” App location: credit-building. Source category: CFPB.
+30. Co-sign — Promise to repay if someone else does not. Math: possible full loan amount owed. Misconception: “Co-signing just helps approval.” App location: relationship-loan scenario. Source category: CFPB.
+31. Auto-reload — Automatically adding money when a balance gets low. Math: threshold and reload amount. Misconception: “Automation cannot surprise me.” App location: transit card. Source category: CFPB/consumer education.
+32. Fare cap — Maximum fare charged during a period. Math: rides × fare compared with cap. Misconception: “A pass is always cheaper.” App location: transit scenario. Source category: transit/consumer math.
+33. Break-even — Point where two choices cost the same. Math: upfront cost ÷ monthly savings. Misconception: “Savings start immediately.” App location: move/lease choices. Source category: CFPB/math education.
+34. Margin — Difference between selling price and cost. Math: price − cost. Misconception: “Revenue is profit.” App location: entrepreneurship. Source category: CFPB/entrepreneurship education.
+35. Inventory — Items held to sell or use. Math: units × cost, markdowns, unsold value. Misconception: “Unsold items are the same as cash.” App location: small business scenarios. Source category: CFPB/consumer education.
+36. Markdown — Lowering a price. Math: old price minus new price; percent off. Misconception: “Lower price always means lower total profit.” App location: inventory events. Source category: consumer education.
+37. Verification — Checking details before acting. Math: possible avoided loss vs. time cost. Misconception: “If it looks familiar, it is safe.” App location: QR/payment/scam events. Source category: FTC.
+38. Impostor scam — A trick where someone pretends to be trusted. Math: potential loss and recovery steps. Misconception: “I would always know.” App location: safety events. Source category: FTC.
+39. Source check — Comparing a claim with a trustworthy source before acting. Math: compare claims, costs, and evidence. Misconception: “Screenshots are proof.” App location: money-claim scenarios. Source category: FTC/CFPB/SEC.
+40. Human capital — Skills, knowledge, and credentials that can create opportunity. Math: cost/time now vs. possible future income. Misconception: “Only physical things are assets.” App location: career and certification events. Source category: career/financial-education resources.
+
+⸻
+
+10. Balance and Ethics Notes
+
+1. Wealth never equals character. Praise planning, repair, support, curiosity, and clear thinking, not being rich.
+2. Every context variable is fictional. Never ask for real race, ethnicity, sex, gender identity, religion, disability, immigration status, family income, exact location, or household structure.
+3. Constraints change routes, not worth. Low transit access, spotty internet, or small starting cushion should create different challenges, not shame.
+4. Locked choices teach requirements. The lock text should say what is needed, not imply the player is bad.
+5. No one-choice dead ends. Scam losses, debt, missed payments, and low wellbeing trigger recovery chains.
+6. Random outcomes label luck clearly. Good plan + bad luck should feel different from risky plan + lucky outcome.
+7. Do not rig every lesson. Insurance should sometimes help; waiting should sometimes help; self-insuring should sometimes work; asking should sometimes be denied.
+8. Wants and joy are legitimate. The game teaches planning, not joyless saving.
+9. Support is mutual. Help from a caregiver, friend, mentor, or pet relationship can also require time, gratitude, trust, communication, or planning.
+10. All pathways stay viable. Work-first, trade, apprenticeship, community college, four-year college, military, and entrepreneurship can each succeed with tradeoffs.
+11. Credit is a tool, not the final boss. A high credit score should never replace wellbeing, safety, or net worth reasoning.
+12. Avoid fear-based scam lessons. Teach calm steps: pause, verify, document, report, recover.
+13. Make models visibly simplified. Credit, tax, insurance, investing, and aid simulations should carry “simplified for learning” labels.
+14. Keep teacher materials discussion-based. No rosters, grades, confidential answer keys, analytics, or student-data exports.
+15. Build originality into workflow. Use duplicate-slug checks, source-category fields, no-brand checks, and prohibited-PII checks before content ships.
+
+⸻
+
+11. Source and Originality Notes
+
+This batch uses public source categories only for topic inspiration and factual orientation. It does not copy wording, definitions, worksheets, lesson scripts, answer keys, UI, branding, scenario text, artwork, or protected expression from BitLife, NGPF, Banzai, Napkin Finance, Humble Math, or any other source. The uploaded prior batches were used only as a duplication guard and already contain explicit reminders to avoid copying source text and to avoid implying endorsement or partnership.  
+
+Public source categories used: CFPB consumer education and credit-score materials; FDIC Money Smart for Young People; FTC Consumer Advice and identity/scam guidance; Investor.gov/SEC investor education on diversification, fees, and risk; Federal Student Aid materials on grants, scholarships, work-study, loans, and FAFSA concepts; IRS Understanding Taxes materials on gross pay, net pay, withholding, and payroll taxes; NAIC/state insurance education on premiums, deductibles, claims, and consumer insurance concepts.  
+
+The app should attribute sources only as broad source categories for teacher transparency. It should not imply that any source reviewed, endorsed, sponsored, partnered with, or approved MoneyLife Quest.
+
+⸻
+
+12. Implementation Handoff for Codex
+
+1. Create scenario data file — src/data/scenarios/scenariosOrbitHarbor47.ts with all 75 scenarios as objects: id, title, ageRange, topics, prompt, choices, randomized, futureFlag, glossaryTerms, tradeoffNote, tags.
+2. Extend ChoiceRequirement model — Support statMin, cashMin, savingsMin, ageMin, flagRequired, supportRoleRequired, contextRequired, and visibleLockedText.
+3. Add ChoiceEffect plain-language field — Store both numeric stat changes and student-facing effect text.
+4. Build CashFlowHarborCalendar.tsx — Render fictional paydays, bills, pending charges, holds, due dates, and warnings.
+5. Create ProofAnchorSystem — Store generated proofItems[]; never allow uploads or real receipts.
+6. Create LockedChoicePreview.tsx — Show locked choices kindly with “Needed:” and “How to unlock later.”
+7. Add LiquidityMeter.tsx — Asset cards display spendable cash vs. resale value vs. usefulness.
+8. Add AssetConditionBar.tsx — Track condition, maintenance, resale value, and useful value.
+9. Create QrConfirmModal.tsx — Three local checks: recipient, amount, purpose.
+10. Create UtilityWeatherMeter.tsx — Simplified utility-bill variation based on fictional season/context.
+11. Create DepositTracker.tsx — Track refundable, partial, nonrefundable, and return conditions.
+12. Create AidOfferDecoder.tsx — Sort fictional aid into grant, scholarship, work-study, loan, and gap.
+13. Create PayFrequencyConverter.tsx — Convert weekly, biweekly, semimonthly, and monthly pay.
+14. Create SupportScriptCard.tsx — Role-specific scripts for caregiver, friend, mentor, and pet-care planning.
+15. Create RandomnessExplainerCard.tsx — Show odds, choice quality, and luck label after random events.
+16. Create SourceTrustLadder.tsx — Compare fictional official, mentor, sponsored, anonymous, and viral sources.
+17. Add ContextSeedCards.ts — Fictional variables only: transit access, support access, cost level, internet reliability, schedule pressure, etc.
+18. Create glossaryOrbitHarbor47.ts — Add 40 terms with definition, math connection, misconception, app location, and source category.
+19. Create teacherDiscussionPrompts.ts — Store the 30 prompts by warmup, pairShare, exitTicket, and compareOutcome.
+20. Add contentSafetyOriginalityLint.ts — Check duplicate slugs, missing tradeoff notes, missing source categories, real brand names, sensitive-identifier fields, mature themes, and copied boilerplate.
+
+Creative Seed: CINDER-PERISCOPE-83
+
+Newness guard: This batch uses a new “look-around-corners + repair-the-small-loss” palette: pay-stub detective work, usage caps, records, skill refreshers, benefit choices, term-reading, reusable systems, and recovery after small mistakes. I treated the uploaded batches as duplicate guards. Prior retrieved content already covered spines such as subscription creep, basic emergency funds, first credit, first apartment, car ownership, payment apps, identity theft recovery, investing downturns, defaults, refund roulette, whole-term affordability, proof/deposit chains, utility seasons, QR-payment confidence, route maps, cash/value split views, and many implementation guardrails, so this batch avoids rerunning those exact slugs, prompts, and chain structures.    
+
+Legend used in §4: MT = mixed tradeoff, L = locked choice, R = randomized, FF = future flag, SC = support circle, M = explicit math, EXT = 8th–10th extension, AN = asset/net-worth/ownership.
+
+⸻
+
+1. Executive Research Synthesis
+
+1. Students need “visible assumptions.” Many money errors come from a hidden assumption: “I’ll use all five passes,” “the app won’t charge extra,” “my hours are correct,” or “the return is free.” In-game, an Assumption Card should appear before big choices so 7th graders learn to name what they are counting on.
+2. Tiny frictions can teach big judgment. A pause before sending money, a checklist before accepting a job, or a “read the fee line” tap makes safe behavior feel like a tool instead of a lecture.
+3. The app should distinguish “planned tight” from “unplanned tight.” A player may choose a tight budget for a meaningful goal. That is different from being surprised by fees, late charges, or missing records.
+4. Banking lessons should focus on timing and availability. FDIC Money Smart for Young People provides age-banded financial education resources, including grades 6–8 material around earning, spending, payment options, saving, banking, and taxes; MoneyLife Quest can turn those topics into local-only simulations rather than worksheets.  
+5. Credit should be delayed, simplified, and emotionally neutral. CFPB explains that many credit scores range from 300 to 850, that different companies use different ranges, and that higher scores can help with loan approval and interest rates. In the game, the credit meter should be labeled “simplified for learning” and should never feel like a character score.  
+6. Credit utilization is one of the best percent lessons. CFPB notes that experts commonly advise keeping credit use at no more than 30% of total credit limit, and that paying balances in full helps keep interest costs low. That makes utilization a strong bridge from percent math to real borrowing behavior.  
+7. Gross vs. net pay should become a recurring reveal, not a one-time event. IRS Understanding Taxes defines gross pay as what an employee earns and net pay as take-home pay after deductions. The game should revisit this in pay stubs, benefit choices, tax forms, side-hustle records, and refunds.  
+8. Scam education should emphasize verification routines. FTC Consumer Advice maintains current scam guidance and alerts, including phishing and impostor-scam patterns. Game events should teach “pause, verify through a trusted channel, document, report, recover,” without fear-based language.  
+9. Insurance is clearer when students compare cash readiness, not just policy price. NAIC consumer resources describe premiums, deductibles, claims, and consumer insurance concepts; NAIC also notes that a deductible is the amount paid before insurance starts paying its share in covered situations.  
+10. Aid planning must separate “free if rules are met,” “earned,” “borrowed,” and “gap.” Federal Student Aid distinguishes grants, work-study, loans, and scholarships as different ways to help pay for college or career school. MoneyLife Quest should use fictional aid tiers and never ask students for real family income.  
+11. Investing should teach fees before hype. Investor.gov explains that investment fees reduce returns and that diversification spreads money across investments to reduce dependence on one outcome. Scenarios should foreground long time horizons, risk, fees, and “not guaranteed.”  
+12. Support circles should change odds, options, and confidence, not magically erase costs. Family/caregiver, friend, mentor, and pet support should help with reminders, practice, planning, and wellbeing while still costing time, communication, or responsibility.
+13. Use recovery as a core loop. Fees, missed deadlines, overcharges, and bad assumptions should unlock repair steps. A player should learn, “This is fixable,” not, “My run is ruined.”
+14. Classroom discussion should compare routes, not rank students. The best teacher prompt is “What did this choice protect?” rather than “Who got the highest net worth?”
+15. Source attribution should be transparent but non-derivative. Public sources can inspire topic coverage, but student-facing definitions, scenarios, feedback, and UI must remain original.
+16. Build the originality and privacy rules into the content pipeline. Prior batches already emphasized no PII fields, no copied third-party text, no endorsement implication, local-only saves, and duplicate-slug checks; this should stay as a build-time lint system, not just a writing guideline.  
+
+⸻
+
+2. New Feature Recommendations
+
+1. Assumption Card System [NEW]
+Student-facing purpose: Shows “This choice assumes…” before a decision, such as “you will use all passes” or “your hours are correct.”
+Teacher value: Helps students separate facts from guesses.
+Data/state needed: assumptions[], choice.assumptionIds, assumptionOutcome.
+Risk or privacy concern: Keep assumptions fictional and not about real home life.
+MVP version: One assumption sentence per key choice.
+Stretch version: Later event reveals which assumptions held up.
+
+2. Pay Stub Detective [NEW]
+Student-facing purpose: Lets students compare scheduled hours, pay rate, gross pay, deductions, and net pay.
+Teacher value: Repeated gross/net and multiplication practice.
+Data/state needed: payStub, scheduledHours, reportedHours, deductions[].
+Risk or privacy concern: Use fictional jobs only.
+MVP version: One pay stub check.
+Stretch version: Randomized missing-hours correction chain.
+
+3. Usage Cap Meter [NEW]
+Student-facing purpose: Tracks fictional limits like data, minutes, printing credits, tool checkouts, or ride passes.
+Teacher value: Teaches percent used and thresholds.
+Data/state needed: usageCaps[], currentUse, cap, overageFee.
+Risk or privacy concern: No real device or account data.
+MVP version: Progress bar with “83% used.”
+Stretch version: Warnings and overage-choice branches.
+
+4. Mistake Recovery Ladder [TWIST]
+Student-facing purpose: After a setback, shows three repair routes: money route, support route, and habit route.
+Teacher value: Models resilience and avoids shame.
+Data/state needed: setbackType, recoveryOptions[], resolvedSetbacks[].
+Risk or privacy concern: Do not label students as careless.
+MVP version: One recovery card after fees or missed deadlines.
+Stretch version: Personalized recovery path based on flags.
+
+5. Benefit Tradeoff Panel [NEW]
+Student-facing purpose: Shows how benefits lower take-home pay but may add protection or opportunity.
+Teacher value: Helps explain deductions and total compensation.
+Data/state needed: benefits[], grossPay, netPay, coverageTags.
+Risk or privacy concern: Keep adult-work scenarios simplified.
+MVP version: Benefit on/off comparison.
+Stretch version: Multi-benefit paycheck simulator.
+
+6. Fee Stack Revealer [NEW]
+Student-facing purpose: Displays base price, service fee, shipping, tax, restocking, or convenience fee separately.
+Teacher value: Multi-step addition and percent practice.
+Data/state needed: feeLines[], basePrice, totalCost.
+Risk or privacy concern: No real vendors or brands.
+MVP version: Expandable fee list.
+Stretch version: “Which fee changed your choice?” reflection.
+
+7. Records Without Free Text [NEW]
+Student-facing purpose: Lets students save fictional record tokens: pay stub saved, policy read, terms checked.
+Teacher value: Teaches recordkeeping without collecting personal writing.
+Data/state needed: recordTokens[], recordQuality, recordRequiredBy.
+Risk or privacy concern: Avoid uploads and open text.
+MVP version: Toggle “save record.”
+Stretch version: Token quality affects disputes and corrections.
+
+8. Variable Income Forecast [NEW]
+Student-facing purpose: Shows income ranges for tips, commissions, seasonal hours, and gig-like work.
+Teacher value: Teaches mean, range, and conservative budgeting.
+Data/state needed: incomeRange, incomeHistory[], forecastMethod.
+Risk or privacy concern: Fictional income only.
+MVP version: Low/typical/high estimates.
+Stretch version: Graph over several ages.
+
+9. Cap-and-Alert Builder [NEW]
+Student-facing purpose: Students set warning points: 50%, 75%, 90%, or custom.
+Teacher value: Percent thresholds and habit design.
+Data/state needed: alerts[], threshold, triggeredAt.
+Risk or privacy concern: Local-only state.
+MVP version: One alert threshold.
+Stretch version: Different alert styles for different students.
+
+10. Fairness Rule Selector [NEW]
+Student-facing purpose: For shared costs, choose equal, proportional, usage-based, rotating, or gift/no-repay.
+Teacher value: Promotes math and relationship discussion.
+Data/state needed: splitRule, participants, amounts[].
+Risk or privacy concern: Fictional groups only.
+MVP version: Three split rules.
+Stretch version: Rule history affects trust.
+
+11. Reliability Ledger [NEW]
+Student-facing purpose: Tracks fictional commitments kept, late, rescheduled, or communicated early.
+Teacher value: Connects soft skills to opportunity.
+Data/state needed: commitments[], reliabilityScore, references[].
+Risk or privacy concern: Do not moralize; allow recovery.
+MVP version: Simple kept/missed log.
+Stretch version: Unlocks references, work shifts, and mentor trust.
+
+12. Source Triangulation Board [TWIST]
+Student-facing purpose: Compares three fictional sources before a money choice.
+Teacher value: Media literacy and scam prevention.
+Data/state needed: sourceCards[], sourceType, reliabilityTag.
+Risk or privacy concern: No real social feeds.
+MVP version: Pick strongest source.
+Stretch version: Conflicting sources and sponsored claims.
+
+13. Useful Life Estimator [NEW]
+Student-facing purpose: Estimates how many uses/months an item may last.
+Teacher value: Cost-per-use and depreciation math.
+Data/state needed: asset.usefulLife, asset.condition, maintenanceEvents.
+Risk or privacy concern: Do not rank students by possessions.
+MVP version: “Expected uses left.”
+Stretch version: Maintenance changes useful life.
+
+14. Deductions Mini-Ledger [NEW]
+Student-facing purpose: Shows tax withholding, benefit cost, savings split, and other paycheck reductions.
+Teacher value: Clarifies why net pay differs from gross pay.
+Data/state needed: deductions[], deductionCategory, netPay.
+Risk or privacy concern: Simplified labels, no real tax advice.
+MVP version: Paycheck line items.
+Stretch version: Tax-refund preview.
+
+15. Expiration Radar [TWIST]
+Student-facing purpose: Tracks passes, warranties, certifications, coupons, and aid deadlines.
+Teacher value: Teaches time value and deadline planning.
+Data/state needed: expiringItems[], deadlineAge, reminderSet.
+Risk or privacy concern: Fictional calendar only.
+MVP version: Upcoming deadline list.
+Stretch version: Missed/kept deadline branches.
+
+16. “Can I Undo This?” Tag [TWIST]
+Student-facing purpose: Labels choices as reversible, partly reversible, or final.
+Teacher value: Helps students discuss risk.
+Data/state needed: reversibility, undoWindow, costToReverse.
+Risk or privacy concern: None.
+MVP version: Tag on choice.
+Stretch version: Actual in-fiction undo events.
+
+17. Benefit-of-Delay Meter [NEW]
+Student-facing purpose: Shows when waiting improves information, cash, or options.
+Teacher value: Counters impulsive choice framing without shame.
+Data/state needed: delayOption, delayBenefit, delayRisk.
+Risk or privacy concern: Avoid implying waiting is always best.
+MVP version: “Waiting gives X, risks Y.”
+Stretch version: Delay outcomes vary by context.
+
+18. Kind Correction Scripts [NEW]
+Student-facing purpose: Gives sentence starters for correcting pay, split costs, returns, or misunderstandings.
+Teacher value: Communication skill without roleplay pressure.
+Data/state needed: scriptCards[], scenarioType, tone.
+Risk or privacy concern: Keep fictional and not therapy-like.
+MVP version: Three scripts.
+Stretch version: Tone affects relationship trust.
+
+19. Class-Safe Scenario Quota Lint [TWIST]
+Student-facing purpose: Invisible; keeps content varied.
+Teacher value: Ensures enough math, locked choices, random events, support events, and recovery arcs.
+Data/state needed: scenario metadata tags.
+Risk or privacy concern: None.
+MVP version: Build script counts tags.
+Stretch version: Duplicate-mechanic detection.
+
+20. End-of-Run “What Protected What?” Report [NEW]
+Student-facing purpose: Summarizes choices by what they protected: cash, time, trust, safety, options, wellbeing.
+Teacher value: Supports reflection without ranking.
+Data/state needed: choiceTags[], protectedCategory, finalStats.
+Risk or privacy concern: Local-only; no leaderboard.
+MVP version: Category counts.
+Stretch version: Compare two fictional routes side by side.
+
+⸻
+
+3. Scenario Systems and Chains
+
+Chain 1 — Pay Stub Detective [NEW]
+Learning target: Gross pay, net pay, hours × rate, deductions, and correcting errors.
+Trigger ages/life stages: 16–18.
+Required flags: hasIncome.
+Events in order: (1) First full pay stub arrives; (2) player compares scheduled hours to paid hours; (3) deduction line appears; (4) choose ignore, ask politely, or document; (5) correction or lesson appears.
+How choices compound: Saving records and asking clearly can recover pay and raise opportunity; ignoring patterns lowers trust in budgeting.
+Possible endings: Accurate Records, Corrected Pay, Missed but Recovered.
+
+Chain 2 — Usage Cap Spiral [NEW]
+Learning target: Percent used, caps, overage fees, alerts, and habit systems.
+Trigger ages/life stages: 13–16.
+Required flags: usesSharedPlan or hasDevice.
+Events in order: (1) A usage cap starts; (2) warning appears at 75%; (3) player changes habits or ignores; (4) overage risk hits; (5) choose new alert threshold.
+How choices compound: Early alerts prevent fees; ignoring caps makes later spending less predictable.
+Possible endings: Cap Planner, Fee Surprise, Alert Builder.
+
+Chain 3 — Tip Income Records [NEW]
+Learning target: Variable income, records, taxes, and conservative budgeting.
+Trigger ages/life stages: 16–18.
+Required flags: hasVariableIncome.
+Events in order: (1) Tip income varies by shift; (2) player budgets using high/typical/low estimate; (3) tax-record reminder; (4) slow week tests plan; (5) side ledger improves future forecast.
+How choices compound: Budgeting from the high estimate causes squeeze; budgeting from typical/low protects cash flow.
+Possible endings: Conservative Forecaster, High-Week Optimist, Ledger Learner.
+
+Chain 4 — Reference Reliability [NEW]
+Learning target: Soft skills, communication, opportunity, and non-money assets.
+Trigger ages/life stages: 14–18.
+Required flags: hasMentor or hasPartTimeRole.
+Events in order: (1) player takes a small commitment; (2) conflict appears; (3) communicate early or disappear; (4) reference request later; (5) reliability affects opportunity.
+How choices compound: Early communication protects trust even if the player cannot attend.
+Possible endings: Strong Reference, Repairing Trust, Opportunity Delayed.
+
+Chain 5 — Benefit Choice [NEW]
+Learning target: Deductions, benefits, net pay, and protection.
+Trigger ages/life stages: 18 planning.
+Required flags: hasSteadyIncome.
+Events in order: (1) benefit option appears; (2) paycheck comparison; (3) surprise event tests coverage; (4) revise benefit choice; (5) reflection on take-home vs. protection.
+How choices compound: Skipping benefits keeps cash but may raise later risk; choosing benefits lowers net pay but can reduce shock.
+Possible endings: Covered Planner, Cash-First Learner, Right-Sized Benefit.
+
+Chain 6 — Credit Report Mix-Up [TWIST]
+Learning target: Credit reports, errors, disputes, documentation, and calm recovery.
+Trigger ages/life stages: 17–adult planning.
+Required flags: creditScore !== null.
+Events in order: (1) fictional report shows an error; (2) player saves evidence; (3) dispute path chosen; (4) waiting period; (5) correction affects future application.
+How choices compound: Checking early prevents later application stress; missing proof slows correction.
+Possible endings: Error Corrected, Still Under Review, Learned to Check.
+
+Chain 7 — Aid Deadline Folder [TWIST]
+Learning target: Scholarships, grants, work-study, loans, deadlines, and source reliability without PII.
+Trigger ages/life stages: 16–18.
+Required flags: pathwayPlanning.
+Events in order: (1) fictional aid deadlines appear; (2) player sorts aid type; (3) required documents are simulated; (4) mentor review or solo submission; (5) aid gap changes.
+How choices compound: Deadline tracking and mentor review improve odds; missing deadlines increases gap.
+Possible endings: Organized Aid Route, Partial Aid, Deadline Recovery.
+
+Chain 8 — Skill Refresh Loop [NEW]
+Learning target: Skills as assets, practice decay, renewal, and AI/job-shift awareness.
+Trigger ages/life stages: 15–18.
+Required flags: careerInterest.
+Events in order: (1) player learns a skill; (2) tool/software changes; (3) refresh course offered; (4) project tests current skill; (5) portfolio updates.
+How choices compound: Refreshing protects opportunity; ignoring change does not ruin the route but may require catching up.
+Possible endings: Current Skill, Catch-Up Plan, Mentor-Supported Pivot.
+
+Chain 9 — Warranty Fine Print [NEW]
+Learning target: Warranty limits, deductible-like costs, repair vs. replace, and records.
+Trigger ages/life stages: 13–17.
+Required flags: ownsUsefulAsset.
+Events in order: (1) asset is purchased with warranty option; (2) fine print appears; (3) item breaks or wears; (4) records determine claim success; (5) player updates buying habit.
+How choices compound: Reading limits avoids false confidence; keeping records improves repair outcome.
+Possible endings: Covered Repair, Not-Covered Lesson, Self-Insured Next Time.
+
+Chain 10 — Fee Stack Checkout [NEW]
+Learning target: Base price vs. total cost, taxes, shipping, service fees, and reversibility.
+Trigger ages/life stages: 12–16.
+Required flags: none.
+Events in order: (1) low base price appears; (2) fee stack revealed; (3) player chooses pay, wait, pickup, or cancel; (4) return cost appears; (5) future assumption card unlocks.
+How choices compound: Reading total before paying reduces regret; skipping total can still be recoverable but costs time.
+Possible endings: Total-Cost Reader, Fee Surprise, Better Pickup Plan.
+
+Chain 11 — Shared Cost Rule [NEW]
+Learning target: Equal vs. usage-based vs. rotating splits.
+Trigger ages/life stages: 13–18.
+Required flags: supportCircle.friend.
+Events in order: (1) group shares a cost; (2) choose split rule; (3) someone uses more/less; (4) conflict or clarity event; (5) group rule revised.
+How choices compound: Clear rules preserve trust; vague generosity can cause later awkwardness.
+Possible endings: Fair Rule, Friendship Repair, Gift Not Loan.
+
+Chain 12 — Investment Fee Lens [TWIST]
+Learning target: Fees, long time horizons, diversification, and compounding drag.
+Trigger ages/life stages: 16–adult planning.
+Required flags: hasInvestments.
+Events in order: (1) two funds have different fees; (2) fee effect shown over time; (3) marketing hype appears; (4) student compares fee, risk, and diversification; (5) long-term projection updates.
+How choices compound: Lower fees leave more money working; chasing hype can add risk and costs.
+Possible endings: Fee-Aware Investor, Hype Detour, Balanced Split.
+
+Chain 13 — Rental Application Stack [NEW]
+Learning target: Application fees, odds, deposits, credit checks, and applying strategically.
+Trigger ages/life stages: adult planning.
+Required flags: housingSearch.
+Events in order: (1) three fictional rentals have fees; (2) player chooses one targeted application or many; (3) credit/report freeze issue appears; (4) decision affects available cash; (5) move-in readiness shown.
+How choices compound: Applying everywhere drains cash; applying strategically may take longer but preserves resources.
+Possible endings: Targeted Applicant, Fee-Drained Search, Wait-and-Prepare.
+
+Chain 14 — Public Wi-Fi Purchase [NEW]
+Learning target: digital safety, payment information, 2FA, and verification.
+Trigger ages/life stages: 13–17.
+Required flags: usesMobileBanking.
+Events in order: (1) player shops on public Wi-Fi; (2) warning appears; (3) choose wait, use secure connection, or proceed; (4) suspicious activity check; (5) habit update.
+How choices compound: Waiting or secure connection reduces risk; rushed entry may require recovery.
+Possible endings: Secure Shopper, Password Reset, Safety Routine.
+
+Chain 15 — Final Periscope Reflection [NEW]
+Learning target: long-range thinking and values-based tradeoffs.
+Trigger ages/life stages: end-of-run.
+Required flags: completed 10+ choices.
+Events in order: (1) review protected categories; (2) choose one mistake repaired; (3) choose one habit to keep; (4) compare two routes; (5) final reflection.
+How choices compound: Earlier choices become evidence for values, not a moral ranking.
+Possible endings: Cash Protector, Trust Builder, Option Keeper, Recovery Navigator.
+
+⸻
+
+4. Fresh Scenario Bank
+
+1. data-cap-countdown — “83% Used” — Age 13–15 — Topics: usage caps, alerts, percentages — [NEW, MT, L, M, FF]
+
+Prompt: Your fictional shared data plan is 83% used with 5 days left. Going over the cap costs $12, but turning on low-data mode makes videos and maps slower.
+
+Choices:
+
+* A. Turn on low-data mode. Req: none. Outcome/effects: Overage risk drops; convenience drops. Feedback: “83% used means only 17% remains.” Reflect: “When is slower service worth avoiding a fee?”
+* B. Keep normal use. Req: none. Outcome/effects: Convenience stays high; fee risk rises. Feedback: “A cap is a limit, not a suggestion.” Reflect: “What would warn you before 100%?”
+* C. Set a 90% alert. Req: locked unless Discipline ≥ 35. Outcome/effects: Future cap choices improve. Feedback: “An alert turns a memory task into a system.” Reflect: “What reminder would actually help?”
+
+Randomized outcome? No.
+Future flag set? Yes: usesCapAlerts.
+Glossary terms: Cap — a maximum allowed amount; Overage fee — extra charge for passing a limit; Percent remaining — the part left out of 100.
+Tradeoff note: Low-data mode saves money risk but costs comfort and convenience.
+
+2. paystub-missing-hour — “One Hour Short” — Age 16–18 — Topics: pay stub, gross pay, records — [NEW, MT, L, M, SC, FF, EXT]
+
+Prompt: Your pay stub shows 7 hours, but your schedule says you worked 8. At $11.50/hour, one missing hour matters.
+
+Choices:
+
+* A. Politely ask with your schedule record. Req: locked unless recordTokens.scheduleSaved. Outcome/effects: Possible correction; confidence rises. Feedback: “A clear record makes the question easier.” Reflect: “How did proof change the conversation?”
+* B. Ignore it because it feels awkward. Req: none. Outcome/effects: No conflict; possible lost pay. Feedback: “Avoiding awkwardness can have a money cost.” Reflect: “What sentence could make it easier?”
+* C. Ask a mentor to practice the message. Req: supportCircle.mentor. Outcome/effects: Opportunity and confidence rise. Feedback: “Practice can turn a complaint into a calm question.” Reflect: “What wording sounded respectful?”
+
+Randomized outcome? Yes.
+Future flag set? Yes: checksPayStubs.
+Glossary terms: Pay stub — record showing pay and deductions; Gross pay — earnings before deductions; Record — saved proof of what happened.
+Tradeoff note: Speaking up can feel uncomfortable, but polite correction is a workplace skill.
+
+3. hoodie-preorder-minimum — “The Preorder Minimum” — Age 13–15 — Topics: group purchase, deposits, fair split — [NEW, MT, M, SC, FF]
+
+Prompt: A club hoodie order needs at least 12 buyers. Ten people are ready now, and each hoodie would be $18 if the order happens.
+
+Choices:
+
+* A. Wait for 12 confirmed buyers. Req: none. Outcome/effects: Lower risk; order delayed. Feedback: “10 × $18 = $180 collected, but the order needs 12 buyers.” Reflect: “What does confirmed mean?”
+* B. Let two people promise to pay later. Req: supportCircle.friend. Outcome/effects: Order moves faster; collection risk rises. Feedback: “Promises help, but records protect the group.” Reflect: “What rule keeps this fair?”
+* C. Choose a smaller design with no minimum. Req: none. Outcome/effects: Less risk; design quality may drop. Feedback: “A lower-risk option may have fewer features.” Reflect: “What mattered more: speed, design, or certainty?”
+
+Randomized outcome? No.
+Future flag set? Yes: usesConfirmedOrders.
+Glossary terms: Preorder — ordering before items are made; Minimum order — smallest number needed; Confirmed buyer — someone who has agreed clearly and paid or committed.
+Tradeoff note: Waiting protects money, but it can reduce excitement and momentum.
+
+4. return-label-timer — “The Label Expires Friday” — Age 14–17 — Topics: returns, shipping, deadlines — [NEW, MT, R, M]
+
+Prompt: You have a return label for an item that cost $31. The label expires Friday, and return shipping will subtract $4.75 from the refund.
+
+Choices:
+
+* A. Ship it today. Req: none. Outcome/effects: Refund likely; time spent now. Feedback: “$31 − $4.75 = $26.25 recovered.” Reflect: “Was recovering $26.25 worth the errand?”
+* B. Wait until Friday. Req: none. Outcome/effects: Time saved now; randomized missed-deadline risk. Feedback: “A deadline makes waiting risky.” Reflect: “What could interrupt your plan?”
+* C. Keep it and use it another way. Req: none. Outcome/effects: No cash recovered; useful value may remain. Feedback: “Not every return is worth the cost.” Reflect: “What value does it still have?”
+
+Randomized outcome? Yes.
+Future flag set? No.
+Glossary terms: Refund — money returned after a valid return; Return shipping — cost to send something back; Deadline — last time to act.
+Tradeoff note: Recovering money takes time, and sometimes the refund after fees is smaller than expected.
+
+5. backpack-warranty-choice — “Warranty or Repair Fund?” — Age 12–14 — Topics: warranty, asset, self-insure — [NEW, MT, M, AN, FF]
+
+Prompt: A sturdy backpack costs $47. A one-year warranty adds $8, but basic repairs usually cost about $6–$12.
+
+Choices:
+
+* A. Buy the warranty. Req: cash ≥ $55. Outcome/effects: More protection; cash drops. Feedback: “$47 + $8 = $55 upfront.” Reflect: “What problem are you paying to avoid?”
+* B. Skip warranty and save $8. Req: none. Outcome/effects: More cash now; repair risk stays yours. Feedback: “Saving the $8 is like self-insuring a small risk.” Reflect: “Could you handle a $12 repair?”
+* C. Ask caregiver/mentor how long similar backpacks lasted. Req: supportCircle.family or supportCircle.mentor. Outcome/effects: Money knowledge rises. Feedback: “Experience can improve an estimate.” Reflect: “What information changed the choice?”
+
+Randomized outcome? No.
+Future flag set? Yes: comparesWarrantyToRepair.
+Glossary terms: Warranty — promise to fix or replace under rules; Self-insure — use your own savings for small risks; Asset — something useful or owned with value.
+Tradeoff note: A warranty is not automatically wasteful or wise; it depends on risk and cash cushion.
+
+6. calendar-app-upsell — “The Organizer Upgrade” — Age 13–16 — Topics: recurring costs, productivity, privacy — [NEW, MT, M]
+
+Prompt: A fictional organizer app is free with basic reminders. The upgrade is $2.83/month and adds color labels and automatic templates.
+
+Choices:
+
+* A. Use the free version. Req: none. Outcome/effects: Cash protected; fewer features. Feedback: “Free works if the basic tool solves the problem.” Reflect: “Which feature did you actually need?”
+* B. Pay for one year. Req: cash flow can cover recurring cost. Outcome/effects: Better organization; annual cost $33.96. Feedback: “$2.83 × 12 = $33.96.” Reflect: “Would the features save enough time?”
+* C. Use paper or school planner. Req: Discipline ≥ 30. Outcome/effects: No app cost; more manual effort. Feedback: “A low-tech system can be strong if used consistently.” Reflect: “What system would you keep using?”
+
+Randomized outcome? No.
+Future flag set? No.
+Glossary terms: Recurring cost — cost that repeats; Annual cost — yearly total; Productivity tool — system that helps organize tasks.
+Tradeoff note: Paying for organization can help, but only if the features change behavior.
+
+7. late-fee-amnesty-day — “Fee Amnesty Day” — Age 12–14 — Topics: borrowing, fees, recovery — [NEW, MT, FF]
+
+Prompt: A community library announces one fee-amnesty day for overdue items. Returning late items then clears the fictional fee, but you need to find the item.
+
+Choices:
+
+* A. Search and return it on amnesty day. Req: none. Outcome/effects: Fee cleared; discipline rises. Feedback: “Recovery opportunities still require action.” Reflect: “What made recovery possible?”
+* B. Pay the fee now. Req: cash ≥ fee. Outcome/effects: Problem solved immediately; cash drops. Feedback: “Paying is simple if the amount is manageable.” Reflect: “When is paying faster worth it?”
+* C. Ask family/caregiver to help look. Req: supportCircle.family. Outcome/effects: Support rises; time cost shared. Feedback: “Help can reduce stress without changing the rule.” Reflect: “How did support affect the outcome?”
+
+Randomized outcome? No.
+Future flag set? Yes: usesRecoveryOpportunities.
+Glossary terms: Late fee — charge for missing a due date; Amnesty — temporary chance to fix something with reduced penalty; Borrowing — using something temporarily under rules.
+Tradeoff note: Paying, searching, and asking for help are all reasonable depending on time and stress.
+
+8. friend-plan-b-cost — “Plan B Costs $19 More” — Age 13–16 — Topics: peer pressure, budget cap, opportunity cost — [NEW, MT, M, SC]
+
+Prompt: Your friends’ low-cost plan is full, so the backup plan costs $19 more. You like the group, but you had a spending cap.
+
+Choices:
+
+* A. Say your cap and suggest a different time. Req: none. Outcome/effects: Cash protected; social courage rises. Feedback: “A clear cap gives people a real number.” Reflect: “How can a boundary still be friendly?”
+* B. Pay the extra $19. Req: cash ≥ extra cost. Outcome/effects: Social time now; savings lower. Feedback: “The extra cost is the price of staying with this plan.” Reflect: “Was the social value worth it?”
+* C. Ask a friend to help brainstorm a cheaper backup. Req: supportCircle.friend. Outcome/effects: Friendship support and problem-solving rise. Feedback: “A friend can help make the budget normal, not awkward.” Reflect: “What made the cheaper plan work?”
+
+Randomized outcome? No.
+Future flag set? No.
+Glossary terms: Spending cap — maximum planned amount; Opportunity cost — what you give up; Backup plan — second option if the first does not work.
+Tradeoff note: Social connection matters; the skill is naming the money limit before it becomes pressure.
+
+9. equipment-swap-condition — “The Equipment Swap” — Age 12–15 — Topics: asset condition, shared resources, trust — [NEW, MT, R, SC, AN, FF]
+
+Prompt: A friend offers to swap sports gear for a week. Your item is in better condition, but their item would help with practice.
+
+Choices:
+
+* A. Swap with a written condition note. Req: supportCircle.friend. Outcome/effects: Practice improves; trust protected. Feedback: “A condition note reduces confusion later.” Reflect: “Why can a note protect a friendship?”
+* B. Swap with no note. Req: none. Outcome/effects: Fast; randomized disagreement risk. Feedback: “Trust matters, but memory can be fuzzy.” Reflect: “What could both people forget?”
+* C. Do not swap. Req: none. Outcome/effects: Asset protected; practice opportunity lower. Feedback: “Keeping control can be reasonable.” Reflect: “What was the cost of saying no?”
+
+Randomized outcome? Yes.
+Future flag set? Yes: usesConditionNotes.
+Glossary terms: Condition — state of an item; Asset — useful or owned item; Shared resource — item used by more than one person.
+Tradeoff note: Sharing can create access, but clear rules protect both people.
+
+10. skill-refresh-badge — “The Skill Update” — Age 15–18 — Topics: career, human capital, renewal — [NEW, MT, L, EXT, AN, FF]
+
+Prompt: A digital design tool changes. Your older skill badge still helps, but a $23 refresher could make your portfolio stronger.
+
+Choices:
+
+* A. Take the refresher. Req: cash ≥ $23 and Discipline ≥ 45. Outcome/effects: Opportunity rises; cash drops. Feedback: “Skills can be assets that need updates.” Reflect: “What future option did this protect?”
+* B. Wait until a project requires it. Req: none. Outcome/effects: Cash protected; possible future catch-up. Feedback: “Waiting can be smart if timing is uncertain.” Reflect: “What signal would tell you it is time?”
+* C. Ask mentor which skill matters most. Req: supportCircle.mentor. Outcome/effects: Better targeting; support rises. Feedback: “Good advice can prevent paying for the wrong upgrade.” Reflect: “What changed after asking?”
+
+Randomized outcome? No.
+Future flag set? Yes: refreshesSkills.
+Glossary terms: Human capital — skills and knowledge that create opportunity; Refresher — short update to keep a skill current; Portfolio — collection of work samples.
+Tradeoff note: Updating skills early helps opportunity, but paying too early can waste money.
+
+11. tip-jar-slow-shift — “The Slow Shift” — Age 16–18 — Topics: variable income, tips, budgeting — [NEW, MT, R, M, EXT, FF]
+
+Prompt: Your shift usually brings about $18 in tips, but tonight could be slow. You are planning transportation money for tomorrow.
+
+Choices:
+
+* A. Budget using the low estimate: $8. Req: none. Outcome/effects: Safer plan; less spending tonight. Feedback: “A low estimate protects tomorrow’s ride.” Reflect: “Why budget from a lower number?”
+* B. Budget using the usual $18. Req: none. Outcome/effects: More flexible; randomized shortfall risk. Feedback: “Usual is not guaranteed with variable income.” Reflect: “What happens if usual does not happen?”
+* C. Ask manager/coworker about typical slow nights. Req: workplace trust ≥ 40. Outcome/effects: Forecast improves. Feedback: “Better information can beat guessing.” Reflect: “What pattern did you learn?”
+
+Randomized outcome? Yes.
+Future flag set? Yes: budgetsVariableIncome.
+Glossary terms: Variable income — income that changes; Estimate — reasonable guess; Conservative budget — plan that uses a safer lower number.
+Tradeoff note: Budgeting low can feel limiting, but it reduces surprise.
+
+12. cash-tip-records — “The Tip Envelope Record” — Age 16–18 — Topics: income records, taxes, side ledger — [NEW, MT, L, M, EXT, FF]
+
+Prompt: You earned $37 in cash tips this week in the simplified model. You can spend it, record it, or split it into categories.
+
+Choices:
+
+* A. Record it before spending. Req: none. Outcome/effects: Money knowledge rises; tax-time confusion drops. Feedback: “Records help when income is not on a card.” Reflect: “What would future-you need to know?”
+* B. Split 20% into a tax/records pocket. Req: Money Know-How ≥ 45. Outcome/effects: $7.40 set aside; cash to spend drops. Feedback: “20% of $37 is $7.40.” Reflect: “How did percent help you prepare?”
+* C. Spend it as bonus money. Req: none. Outcome/effects: Wellbeing may rise; future record gap. Feedback: “Cash feels flexible, but it still counts in a plan.” Reflect: “What made it feel different from paycheck money?”
+
+Randomized outcome? No.
+Future flag set? Yes: keepsCashIncomeRecords.
+Glossary terms: Cash income — money received as cash; Tax set-aside — money saved for possible taxes; Recordkeeping — tracking money facts.
+Tradeoff note: Spending cash is tempting because it feels separate, but records make it less mysterious later.
+
+13. split-paycheck-rule — “The 70/20/10 Paycheck Split” — Age 16–18 — Topics: net pay, saving, percentages — [NEW, MT, M, EXT, FF]
+
+Prompt: Your fictional net paycheck is $83. You want a simple split: spend, save, and transport.
+
+Choices:
+
+* A. Use 70/20/10. Req: none. Outcome/effects: Spend $58.10, save $16.60, transport $8.30. Feedback: “The parts add back to $83.” Reflect: “Which category felt too small?”
+* B. Save-first: 50/40/10. Req: Discipline ≥ 40. Outcome/effects: Savings rises faster; spending tighter. Feedback: “40% of $83 is $33.20.” Reflect: “What goal made that worth it?”
+* C. Choose custom split. Req: Money Know-How ≥ 50. Outcome/effects: More control; must total 100%. Feedback: “A custom rule needs a math check.” Reflect: “How did you check the total?”
+
+Randomized outcome? No.
+Future flag set? Yes: usesPaycheckSplit.
+Glossary terms: Net pay — take-home pay; Percentage split — dividing money by percent; Savings rule — repeatable plan for setting money aside.
+Tradeoff note: A strict split helps habits, but real weeks may require flexibility.
+
+14. no-fee-account-switch — “The Account With Fewer Surprises” — Age 16–18 — Topics: banking, fees, account comparison — [NEW, MT, L, EXT, FF]
+
+Prompt: Your fictional checking account charges $5/month unless you meet a balance rule. Another account has no monthly fee but fewer ATM options.
+
+Choices:
+
+* A. Keep current account and monitor balance. Req: hasChecking. Outcome/effects: Features stay; discipline needed. Feedback: “A fee waiver only helps if you can meet the rule.” Reflect: “Can your habits carry this account?”
+* B. Switch to no-monthly-fee account. Req: Money Know-How ≥ 45. Outcome/effects: Fee risk drops; ATM convenience drops. Feedback: “Fewer features can still be a better fit.” Reflect: “Which feature mattered most?”
+* C. Ask caregiver/mentor to compare terms. Req: supportCircle.family or supportCircle.mentor. Outcome/effects: Knowledge and support rise. Feedback: “Account terms are easier with a second reader.” Reflect: “What fee did you notice?”
+
+Randomized outcome? No.
+Future flag set? Yes: comparesAccountTerms.
+Glossary terms: Monthly fee — repeated account charge; Fee waiver — rule that cancels a fee; Account terms — rules for using an account.
+Tradeoff note: The best account is the one that fits actual behavior, not the one with the most features.
+
+15. maintenance-log-wins — “The Repair Log” — Age 13–17 — Topics: maintenance, asset value, records — [NEW, R, AN, FF]
+
+Prompt: Your used laptop works, but the battery is aging. You can keep a maintenance log before a possible resale or repair.
+
+Choices:
+
+* A. Keep the log. Req: none. Outcome/effects: Resale/repair clarity improves. Feedback: “Maintenance records can support value.” Reflect: “What would a buyer or repair person want to know?”
+* B. Skip the log. Req: none. Outcome/effects: Less effort; randomized confusion later. Feedback: “Skipping records saves time until a question appears.” Reflect: “What might you forget?”
+* C. Ask mentor to check repair vs. replace timing. Req: supportCircle.mentor. Outcome/effects: Better planning; opportunity rises. Feedback: “A second opinion can slow down an expensive replacement.” Reflect: “What information was missing?”
+
+Randomized outcome? Yes.
+Future flag set? Yes: tracksAssetMaintenance.
+Glossary terms: Maintenance — care that keeps something useful; Resale value — what it might sell for; Repair log — record of fixes and condition.
+Tradeoff note: Records take effort, but they can protect value later.
+
+16. password-manager-share — “The Family Safety Plan” — Age 13–17 — Topics: cybersecurity, recurring costs, support — [NEW, MT, M, SC, FF]
+
+Prompt: A fictional password manager has a free version and a shared plan for $2.25/month. A caregiver asks whether the shared plan is worth it.
+
+Choices:
+
+* A. Use free version individually. Req: none. Outcome/effects: Cash protected; coordination lower. Feedback: “Free can be enough if habits are strong.” Reflect: “What habit matters most?”
+* B. Use shared plan. Req: supportCircle.family. Outcome/effects: Safety routine improves; annual cost $27. Feedback: “$2.25 × 12 = $27.” Reflect: “What did the cost protect?”
+* C. Build a manual password routine. Req: Discipline ≥ 50. Outcome/effects: No recurring cost; effort rises. Feedback: “Manual safety can work when it is consistent.” Reflect: “Would you maintain it?”
+
+Randomized outcome? No.
+Future flag set? Yes: usesPasswordRoutine.
+Glossary terms: Password manager — tool for storing strong passwords; Recurring cost — cost that repeats; Cybersecurity — habits that protect digital accounts.
+Tradeoff note: Safety tools can cost money, but free routines can also work if maintained.
+
+17. recovery-email-copycat — “The Fake Recovery Email” — Age 14–18 — Topics: scams, account recovery, source check — [NEW, R, EXT, FF]
+
+Prompt: After a password reset, an email says, “Confirm your recovery code now.” It looks official, but the sender address has extra letters.
+
+Choices:
+
+* A. Open the real account site separately. Req: none. Outcome/effects: Safety rises; scam avoided. Feedback: “Going through a known route is safer than clicking.” Reflect: “What detail made you pause?”
+* B. Click the email link. Req: none. Outcome/effects: Randomized account-risk event. Feedback: “A recovery message can be fake even when timing feels real.” Reflect: “Why did timing make it believable?”
+* C. Ask mentor/caregiver to check sender details. Req: supportCircle.mentor or supportCircle.family. Outcome/effects: Support and safety rise. Feedback: “A second reader can spot small differences.” Reflect: “What did they notice?”
+
+Randomized outcome? Yes.
+Future flag set? Yes: verifiesRecoveryMessages.
+Glossary terms: Account recovery — steps to regain account access; Sender address — where a message came from; Scam — trick meant to steal money or information.
+Tradeoff note: Clicking is faster, but a safe route protects accounts.
+
+18. fan-club-impostor — “The Fake Fan Club Invite” — Age 13–16 — Topics: impostor scams, fees, verification — [NEW, R, FF]
+
+Prompt: A message says a fan club selected you for early access if you pay a $6 “processing fee.” The group name is close to the real one but not exact.
+
+Choices:
+
+* A. Search the official site first. Req: none. Outcome/effects: Safety rises; possible fake caught. Feedback: “Close names are a warning sign.” Reflect: “What proved it was real or fake?”
+* B. Pay the small fee. Req: cash ≥ $6. Outcome/effects: Randomized loss/data risk. Feedback: “Small fees are often used to lower your guard.” Reflect: “Why did $6 feel safe?”
+* C. Ignore it. Req: none. Outcome/effects: No risk; possible real offer missed. Feedback: “Ignoring suspicious offers can be reasonable.” Reflect: “What source would change your mind?”
+
+Randomized outcome? Yes.
+Future flag set? Yes: checksImpostorNames.
+Glossary terms: Impostor scam — fake person or group pretending to be trusted; Processing fee — charge claimed for handling something; Verification — checking through a reliable source.
+Tradeoff note: Some offers are real, but the safest action is verifying before paying.
+
+19. scholarship-thankyou-note — “The Thank-You Note” — Age 16–18 — Topics: scholarships, relationships, opportunity — [NEW, MT, SC, EXT, FF]
+
+Prompt: A local scholarship committee asks for a short thank-you note after awarding aid. It is not required for the money, but it may build professional trust.
+
+Choices:
+
+* A. Send a thoughtful note. Req: none. Outcome/effects: Opportunity and trust rise. Feedback: “Gratitude can be a professional skill.” Reflect: “What did the note communicate?”
+* B. Skip it because the award is already final. Req: none. Outcome/effects: Time saved; relationship opportunity missed. Feedback: “Skipping may not cost money, but it may miss connection.” Reflect: “When does follow-up matter?”
+* C. Ask mentor to review tone. Req: supportCircle.mentor. Outcome/effects: Writing confidence rises. Feedback: “A mentor can help make it clear and sincere.” Reflect: “What wording improved?”
+
+Randomized outcome? No.
+Future flag set? Yes: usesProfessionalFollowup.
+Glossary terms: Scholarship — aid that usually does not need repayment; Professional trust — confidence built through reliable communication; Opportunity — chance that may help later.
+Tradeoff note: Follow-up may not change today’s cash, but it can strengthen future options.
+
+20. recommendation-deadline — “The Reference Needs Time” — Age 15–18 — Topics: mentor support, deadlines, career/aid — [NEW, MT, L, SC, EXT, FF]
+
+Prompt: A program application needs a recommendation. The mentor asks for at least one week, but the deadline is close.
+
+Choices:
+
+* A. Ask early with details. Req: locked unless deadlineRadarOn. Outcome/effects: Stronger recommendation; opportunity rises. Feedback: “Support works better with time.” Reflect: “What details helped the mentor?”
+* B. Ask the night before. Req: none. Outcome/effects: Possible rushed recommendation; relationship stress. Feedback: “Last-minute support can strain trust.” Reflect: “What made it harder?”
+* C. Choose a program with a later deadline. Req: none. Outcome/effects: Opportunity delayed; quality improves. Feedback: “A later route can be a smarter route.” Reflect: “When is waiting strategic?”
+
+Randomized outcome? No.
+Future flag set? Yes: respectsReferenceTime.
+Glossary terms: Recommendation — supportive statement from someone who knows your work; Deadline — final due date; Application — request to join or receive an opportunity.
+Tradeoff note: Fast applications are not always best if they weaken support quality.
+
+21. practice-interview-fare — “Practice Costs Bus Fare” — Age 15–18 — Topics: interview prep, transportation, opportunity cost — [NEW, MT, M, SC, EXT]
+
+Prompt: A mentor offers mock interview practice across town. Transit costs $2.90 each way, and you have a small budget.
+
+Choices:
+
+* A. Go in person. Req: cash or transit balance ≥ $5.80. Outcome/effects: Opportunity rises; cash drops. Feedback: “$2.90 × 2 = $5.80 round trip.” Reflect: “What did the fare buy?”
+* B. Ask for a video practice. Req: internetReliability ≥ medium. Outcome/effects: Cash saved; practice may feel less real. Feedback: “A lower-cost format can still build skill.” Reflect: “What did you lose by not going in person?”
+* C. Skip practice and prepare alone. Req: none. Outcome/effects: Cash saved; feedback lower. Feedback: “Solo prep helps, but feedback adds perspective.” Reflect: “What feedback would you miss?”
+
+Randomized outcome? No.
+Future flag set? No.
+Glossary terms: Opportunity cost — what you give up; Transportation cost — money spent to get somewhere; Interview — conversation for a role or opportunity.
+Tradeoff note: Spending money to practice can be an investment, but only if the budget can carry it.
+
+22. resume-print-or-pdf — “Print, PDF, or Both?” — Age 15–18 — Topics: career, documents, cost — [NEW, MT, M, EXT, FF]
+
+Prompt: A career fair accepts digital resumes, but printed copies can help. Printing costs $0.17 per page, and you might need 12 copies.
+
+Choices:
+
+* A. Print 12 copies. Req: cash ≥ $2.04. Outcome/effects: Preparedness rises; small cash cost. Feedback: “12 × $0.17 = $2.04.” Reflect: “What did paper copies add?”
+* B. Use PDF only. Req: deviceReliability ≥ medium. Outcome/effects: Cash saved; tech dependency rises. Feedback: “Digital is efficient if access works.” Reflect: “What backup would help?”
+* C. Print 5 copies and bring PDF. Req: none. Outcome/effects: Balanced plan. Feedback: “Hybrid plans protect against two kinds of problems.” Reflect: “Why not choose just one format?”
+
+Randomized outcome? No.
+Future flag set? Yes: preparesCareerDocuments.
+Glossary terms: Resume — summary of skills and experience; Backup — second plan; Cost per page — price for each page printed.
+Tradeoff note: Redundancy can be useful, but it costs money and effort.
+
+23. ai-tool-citation-check — “The AI Tool Said So” — Age 14–18 — Topics: source evaluation, AI literacy, school safety — [NEW, MT, L, EXT, FF]
+
+Prompt: A fictional AI helper suggests a money fact for your project. You need to decide whether to use it as-is, verify it, or ask for help.
+
+Choices:
+
+* A. Verify with an official or teacher-approved source. Req: Money Know-How ≥ 45. Outcome/effects: Safety and quality rise. Feedback: “Helpful output still needs checking.” Reflect: “What source confirmed it?”
+* B. Use it without checking. Req: none. Outcome/effects: Fast; accuracy risk. Feedback: “Fast information can still be wrong.” Reflect: “What made you trust it?”
+* C. Ask teacher/mentor what source counts. Req: supportCircle.mentor or schoolResourceAccess ≥ medium. Outcome/effects: Source skill rises. Feedback: “Knowing what counts as evidence is part of learning.” Reflect: “What standard did you use?”
+
+Randomized outcome? No.
+Future flag set? Yes: verifiesAIClaims.
+Glossary terms: Source — where information comes from; Verification — checking accuracy; Evidence — information that supports a claim.
+Tradeoff note: AI can help brainstorm, but source-checking protects accuracy and originality.
+
+24. uniform-rental-fee — “The Uniform Rental” — Age 16–18 — Topics: job costs, deductions, net pay — [NEW, MT, M, EXT, FF]
+
+Prompt: A job pays $12/hour for 9 hours/week, but a uniform rental costs $7 each paycheck. Pay is every two weeks.
+
+Choices:
+
+* A. Accept and budget for rental. Req: none. Outcome/effects: Income starts; net pay lower. Feedback: “Gross for two weeks is 18 × $12 = $216 before deductions and fees.” Reflect: “What job cost surprised you?”
+* B. Ask if buying used uniform is allowed. Req: Opportunity ≥ 45. Outcome/effects: Possible lower long-term cost. Feedback: “Asking can reveal cheaper routes.” Reflect: “What question saved money?”
+* C. Choose a different job with no uniform fee. Req: alternativeJobAvailable. Outcome/effects: Fee avoided; other tradeoffs appear. Feedback: “No-fee jobs may have different hours or commute.” Reflect: “What changed besides pay?”
+
+Randomized outcome? No.
+Future flag set? Yes: checksJobStartCosts.
+Glossary terms: Job cost — cost needed to work; Deduction — amount taken from pay; Net pay — take-home pay after reductions.
+Tradeoff note: A job’s hourly wage is only part of the comparison.
+
+25. training-location-cost — “The Training Is Across Town” — Age 16–18 — Topics: career training, transportation, total cost — [NEW, MT, M, EXT]
+
+Prompt: A free training workshop could improve your job chances, but getting there costs $3.25 each way for four sessions.
+
+Choices:
+
+* A. Attend all sessions. Req: cash or transit balance ≥ $26. Outcome/effects: Opportunity rises; transport cost appears. Feedback: “$3.25 × 2 × 4 = $26.” Reflect: “Why was free training not totally free?”
+* B. Attend two sessions and use online materials. Req: internetReliability ≥ medium. Outcome/effects: Lower cost; less practice. Feedback: “A blended route cuts cost but may reduce support.” Reflect: “What did in-person time add?”
+* C. Ask mentor about a closer option. Req: supportCircle.mentor. Outcome/effects: Possible better fit; opportunity preserved. Feedback: “Resource-finding is a financial skill.” Reflect: “What did the mentor know?”
+
+Randomized outcome? No.
+Future flag set? No.
+Glossary terms: Total cost — all costs together; Training — learning job skills; Transportation budget — money planned for travel.
+Tradeoff note: Free opportunities can still have time and travel costs.
+
+26. locker-key-replacement — “The Missing Key Fee” — Age 12–14 — Topics: fees, responsibility, recovery — [NEW, MT, R, FF]
+
+Prompt: A school-safe fictional locker key has a $9 replacement fee. You think it might be in your backpack, but you are not sure.
+
+Choices:
+
+* A. Search before paying. Req: none. Outcome/effects: Fee may be avoided; time spent. Feedback: “Searching is a low-cost first step.” Reflect: “When is time worth spending to avoid a fee?”
+* B. Pay replacement fee now. Req: cash ≥ $9. Outcome/effects: Problem solved; cash drops. Feedback: “Paying can be reasonable when time matters.” Reflect: “What did speed cost?”
+* C. Ask caregiver/friend to help retrace steps. Req: supportCircle.family or supportCircle.friend. Outcome/effects: Support rises; randomized find chance improves. Feedback: “Another memory can help retrace a route.” Reflect: “What detail helped?”
+
+Randomized outcome? Yes.
+Future flag set? Yes: retraceBeforeReplacing.
+Glossary terms: Replacement fee — cost to replace a lost item; Recovery — steps to fix a problem; Tradeoff — exchange between two benefits or costs.
+Tradeoff note: Paying quickly is not wrong; searching first may save money if time allows.
+
+27. repair-estimate-before-fix — “Estimate Before Repair” — Age 14–17 — Topics: repair, estimate, assets — [NEW, MT, R, AN, FF]
+
+Prompt: A tablet repair might cost $38–$92. A replacement used tablet costs about $120.
+
+Choices:
+
+* A. Get an estimate first. Req: none. Outcome/effects: Better information; repair delayed. Feedback: “A range shows uncertainty before spending.” Reflect: “What estimate would make repair worth it?”
+* B. Approve repair without estimate. Req: cash ≥ $92. Outcome/effects: Faster; randomized high-cost risk. Feedback: “Speed can trade away price control.” Reflect: “What limit would you set next time?”
+* C. Replace instead. Req: cash ≥ $120. Outcome/effects: Certainty and newer item; more cash used. Feedback: “Replacement can be simpler but may cost more.” Reflect: “What made replacement attractive?”
+
+Randomized outcome? Yes.
+Future flag set? Yes: getsRepairEstimates.
+Glossary terms: Estimate — projected cost; Repair — fixing an item; Replacement cost — cost to get another item.
+Tradeoff note: Repair saves resources when cost is low, but replacement may be reasonable when repair risk is high.
+
+28. instrument-lease-option — “Lease the Instrument?” — Age 12–15 — Topics: lease, ownership, cost per month — [NEW, MT, M, AN]
+
+Prompt: A used instrument costs $165. A school-safe rental is $19/month, and you are unsure whether you will continue after 4 months.
+
+Choices:
+
+* A. Rent for 4 months. Req: cash flow can cover $19/month. Outcome/effects: Lower commitment; total $76. Feedback: “$19 × 4 = $76.” Reflect: “Why can renting reduce risk?”
+* B. Buy used. Req: savings ≥ $165. Outcome/effects: Asset gained; resale possible. Feedback: “Buying costs more now but may hold resale value.” Reflect: “How long would you need to use it?”
+* C. Borrow through school/community program. Req: schoolResourceAccess ≥ medium. Outcome/effects: Cost lower; access rules apply. Feedback: “Access without ownership can be powerful.” Reflect: “What rule would you need to follow?”
+
+Randomized outcome? No.
+Future flag set? No.
+Glossary terms: Lease/rental — pay to use without owning; Ownership — having something as yours; Resale value — possible later sale amount.
+Tradeoff note: Renting can cost more over long periods but protects you if interest changes.
+
+29. rental-application-stack — “Three Application Fees?” — Age adult planning — Topics: housing search, fees, probability — [NEW, MT, L, M, EXT, FF]
+
+Prompt: Three fictional rentals each charge a $28 application fee. Applying to all three raises chances but costs $84.
+
+Choices:
+
+* A. Apply to the best-fit one first. Req: Money Know-How ≥ 45. Outcome/effects: Cash protected; slower search. Feedback: “One fee is $28; three fees are $84.” Reflect: “Why target first?”
+* B. Apply to all three. Req: savings ≥ $84. Outcome/effects: More chances; cash drops. Feedback: “More applications can improve odds but drain move-in money.” Reflect: “What cash do you still need?”
+* C. Wait and improve documents. Req: none. Outcome/effects: Delay; application quality rises. Feedback: “Waiting can be preparation, not failure.” Reflect: “What document would help?”
+
+Randomized outcome? Yes.
+Future flag set? Yes: targetsApplications.
+Glossary terms: Application fee — cost to apply; Probability — chance something happens; Move-in money — upfront cash needed before renting.
+Tradeoff note: Applying broadly may help, but upfront fees can weaken the budget.
+
+30. moving-box-borrow — “Boxes: Buy, Borrow, or Hunt?” — Age adult planning — Topics: moving costs, borrowing, planning — [NEW, MT, M, SC, EXT]
+
+Prompt: Buying moving boxes costs $43. Borrowing reusable bins is free but requires a $20 refundable hold and return by Monday.
+
+Choices:
+
+* A. Buy boxes. Req: cash ≥ $43. Outcome/effects: Simple; cash drops. Feedback: “Buying avoids return rules.” Reflect: “What did simplicity cost?”
+* B. Borrow bins. Req: cash ≥ $20 hold. Outcome/effects: Less total cost if returned; deadline added. Feedback: “Refundable money still leaves your wallet for a while.” Reflect: “How will you remember Monday?”
+* C. Ask friends/family for spare boxes. Req: supportCircle.friend or supportCircle.family. Outcome/effects: Cash saved; coordination effort. Feedback: “Support can replace spending with planning.” Reflect: “Who else was affected?”
+
+Randomized outcome? No.
+Future flag set? No.
+Glossary terms: Refundable hold — money temporarily held; Moving cost — cost of relocating; Coordination — planning with others.
+Tradeoff note: Borrowing can save money, but deadlines and coordination matter.
+
+31. utility-overlap-week — “The Overlap Week” — Age adult planning — Topics: utilities, cash flow, dates — [NEW, MT, M, EXT, FF]
+
+Prompt: Future-you moves on the 24th. Two service accounts overlap for one week, adding an extra $17 charge.
+
+Choices:
+
+* A. Budget for the overlap. Req: cash flow can cover +$17. Outcome/effects: Stress drops; cash tighter. Feedback: “Dates can create costs even when monthly bills look fine.” Reflect: “Why did the calendar matter?”
+* B. Cancel old service early. Req: internetBackupAvailable. Outcome/effects: Cost avoided; access gap risk. Feedback: “Saving money may create an access problem.” Reflect: “What would you lose for that week?”
+* C. Call and ask about prorating. Req: Money Know-How ≥ 45. Outcome/effects: Possible reduced charge. Feedback: “Asking before the bill posts gives more options.” Reflect: “What did you ask?”
+
+Randomized outcome? Yes.
+Future flag set? Yes: checksServiceDates.
+Glossary terms: Prorated — adjusted for part of a time period; Cash flow — money timing; Service overlap — paying for two services at once temporarily.
+Tradeoff note: Calendar details can be small but important.
+
+32. actual-cash-value — “Replacement or Actual Cash?” — Age adult planning — Topics: renter insurance, asset value, depreciation — [NEW, MT, L, M, EXT, AN, FF]
+
+Prompt: A simplified renter policy offers lower premium for actual cash value or higher premium for replacement coverage. Your $400 laptop may be valued lower after wear.
+
+Choices:
+
+* A. Choose lower premium, actual cash value. Req: hasPolicyOptions. Outcome/effects: Monthly cost lower; claim payout may be lower. Feedback: “Depreciation can reduce the amount.” Reflect: “What risk did cheaper premium keep?”
+* B. Choose replacement-style coverage. Req: cash flow can cover higher premium. Outcome/effects: Better claim recovery; monthly cost higher. Feedback: “Higher protection usually costs more.” Reflect: “What would be hard to replace?”
+* C. Build a replacement pocket instead. Req: savings habit ≥ 40. Outcome/effects: Self-protection grows; coverage lower. Feedback: “Savings can carry some risks, but not all.” Reflect: “How big should the pocket be?”
+
+Randomized outcome? No.
+Future flag set? Yes: understandsCoverageValue.
+Glossary terms: Actual cash value — value after wear is considered; Replacement coverage — coverage based on replacing an item; Depreciation — value loss from age or use.
+Tradeoff note: Cheaper coverage can fit tight budgets but may leave a gap after a loss.
+
+33. phone-insurance-cap — “The Payout Limit” — Age 14–17 — Topics: insurance, limits, asset value — [NEW, MT, M, AN, FF]
+
+Prompt: Phone protection costs $6/month and has a $50 deductible, but the payout limit is $180. Your used phone is worth about $210.
+
+Choices:
+
+* A. Keep the plan. Req: cash flow can cover $6/month. Outcome/effects: Some protection; not full replacement. Feedback: “A limit means coverage may not pay everything.” Reflect: “What gap remains?”
+* B. Cancel and save $6/month. Req: Discipline ≥ 35. Outcome/effects: Savings pocket grows; risk stays with you. Feedback: “$6 × 10 months = $60 saved.” Reflect: “Would you keep the pocket untouched?”
+* C. Compare repair shops first. Req: Money Know-How ≥ 45. Outcome/effects: Better repair plan; choice delayed. Feedback: “Repair cost can change the insurance decision.” Reflect: “What number mattered most?”
+
+Randomized outcome? No.
+Future flag set? Yes: checksCoverageLimits.
+Glossary terms: Payout limit — maximum coverage pays; Deductible — amount you pay before coverage helps; Premium — regular cost for coverage.
+Tradeoff note: Insurance can help but may not cover the full value.
+
+34. high-deductible-choice — “Low Premium, Big Deductible” — Age adult planning — Topics: insurance, deductibles, risk — [NEW, MT, M, EXT, FF]
+
+Prompt: One policy costs $18/month with a $500 deductible. Another costs $29/month with a $250 deductible.
+
+Choices:
+
+* A. Choose lower premium. Req: savings ≥ $500. Outcome/effects: Monthly cash improves; big claim cash needed. Feedback: “Lower premium works better if you can carry the deductible.” Reflect: “Could you pay $500?”
+* B. Choose lower deductible. Req: cash flow can cover $29/month. Outcome/effects: Monthly cost higher; claim cash need lower. Feedback: “$29 − $18 = $11 more each month.” Reflect: “What did $11/month buy?”
+* C. Delay and build deductible pocket first. Req: none. Outcome/effects: Preparedness rises; coverage delayed. Feedback: “Sequencing can reduce stress.” Reflect: “What order makes sense?”
+
+Randomized outcome? No.
+Future flag set? Yes: matchesDeductibleToSavings.
+Glossary terms: Deductible — amount paid before insurance helps; Premium — regular policy cost; Risk — chance of unwanted cost.
+Tradeoff note: Low monthly cost can be risky if the deductible is too high for your savings.
+
+35. credit-report-error — “That Account Is Not Mine” — Age 17–adult planning — Topics: credit reports, disputes, documentation — [NEW, MT, L, EXT, FF]
+
+Prompt: A simplified credit report shows an account you do not recognize. It may be a mix-up, not a scam.
+
+Choices:
+
+* A. Dispute with saved records. Req: locked unless recordTokens.identityCheckSaved. Outcome/effects: Correction chance rises; safety improves. Feedback: “Clear records make correction easier.” Reflect: “What proof helped?”
+* B. Ignore because the score still looks okay. Req: none. Outcome/effects: Faster now; future application risk. Feedback: “Errors can matter later even if they seem small.” Reflect: “When might this appear again?”
+* C. Ask a trusted adult/mentor to review steps. Req: supportCircle.mentor or supportCircle.family. Outcome/effects: Confidence and safety rise. Feedback: “Credit reports can be confusing; help is normal.” Reflect: “What step came first?”
+
+Randomized outcome? Yes.
+Future flag set? Yes: disputesCreditError.
+Glossary terms: Credit report — record of credit activity; Dispute — request to correct an error; Credit score — number estimating repayment likelihood in a simplified model.
+Tradeoff note: Fixing errors takes time, but waiting can make future choices harder.
+
+36. credit-freeze-unfreeze — “Frozen at the Wrong Time?” — Age 17–adult planning — Topics: credit freeze, applications, timing — [NEW, MT, L, EXT, FF]
+
+Prompt: You froze your credit in a safety lesson. Now a fictional apartment application needs a credit check.
+
+Choices:
+
+* A. Temporarily unfreeze before applying. Req: locked unless hasCreditFreeze. Outcome/effects: Application works; safety routine stays controlled. Feedback: “A freeze can be lifted when needed.” Reflect: “How did timing matter?”
+* B. Leave frozen and apply anyway. Req: none. Outcome/effects: Safety stays high; application delay risk. Feedback: “Protection can create friction.” Reflect: “What did the freeze protect?”
+* C. Ask the application office what they need. Req: Money Know-How ≥ 45. Outcome/effects: Information improves. Feedback: “Rules are easier when you ask before acting.” Reflect: “What did you learn?”
+
+Randomized outcome? No.
+Future flag set? Yes: managesCreditFreezeTiming.
+Glossary terms: Credit freeze — block on new credit checks; Credit check — review of credit information; Application delay — waiting caused by missing steps.
+Tradeoff note: Strong protection can be good, but it must be managed around applications.
+
+37. authorized-user-invite — “Added to an Account?” — Age 16–18 — Topics: credit, relationships, trust — [NEW, MT, L, SC, EXT, FF]
+
+Prompt: A caregiver offers to add future-you as an authorized user on a well-managed account in the simplified model. You would not control the whole account.
+
+Choices:
+
+* A. Accept after discussing rules. Req: supportCircle.family and trust ≥ 65. Outcome/effects: Credit learning may improve; relationship responsibility rises. Feedback: “Shared credit requires clear rules.” Reflect: “What rule protects both people?”
+* B. Decline for now. Req: none. Outcome/effects: Credit growth slower; independence preserved. Feedback: “Saying no can be responsible.” Reflect: “What made waiting safer?”
+* C. Ask mentor to explain risks. Req: supportCircle.mentor. Outcome/effects: Money knowledge rises. Feedback: “Understanding the role matters before joining.” Reflect: “What risk surprised you?”
+
+Randomized outcome? No.
+Future flag set? Yes: understandsAuthorizedUser.
+Glossary terms: Authorized user — person allowed on another account; Credit history — record of credit use; Shared responsibility — choices affect more than one person.
+Tradeoff note: Credit support can help, but relationship clarity matters.
+
+38. minimum-payment-drag — “The Balance That Hangs Around” — Age 17–adult planning — Topics: credit, interest, minimum payments — [NEW, MT, M, EXT, FF]
+
+Prompt: A $120 balance has a $15 minimum payment. Paying only the minimum keeps more cash now but may add interest in the simplified model.
+
+Choices:
+
+* A. Pay $15 minimum. Req: cash ≥ $15. Outcome/effects: Cash preserved; debt lasts longer. Feedback: “Minimum means allowed, not cheapest.” Reflect: “What did you protect today?”
+* B. Pay $60. Req: cash ≥ $60. Outcome/effects: Balance drops faster; cash tighter. Feedback: “$120 − $60 = $60 remaining before interest.” Reflect: “What did a bigger payment change?”
+* C. Use savings to pay in full. Req: savings ≥ $120. Outcome/effects: Debt gone; savings lower. Feedback: “Paying in full avoids carrying the balance, but lowers cushion.” Reflect: “How much cushion remains?”
+
+Randomized outcome? No.
+Future flag set? Yes: understandsMinimumPaymentDrag.
+Glossary terms: Minimum payment — smallest required payment; Interest — cost of borrowing; Balance — amount owed or available.
+Tradeoff note: Paying more reduces debt, but cash cushion still matters.
+
+39. course-laptop-loan — “Loan Term See-Saw” — Age 16–18 — Topics: loans, term, total repayment — [NEW, MT, M, EXT]
+
+Prompt: A course laptop can be paid as $28/month for 6 months or $17/month for 12 months. Both fit the monthly budget differently.
+
+Choices:
+
+* A. Six-month plan. Req: cash flow can cover $28/month. Outcome/effects: Higher monthly payment; total $168. Feedback: “$28 × 6 = $168.” Reflect: “What made the higher payment manageable?”
+* B. Twelve-month plan. Req: cash flow can cover $17/month. Outcome/effects: Lower monthly stress; total $204. Feedback: “$17 × 12 = $204.” Reflect: “Why did cheaper monthly cost more total?”
+* C. Wait and save half upfront. Req: Discipline ≥ 45. Outcome/effects: Delay; borrowing need drops. Feedback: “Saving first can shrink the commitment.” Reflect: “What did waiting make possible?”
+
+Randomized outcome? No.
+Future flag set? No.
+Glossary terms: Loan term — length of repayment; Monthly payment — amount due each month; Total repayment — all payments added together.
+Tradeoff note: Lower monthly payments can help cash flow but may increase total cost.
+
+40. apprentice-tool-grant — “Grant, Loan, or Used Tools?” — Age 16–18 — Topics: apprenticeship, aid, tools — [NEW, MT, L, EXT, AN, FF]
+
+Prompt: A starter tool kit costs $133. A small workforce grant might cover $80 if you apply by the deadline.
+
+Choices:
+
+* A. Apply for the grant. Req: deadlineRadarOn. Outcome/effects: Cost may drop; paperwork time. Feedback: “Aid often has rules and deadlines.” Reflect: “What made the application worth it?”
+* B. Borrow or buy used tools. Req: supportCircle.mentor or communityProgramAccess ≥ medium. Outcome/effects: Lower cost; condition varies. Feedback: “Used tools can work if condition is checked.” Reflect: “How would you check quality?”
+* C. Take a small loan for the kit. Req: Money Know-How ≥ 50. Outcome/effects: Tools gained; debt added. Feedback: “Borrowing can start a pathway but creates repayment.” Reflect: “What income will repay it?”
+
+Randomized outcome? Yes.
+Future flag set? Yes: comparesTrainingAid.
+Glossary terms: Grant — aid that usually does not need repayment if rules are met; Tool kit — work asset; Loan — borrowed money to repay.
+Tradeoff note: Access to tools can open opportunity, but the funding route changes risk.
+
+41. workstudy-location-choice — “The Work-Study Job Is Farther” — Age 16–18 — Topics: work-study, transportation, schedule — [NEW, MT, M, EXT, FF]
+
+Prompt: A fictional work-study job pays $14/hour for 5 hours/week, but travel adds $6/week and 80 minutes.
+
+Choices:
+
+* A. Take the work-study job. Req: aidOfferIncludesWorkStudy. Outcome/effects: Earned aid grows; travel cost/time. Feedback: “Gross weekly pay is $70 before costs.” Reflect: “What did travel subtract?”
+* B. Choose closer non-work-study job. Req: nearbyJobAvailable. Outcome/effects: Less travel; aid benefit unused. Feedback: “Closer can be better even with different pay.” Reflect: “What did time save?”
+* C. Ask aid office/mentor about alternatives. Req: supportCircle.mentor or schoolResourceAccess ≥ medium. Outcome/effects: Options improve. Feedback: “Asking can reveal jobs you did not see.” Reflect: “What changed after asking?”
+
+Randomized outcome? No.
+Future flag set? Yes: comparesWorkStudyFit.
+Glossary terms: Work-study — aid earned through approved work; Gross pay — pay before deductions/costs; Travel cost — money/time spent getting there.
+Tradeoff note: Earned aid is useful only if the schedule and travel work.
+
+42. aid-help-night — “Aid Help Night Without Private Details” — Age 16–18 — Topics: FAFSA concepts, privacy, support — [NEW, MT, SC, EXT, FF]
+
+Prompt: A school hosts a fictional aid-info night. The game does not ask for real family income or personal details; it only teaches categories.
+
+Choices:
+
+* A. Attend and learn categories. Req: none. Outcome/effects: Money knowledge rises. Feedback: “Understanding types of aid helps without entering private data.” Reflect: “Which type must be repaid?”
+* B. Skip and read a short guide later. Req: Discipline ≥ 35. Outcome/effects: Flexible timing; less chance to ask questions. Feedback: “Self-study works if you actually do it.” Reflect: “What question remains?”
+* C. Bring a caregiver/mentor. Req: supportCircle.family or supportCircle.mentor. Outcome/effects: Support and planning rise. Feedback: “Shared understanding can reduce confusion.” Reflect: “What did support clarify?”
+
+Randomized outcome? No.
+Future flag set? Yes: learnsAidCategoriesNoPII.
+Glossary terms: FAFSA — form used for federal student aid; Aid category — type of financial help; Private information — personal details the game should not collect.
+Tradeoff note: Learning aid concepts is valuable, but the game must never ask students to enter sensitive real information.
+
+43. meal-batch-cost — “Four Lunches From One Batch” — Age 13–16 — Topics: budgeting, cost per serving, time — [NEW, MT, M]
+
+Prompt: Making four lunches costs $18.60 and takes one hour. Buying lunch each day is $6.25.
+
+Choices:
+
+* A. Batch cook. Req: timeAvailable ≥ 60 minutes. Outcome/effects: Cash saved; time spent. Feedback: “$18.60 ÷ 4 = $4.65 per lunch.” Reflect: “Was the hour worth the savings?”
+* B. Buy lunch daily. Req: cash flow can cover $25/week. Outcome/effects: Convenience rises; total $25. Feedback: “$6.25 × 4 = $25.” Reflect: “What did convenience cost?”
+* C. Batch two lunches and buy two. Req: none. Outcome/effects: Balanced plan. Feedback: “Mixed plans can reduce extremes.” Reflect: “What did partial planning solve?”
+
+Randomized outcome? No.
+Future flag set? No.
+Glossary terms: Cost per serving — total cost divided by servings; Convenience cost — extra paid to save time; Budget — plan for money.
+Tradeoff note: Time, energy, and money all count.
+
+44. free-delivery-threshold — “Free Delivery Needs $14 More” — Age 13–16 — Topics: online shopping, fees, thresholds — [NEW, MT, M]
+
+Prompt: Your cart is $31, and delivery is $5. The site offers free delivery at $45.
+
+Choices:
+
+* A. Pay the $5 delivery. Req: cash ≥ $36. Outcome/effects: Total $36; no extra item. Feedback: “$31 + $5 = $36.” Reflect: “Why might paying the fee be cheaper?”
+* B. Add $14 of items for free delivery. Req: cash ≥ $45. Outcome/effects: More items; total $45. Feedback: “Free delivery still costs $9 more than paying the fee.” Reflect: “Did the word free change your thinking?”
+* C. Wait for pickup or combine with planned purchase. Req: Discipline ≥ 35. Outcome/effects: Delay; possible better total. Feedback: “Waiting can turn a threshold into a real need.” Reflect: “What item would be planned?”
+
+Randomized outcome? No.
+Future flag set? No.
+Glossary terms: Threshold — point where a rule starts; Delivery fee — cost to bring an order; Total cost — full amount paid.
+Tradeoff note: Free shipping can be a good deal only if the extra items were already needed.
+
+45. service-fee-checkout — “The Fee Appears at Checkout” — Age 14–18 — Topics: service fees, total cost, consumer skills — [NEW, MT, M, FF]
+
+Prompt: A ticket-like activity costs $22, but checkout adds a 12% service fee and $2 processing fee.
+
+Choices:
+
+* A. Calculate before paying. Req: none. Outcome/effects: Money knowledge rises. Feedback: “12% of $22 is $2.64; total is $26.64.” Reflect: “Which fee surprised you?”
+* B. Pay because you already chose it. Req: cash ≥ $26.64. Outcome/effects: Experience gained; cash drops. Feedback: “Choosing before seeing fees can create pressure.” Reflect: “Would you choose it at $26.64?”
+* C. Find a no-fee alternative. Req: Opportunity ≥ 40. Outcome/effects: Cash saved; activity may differ. Feedback: “A cheaper alternative may not be identical.” Reflect: “What feature mattered most?”
+
+Randomized outcome? No.
+Future flag set? Yes: checksCheckoutFees.
+Glossary terms: Service fee — added charge for a service; Processing fee — charge for handling a payment/order; Percent fee — fee based on a percentage.
+Tradeoff note: Paying fees can be okay if the total still fits the value.
+
+46. refund-method-choice — “Cash Refund or Store Credit Bonus?” — Age 14–17 — Topics: refunds, store credit, liquidity — [NEW, MT, M]
+
+Prompt: A store offers a $28 cash refund or $32 store credit. You do not need anything else right now.
+
+Choices:
+
+* A. Take $28 cash. Req: none. Outcome/effects: Liquidity rises; bonus missed. Feedback: “Cash can be used anywhere.” Reflect: “Why is flexibility valuable?”
+* B. Take $32 store credit. Req: none. Outcome/effects: Higher amount; locked to one store. Feedback: “$4 extra is useful only if you will use it well.” Reflect: “Would you buy there anyway?”
+* C. Wait one day before deciding. Req: none. Outcome/effects: Decision pressure drops; refund delayed. Feedback: “A pause can prevent bonus-chasing.” Reflect: “What changed after waiting?”
+
+Randomized outcome? No.
+Future flag set? No.
+Glossary terms: Store credit — value usable only at that store; Liquidity — how easily value becomes spendable; Refund — money/value returned.
+Tradeoff note: More dollars is not always more useful value.
+
+47. gift-card-market — “Trade the Gift Card?” — Age 13–16 — Topics: stored value, resale, liquidity — [NEW, MT, R, M, AN]
+
+Prompt: You have a $25 gift card to a place you rarely use. A safe exchange option may give $19 cash.
+
+Choices:
+
+* A. Keep the card. Req: none. Outcome/effects: Full $25 value remains; use uncertain. Feedback: “Stored value is strongest when you will use it.” Reflect: “Will this card solve a future need?”
+* B. Trade for $19 cash. Req: Safety ≥ 50. Outcome/effects: Liquidity rises; $6 value lost. Feedback: “$25 − $19 = $6 cost for flexibility.” Reflect: “Was flexibility worth $6?”
+* C. Use it for a planned gift or supply. Req: plannedNeedAvailable. Outcome/effects: Full value used; timing needed. Feedback: “Planning can turn trapped value into useful value.” Reflect: “What made it planned?”
+
+Randomized outcome? Yes.
+Future flag set? No.
+Glossary terms: Stored value — money value kept on a card/account; Liquidity — ability to use value easily; Resale — selling or trading for money.
+Tradeoff note: Trading value for cash can be rational when the original value would go unused.
+
+48. shared-subscription-boundary — “The Shared Login Rule” — Age 13–16 — Topics: subscriptions, ethics, friendship — [NEW, MT, SC, FF]
+
+Prompt: A friend suggests sharing a paid account in a way that may break the service rules. The cost would be lower, but the rule is unclear.
+
+Choices:
+
+* A. Read the sharing rule. Req: none. Outcome/effects: Safety and trust rise. Feedback: “Terms can change whether a shortcut is okay.” Reflect: “What did the rule allow?”
+* B. Share anyway. Req: supportCircle.friend. Outcome/effects: Cost lower; account risk rises. Feedback: “Saving money by breaking rules can create bigger problems.” Reflect: “What was the hidden risk?”
+* C. Choose a free legal option. Req: none. Outcome/effects: Cash saved; fewer features. Feedback: “Lower features can be the fair trade.” Reflect: “Which features did you actually need?”
+
+Randomized outcome? No.
+Future flag set? Yes: checksSharingRules.
+Glossary terms: Terms — rules for a service; Subscription — repeated payment for access; Ethics — thinking about fairness and rules.
+Tradeoff note: Saving money should not depend on breaking rules.
+
+49. cancel-confirmation-save — “Did It Actually Cancel?” — Age 14–18 — Topics: cancellation, proof, recurring costs — [NEW, R, FF]
+
+Prompt: You cancel a paid feature, but the app says to save the confirmation screen. You can close quickly or store the fictional record token.
+
+Choices:
+
+* A. Save confirmation token. Req: none. Outcome/effects: Future dispute easier. Feedback: “Cancellation proof matters if another charge appears.” Reflect: “What did the confirmation prove?”
+* B. Close without saving. Req: none. Outcome/effects: Faster; randomized dispute difficulty. Feedback: “Fast now can become slow later.” Reflect: “What might you need later?”
+* C. Check next statement for the charge. Req: Discipline ≥ 40. Outcome/effects: Monitoring improves. Feedback: “Canceling and checking are two separate steps.” Reflect: “What would you look for?”
+
+Randomized outcome? Yes.
+Future flag set? Yes: savesCancellationProof.
+Glossary terms: Confirmation — proof an action happened; Recurring charge — repeated payment; Dispute — request to correct a charge.
+Tradeoff note: Proof-saving is boring until it becomes useful.
+
+50. bank-transfer-delay — “The Transfer Takes Two Days” — Age 16–18 — Topics: banking, cash flow, timing — [NEW, MT, M, EXT, FF]
+
+Prompt: Money in savings can move to checking, but it may take two days. A $27 payment is due tomorrow.
+
+Choices:
+
+* A. Transfer now and call about timing. Req: savings ≥ $27. Outcome/effects: Payment planning improves. Feedback: “Starting early gives more options.” Reflect: “What did the call clarify?”
+* B. Assume transfer is instant. Req: none. Outcome/effects: Randomized late-risk event. Feedback: “Not all transfers are immediate.” Reflect: “What assumption failed?”
+* C. Pay from checking and rebuild savings later. Req: checking ≥ $27. Outcome/effects: Payment safe; checking lower. Feedback: “Liquidity matters when due dates are close.” Reflect: “Which account was spendable?”
+
+Randomized outcome? Yes.
+Future flag set? Yes: checksTransferTiming.
+Glossary terms: Transfer — moving money between accounts; Due date — payment deadline; Liquidity — money available when needed.
+Tradeoff note: Savings may be yours, but timing affects whether it solves today’s problem.
+
+51. mobile-deposit-hold — “The Check Is Deposited, But Held” — Age 16–18 — Topics: banking, holds, available balance — [NEW, MT, M, EXT, FF]
+
+Prompt: You mobile-deposit a $64 check, but only $24 is available today. The rest may clear later.
+
+Choices:
+
+* A. Spend only the available $24. Req: none. Outcome/effects: Fee risk drops; spending limited. Feedback: “Deposited does not always mean available.” Reflect: “What number mattered?”
+* B. Spend as if $64 is available. Req: none. Outcome/effects: More flexibility; randomized overdraft risk. Feedback: “A hold can block money temporarily.” Reflect: “What did the bank allow?”
+* C. Set a deposit-clear reminder. Req: Discipline ≥ 35. Outcome/effects: Timing skill rises. Feedback: “A reminder protects future cash flow.” Reflect: “When should you check again?”
+
+Randomized outcome? Yes.
+Future flag set? Yes: understandsDepositHolds.
+Glossary terms: Mobile deposit — depositing a check with a device; Hold — temporary delay before funds are available; Available balance — money usable now.
+Tradeoff note: The safest plan uses what is available, not what is expected.
+
+52. cashback-at-register — “Cash Back With a Catch” — Age 16–18 — Topics: debit, cash access, fees — [NEW, MT, M, EXT]
+
+Prompt: You need $20 cash. A store offers cash back with a $2 purchase, while an ATM nearby charges $3.25.
+
+Choices:
+
+* A. Buy a planned $2 item and get cash back. Req: plannedNeedAvailable. Outcome/effects: Total extra cost $2; item useful. Feedback: “The purchase is only smart if you needed it.” Reflect: “Was it planned?”
+* B. Use the ATM. Req: checking ≥ $23.25. Outcome/effects: Faster; fee paid. Feedback: “$20 cash costs $23.25 total.” Reflect: “Was speed worth $3.25?”
+* C. Wait until fee-free access. Req: timeAvailable later. Outcome/effects: Cash delayed; fee avoided. Feedback: “Waiting saves money when time allows.” Reflect: “What made waiting safe?”
+
+Randomized outcome? No.
+Future flag set? No.
+Glossary terms: Debit — payment from checking; ATM fee — charge for cash machine use; Cash back — receiving cash during a debit purchase.
+Tradeoff note: Avoiding one fee by buying something unnecessary may not save money.
+
+53. paper-check-timing — “The Check You Can’t Use Yet” — Age 16–18 — Topics: checks, deposit timing, cash flow — [NEW, MT, EXT, FF]
+
+Prompt: A fictional small job pays by paper check. You need supplies today, but the check may not clear in time.
+
+Choices:
+
+* A. Deposit and wait before buying. Req: none. Outcome/effects: Fee risk drops; supply purchase delayed. Feedback: “Waiting protects against spending money not available yet.” Reflect: “What did delay protect?”
+* B. Buy supplies now expecting the check. Req: checking cushion ≥ supply cost. Outcome/effects: Work continues; cushion used. Feedback: “A cushion can bridge timing gaps.” Reflect: “What if the check is delayed?”
+* C. Ask payer about direct deposit next time. Req: Money Know-How ≥ 45. Outcome/effects: Future timing improves. Feedback: “Payment method affects cash flow.” Reflect: “What would change next time?”
+
+Randomized outcome? No.
+Future flag set? Yes: plansAroundPaymentMethod.
+Glossary terms: Check — written payment; Clear — become available to use; Cushion — extra money for timing gaps.
+Tradeoff note: Expected income is not the same as usable money.
+
+54. side-hustle-tax-pocket — “Set Aside Before Spending” — Age 16–18 — Topics: side income, tax, records — [NEW, MT, M, EXT, FF]
+
+Prompt: Your approved side project earns $92 profit. A mentor suggests setting aside 15% for future tax/fees in the simplified model.
+
+Choices:
+
+* A. Set aside 15%. Req: none. Outcome/effects: $13.80 saved; spending cash lower. Feedback: “15% of $92 is $13.80.” Reflect: “What did the pocket protect?”
+* B. Set aside $20. Req: Discipline ≥ 45. Outcome/effects: More cautious; less spending now. Feedback: “A round-up can simplify planning.” Reflect: “Why save more than the estimate?”
+* C. Spend all profit. Req: none. Outcome/effects: Enjoyment/cash now; future scramble risk. Feedback: “Profit still needs a job.” Reflect: “What future cost could appear?”
+
+Randomized outcome? No.
+Future flag set? Yes: setsAsideSideIncome.
+Glossary terms: Profit — money left after costs; Tax set-aside — money saved for taxes/fees; Side income — money earned outside a main job.
+Tradeoff note: Keeping every dollar feels good now, but set-asides reduce later stress.
+
+55. return-rate-business — “Customers Return 1 in 8” — Age 16–18 — Topics: entrepreneurship, reserve, probability — [NEW, MT, R, M, EXT, FF]
+
+Prompt: Your small shop sells 8 items. Past events suggest about 1 in 8 may need a refund of $11.
+
+Choices:
+
+* A. Keep $11 reserve. Req: none. Outcome/effects: Cash held back; refund stress lower. Feedback: “1 in 8 is 12.5%.” Reflect: “Why hold money you might not need?”
+* B. Spend all sales money. Req: none. Outcome/effects: Cash now; randomized refund stress. Feedback: “Sales are not all safe to spend immediately.” Reflect: “What cost could return?”
+* C. Write clearer product descriptions. Req: Money Know-How ≥ 45. Outcome/effects: Return odds may drop. Feedback: “Better information can reduce refunds.” Reflect: “What should customers know?”
+
+Randomized outcome? Yes.
+Future flag set? Yes: keepsRefundReserve.
+Glossary terms: Reserve — money held for possible costs; Refund — money returned; Probability — chance something happens.
+Tradeoff note: Holding a reserve lowers spending now but protects trust later.
+
+56. handmade-pricing-error — “Revenue Is Not Profit” — Age 15–18 — Topics: entrepreneurship, pricing, profit — [NEW, MT, M, EXT]
+
+Prompt: You sell handmade bookmarks for $3 each. Materials cost $0.85 each, and table fee is $9. You expect to sell 12.
+
+Choices:
+
+* A. Keep price at $3. Req: none. Outcome/effects: Accessible price; profit depends on sales. Feedback: “Revenue $36; material $10.20; fee $9; profit $16.80.” Reflect: “Which cost was easy to forget?”
+* B. Raise price to $3.50. Req: none. Outcome/effects: Higher profit per sale; demand risk. Feedback: “Small price changes matter across many items.” Reflect: “What might buyers do?”
+* C. Share table fee with another seller. Req: supportCircle.friend. Outcome/effects: Cost drops; coordination needed. Feedback: “Splitting fixed costs can improve profit.” Reflect: “What rule keeps it fair?”
+
+Randomized outcome? Yes.
+Future flag set? No.
+Glossary terms: Revenue — money from sales; Profit — money left after costs; Fixed cost — cost that does not change with each item.
+Tradeoff note: Pricing balances access, demand, and profit.
+
+57. inventory-storage-problem — “Where Do Unsold Items Go?” — Age 15–18 — Topics: inventory, storage, assets — [NEW, MT, M, AN, EXT, FF]
+
+Prompt: You have 23 unsold items from a small project. Keeping them costs no money but uses space; marking down may recover cash.
+
+Choices:
+
+* A. Store for next event. Req: storageAccess ≥ medium. Outcome/effects: Inventory preserved; space used. Feedback: “Inventory has value but is not cash.” Reflect: “What makes storage worth it?”
+* B. Mark down by 25%. Req: none. Outcome/effects: Faster cash recovery; lower margin. Feedback: “25% off a $4 item is $1 off.” Reflect: “Why might less per item help?”
+* C. Bundle with future items. Req: Money Know-How ≥ 45. Outcome/effects: Inventory moves creatively; planning needed. Feedback: “Bundling changes perceived value.” Reflect: “What problem did bundling solve?”
+
+Randomized outcome? No.
+Future flag set? Yes: managesStorageInventory.
+Glossary terms: Inventory — items held to sell/use; Markdown — lower price; Cash recovery — getting money back from value.
+Tradeoff note: Unsold items can be assets or clutter depending on storage and demand.
+
+58. inflation-swap-plan — “Same Budget, Different Basket” — Age 14–18 — Topics: inflation, substitution, budget — [NEW, MT, M, EXT]
+
+Prompt: A weekly snack budget is $8. Prices rose, so your usual basket now costs $9.20.
+
+Choices:
+
+* A. Add $1.20 to budget. Req: cash flow can cover. Outcome/effects: Same basket; less money elsewhere. Feedback: “$9.20 − $8 = $1.20 gap.” Reflect: “Where does the extra come from?”
+* B. Swap one item. Req: none. Outcome/effects: Budget stays; preference changes. Feedback: “Substitution keeps total stable.” Reflect: “What did you give up?”
+* C. Buy less often. Req: Discipline ≥ 35. Outcome/effects: Spending drops; enjoyment timing changes. Feedback: “Frequency is another budget lever.” Reflect: “Would fewer trips feel okay?”
+
+Randomized outcome? No.
+Future flag set? No.
+Glossary terms: Inflation — prices rising over time; Substitution — choosing a different item; Budget gap — difference between plan and cost.
+Tradeoff note: Inflation responses can be earn more, spend more, swap, or buy less often.
+
+59. fund-fee-difference — “The Fee That Looks Tiny” — Age 16–adult planning — Topics: investing, fees, long horizon — [NEW, MT, M, EXT, FF]
+
+Prompt: Two diversified funds look similar. One charges 0.10% yearly; the other charges 1.00% yearly in a simplified model.
+
+Choices:
+
+* A. Choose lower fee after checking fit. Req: Money Know-How ≥ 50. Outcome/effects: More money may stay invested. Feedback: “Tiny percentages can matter over years.” Reflect: “What else besides fee matters?”
+* B. Choose higher-fee fund because ad looks polished. Req: none. Outcome/effects: Confidence from marketing; long-term cost higher. Feedback: “Marketing polish is not the same as value.” Reflect: “What source would you trust?”
+* C. Ask mentor to compare fund basics. Req: supportCircle.mentor. Outcome/effects: Investing knowledge rises. Feedback: “A second reader can slow down hype.” Reflect: “What did you compare?”
+
+Randomized outcome? No.
+Future flag set? Yes: checksInvestmentFees.
+Glossary terms: Fund fee — cost charged by an investment fund; Diversified fund — fund spread across many investments; Long horizon — many years before needing money.
+Tradeoff note: Low fees help, but fees are not the only feature.
+
+60. rebalance-reminder — “Your Mix Drifted” — Age 16–adult planning — Topics: investing, risk, allocation — [NEW, MT, EXT, FF]
+
+Prompt: In the simplified investing model, one part of your portfolio grew faster, so your risk mix changed.
+
+Choices:
+
+* A. Rebalance to original plan. Req: hasInvestments and Money Know-How ≥ 50. Outcome/effects: Risk returns to plan; effort needed. Feedback: “Rebalancing means checking whether the mix still fits.” Reflect: “Why not just keep the winner?”
+* B. Leave it alone. Req: none. Outcome/effects: Simpler; risk may be higher. Feedback: “Doing nothing is also a choice.” Reflect: “What risk changed?”
+* C. Review goals before changing. Req: Discipline ≥ 45. Outcome/effects: Better fit; slower action. Feedback: “The right mix depends on goal and time.” Reflect: “What goal drives the mix?”
+
+Randomized outcome? No.
+Future flag set? Yes: understandsRebalancing.
+Glossary terms: Portfolio — group of investments; Rebalance — adjust mix back to plan; Risk — chance of loss or variation.
+Tradeoff note: Letting winners run feels exciting, but it can change risk.
+
+61. index-name-confusion — “Index in the Name?” — Age 16–adult planning — Topics: investing, source evaluation, fees — [NEW, MT, L, EXT, FF]
+
+Prompt: A fund name includes the word “index-like,” but the fee and holdings do not match a simple index fund.
+
+Choices:
+
+* A. Check holdings and fee. Req: Money Know-How ≥ 55. Outcome/effects: Source skill rises; bad assumption avoided. Feedback: “Names can suggest more than they prove.” Reflect: “What detail mattered?”
+* B. Choose it based on name. Req: none. Outcome/effects: Fast; mismatch risk. Feedback: “A label is not the full explanation.” Reflect: “What did you assume?”
+* C. Use an official investor education source. Req: Source skill ≥ 40. Outcome/effects: Investing literacy rises. Feedback: “Reliable sources help decode jargon.” Reflect: “What term did you check?”
+
+Randomized outcome? No.
+Future flag set? Yes: checksFundDetails.
+Glossary terms: Index fund — fund designed to track a market index; Holdings — investments inside a fund; Fee — cost charged.
+Tradeoff note: Simple names can hide important details.
+
+62. dividend-reinvest-toggle — “Take Cash or Reinvest?” — Age 16–adult planning — Topics: investing, compounding, cash flow — [NEW, MT, M, EXT, FF]
+
+Prompt: A simplified investment pays $4 in dividends. You can take the cash or reinvest it.
+
+Choices:
+
+* A. Reinvest. Req: hasInvestments. Outcome/effects: Investment grows; cash not spendable. Feedback: “Reinvesting keeps money working.” Reflect: “Why give up cash now?”
+* B. Take cash. Req: none. Outcome/effects: Cash rises; investment growth lower. Feedback: “Cash can solve today’s need.” Reflect: “What would you use it for?”
+* C. Split $2/$2. Req: Money Know-How ≥ 45. Outcome/effects: Balance between liquidity and growth. Feedback: “Splitting can serve two goals.” Reflect: “Which goal mattered more?”
+
+Randomized outcome? No.
+Future flag set? Yes: understandsReinvestment.
+Glossary terms: Dividend — payment from some investments; Reinvest — put earnings back in; Liquidity — ease of using money now.
+Tradeoff note: Reinvestment helps long-term growth, but cash may matter today.
+
+63. savings-interest-bump — “Move to Higher Interest?” — Age 14–18 — Topics: savings, interest, banking — [NEW, MT, M, FF]
+
+Prompt: Savings Account A pays 1% yearly; Account B pays 3% yearly but requires keeping at least $100. You have $120 saved.
+
+Choices:
+
+* A. Move to Account B. Req: savings ≥ $100. Outcome/effects: More interest; minimum rule added. Feedback: “3% of $120 is $3.60/year in a simplified model.” Reflect: “Can you keep the minimum?”
+* B. Stay with Account A. Req: none. Outcome/effects: Simpler; lower interest. Feedback: “Simplicity can matter if rules are hard to meet.” Reflect: “What rule did you avoid?”
+* C. Split savings. Req: Money Know-How ≥ 45. Outcome/effects: Some interest, some flexibility. Feedback: “Splitting protects liquidity.” Reflect: “Why keep some money flexible?”
+
+Randomized outcome? No.
+Future flag set? Yes: comparesSavingsInterest.
+Glossary terms: Interest — money earned or paid for using money; Minimum balance — amount required; Savings account — account for storing money.
+Tradeoff note: Higher interest is useful only if the account rules fit.
+
+64. rule-72-reverse — “What Rate Doubles in 12 Years?” — Age 15–18 — Topics: Rule of 72, division, investing — [NEW, M, EXT]
+
+Prompt: Instead of asking how long money takes to double, you ask what rate would roughly double money in 12 years.
+
+Choices:
+
+* A. Use 72 ÷ 12. Req: none. Outcome/effects: Money knowledge rises. Feedback: “72 ÷ 12 = 6, so about 6%.” Reflect: “How did reversing the question help?”
+* B. Guess 12%. Req: none. Outcome/effects: Shows overestimate. Feedback: “Guessing can be far off with growth math.” Reflect: “What made 12% tempting?”
+* C. Ask mentor to compare risk of rates. Req: supportCircle.mentor. Outcome/effects: Risk thinking improves. Feedback: “Higher expected rates often come with higher risk.” Reflect: “What risk came with the rate?”
+
+Randomized outcome? No.
+Future flag set? No.
+Glossary terms: Rule of 72 — estimate for doubling time; Rate — percent of growth or cost; Compound growth — growth on earlier growth.
+Tradeoff note: The math estimate is simple; finding a safe rate is not guaranteed.
+
+65. emergency-supplies-kit — “Useful but Not Spendable” — Age 13–16 — Topics: emergency supplies, assets, preparedness — [NEW, MT, M, AN, FF]
+
+Prompt: A basic emergency supplies kit costs $34. It does not increase cash, but it may reduce stress during a future disruption.
+
+Choices:
+
+* A. Buy the kit. Req: cash ≥ $34. Outcome/effects: Preparedness rises; cash drops. Feedback: “Some assets protect wellbeing instead of resale value.” Reflect: “What did the kit protect?”
+* B. Build it over four weeks. Req: Discipline ≥ 35. Outcome/effects: Cash impact spread out. Feedback: “$34 ÷ 4 = $8.50/week.” Reflect: “How did spreading cost help?”
+* C. Skip for now. Req: none. Outcome/effects: Cash protected; preparedness lower. Feedback: “Skipping can be reasonable if cash is tight.” Reflect: “When would you revisit?”
+
+Randomized outcome? No.
+Future flag set? Yes: hasPreparednessAsset.
+Glossary terms: Preparedness asset — item that helps in a disruption; Resale value — possible sale value; Sinking plan — saving/buying gradually.
+Tradeoff note: Preparedness can be valuable even when it does not make money.
+
+66. pet-food-storage-math — “Bulk Pet Food?” — Age 13–16 — Topics: pets, storage, bulk buying — [NEW, MT, M, SC, AN]
+
+Prompt: A small pet-food bag costs $9 for 3 weeks. A larger bag costs $25 for 10 weeks, but needs dry storage.
+
+Choices:
+
+* A. Buy large bag. Req: storageAccess ≥ medium and cash ≥ $25. Outcome/effects: Lower weekly cost; storage needed. Feedback: “$25 ÷ 10 = $2.50/week.” Reflect: “What condition makes bulk work?”
+* B. Buy small bag. Req: cash ≥ $9. Outcome/effects: Higher weekly cost; less storage risk. Feedback: “$9 ÷ 3 = $3/week.” Reflect: “Why might smaller be better?”
+* C. Ask caregiver to plan storage. Req: supportCircle.family. Outcome/effects: Support rises; bulk may become safe. Feedback: “Support can change whether a deal works.” Reflect: “What problem did storage solve?”
+
+Randomized outcome? No.
+Future flag set? No.
+Glossary terms: Bulk buying — buying larger amount at once; Storage risk — chance an item spoils or is unusable; Weekly cost — cost divided by weeks.
+Tradeoff note: Bulk is not automatically better if storage or cash is limited.
+
+67. pet-license-renewal — “Renewal Reminder” — Age 14–17 — Topics: pet responsibility, fees, deadlines — [NEW, MT, L, SC, FF]
+
+Prompt: A fictional pet registration renewal costs $11. Renewing late adds a $5 fee.
+
+Choices:
+
+* A. Renew now. Req: cash ≥ $11. Outcome/effects: Deadline handled; cash drops. Feedback: “Paying on time avoids the late fee.” Reflect: “What reminder helped?”
+* B. Set reminder and pay next week. Req: Discipline ≥ 35. Outcome/effects: Cash held briefly; deadline risk managed. Feedback: “A reminder can make waiting safer.” Reflect: “Why not just rely on memory?”
+* C. Ask caregiver to add it to shared calendar. Req: supportCircle.family. Outcome/effects: Support and responsibility rise. Feedback: “Shared responsibility can protect the pet budget.” Reflect: “Who else depends on this plan?”
+
+Randomized outcome? No.
+Future flag set? Yes: tracksPetRenewals.
+Glossary terms: Renewal — keeping something active after a deadline; Late fee — extra charge for paying late; Shared calendar — planning tool used by more than one person.
+Tradeoff note: Waiting can be fine with a system; forgetting makes the cost bigger.
+
+68. ride-reimbursement-rule — “Paying Back Rides” — Age 14–18 — Topics: transportation, friendship, fair split — [NEW, MT, M, SC, FF]
+
+Prompt: A friend’s caregiver gives you rides to practice twice a week. You want to contribute fairly without making it awkward.
+
+Choices:
+
+* A. Offer $8/week for gas. Req: cash flow can cover. Outcome/effects: Trust rises; budget tightens. Feedback: “Two rides means $4 per ride.” Reflect: “What amount felt fair?”
+* B. Offer help in another way. Req: supportCircle.friend. Outcome/effects: Cash saved; reciprocity shown. Feedback: “Value is not always money.” Reflect: “What help was useful?”
+* C. Say thanks but do not discuss cost. Req: none. Outcome/effects: Simple; possible unspoken tension. Feedback: “Gratitude helps, but clarity may help more.” Reflect: “What could stay unclear?”
+
+Randomized outcome? No.
+Future flag set? Yes: usesRideContributionRule.
+Glossary terms: Reimbursement — paying back a cost; Fair contribution — agreed help toward shared cost; Non-money value — help that is useful without cash.
+Tradeoff note: Paying is not the only way to contribute, but silence can create confusion.
+
+69. family-streaming-boundary — “One Shared Bill” — Age 13–16 — Topics: family budget, recurring costs, boundaries — [NEW, MT, SC, FF]
+
+Prompt: A fictional shared entertainment bill is getting crowded with add-ons. A caregiver asks everyone to choose what to keep.
+
+Choices:
+
+* A. Vote to keep one shared service. Req: supportCircle.family. Outcome/effects: Cost drops; some wants cut. Feedback: “Shared budgets require compromise.” Reflect: “What did the group protect?”
+* B. Keep all add-ons and split cost. Req: cash flow can cover share. Outcome/effects: More entertainment; recurring cost stays. Feedback: “A small monthly share repeats.” Reflect: “What is the yearly cost?”
+* C. Rotate add-ons monthly. Req: Discipline ≥ 40. Outcome/effects: Variety stays; tracking needed. Feedback: “Rotation is a system, not a one-time choice.” Reflect: “What reminder keeps it working?”
+
+Randomized outcome? No.
+Future flag set? Yes: usesSharedRecurringRules.
+Glossary terms: Add-on — extra paid feature; Shared bill — cost used by more than one person; Rotation — taking turns over time.
+Tradeoff note: Shared wants are valid, but recurring costs need shared rules.
+
+70. mentor-tool-catalog — “Which Tool First?” — Age 15–18 — Topics: career tools, assets, mentor support — [NEW, MT, L, AN, SC, EXT, FF]
+
+Prompt: You want to build a starter kit for a future pathway. A mentor suggests buying the tool you will use weekly before the tool you might use someday.
+
+Choices:
+
+* A. Buy weekly-use tool. Req: cash ≥ tool cost and supportCircle.mentor. Outcome/effects: Useful asset gained; cash drops. Feedback: “Use frequency changes value.” Reflect: “How often will you use it?”
+* B. Buy impressive but rare-use tool. Req: cash ≥ tool cost. Outcome/effects: Excitement rises; useful value uncertain. Feedback: “Impressive does not always mean useful.” Reflect: “What job does it do?”
+* C. Borrow first to test need. Req: communityProgramAccess ≥ medium. Outcome/effects: Cash protected; access rules apply. Feedback: “Testing need before buying lowers risk.” Reflect: “What did borrowing teach?”
+
+Randomized outcome? No.
+Future flag set? Yes: prioritizesUsefulTools.
+Glossary terms: Useful value — value from actually using something; Asset — useful or owned item; Frequency — how often something happens.
+Tradeoff note: The best tool is not always the coolest tool.
+
+71. public-wifi-purchase — “Buy Now on Public Wi-Fi?” — Age 13–17 — Topics: cybersecurity, payment safety, convenience — [NEW, R, EXT, FF]
+
+Prompt: You are about to enter payment info while using public Wi-Fi. The item might sell out, but the connection is not trusted.
+
+Choices:
+
+* A. Wait for a secure connection. Req: none. Outcome/effects: Safety rises; item availability risk. Feedback: “Waiting can protect account information.” Reflect: “What did you trade for safety?”
+* B. Buy now anyway. Req: cash ≥ item cost. Outcome/effects: Convenience; randomized account-risk event. Feedback: “Convenience can raise digital risk.” Reflect: “What made it feel urgent?”
+* C. Ask a trusted adult/mentor for safest option. Req: supportCircle.family or supportCircle.mentor. Outcome/effects: Safety and support rise. Feedback: “Getting help can slow down a rushed decision.” Reflect: “What option did they suggest?”
+
+Randomized outcome? Yes.
+Future flag set? Yes: avoidsPublicWifiPayments.
+Glossary terms: Public Wi-Fi — shared internet connection; Payment information — details used to pay; Digital risk — chance of account or data problem.
+Tradeoff note: Waiting may lose convenience, but payment safety is often worth the pause.
+
+72. lost-phone-2fa-plan — “Two-Factor Backup” — Age 14–18 — Topics: 2FA, account recovery, planning — [NEW, MT, R, EXT, FF]
+
+Prompt: Your fictional phone is lost for a day. Some accounts use text codes, so access becomes harder.
+
+Choices:
+
+* A. Set up backup codes before trouble. Req: Safety ≥ 45. Outcome/effects: Future recovery easier. Feedback: “A backup made before the problem is powerful.” Reflect: “Where would you store codes safely?”
+* B. Do nothing until a problem happens. Req: none. Outcome/effects: Less effort now; randomized lockout risk. Feedback: “Recovery is harder during stress.” Reflect: “What would you wish you had?”
+* C. Ask caregiver/mentor about recovery options. Req: supportCircle.family or supportCircle.mentor. Outcome/effects: Support and safety rise. Feedback: “Account safety can be a shared planning conversation.” Reflect: “What option felt safest?”
+
+Randomized outcome? Yes.
+Future flag set? Yes: has2FABackupPlan.
+Glossary terms: Two-factor authentication — extra login step; Backup code — recovery code saved ahead; Account lockout — losing access temporarily.
+Tradeoff note: Setup takes time before it feels useful.
+
+73. ransomware-backup-drill — “The Backup Drill” — Age 14–18 — Topics: ransomware safety, backups, digital assets — [NEW, R, AN, EXT, FF]
+
+Prompt: A school-safe cyber-safety event asks whether your important project files are backed up. The game uses fictional files only.
+
+Choices:
+
+* A. Keep a backup copy. Req: none. Outcome/effects: Digital asset protected; small time cost. Feedback: “Backups protect work, not just devices.” Reflect: “What file would be hardest to replace?”
+* B. Save only on one device. Req: none. Outcome/effects: Simpler; randomized loss risk. Feedback: “One copy is fragile.” Reflect: “What could go wrong?”
+* C. Ask mentor/teacher about safe backup habits. Req: supportCircle.mentor or schoolResourceAccess ≥ medium. Outcome/effects: Safety knowledge rises. Feedback: “Reliable backup habits are learned.” Reflect: “What system would you use?”
+
+Randomized outcome? Yes.
+Future flag set? Yes: backsUpDigitalAssets.
+Glossary terms: Backup — extra copy stored safely; Digital asset — useful digital file or account; Ransomware — harmful software that can lock files.
+Tradeoff note: Backups cost time and organization, but they protect work value.
+
+74. marketplace-meetup-safe — “The Safe Exchange Plan” — Age 15–18 — Topics: resale, safety, payment method — [NEW, MT, R, SC, AN, EXT, FF]
+
+Prompt: You are selling a used item for $42. The buyer asks to meet quickly in an unfamiliar place and pay later.
+
+Choices:
+
+* A. Use a public, trusted exchange plan. Req: Safety ≥ 50. Outcome/effects: Safety rises; scheduling slower. Feedback: “A safer plan may add friction.” Reflect: “What made the exchange safer?”
+* B. Accept pay-later. Req: none. Outcome/effects: Fast sale; randomized nonpayment risk. Feedback: “Pay-later turns a sale into a loan.” Reflect: “What proof would you need?”
+* C. Ask friend/caregiver to help plan. Req: supportCircle.friend or supportCircle.family. Outcome/effects: Support and safety rise. Feedback: “Support can improve safety without taking over.” Reflect: “What rule did you set?”
+
+Randomized outcome? Yes.
+Future flag set? Yes: usesSafeResalePlan.
+Glossary terms: Resale — selling something you own; Payment method — way money is paid; Safety plan — steps to reduce risk.
+Tradeoff note: Faster sales can carry more risk; safe friction is useful.
+
+75. final-periscope-reflection — “Look Around the Corner” — Age end-of-run — Topics: reflection, values, recovery — [NEW, MT, FF]
+
+Prompt: The run ends with a Periscope Report. It shows one choice that protected cash, one that protected trust, one that protected safety, and one that protected future options.
+
+Choices:
+
+* A. Choose one habit to keep. Req: completed 10+ choices. Outcome/effects: Reflection badge; future route named. Feedback: “A habit is a tool you can reuse.” Reflect: “Which habit helped most?”
+* B. Choose one mistake you repaired. Req: any setback flag. Outcome/effects: Recovery badge; shame reduced. Feedback: “Repair is part of financial skill.” Reflect: “What was your first repair step?”
+* C. Thank one support-circle role. Req: any support flag. Outcome/effects: Support awareness rises. Feedback: “Money choices often involve people.” Reflect: “Who helped the route?”
+
+Randomized outcome? No.
+Future flag set? Yes: completedPeriscopeReflection.
+Glossary terms: Reflection — thinking back to learn; Recovery — repairing after a setback; Future option — choice kept open for later.
+Tradeoff note: The final report values learning and repair, not only money totals.
+
+Scenario quota check: 50+ mixed-tradeoff scenarios; 20+ locked-choice scenarios; 25+ randomized-outcome scenarios; 55+ future-flag scenarios; 25+ support-circle scenarios; 35+ explicit math scenarios; 40+ extension scenarios; 20+ asset/net-worth/ownership scenarios.
+
+⸻
+
+5. Relationship and Support Circle Ideas
+
+1. Caregiver calendar co-planning — Benefit: fewer missed renewals. Cost: shared schedule effort. Reflection: “What did planning together prevent?”
+2. Friend budget-normalizer — Benefit: makes low-cost plans feel normal. Cost: may require suggesting alternatives. Reflection: “How did a friend reduce pressure?”
+3. Mentor wording practice — Benefit: helps ask about pay, fees, or recommendations. Cost: takes time before acting. Reflection: “What sentence made the ask clearer?”
+4. Pet routine reminder — Benefit: discipline and wellbeing rise. Cost: recurring food, renewal, and care time. Reflection: “What routine protects the pet and budget?”
+5. Caregiver document checklist — Benefit: pay stubs, forms, and records are easier later. Cost: organization time. Reflection: “Which record would be hard to recreate?”
+6. Friend fair-split calculator — Benefit: reduces awkward group costs. Cost: can feel formal. Reflection: “Why can clear math protect friendship?”
+7. Mentor source triangulation — Benefit: improves scam and investing checks. Cost: decision slows down. Reflection: “What source changed your mind?”
+8. Pet-cost sinking pocket — Benefit: smoother supply and renewal costs. Cost: money is less available for wants. Reflection: “What pet cost is predictable?”
+9. Family shared recurring-cost review — Benefit: trims add-ons and builds communication. Cost: compromise. Reflection: “What did the group decide to protect?”
+10. Friend safe resale buddy — Benefit: safer exchanges and clearer payment rules. Cost: coordination. Reflection: “What safety rule mattered most?”
+11. Mentor reference timeline — Benefit: stronger recommendation requests. Cost: must ask early. Reflection: “How much time does support need?”
+12. Caregiver transfer-timing explanation — Benefit: banking delays make sense. Cost: patience. Reflection: “What money was yours but not available?”
+13. Friend ride contribution rule — Benefit: protects fairness in transportation help. Cost: cash or non-cash contribution. Reflection: “What contribution felt fair?”
+14. Mentor tool-priority review — Benefit: useful asset purchases improve. Cost: may delay exciting purchases. Reflection: “What tool would be used most?”
+15. Pet emergency decision support — Benefit: encourages calm planning. Cost: savings or insurance tradeoff. Reflection: “How did planning lower stress?”
+16. Family no-PII aid conversation — Benefit: categories become clearer. Cost: may need a school-info night. Reflection: “Which aid type is borrowed?”
+17. Friend shared-equipment condition note — Benefit: protects trust and asset condition. Cost: feels formal. Reflection: “What did the note clarify?”
+18. Mentor pay-stub detective help — Benefit: missing hours or deductions are easier to question. Cost: time reviewing. Reflection: “What line did you check?”
+19. Caregiver 2FA backup planning — Benefit: account recovery improves. Cost: setup effort. Reflection: “What would happen if the phone was lost?”
+20. Friend accountability for deadlines — Benefit: helps with returns, applications, and renewals. Cost: mutual reminders. Reflection: “What reminder worked?”
+21. Mentor career-fair prep — Benefit: documents and interview confidence improve. Cost: prep time. Reflection: “What did practice improve?”
+22. Family bulk-buy storage check — Benefit: prevents waste. Cost: shared storage rules. Reflection: “When does bulk fail?”
+23. Friend “gift or loan?” clarity — Benefit: reduces repayment conflict. Cost: honest conversation. Reflection: “Why label the money clearly?”
+24. Mentor recovery ladder — Benefit: after fees/scams/errors, student gets next steps. Cost: effort over time. Reflection: “Which repair step comes first?”
+25. Pet wellbeing buffer — Benefit: pet care supports routine and emotional balance. Cost: time and recurring costs. Reflection: “How can responsibility support wellbeing?”
+
+⸻
+
+6. Score Ranges and Life Context
+
+Money Know-How
+
+0–20: You are still guessing often; Money Words and math hints appear a lot.
+21–40: You know some basics but may miss fees, timing, or hidden assumptions.
+41–60: You can explain everyday tradeoffs and use simple math with support.
+61–80: You compare total cost, timing, risk, and source quality before acting.
+81–100: You use strong systems and can teach another player the reasoning.
+
+Wellbeing
+
+0–20: Your character feels stretched; recovery and support choices should appear.
+21–40: Stress is high; rest, planning, and help matter.
+41–60: You are managing, but surprise events still feel heavy.
+61–80: You usually balance money, time, commitments, and energy.
+81–100: Your routines protect goals and health; you recover well from setbacks.
+
+Safety
+
+0–20: Many risky choices need warnings and recovery options.
+21–40: You know some red flags but may rush under pressure.
+41–60: You pause for many account, payment, and source decisions.
+61–80: You verify, document, and ask for help before major risks.
+81–100: You have strong safety systems and can help your support circle notice risks.
+
+Discipline
+
+0–20: Reminders, small steps, and automation are especially helpful.
+21–40: You start plans but may forget deadlines or records.
+41–60: You can follow simple routines with some support.
+61–80: You maintain savings, deadlines, records, and alerts.
+81–100: You design systems that make good choices easier.
+
+Opportunity
+
+0–20: Few routes are open; support and resource events matter.
+21–40: Some options are available but often locked by time, cash, or support.
+41–60: You can access common resources and build skills.
+61–80: You unlock stronger job, training, mentor, and pathway choices.
+81–100: You have many routes and compare them thoughtfully.
+
+Credit, 300–850 simplified model
+
+300–579: Rebuilding zone. Focus on on-time payments, low balances, and checking for errors.
+580–669: Getting steadier. Some options may appear, but borrowing can cost more.
+670–739: Solid range. Good habits are helping; keep balances low and pay on time.
+740–799: Strong range. Better offers may appear in the simplified model.
+800–850: Excellent range. Keep using credit carefully; the score is still only one tool.
+
+Fifteen fictional context variables
+
+1. supportAccess: limited/basic/strong support-circle availability.
+2. transportAccess: limited/basic/strong travel options.
+3. localCostLevel: lower/average/higher fictional price environment.
+4. schoolResourceAccess: limited/available/strong school or community supports.
+5. internetReliability: low/medium/high connection reliability.
+6. startingCushion: small/medium/strong starting buffer.
+7. mentorAccess: none/occasional/steady mentor support.
+8. schedulePressure: light/medium/heavy fictional time pressure.
+9. communityProgramAccess: limited/available/strong program access.
+10. deviceReliability: fragile/okay/strong fictional device condition.
+11. storageAccess: limited/basic/strong space for bulk items or tools.
+12. paperworkConfidence: low/medium/high comfort with forms and records.
+13. cashFlowStability: variable/steady/seasonal income timing.
+14. deadlineLoad: low/medium/high number of upcoming deadlines.
+15. repairResourceAccess: limited/basic/strong access to repair help.
+
+⸻
+
+7. Assets and Net Worth Ideas
+
+1. Emergency supplies kit — Gains usefulness during disruptions; loses value as items expire. Teaches preparedness value and replacement schedules.
+2. Used laptop with repair log — Value depends on condition and records. Teaches depreciation, maintenance, and resale value.
+3. Skill badge / refresher credential — Gains opportunity value; can become outdated. Teaches human capital and renewal timing.
+4. Starter tool kit — Gains usefulness with work/training; loses value through wear. Teaches cost per use and condition.
+5. Transit balance — Useful stored value; may be stranded if route changes. Teaches liquidity and balance tracking.
+6. Gift card balance — Full store value but lower cash value. Teaches liquidity discount.
+7. Shared sports gear — Useful access without full ownership. Teaches shared asset rules and condition notes.
+8. Password safety system — No resale value but protects accounts. Teaches risk reduction as value.
+9. Digital backup folder — Protects digital work. Teaches assets that are not physical.
+10. Renter inventory list — Supports insurance claims; not directly spendable. Teaches replacement value.
+11. Phone protection pocket — Savings assigned to repair/replacement. Teaches self-insurance.
+12. Bulk pet food supply — Can lower weekly cost but risks spoilage/storage issues. Teaches cost per week and storage risk.
+13. Instrument rental record — Access asset, not ownership. Teaches rent vs. buy.
+14. Career document folder — Resume, portfolio, reference notes. Teaches opportunity assets.
+15. Side-hustle inventory — Can become cash or clutter. Teaches inventory, markdown, and margin.
+16. Refund reserve — Cash held for customer returns. Teaches probability and reserves.
+17. Deductible pocket — Savings for insurance claims. Teaches target amount and monthly contribution.
+18. Savings account with interest — Grows slowly; rules may limit flexibility. Teaches interest and minimum balance.
+19. Diversified fund placeholder — Can gain/lose value; fees reduce growth. Teaches risk, diversification, and fees.
+20. Tool-lending membership — Access without ownership. Teaches deposits, late fees, and borrowing rules.
+21. Bike lock / protective case — Protection asset for a larger item. Teaches percent of value spent on protection.
+22. Application fee budget — Not an asset after spent, but protects route planning. Teaches sunk cost and probability.
+23. Certification renewal calendar — Protects usefulness of credentials. Teaches deadline value.
+24. Pet renewal/license record — Prevents late fees and supports responsibility. Teaches recurring deadlines.
+25. Cash cushion — Does not “earn” much but protects options. Teaches liquidity and resilience.
+
+⸻
+
+8. Teacher Discussion Prompts
+
+Quick warm-ups
+
+1. What is one hidden assumption that can change a money choice?
+2. Why can “free delivery” still cost more?
+3. What is the difference between deposited money and available money?
+4. When is a small fee worth paying?
+5. What is one example of value that is not cash?
+6. Why might a slower choice be safer?
+7. What does a pay stub prove?
+8. When can asking early save money?
+9. How can a deadline change a choice?
+10. What does it mean to self-insure a small risk?
+
+Pair-share questions
+
+11. Compare taking $28 cash with $32 store credit. Which is better and why?
+12. Discuss a time when a record or screenshot would help solve a disagreement.
+13. Compare renting an item for a few months with buying used.
+14. How should friends split a shared cost: equally, by use, or by another rule?
+15. Compare low monthly payment with lower total cost.
+16. Why might a high-deductible policy fit one player but not another?
+17. Compare a mentor-supported route with a solo route.
+18. What should a player check before trusting a money claim?
+
+Exit-ticket reflections
+
+19. Name one choice where timing mattered more than total money.
+20. What is one system that makes discipline easier?
+21. What did a support-circle role protect?
+22. What is one mistake that should unlock recovery instead of punishment?
+23. Define liquidity in your own words.
+24. What is one asset that is useful but hard to sell?
+25. What is one reason net worth is not self-worth?
+26. Write one sentence explaining why gross pay and net pay differ.
+
+Compare-outcomes prompts
+
+27. Compare a player who saved pay records with one who did not.
+28. Compare a player who checked fees before checkout with one who checked after.
+29. Compare a player who budgeted from variable income’s high estimate with one who used a low estimate.
+30. Compare a player who used support early with one who asked at the last minute.
+
+⸻
+
+9. Glossary and Vocabulary Supports
+
+1. Available balance — Money you can use right now; Math: current balance minus holds/pending charges; Misconception: deposited means available; App: banking holds; Source category: CFPB/FDIC.
+2. Assumption — Something you are counting on but have not proven; Math: compare expected vs. actual; Misconception: assumptions are facts; App: Assumption Cards; Source category: consumer education.
+3. Cap — A maximum amount allowed before a rule or fee starts; Math: used ÷ cap; Misconception: cap is only a warning; App: usage meters; Source category: consumer education.
+4. Overage fee — Extra charge for going past a limit; Math: total cost = base + fee; Misconception: small overages do not matter; App: data/usage scenarios; Source category: CFPB/consumer education.
+5. Pay stub — Record showing hours, pay, deductions, and take-home pay; Math: hours × rate; Misconception: paycheck total is all you need; App: Pay Stub Detective; Source category: IRS/FDIC.
+6. Gross pay — Pay before deductions; Math: rate × hours; Misconception: gross is spendable; App: job/paycheck events; Source category: IRS.
+7. Net pay — Take-home pay after deductions; Math: gross minus deductions; Misconception: net is the same as gross; App: paycheck reveal; Source category: IRS.
+8. Deduction — Amount subtracted from pay; Math: gross − deductions = net; Misconception: deductions are random; App: benefit panel; Source category: IRS.
+9. Benefit — Job support beyond wages, sometimes with a paycheck cost; Math: monthly cost vs. protection; Misconception: higher take-home is always better; App: benefit choices; Source category: CFPB/IRS.
+10. Service fee — Added charge for using a service or checkout system; Math: base + fee; Misconception: sticker price is total; App: checkout scenarios; Source category: consumer education.
+11. Processing fee — Charge for handling a payment/order; Math: add to total; Misconception: fees are too small to matter; App: Fee Stack Revealer; Source category: consumer education.
+12. Threshold — Point where a rule starts; Math: compare current amount to target; Misconception: crossing threshold always saves money; App: free-delivery scenarios; Source category: consumer education.
+13. Store credit — Value usable only with one seller; Math: compare credit amount vs. cash amount; Misconception: bigger amount is always better; App: refund choices; Source category: FTC/consumer education.
+14. Liquidity — How easily value turns into spendable money; Math: cash value vs. store/resale value; Misconception: valuable means spendable; App: asset cards; Source category: CFPB/Investor.gov.
+15. Resale value — What an item may sell for later; Math: original price − depreciation; Misconception: item is worth what you paid; App: marketplace/asset scenarios; Source category: consumer education.
+16. Replacement value — Cost to buy a similar item again; Math: sum item replacement costs; Misconception: replacement value equals resale value; App: renter/insurance scenarios; Source category: NAIC/state insurance.
+17. Actual cash value — Value after wear or age is considered; Math: replacement cost − depreciation; Misconception: insurance always pays new-item price; App: insurance scenarios; Source category: NAIC.
+18. Deductible — Amount you pay before insurance helps; Math: covered cost − deductible; Misconception: insurance pays first dollar; App: insurance choices; Source category: NAIC.
+19. Premium — Regular cost to keep insurance active; Math: monthly × 12; Misconception: premium is the only cost; App: policy comparisons; Source category: NAIC.
+20. Payout limit — Maximum insurance or protection plan pays; Math: loss − payout; Misconception: coverage means unlimited help; App: phone/renter insurance; Source category: NAIC.
+21. Warranty — Promise to fix or replace under rules; Math: warranty cost vs. likely repair; Misconception: warranty covers everything; App: asset purchase choices; Source category: consumer education.
+22. Self-insure — Use your own savings for a risk; Math: target fund ÷ monthly saving; Misconception: skipping insurance means no plan; App: warranty/phone scenarios; Source category: NAIC/consumer education.
+23. Variable income — Income that changes by week or shift; Math: low/typical/high range; Misconception: typical amount is guaranteed; App: tip income scenarios; Source category: IRS/FDIC.
+24. Conservative estimate — Safer lower guess used for planning; Math: budget using low estimate; Misconception: planning low is pessimistic; App: income forecast; Source category: financial education.
+25. Tax set-aside — Money saved for possible taxes or fees; Math: profit × percent; Misconception: cash income does not need records; App: side-hustle ledger; Source category: IRS.
+26. Profit — Money left after costs; Math: revenue − expenses; Misconception: sales equal profit; App: entrepreneurship; Source category: CFPB/financial education.
+27. Revenue — Money received from sales before costs; Math: price × quantity; Misconception: revenue is spendable profit; App: small business scenarios; Source category: financial education.
+28. Reserve — Money held back for possible future cost; Math: expected refund/claim amount; Misconception: unused reserve was wasted; App: refund reserve; Source category: CFPB/insurance education.
+29. Credit report — Record of credit activity; Math: not a score, but score uses report data; Misconception: reports and scores are identical; App: credit error chain; Source category: CFPB.
+30. Credit score — Number estimating borrowing repayment likelihood in a simplified model; Math: 300–850 range in many models; Misconception: one permanent score; App: credit meter; Source category: CFPB.
+31. Utilization — Share of a credit limit being used; Math: balance ÷ credit limit; Misconception: only dollar amount matters; App: credit choices; Source category: CFPB.
+32. Minimum payment — Smallest required payment; Math: compare minimum vs. full payoff; Misconception: minimum is the recommended amount; App: debt scenarios; Source category: CFPB.
+33. Loan term — Length of repayment; Math: payment × months; Misconception: lower monthly always means cheaper; App: loan comparisons; Source category: CFPB/FSA.
+34. Grant — Aid that usually does not need repayment if rules are met; Math: subtract from cost; Misconception: all aid is borrowed; App: aid categories; Source category: Federal Student Aid.
+35. Work-study — Aid earned through approved work; Math: hours × wage; Misconception: it appears automatically as cash; App: aid/job scenarios; Source category: Federal Student Aid.
+36. Scholarship — Aid awarded based on criteria and usually not repaid; Math: reduce remaining gap; Misconception: scholarships are only huge awards; App: scholarship deadlines; Source category: Federal Student Aid.
+37. Fund fee — Cost charged by an investment fund; Math: percent of amount invested; Misconception: tiny fees never matter; App: investment fee lens; Source category: Investor.gov/SEC.
+38. Diversification — Spreading money across investments so one result matters less; Math: compare one item vs. many; Misconception: diversification guarantees gains; App: investing; Source category: Investor.gov/SEC.
+39. Rebalancing — Adjusting an investment mix back to plan; Math: percent in each category; Misconception: keep whatever grew most; App: investment scenarios; Source category: Investor.gov/SEC.
+40. Two-factor authentication — Extra login step beyond a password; Math: avoided-loss reasoning; Misconception: passwords alone are enough; App: cyber-safety events; Source category: FTC/consumer advice.
+
+⸻
+
+10. Balance and Ethics Notes
+
+1. Net worth is not self-worth. Final reports must state that money totals are snapshots, not measures of character.
+2. Constraints should change routes, not dignity. Limited transit, spotty internet, or low starting cushion should create different options and supports, not shame.
+3. No sensitive identifiers. Do not ask for race, ethnicity, sex, gender identity, religion, disability, immigration status, family income, exact location, or real household structure.
+4. Support should be helpful but not magical. Support roles can improve odds, clarity, and confidence, but still require time and communication.
+5. Randomness must label luck. Say, “Your plan lowered the risk, but luck still mattered,” when appropriate.
+6. Do not rig every lesson. Waiting, asking, paying a fee, self-insuring, and buying convenience should sometimes be reasonable.
+7. Locked choices should be kind. Use “Needs: saved record” or “Needs: $20 cushion,” not failure language.
+8. Every setback needs recovery. Fees, scams, errors, and missed deadlines should unlock repair routes.
+9. Wants are legitimate. The game should teach planning, not joyless saving.
+10. Credit is one tool. High credit should never outrank wellbeing, safety, savings, or trust.
+11. Pathways stay neutral. Work-first, trade, apprenticeship, community college, four-year college, military, and entrepreneurship should all have viable routes.
+12. Teacher materials are not answer keys. Provide prompts, facilitation notes, and planning supports, not grades, rosters, or confidential answers.
+13. Local-only reflection. Optional reflections should remain in localStorage, be clearable, and never be transmitted.
+14. Simplified models need labels. Credit, tax, aid, insurance, investing, and inflation simulations should say “simplified for learning.”
+15. Originality checks should be automated. Lint for duplicate slugs, copied-like text, real brands, sensitive fields, mature themes, missing source categories, and endorsement language.
+
+⸻
+
+11. Source and Originality Notes
+
+Public source categories used for topic inspiration and factual orientation only: CFPB credit reports/scores, credit utilization, and consumer finance education; FDIC Money Smart for Young People and grades 6–8/9–12 financial education topic framing; FTC Consumer Advice for scams, phishing, impostor messages, and digital safety; Investor.gov/SEC for diversification, investment fees, risk, and fund concepts; Federal Student Aid for grants, scholarships, work-study, loans, aid offers, and FAFSA vocabulary; IRS Understanding Taxes for gross pay, net pay, deductions, payroll taxes, tips, and records; NAIC and state insurance/consumer education pages for premiums, deductibles, claims, policy limits, and coverage vocabulary.  
+
+All scenarios, definitions, prompts, feedback, reflection questions, and feature concepts in this batch are original MoneyLife Quest text. Do not copy wording, worksheets, scripts, UI, answer keys, definitions, slide text, branding, artwork, or protected expression from BitLife, NGPF, Banzai, Napkin Finance, Humble Math, or any other source. The app should attribute source categories for teacher transparency only and should not imply review, approval, sponsorship, partnership, affiliation, or endorsement by any source. Prior uploaded batches were used as duplication guards and already emphasized no copied third-party text, no endorsement implication, no mature themes, no PII fields, and build-time originality checks.    
+
+⸻
+
+12. Implementation Handoff for Codex
+
+1. Create scenariosCinderPeriscope83.ts — Add 75 scenarios with id, title, ageRange, topics, prompt, choices, randomized, futureFlag, glossaryTerms, tradeoffNote, and quota tags.
+2. Extend ScenarioChoice type — Include label, description, visibleRequirement, outcomeSummary, effectsText, feedback, reflectionPrompt, effects.
+3. Add AssumptionCard model — assumptions[], choice.assumptionIds, assumptionResolvedByEventId.
+4. Build PayStubDetective.tsx — Compare scheduled hours, paid hours, pay rate, gross pay, deductions, and net pay.
+5. Build UsageCapMeter.tsx — Track cap, current use, percent used, overage fee, and alert threshold.
+6. Create FeeStackRevealer.tsx — Display base price, percent fee, flat fee, shipping, tax, and final total.
+7. Create RecordTokenSystem.ts — Store fictional record tokens only; no uploads and no real documents.
+8. Create VariableIncomeForecast.tsx — Show low/typical/high income and conservative budget options.
+9. Create BenefitTradeoffPanel.tsx — Compare gross pay, deductions, benefit value, and net pay.
+10. Add FairnessRuleSelector.tsx — Equal, proportional, usage-based, rotating, gift/no-repay split rules.
+11. Add ReliabilityLedger.ts — Track fictional commitments, communication, missed/rescheduled events, and reference strength.
+12. Add ExpirationRadar.tsx — Track warranties, renewals, passes, return labels, and aid deadlines.
+13. Create RecoveryLadder.tsx — After setbacks, offer money route, support route, and habit route.
+14. Add SourceTriangulationBoard.tsx — Compare official, school, mentor, sponsored, anonymous, and viral fictional sources.
+15. Extend Asset model — Include usefulLife, condition, maintenanceLog, resaleValue, replacementValue, liquidity, and protectedBy.
+16. Create CreditReportErrorChain.ts — Handle simulated error, dispute, evidence token, waiting period, and correction.
+17. Create InvestmentFeeLens.tsx — Compare simplified fund fees, diversification, risk, and long-horizon impact.
+18. Create CyberSafetyEvents.ts — Public Wi-Fi purchase, fake recovery email, 2FA backup, and backup drill events.
+19. Add contentQuotaLint.ts — Validate minimum counts for MT/L/R/FF/SC/M/EXT/AN tags, duplicate slugs, missing tradeoff notes, missing glossary terms, and sensitive-field violations.
+20. Add sourceOriginalityLint.ts — Check for real brand names, endorsement language, copied-source phrases, mature themes, student PII prompts, and missing source-category attribution.
+
+**Creative Seed: `GLASS-FERN-91`**
+
+**Novelty guard:** I used the uploaded prior-batch markdown as a duplicate-avoidance baseline. It already covers earlier spines including subscription creep, emergency funds, credit history, apartments, car ownership, payment apps, identity theft, investing downturns, pathway planning, default traps, proof/documentation habits, fee stacks, utility smoothing, source evaluation, and several scenario slugs, so this batch uses new slugs and different mechanics.  
+**Newness note:** Items below are **[NEW]** relative to the uploaded prior file unless marked **[TWIST]**, which means the topic is required for financial literacy but handled through a different mechanic, age band, conflict, or classroom purpose.
+
+---
+
+# 1. Executive Research Synthesis
+
+1. **Make “timing” a core mechanic, not background math.** Many student errors will not come from misunderstanding totals; they will come from pay arriving after a bill, a pending charge clearing late, or a return window closing. A visible timing system turns abstract cash flow into a playable classroom idea.
+
+2. **Use official-source topics as orientation, not text to copy.** FDIC Money Smart for Young People provides age-banded financial education for pre-K through grade 12, and its grades 6–8 and 9–12 topic maps support the app’s bridge from middle school into early high school. The game should use those categories as scope inspiration while writing original prompts, definitions, and feedback. ([FDIC][1])
+
+3. **Credit should be modeled as one tool among many.** CFPB notes that many credit scores range from 300 to 850 and that higher scores can affect loan access and interest rates, but scoring systems vary. For students, this means the game should label the credit score as a simplified learning model, not as a moral grade. ([Consumer Financial Protection Bureau][2])
+
+4. **Scam safety should practice a calm routine.** FTC guidance emphasizes stopping, talking to someone trusted, and noticing pressure or unusual payment methods. In game terms, “pause, verify, document, report, recover” should be a repeated move, not a fear-based lecture. ([Consumer Advice][3])
+
+5. **Gross vs. net pay needs repeat exposure across contexts.** IRS student materials define gross pay as what an employee earns and net pay as take-home pay after deductions. Students should encounter that difference in jobs, budgets, transportation, tax refunds, side hustles, and pathway planning. ([IRS Applications][4])
+
+6. **BNPL and installment decisions should be framed as cash-flow carrying capacity.** CFPB explains that many BNPL loans do not charge interest but may charge late fees if payments are missed. The classroom question should be “Can this player carry every payment on time?” rather than “Is BNPL always bad?” ([Consumer Financial Protection Bureau][5])
+
+7. **Insurance works best when students compare “certain small cost” against “rare big cost.”** NAIC and state consumer materials emphasize deductibles, premiums, claims, and consumer understanding. A 7th-grade-friendly simulation should ask, “Could your savings handle this loss without help?” ([NAIC][6])
+
+8. **Investing content should prioritize time, fees, risk, and diversification before excitement.** Investor.gov explains compound interest, diversification, and fee drag; those ideas map well to 7th-grade math through percent growth, repeated multiplication, and “small differences over many years.” ([Investor][7])
+
+9. **Financial aid should never require real family-income entry.** Federal Student Aid distinguishes grants, work-study, loans, and scholarships; the game can model those with fictional aid tiers, fictional award letters, and no student personal data. ([Federal Student Aid][8])
+
+10. **Fictional constraints create empathy and replay value.** Variables like “transportation access,” “school resource availability,” and “internet reliability” let different runs feel realistic without asking for race, ethnicity, gender identity, household income, exact location, disability, immigration status, religion, or other sensitive identifiers.
+
+11. **The best math moments are small, repeated, and useful.** Percent, ratio, unit rate, proportional split, and multi-step total cost should appear as “how the choice works,” not as worksheet interruptions.
+
+12. **Recovery arcs are part of accuracy.** Students need to see that fees, scams, missed deadlines, and debt are serious but repairable. A game that permanently punishes one bad choice teaches fear instead of financial resilience.
+
+13. **Support-circle play should show mutual support, not magic help.** Family/caregiver, friend, mentor, and pet support can improve wellbeing, reminders, safety, or opportunity, but support should cost time, communication, trust, responsibility, or follow-through.
+
+14. **Assets need “usefulness value,” not just resale value.** A laptop, tool kit, bike, or certification may not be easily sold for much, but it can unlock schoolwork, work, transportation, or opportunity. This prevents net worth from flattening everything into cash.
+
+15. **Randomness should separate decision quality from luck.** A careful choice can still have a bad outcome; a risky choice can still work once. Feedback should name both: “Your plan lowered the risk, but luck still mattered.”
+
+16. **Teacher-facing content should support discussion, not surveillance.** Because the app has no backend, login, analytics, or student data collection, teacher materials should stay as facilitation prompts, scenario maps, vocabulary lists, and implementation notes—not rosters, grades, or hidden answer keys.
+
+---
+
+# 2. New Feature Recommendations
+
+## 1. [NEW] Tradeoff Compass
+
+* **Student-facing purpose:** Shows whether a choice mainly favors cost, time, safety, wellbeing, opportunity, relationship, or future flexibility.
+* **Teacher value:** Helps students explain reasoning beyond “I picked the best one.”
+* **Data/state needed:** `choice.tradeoffTags[]`, `decisionReasonTag`.
+* **Risk or privacy concern:** Avoid free-text by default; use fixed tags.
+* **MVP version:** Show 2–3 tags per choice.
+* **Stretch version:** End-of-run values map showing patterns without ranking students.
+
+## 2. [NEW] Before/After Stat Diff Panel
+
+* **Student-facing purpose:** Shows exactly what changed after a decision.
+* **Teacher value:** Makes cause and effect visible for reflection.
+* **Data/state needed:** `statSnapshotBefore`, `statSnapshotAfter`, `effectLabels`.
+* **Risk or privacy concern:** None if all data stays fictional/local.
+* **MVP version:** “Money Know-How +3, Cash −$12.”
+* **Stretch version:** Expandable “because…” explanation with prior flag links.
+
+## 3. [NEW] Budget Stress Test
+
+* **Student-facing purpose:** Lets students test whether a budget survives a small surprise.
+* **Teacher value:** Teaches margin, cushion, and planning under uncertainty.
+* **Data/state needed:** `budgetPlan`, `stressEventPool`, `emergencyCushion`.
+* **Risk or privacy concern:** Keep all budgets fictional.
+* **MVP version:** One button: “Test with a $25 surprise.”
+* **Stretch version:** Multiple stress levels: light, medium, storm.
+
+## 4. [NEW] Fictional Bills Inbox
+
+* **Student-facing purpose:** Students open bills, notices, reminders, and harmless scam simulations.
+* **Teacher value:** Builds document-reading skills without real documents.
+* **Data/state needed:** `mailItems[]`, `readStatus`, `dueDates`.
+* **Risk or privacy concern:** Never ask students to upload bills.
+* **MVP version:** Text-card inbox.
+* **Stretch version:** Sort by “pay,” “verify,” “save,” “ignore,” “ask for help.”
+
+## 5. [NEW] Math Scratchpad Drawer
+
+* **Student-facing purpose:** Gives quick space for percent, ratio, and total-cost math.
+* **Teacher value:** Reduces cognitive load and supports Chromebook classrooms.
+* **Data/state needed:** temporary local scratch state; no persistence needed.
+* **Risk or privacy concern:** No personal entries encouraged; include clear/reset button.
+* **MVP version:** Built-in calculator prompts.
+* **Stretch version:** Step hints for 10%, 5%, 20%, split, and percent-of-a-number.
+
+## 6. [NEW] Opportunity Lock Preview
+
+* **Student-facing purpose:** Locked choices show what unlocks them later.
+* **Teacher value:** Turns constraints into goals instead of shame.
+* **Data/state needed:** `requirements`, `visibleLockedText`, `unlockHint`.
+* **Risk or privacy concern:** Avoid language like “you failed.”
+* **MVP version:** “Needs $40 cushion.”
+* **Stretch version:** “Two ways to unlock this later.”
+
+## 7. [NEW] Scam Pressure Meter
+
+* **Student-facing purpose:** Highlights urgency, secrecy, payment method, and too-good-to-be-true claims.
+* **Teacher value:** Teaches transferable scam patterns.
+* **Data/state needed:** `riskSignals[]`, `studentAction`.
+* **Risk or privacy concern:** Use fictional senders only.
+* **MVP version:** 0–4 pressure signals.
+* **Stretch version:** Students tag which signal they noticed first.
+
+## 8. [NEW] Ownership Shelf
+
+* **Student-facing purpose:** Tracks useful assets, condition, resale value, and maintenance.
+* **Teacher value:** Connects assets to net worth and opportunity.
+* **Data/state needed:** `assets[]` with `condition`, `resaleValue`, `usefulness`, `maintenanceDue`.
+* **Risk or privacy concern:** Fictional assets only.
+* **MVP version:** Card list.
+* **Stretch version:** Condition changes over time and affects future locked choices.
+
+## 9. [NEW] Repair-or-Replace Lens
+
+* **Student-facing purpose:** Helps compare repair cost, replacement cost, remaining usefulness, and downtime.
+* **Teacher value:** Strong proportional reasoning and cost-benefit discussion.
+* **Data/state needed:** `assetRepairOptions[]`.
+* **Risk or privacy concern:** None.
+* **MVP version:** Two-option comparison.
+* **Stretch version:** Includes probability of repeat failure.
+
+## 10. [NEW] Recovery Choice Deck
+
+* **Student-facing purpose:** After a setback, students choose repair actions.
+* **Teacher value:** Prevents one-choice dead ends.
+* **Data/state needed:** `setbackType`, `recoveryOptions[]`, `progressFlags`.
+* **Risk or privacy concern:** Feedback must stay non-shaming.
+* **MVP version:** 3 recovery options after debt, fee, scam, or low wellbeing.
+* **Stretch version:** Multi-step recovery chain with badges.
+
+## 11. [NEW] Source Check Stamp
+
+* **Student-facing purpose:** Stamps money advice as official, school/mentor, sponsored, anonymous, or unknown.
+* **Teacher value:** Supports media literacy.
+* **Data/state needed:** `sourceType`, `claimRisk`, `verified`.
+* **Risk or privacy concern:** Avoid real influencers or brands.
+* **MVP version:** One source label per advice card.
+* **Stretch version:** Students compare two sources before acting.
+
+## 12. [NEW] Due-Date Nudger
+
+* **Student-facing purpose:** Converts deadlines into friendly in-game reminders.
+* **Teacher value:** Shows discipline as a system, not a personality trait.
+* **Data/state needed:** `deadlines[]`, `reminderSet`.
+* **Risk or privacy concern:** No real calendar integration.
+* **MVP version:** In-game reminder only.
+* **Stretch version:** Reminder quality affects future outcomes.
+
+## 13. [NEW] Fee Receipt Unstacker
+
+* **Student-facing purpose:** Separates base price, tax, shipping, service fee, late fee, and convenience fee.
+* **Teacher value:** Makes “total cost” visible.
+* **Data/state needed:** `priceComponents[]`.
+* **Risk or privacy concern:** No real receipts.
+* **MVP version:** Expand/collapse price breakdown.
+* **Stretch version:** Students predict total before reveal.
+
+## 14. [NEW] Pathway Price Tag Compare
+
+* **Student-facing purpose:** Compares work-first, apprenticeship, trade program, community college, four-year, military, and entrepreneurship routes.
+* **Teacher value:** Keeps pathways neutral and concrete.
+* **Data/state needed:** `pathwayCards[]`, `timeCost`, `cashCost`, `debtEstimate`, `incomeRange`.
+* **Risk or privacy concern:** No real family income or personal eligibility.
+* **MVP version:** Static comparison cards.
+* **Stretch version:** Fictional aid, transportation, and schedule variables adjust route difficulty.
+
+## 15. [NEW] Insurance What-If Slider
+
+* **Student-facing purpose:** Compares higher premium/lower deductible vs. lower premium/higher deductible.
+* **Teacher value:** Excellent for proportional reasoning and risk.
+* **Data/state needed:** `premium`, `deductible`, `claimSize`, `riskChance`.
+* **Risk or privacy concern:** Label as simplified.
+* **MVP version:** One simulated claim.
+* **Stretch version:** Several years with randomized claim/no-claim outcomes.
+
+## 16. [NEW] Debt Payoff Micro-Sim
+
+* **Student-facing purpose:** Compare paying extra, minimum only, or pause-and-recover.
+* **Teacher value:** Teaches interest without overwhelming students.
+* **Data/state needed:** `debtAccounts[]`, `APR`, `minimumPayment`, `extraPayment`.
+* **Risk or privacy concern:** Avoid moralizing debt.
+* **MVP version:** One balance, three payoff choices.
+* **Stretch version:** Avalanche vs. snowball strategy.
+
+## 17. [NEW] Local-Save Privacy Tile
+
+* **Student-facing purpose:** Explains that progress is saved only on the device.
+* **Teacher value:** Supports classroom trust and privacy expectations.
+* **Data/state needed:** `localStorageStatus`, `clearSaveAction`.
+* **Risk or privacy concern:** Must be accurate; no analytics.
+* **MVP version:** One tile in settings.
+* **Stretch version:** “Clear this run” and “export reflection without names” teacher-safe option.
+
+## 18. [NEW] Randomness Explainer
+
+* **Student-facing purpose:** Shows “choice quality” and “luck” separately.
+* **Teacher value:** Prevents students from overlearning from one lucky/unlucky result.
+* **Data/state needed:** `outcomeOdds`, `riskMitigation`, `luckLabel`.
+* **Risk or privacy concern:** Keep odds simple and transparent.
+* **MVP version:** “Low / medium / high chance.”
+* **Stretch version:** Tiny probability bar with classroom-friendly explanation.
+
+## 19. [NEW] Support Ask Mini-Scripts
+
+* **Student-facing purpose:** Gives safe sentence starters for asking a fictional caregiver, friend, mentor, or pet-care helper.
+* **Teacher value:** Builds communication skills.
+* **Data/state needed:** `supportRole`, `scenarioType`, `trustLevel`.
+* **Risk or privacy concern:** Must not ask students about their real family situation.
+* **MVP version:** Three fixed scripts per role.
+* **Stretch version:** Scripts adapt to trust, urgency, and money topic.
+
+## 20. [NEW] End-of-Run “Money Snapshot, Not Self-Worth” Report
+
+* **Student-facing purpose:** Summarizes stats, net worth, assets, debt, support, habits, and one recovery goal.
+* **Teacher value:** Good final reflection artifact.
+* **Data/state needed:** aggregate run data, flags, badge list.
+* **Risk or privacy concern:** Store locally; avoid grades or rankings.
+* **MVP version:** Printable-style local summary.
+* **Stretch version:** Student chooses what sections to include.
+
+## 21. [NEW] Scenario Remix Flags
+
+* **Student-facing purpose:** Replays the same topic with different fictional constraints.
+* **Teacher value:** Supports compare-outcome discussion.
+* **Data/state needed:** `contextSeed`, `scenarioVariant`, `flags`.
+* **Risk or privacy concern:** Constraints must be fictional, not identity-based.
+* **MVP version:** Three preset seeds.
+* **Stretch version:** Randomized but teacher-safe seed generator.
+
+## 22. [NEW] Classroom Mode Content Filter
+
+* **Student-facing purpose:** Keeps scenarios age-appropriate for 7th grade or unlocks 8th–10th extensions.
+* **Teacher value:** Lets teachers control scope.
+* **Data/state needed:** `gradeBandMode`, `extensionEnabled`.
+* **Risk or privacy concern:** No student profiles.
+* **MVP version:** Teacher chooses “7th only” or “7th + extensions.”
+* **Stretch version:** Topic toggles: credit, investing, aid, insurance, pathways.
+
+---
+
+# 3. Scenario Systems and Chains
+
+## Chain 1 — [NEW] The Friday–Monday Gap
+
+* **Learning target:** Cash-flow timing, pending charges, due dates.
+* **Trigger ages/life stages:** Ages 15–18; first job or checking account.
+* **Required flags:** `hasIncome` or `hasChecking`.
+* **Events in order:**
+
+  1. Pay arrives Friday, but a fee/bill is due Thursday.
+  2. Player chooses transfer, delay, skip purchase, or ask for help.
+  3. Pending charge clears earlier than expected.
+  4. Account alert either warns or stays silent depending on prior setup.
+  5. Player revises due-date system.
+* **How choices compound:** Setting alerts and leaving a buffer prevents fees; spending down to zero makes timing fragile.
+* **Possible endings:** Buffer Builder, Timing Squeezed, Alert-Saved.
+
+## Chain 2 — [NEW] Keep, Repair, Upgrade
+
+* **Learning target:** Asset condition, depreciation, repair vs. replace.
+* **Trigger ages/life stages:** Ages 13–17.
+* **Required flags:** `ownsUsefulAsset`.
+* **Events in order:**
+
+  1. Useful item begins wearing down.
+  2. Cheap upkeep appears.
+  3. Skipped upkeep creates a larger randomized repair.
+  4. Player compares repair cost to replacement cost.
+  5. Asset shelf updates condition and resale value.
+* **How choices compound:** Small maintenance protects future usefulness; ignoring condition lowers resale and can lock later choices.
+* **Possible endings:** Maintained Asset, Replaced Early, Patched-and-Functional.
+
+## Chain 3 — [NEW] Terms Before Tap
+
+* **Learning target:** Read commitment length, cancellation rules, fees, and return limits.
+* **Trigger ages/life stages:** Ages 13–16.
+* **Required flags:** none.
+* **Events in order:**
+
+  1. A low first-month price appears.
+  2. The terms reveal a longer commitment.
+  3. A schedule change makes the service less useful.
+  4. Cancel / continue / negotiate / wait.
+  5. Whole-term cost reflection.
+* **How choices compound:** Reading terms preserves flexibility; tapping fast can create locked-in recurring cost.
+* **Possible endings:** Terms Reader, Stuck-in-Term, Right-Sized.
+
+## Chain 4 — [NEW] Margin of Safety
+
+* **Learning target:** Estimate high, build cushions, avoid exact-to-the-cent plans.
+* **Trigger ages/life stages:** Ages 12–15.
+* **Required flags:** none.
+* **Events in order:**
+
+  1. Player estimates a total.
+  2. Taxes/fees/rounding push the total higher.
+  3. Player adds a 10% cushion to the next plan.
+  4. A small surprise tests the cushion.
+  5. Reflection on why “just enough” is risky.
+* **How choices compound:** Cushion habits reduce fee risk and stress.
+* **Possible endings:** Cushion Thinker, Exact-to-Zero, Estimate Improver.
+
+## Chain 5 — [NEW] Source Badge Trail
+
+* **Learning target:** Evaluate money advice by source quality.
+* **Trigger ages/life stages:** Ages 14–18.
+* **Required flags:** `usesInternetForAdvice`.
+* **Events in order:**
+
+  1. Viral money tip appears.
+  2. Mentor or official source offers a different explanation.
+  3. Player checks source badge.
+  4. A fake “proof screenshot” appears.
+  5. Player builds source-check habit.
+* **How choices compound:** Trusting unknown claims raises scam and bad-decision risk; checking sources unlocks safer opportunities.
+* **Possible endings:** Source Checker, Screenshot-Fooled, Mentor-Verified.
+
+## Chain 6 — [NEW] Supply Shelf Side Hustle
+
+* **Learning target:** Inventory, spoilage, profit, pricing, cash tied up.
+* **Trigger ages/life stages:** Ages 14–17.
+* **Required flags:** `startedSmallHustle`.
+* **Events in order:**
+
+  1. Buy small inventory.
+  2. Demand is uncertain.
+  3. Unsold goods tie up cash or lose value.
+  4. Adjust price, bundle, or pause.
+  5. Profit/loss statement includes time and leftover inventory.
+* **How choices compound:** Overbuying raises risk; tracking demand improves future orders.
+* **Possible endings:** Lean Seller, Overstocked, Break-Even Learner.
+
+## Chain 7 — [NEW] Training Seat Waitlist
+
+* **Learning target:** Deposits, deadlines, credentials, opportunity cost.
+* **Trigger ages/life stages:** Ages 15–18.
+* **Required flags:** `careerInterest`.
+* **Events in order:**
+
+  1. A training seat opens with a small deposit.
+  2. Student compares schedule, cost, and benefit.
+  3. Waitlist deadline hits.
+  4. Completion or missed attendance affects credential.
+  5. Credential unlocks job/pathway choice or expires later.
+* **How choices compound:** Planning protects opportunity; rushing into training can strain schedule and wellbeing.
+* **Possible endings:** Credential Earned, Seat Missed, Deferred Wisely.
+
+## Chain 8 — [NEW] Shared Workspace Rule
+
+* **Learning target:** Shared costs, rules, proportional use, friendship boundaries.
+* **Trigger ages/life stages:** Ages 13–17.
+* **Required flags:** `supportCircle.friend`.
+* **Events in order:**
+
+  1. Friends share supplies or workspace.
+  2. Choose equal split, usage-based split, or rotating supplies.
+  3. One friend uses more than expected.
+  4. Rule is revised or conflict grows.
+  5. Trust and money outcome update.
+* **How choices compound:** Clear rules protect friendship; vague generosity can become resentment.
+* **Possible endings:** Fair Split, Gift-Not-Loan, Friendship Repair.
+
+## Chain 9 — [NEW] Energy Upgrade Break-Even
+
+* **Learning target:** Upfront cost vs. future savings.
+* **Trigger ages/life stages:** Ages 16–adult planning.
+* **Required flags:** `paysUtilities` or adult-planning mode.
+* **Events in order:**
+
+  1. Small energy-saving item costs money upfront.
+  2. Monthly savings estimate appears.
+  3. Player computes break-even time.
+  4. Random weather month changes savings.
+  5. Long-term total shown.
+* **How choices compound:** Good upgrades pay back over time; too-slow payback may not fit a short lease.
+* **Possible endings:** Break-Even Planner, Overbought Upgrade, Good Enough Saver.
+
+## Chain 10 — [NEW] Device Trade-In Privacy Trail
+
+* **Learning target:** Asset resale, data privacy, preparation.
+* **Trigger ages/life stages:** Ages 14–18.
+* **Required flags:** `ownsDevice`.
+* **Events in order:**
+
+  1. Trade-in offer appears.
+  2. Player backs up, wipes, repairs, or trades quickly.
+  3. Condition check changes value.
+  4. Privacy step affects safety outcome.
+  5. Net value and safety result shown.
+* **How choices compound:** Better preparation raises trade value and lowers data risk.
+* **Possible endings:** Clean Trade, Value Reduced, Privacy Recovery.
+
+## Chain 11 — [NEW] Limit Increase Trap
+
+* **Learning target:** Credit limit, utilization, temptation, borrowing capacity.
+* **Trigger ages/life stages:** Ages 18+ planning.
+* **Required flags:** `creditActive`.
+* **Events in order:**
+
+  1. Credit limit increase offer appears.
+  2. Player accepts, declines, or asks why.
+  3. Bigger limit changes utilization math.
+  4. Tempting purchase tests discipline.
+  5. Score and debt update.
+* **How choices compound:** Higher limit can help utilization if spending stays low; it can hurt if spending rises.
+* **Possible endings:** Limit Used Wisely, Bigger Balance, Declined-for-Now.
+
+## Chain 12 — [NEW] Aid Renewal Year
+
+* **Learning target:** Financial aid renewals, deadlines, satisfactory progress, loans vs. grants.
+* **Trigger ages/life stages:** Ages 17–adult planning.
+* **Required flags:** `pathwayIncludesSchool`.
+* **Events in order:**
+
+  1. First aid package appears.
+  2. Renewal deadline is set.
+  3. Player tracks requirements.
+  4. Missed or met renewal changes next year’s gap.
+  5. Borrow, work, scholarship, or adjust path.
+* **How choices compound:** Aid is not always one-and-done; missing requirements can create later borrowing.
+* **Possible endings:** Renewal Ready, Gap Planner, Deadline Recovery.
+
+## Chain 13 — [NEW] Deductible Pocket
+
+* **Learning target:** Insurance deductible, emergency savings, claim decision.
+* **Trigger ages/life stages:** Ages 16–adult planning.
+* **Required flags:** `hasInsurance`.
+* **Events in order:**
+
+  1. Player chooses a deductible.
+  2. Builds or skips a “deductible pocket” in savings.
+  3. Claim event happens or does not.
+  4. Player pays deductible or struggles.
+  5. Right-size coverage reflection.
+* **How choices compound:** Insurance works better when the deductible is actually saved.
+* **Possible endings:** Covered-and-Ready, Covered-but-Cash-Short, Self-Insured.
+
+## Chain 14 — [NEW] Meal Plan Math
+
+* **Learning target:** Per-meal cost, planning, waste, time vs. money.
+* **Trigger ages/life stages:** Ages 13–18.
+* **Required flags:** `foodBudgetContext`.
+* **Events in order:**
+
+  1. Player compares packable meals, cafeteria, convenience food, or adult meal plan.
+  2. Time pressure hits.
+  3. Waste or leftovers appear.
+  4. Student adjusts plan.
+  5. Monthly food total revealed.
+* **How choices compound:** Planning lowers cost but uses time; convenience protects time but can drain cash.
+* **Possible endings:** Planned Enough, Convenience Drift, Balanced Mix.
+
+## Chain 15 — [NEW] Option Value
+
+* **Learning target:** Keeping future choices open has value.
+* **Trigger ages/life stages:** Ages 15–adult planning; capstone-ready.
+* **Required flags:** any 8 completed decisions.
+* **Events in order:**
+
+  1. Player reviews two earlier decisions.
+  2. One choice kept options open; one closed a route.
+  3. New opportunity appears.
+  4. Player uses cash, support, credential, or safety habit to unlock it.
+  5. Reflection on flexibility.
+* **How choices compound:** Savings, trust, safety, and skills become “option assets.”
+* **Possible endings:** Option Keeper, Route Rebuilder, One-Path Planner.
+
+---
+
+# 4. Fresh Scenario Bank
+
+**Scenario key:** MT = mixed tradeoff; L = locked choice; R = randomized outcome; FF = sets future flag; SC = support-circle element; M = explicit 7th-grade math; EXT = 8th–10th extension; AN = asset/net-worth/ownership.
+
+## 1. `club-supply-captain` — [NEW] “The Club Supply Box”
+
+* **Age range:** 12–14
+* **Topics:** budgeting, shared costs, records
+* **Tags:** MT, M, SC, FF
+* **Prompt:** Your after-school club needs markers, tape, and poster board for a showcase. The group has $32, and the supply list totals $39 before tax. You volunteer to help make a plan.
+* **Choices:**
+
+  * **A. Trim the list.** Req: none. Outcome: Buy the most needed items first. Effects: Money Know-How rises; opportunity stays steady. Feedback: “A budget is a plan for limits, not a punishment.” Reflect: “Which item mattered most?”
+  * **B. Ask each member for $1.** Req: supportCircle.friend or clubTrust ≥ 40. Outcome: Group covers the gap. Effects: Trust rises if you explain clearly. Feedback: “Small shared costs need clear communication.” Reflect: “How did you make the ask fair?”
+  * **C. Pay the extra yourself.** Req: cash ≥ $8. Outcome: The showcase is ready, but your cash drops. Effects: Opportunity rises; cash drops. Feedback: “Generosity helps, but unplanned covering can become a habit.” Reflect: “Would you do this every time?”
+* **Randomized outcome?** No.
+* **Future flag set?** Yes: `managedGroupBudget`
+* **Glossary terms:** Budget — a plan for how money will be used; Shared cost — a cost split by more than one person; Record — a note that helps prove what happened.
+* **Tradeoff note:** Helping the group is valuable, but fairness and communication matter.
+
+## 2. `locker-key-deposit` — [NEW] “The Locker Key Hold”
+
+* **Age range:** 12–14
+* **Topics:** deposits, responsibility, cash availability
+* **Tags:** L, M, FF
+* **Prompt:** A school program offers a supply locker key with a $10 refundable hold. You get the money back if the key returns by Friday.
+* **Choices:**
+
+  * **A. Take the key and set a reminder.** Req: none. Outcome: Easier access to supplies. Effects: Cash temporarily unavailable; Discipline rises. Feedback: “Refundable money is still not spendable until it returns.” Reflect: “How is a hold different from a price?”
+  * **B. Ask to share with a partner.** Req: Locked until `friendTrust ≥ 45`. Outcome: You split responsibility. Effects: Trust can rise; schedule coordination needed. Feedback: “Sharing lowers burden but adds communication.” Reflect: “What rule keeps sharing fair?”
+  * **C. Skip the key.** Req: none. Outcome: Cash stays available; supply access is less convenient. Effects: Safety steady; opportunity slightly lower. Feedback: “Avoiding a deposit can be reasonable if cash is tight.” Reflect: “When is convenience worth tying up money?”
+* **Randomized outcome?** No.
+* **Future flag set?** Yes: `understandsRefundableHold`
+* **Glossary terms:** Deposit — money held and possibly returned; Refundable — able to come back if rules are met; Cash availability — money you can use right now.
+* **Tradeoff note:** Free-to-use resources can still create timing pressure.
+
+## 3. `robotics-kit-upgrade` — [NEW] “The Robot Arm Upgrade”
+
+* **Age range:** 13–15
+* **Topics:** asset, group decision, opportunity cost
+* **Tags:** MT, M, SC, AN, FF
+* **Prompt:** Your robotics team can buy a $28 sensor or save for a $75 arm kit. The sensor helps this month; the arm kit could unlock harder challenges later.
+* **Choices:**
+
+  * **A. Buy the sensor now.** Req: none. Outcome: Immediate performance improves. Effects: Opportunity rises now; savings goal delayed. Feedback: “Short-term upgrades can be smart when a deadline is close.” Reflect: “What problem did you solve first?”
+  * **B. Save for the arm kit.** Req: none. Outcome: Bigger future upgrade remains possible. Effects: Discipline rises; current score unchanged. Feedback: “Waiting keeps a future option open.” Reflect: “What makes waiting worth it?”
+  * **C. Ask the mentor to match effort with funding.** Req: Locked until supportCircle.mentor. Outcome: Mentor may offer a challenge goal. Effects: Opportunity rises if team follows through. Feedback: “Support often comes with responsibility.” Reflect: “What would prove the team is ready?”
+* **Randomized outcome?** No.
+* **Future flag set?** Yes: `roboticsAssetPlan`
+* **Glossary terms:** Asset — something owned that has value or usefulness; Opportunity cost — what you give up when choosing; Upgrade — a cost that improves usefulness.
+* **Tradeoff note:** The best choice depends on whether the team values current performance or future capability.
+
+## 4. `punch-card-maybe` — [NEW] “The Almost-Free Snack Card”
+
+* **Age range:** 12–14
+* **Topics:** loyalty rewards, spending triggers, percent
+* **Tags:** MT, M
+* **Prompt:** A snack stand gives one free item after 8 purchases. You are at 6 stamps. Each snack costs $2.25.
+* **Choices:**
+
+  * **A. Buy two more to earn the reward.** Req: cash ≥ $4.50. Outcome: You spend $4.50 to unlock one item. Effects: Cash drops; Want satisfaction rises. Feedback: “A reward is only a deal if you wanted the purchases anyway.” Reflect: “Did the stamp card change your plan?”
+  * **B. Wait until you actually want snacks.** Req: none. Outcome: No extra spending today. Effects: Discipline rises. Feedback: “Delaying can protect cash from reward pressure.” Reflect: “What would make the reward worth it?”
+  * **C. Give the card to a friend who is already buying.** Req: supportCircle.friend. Outcome: Friend benefits; you avoid spending. Effects: Trust rises; no cash cost. Feedback: “Sometimes the best value is not chasing the reward yourself.” Reflect: “Was this a gift or a strategy?”
+* **Randomized outcome?** No.
+* **Future flag set?** No.
+* **Glossary terms:** Loyalty reward — a perk for repeat buying; Spending trigger — something that nudges you to buy; Total cost — all money paid, not just the reward.
+* **Tradeoff note:** Rewards can be useful, but they can also make extra spending feel smart.
+
+## 5. `refill-bottle-break-even` — [NEW] “The Refill Bottle Math”
+
+* **Age range:** 12–14
+* **Topics:** break-even, ownership, needs/wants
+* **Tags:** MT, M, AN
+* **Prompt:** A sturdy refill bottle costs $18. Disposable drinks cost $1.50 each. Your school has a refill station.
+* **Choices:**
+
+  * **A. Buy the refill bottle.** Req: cash ≥ $18. Outcome: Break-even after 12 avoided drinks. Effects: Cash drops now; future spending drops. Feedback: “$18 ÷ $1.50 = 12 uses before the bottle pays for itself.” Reflect: “Will you use it enough?”
+  * **B. Keep buying drinks.** Req: none. Outcome: Lower upfront cost; higher long-run cost. Effects: Cash stays now; recurring cost continues. Feedback: “Small repeat costs can pass a bigger one.” Reflect: “How many times per month would this happen?”
+  * **C. Use a cheaper bottle first.** Req: cash ≥ $7. Outcome: Lower upfront risk; less durable. Effects: Cash drops less; replacement risk remains. Feedback: “A lower-cost test can be smart before a bigger buy.” Reflect: “What are you testing?”
+* **Randomized outcome?** No.
+* **Future flag set?** No.
+* **Glossary terms:** Break-even — the point where savings equal the upfront cost; Recurring cost — a cost that repeats; Durable — able to last.
+* **Tradeoff note:** Ownership saves money only if the item is actually used and cared for.
+
+## 6. `calculator-buy-borrow` — [NEW] “The Graphing Calculator Choice”
+
+* **Age range:** 13–15
+* **Topics:** school tools, asset, depreciation
+* **Tags:** MT, M, AN, L
+* **Prompt:** A used calculator costs $65, borrowing from school is free but limited, and renting costs $8 per month.
+* **Choices:**
+
+  * **A. Buy used.** Req: cash ≥ $65. Outcome: You own a tool for multiple years. Effects: Asset gained; cash drops. Feedback: “Owning can help if you need it often.” Reflect: “How many months make buying cheaper?”
+  * **B. Borrow from school.** Req: Locked until `schoolResourceAccess = available`. Outcome: No cost, but limited access. Effects: Cash protected; opportunity depends on schedule. Feedback: “Community resources reduce cost but may have rules.” Reflect: “What rule could trip you up?”
+  * **C. Rent monthly.** Req: cash ≥ $8. Outcome: Flexible but can add up. Effects: Cash drops monthly. Feedback: “$8 × 10 months = $80, more than buying used.” Reflect: “When is flexibility worth paying more?”
+* **Randomized outcome?** No.
+* **Future flag set?** Yes: `ownsSchoolTool` if A
+* **Glossary terms:** Depreciation — losing value over time; Rent — pay to use without owning; Asset — something owned with value or usefulness.
+* **Tradeoff note:** Borrowing, renting, and buying each make sense under different access and time needs.
+
+## 7. `lost-receipt-return` — [NEW] “The Receipt That Vanished”
+
+* **Age range:** 13–15
+* **Topics:** returns, proof, consumer skills
+* **Tags:** R, FF
+* **Prompt:** You bought a backpack insert that does not fit. The store may accept a return, but your receipt is missing.
+* **Choices:**
+
+  * **A. Search email/app records.** Req: none. Outcome: Proof may be found. Effects: Safety and Discipline rise. Feedback: “Digital records can rescue a return.” Reflect: “Where should proof live next time?”
+  * **B. Try returning without proof.** Req: none. Outcome: Randomized: store credit, denial, or partial refund. Effects: Cash outcome varies. Feedback: “Without proof, your options depend on policy.” Reflect: “What did missing proof cost?”
+  * **C. Keep it and repurpose it.** Req: none. Outcome: No refund, but some usefulness. Effects: Cash unchanged; wellbeing may rise. Feedback: “A mistake can sometimes be turned into partial value.” Reflect: “Was saving time worth losing the refund?”
+* **Randomized outcome?** Yes.
+* **Future flag set?** Yes: `savesPurchaseProof`
+* **Glossary terms:** Receipt — proof of purchase; Store credit — money usable only at that store; Return policy — rules for taking an item back.
+* **Tradeoff note:** Chasing a refund takes time; keeping a usable item may be reasonable.
+
+## 8. `fair-qr-confirm` — [NEW] “The QR Code at the Fair”
+
+* **Age range:** 13–16
+* **Topics:** payment safety, QR codes, verification
+* **Tags:** L, R, FF, EXT
+* **Prompt:** A booth at a school-safe community fair has a QR code for payment. Another sticker is partly covering the original code.
+* **Choices:**
+
+  * **A. Ask the booth helper to confirm the code.** Req: none. Outcome: Safer payment. Effects: Safety rises. Feedback: “Checking the recipient before paying is a strong habit.” Reflect: “What detail did you verify?”
+  * **B. Scan and pay quickly.** Req: paymentAppEnabled. Outcome: Randomized: normal payment or wrong recipient warning. Effects: Safety may drop. Feedback: “Fast payment can skip important checks.” Reflect: “What made you rush?”
+  * **C. Use cash or skip.** Req: Locked until cash ≥ item price. Outcome: Avoids QR risk. Effects: Cash drops or purchase skipped. Feedback: “Different payment methods carry different risks.” Reflect: “When is a slower method safer?”
+* **Randomized outcome?** Yes.
+* **Future flag set?** Yes: `qrSafetyAware`
+* **Glossary terms:** QR code — a scannable code that can open a link or payment; Recipient — the person or account receiving money; Verification — checking before trusting.
+* **Tradeoff note:** Digital payment is convenient, but convenience should not erase safety checks.
+
+## 9. `jersey-order-minimum` — [NEW] “The Team Hoodie Minimum”
+
+* **Age range:** 13–15
+* **Topics:** group buying, minimum order, peer pressure
+* **Tags:** MT, M, SC
+* **Prompt:** A custom hoodie order only gets the lower price if 20 people join. At 17 orders, the price is $31; at 20 orders, it drops to $26.
+* **Choices:**
+
+  * **A. Encourage three more people.** Req: supportCircle.friend. Outcome: Everyone may save $5. Effects: Opportunity and trust rise if honest. Feedback: “Group buying works best when nobody feels pressured.” Reflect: “How can you invite without pushing?”
+  * **B. Pay $31 and stop recruiting.** Req: cash ≥ $31. Outcome: Higher price, less pressure. Effects: Cash drops more; wellbeing steady. Feedback: “Avoiding pressure can be worth the extra cost.” Reflect: “What did peace cost?”
+  * **C. Skip the hoodie.** Req: none. Outcome: Cash stays available. Effects: Discipline rises; social connection may dip. Feedback: “Belonging can matter, but so does your budget.” Reflect: “Is there another way to feel included?”
+* **Randomized outcome?** No.
+* **Future flag set?** No.
+* **Glossary terms:** Minimum order — the smallest number needed for a deal; Group buying — people buying together for a price; Peer pressure — social push to choose something.
+* **Tradeoff note:** The lowest price is not always the lowest social cost.
+
+## 10. `digital-art-scope` — [NEW] “One More Revision?”
+
+* **Age range:** 14–17
+* **Topics:** side hustle, scope creep, pricing
+* **Tags:** MT, R, FF, EXT
+* **Prompt:** You make a digital logo for a club. You agreed to $18 for one version, but they ask for “just three tiny changes.”
+* **Choices:**
+
+  * **A. Do the changes for free.** Req: none. Outcome: Client is happy; your time cost grows. Effects: Trust rises; cash per hour falls. Feedback: “Free extras can build goodwill or train people to expect free labor.” Reflect: “Was this generosity or underpricing?”
+  * **B. Explain one free revision, then $5 each.** Req: Money Know-How ≥ 45. Outcome: Randomized client response. Effects: Opportunity may rise; confidence grows. Feedback: “Clear terms protect both sides.” Reflect: “How did the boundary sound?”
+  * **C. Ask a mentor to help write terms next time.** Req: supportCircle.mentor. Outcome: Future work is clearer. Effects: Opportunity and Discipline rise. Feedback: “A simple agreement can prevent awkward money talks.” Reflect: “What rule would you add?”
+* **Randomized outcome?** Yes.
+* **Future flag set?** Yes: `usesSimpleWorkTerms`
+* **Glossary terms:** Scope creep — extra work added after the agreement; Rate — price for time or work; Terms — the rules of a deal.
+* **Tradeoff note:** Being flexible helps relationships, but unclear work can shrink profit.
+
+## 11. `ink-auto-refill` — [NEW] “The Ink That Orders Itself”
+
+* **Age range:** 14–16
+* **Topics:** auto-refill, recurring costs, total cost
+* **Tags:** MT, M, FF
+* **Prompt:** A printer ink service offers automatic refills for $7/month. Buying ink only when needed costs about $22 every four months.
+* **Choices:**
+
+  * **A. Use auto-refill.** Req: checkingAccount or caregiverPermissionFlag. Outcome: Predictable monthly cost. Effects: Convenience rises; recurring cost begins. Feedback: “$7 × 12 = $84 per year.” Reflect: “How much would pay-as-needed cost?”
+  * **B. Buy only when needed.** Req: none. Outcome: Less predictable, possibly cheaper. Effects: Cash varies; Discipline needed. Feedback: “Pay-as-needed works if you remember before running out.” Reflect: “What reminder would help?”
+  * **C. Print less and use school/library resources when allowed.** Req: schoolResourceAccess. Outcome: Lower cost, more planning. Effects: Cash protected; schedule flexibility drops. Feedback: “Using resources can save money but costs coordination.” Reflect: “What is the hidden cost?”
+* **Randomized outcome?** No.
+* **Future flag set?** Yes: `autoRefillAware`
+* **Glossary terms:** Auto-refill — a service that reorders supplies automatically; Recurring cost — repeated charge; Annualize — convert to yearly cost.
+* **Tradeoff note:** Automation saves attention but can quietly cost more.
+
+## 12. `emergency-ride-buffer` — [NEW] “The Backup Ride Fund”
+
+* **Age range:** 15–17
+* **Topics:** transportation, emergency cushion, access
+* **Tags:** MT, R, L, FF, EXT
+* **Prompt:** You rely on a regular ride to a weekend job. Once in a while, the ride falls through and a safe backup ride costs $14.
+* **Choices:**
+
+  * **A. Keep $28 as a backup ride buffer.** Req: cash ≥ $28. Outcome: Two emergency rides covered. Effects: Cash reserved; opportunity protected. Feedback: “A buffer is money with a job.” Reflect: “What job did this money get?”
+  * **B. Hope the ride works out.** Req: none. Outcome: Randomized missed shift risk. Effects: Cash free now; opportunity may drop. Feedback: “No plan can work when luck is good, but risk stays.” Reflect: “What would missing one shift cost?”
+  * **C. Ask a mentor/caregiver to plan a backup list.** Req: Locked until supportCircle.family or supportCircle.mentor. Outcome: More options, less cash pressure. Effects: Trust and Safety rise. Feedback: “Support can reduce risk without replacing planning.” Reflect: “Who would be safe to ask?”
+* **Randomized outcome?** Yes.
+* **Future flag set?** Yes: `transportBackupPlan`
+* **Glossary terms:** Buffer — extra money or time kept for surprises; Opportunity cost — what you may lose by not preparing; Reliability — how dependable a plan is.
+* **Tradeoff note:** Reserving cash can feel limiting until it protects income.
+
+## 13. `camp-seat-deposit` — [NEW] “The Seat Deposit”
+
+* **Age range:** 14–16
+* **Topics:** nonrefundable deposits, deadlines, opportunity
+* **Tags:** MT, L, M, FF
+* **Prompt:** A summer skills camp has a $40 deposit. It counts toward the total cost, but it is not refundable after May 1.
+* **Choices:**
+
+  * **A. Pay now to hold the seat.** Req: cash ≥ $40. Outcome: Seat secured; cash less flexible. Effects: Opportunity rises; cash drops. Feedback: “A nonrefundable deposit reduces future flexibility.” Reflect: “How sure are you?”
+  * **B. Wait until schedule is clear.** Req: none. Outcome: Cash stays flexible; seat may fill. Effects: Discipline rises; opportunity uncertain. Feedback: “Waiting protects cash but risks the deadline.” Reflect: “What information are you waiting for?”
+  * **C. Ask about aid or payment plan.** Req: Locked until Money Know-How ≥ 40. Outcome: More options may appear. Effects: Opportunity rises if available. Feedback: “Asking can reveal choices that were not obvious.” Reflect: “What question opened the door?”
+* **Randomized outcome?** No.
+* **Future flag set?** Yes: `understandsNonrefundableDeposit`
+* **Glossary terms:** Nonrefundable — not returned after certain rules; Deposit — money paid to hold a spot; Payment plan — paying over time.
+* **Tradeoff note:** Holding a spot can be smart, but deposits are serious commitments.
+
+## 14. `school-store-inventory` — [NEW] “The Pencil Stand Forecast”
+
+* **Age range:** 13–15
+* **Topics:** entrepreneurship, inventory, profit/loss
+* **Tags:** MT, R, M, FF, AN
+* **Prompt:** Your class runs a tiny school-store simulation. Pencil packs cost $0.60 each and sell for $1. You can buy 20, 40, or 60 packs.
+* **Choices:**
+
+  * **A. Buy 20 packs.** Req: startingStoreCash ≥ $12. Outcome: Low risk, lower possible profit. Effects: Safety rises; profit capped. Feedback: “20 packs can earn up to $8 profit.” Reflect: “Why might low inventory be smart?”
+  * **B. Buy 40 packs.** Req: startingStoreCash ≥ $24. Outcome: Balanced risk. Effects: Opportunity rises. Feedback: “40 packs can earn up to $16, but only if demand appears.” Reflect: “What demand are you assuming?”
+  * **C. Buy 60 packs.** Req: startingStoreCash ≥ $36. Outcome: Randomized: high profit or leftover inventory. Effects: Risk rises. Feedback: “Inventory ties up cash until it sells.” Reflect: “What happens if demand is lower?”
+* **Randomized outcome?** Yes.
+* **Future flag set?** Yes: `managedInventory`
+* **Glossary terms:** Inventory — goods held for sale; Profit — money left after costs; Forecast — estimate of future demand.
+* **Tradeoff note:** More inventory can earn more or leave cash stuck on the shelf.
+
+## 15. `bike-lock-grade` — [NEW] “The Lock Costs More Than You Expected”
+
+* **Age range:** 13–16
+* **Topics:** asset protection, risk, ownership
+* **Tags:** MT, R, AN, FF
+* **Prompt:** You use a bike to get around. A basic lock is $9; a stronger lock is $32.
+* **Choices:**
+
+  * **A. Buy the basic lock.** Req: cash ≥ $9. Outcome: Some protection. Effects: Cash protected now; theft risk remains higher. Feedback: “Cheap protection is better than none, but risk is not equal.” Reflect: “What are you protecting?”
+  * **B. Buy the stronger lock.** Req: cash ≥ $32. Outcome: Lower randomized loss risk. Effects: Cash drops; Safety rises. Feedback: “Protection is part of ownership cost.” Reflect: “When is prevention worth it?”
+  * **C. Store the bike inside when possible.** Req: supportAccess or safeStorageContext. Outcome: Lower risk without buying the best lock. Effects: Discipline rises; convenience drops. Feedback: “A behavior can reduce risk too.” Reflect: “What habit protects the asset?”
+* **Randomized outcome?** Yes.
+* **Future flag set?** Yes: `protectsUsefulAsset`
+* **Glossary terms:** Asset protection — steps that help keep owned things safe; Risk — chance of loss; Prevention — action taken before a problem.
+* **Tradeoff note:** Paying more for protection can be wise, but habits also matter.
+
+## 16. `alert-threshold-choice` — [NEW] “The $25 Alert”
+
+* **Age range:** 16–18
+* **Topics:** banking, alerts, checking
+* **Tags:** L, M, FF, EXT
+* **Prompt:** Your checking account can text you when your balance drops below a chosen number. You usually spend $18–$30 on small weekly costs.
+* **Choices:**
+
+  * **A. Set alert at $25.** Req: hasChecking. Outcome: Warning arrives before balance gets too low. Effects: Safety and Discipline rise. Feedback: “An alert turns attention into a system.” Reflect: “Why $25 instead of $0?”
+  * **B. Set alert at $5.** Req: hasChecking. Outcome: Fewer alerts, less warning. Effects: Convenience rises; fee risk remains. Feedback: “A late warning may not leave time to fix the problem.” Reflect: “How much time does an alert need to give you?”
+  * **C. Skip alerts.** Req: none. Outcome: Less noise, more memory burden. Effects: Discipline risk rises. Feedback: “Skipping alerts is okay only if another system works.” Reflect: “What system replaces the alert?”
+* **Randomized outcome?** No.
+* **Future flag set?** Yes: `usesBalanceAlerts`
+* **Glossary terms:** Checking account — account for everyday spending; Alert — warning message; Balance — money currently in an account.
+* **Tradeoff note:** Alerts can annoy you, but they can prevent bigger problems.
+
+## 17. `pending-transfer-delay` — [NEW] “Available Tomorrow”
+
+* **Age range:** 16–18
+* **Topics:** transfer delay, available balance, cash flow
+* **Tags:** R, M, FF, EXT
+* **Prompt:** You move $50 from savings to checking, but the app says it may be available tomorrow. A $42 payment is scheduled tonight.
+* **Choices:**
+
+  * **A. Move the payment date if possible.** Req: none. Outcome: Timing risk falls. Effects: Safety rises; Discipline rises. Feedback: “Cash flow is about when money arrives, not only how much.” Reflect: “What date mattered most?”
+  * **B. Assume the transfer will clear.** Req: none. Outcome: Randomized timing; fee risk. Effects: Cash may drop from fee. Feedback: “Pending is not the same as available.” Reflect: “What word warned you?”
+  * **C. Use a small checking buffer next time.** Req: cash ≥ $10. Outcome: Future timing safer. Effects: Cash reserved; Safety rises. Feedback: “A buffer makes timing less fragile.” Reflect: “How large should the buffer be?”
+* **Randomized outcome?** Yes.
+* **Future flag set?** Yes: `knowsPendingBalance`
+* **Glossary terms:** Pending — started but not finished; Available balance — money ready to use; Cash flow — money moving in and out over time.
+* **Tradeoff note:** Transfers solve amount problems, but not always timing problems.
+
+## 18. `atm-fee-map` — [NEW] “The Convenient ATM”
+
+* **Age range:** 16–18
+* **Topics:** banking fees, convenience, planning
+* **Tags:** M, EXT
+* **Prompt:** One ATM nearby charges $3.50. A no-fee ATM is 12 minutes away. You need $20 cash.
+* **Choices:**
+
+  * **A. Use the nearby ATM.** Req: checkingBalance ≥ $23.50. Outcome: Fast but costly. Effects: Cash drops by fee. Feedback: “A $3.50 fee on $20 is 17.5% of the cash you withdrew.” Reflect: “Was the time saved worth 17.5%?”
+  * **B. Walk to the no-fee ATM.** Req: timeAvailable. Outcome: Saves fee, costs time. Effects: Discipline rises; time drops. Feedback: “Avoiding a fee is a trade with time.” Reflect: “When is time worth more?”
+  * **C. Plan cash earlier.** Req: none. Outcome: Future fee avoided. Effects: Money Know-How rises. Feedback: “Planning ahead can remove the tradeoff.” Reflect: “What would you do before next time?”
+* **Randomized outcome?** No.
+* **Future flag set?** No.
+* **Glossary terms:** ATM fee — charge for using a machine; Convenience cost — extra paid to save time or effort; Percent — a part out of 100.
+* **Tradeoff note:** Fees are not always “wrong,” but they should be noticed.
+
+## 19. `envelope-rename` — [NEW] “Rename the Money”
+
+* **Age range:** 13–15
+* **Topics:** budgeting, mental accounting, saving
+* **Tags:** MT, FF
+* **Prompt:** You save better when money has a name. Your savings app lets you label folders like “Laptop Repair,” “Trip Snacks,” or “Emergency.”
+* **Choices:**
+
+  * **A. Create a repair folder.** Req: ownsDevice or ownsUsefulAsset. Outcome: Future maintenance feels planned. Effects: Discipline rises. Feedback: “Named money is harder to spend by accident.” Reflect: “What future problem did you name?”
+  * **B. Create a fun folder.** Req: none. Outcome: Joy spending becomes planned. Effects: Wellbeing rises; cash reserved. Feedback: “Planned fun is still responsible money use.” Reflect: “How does planning make fun easier?”
+  * **C. Keep one general savings pile.** Req: none. Outcome: Simple, but goals blur. Effects: Less management; lower goal clarity. Feedback: “Simple systems work if you still know the purpose.” Reflect: “What does this money do?”
+* **Randomized outcome?** No.
+* **Future flag set?** Yes: `usesNamedSavings`
+* **Glossary terms:** Budget category — a named job for money; Mental accounting — treating money differently based on its label; Goal — something you are saving for.
+* **Tradeoff note:** More folders add clarity but also more tracking.
+
+## 20. `watch-party-license` — [NEW] “The Watch Party Plan”
+
+* **Age range:** 13–15
+* **Topics:** shared costs, subscriptions, fairness
+* **Tags:** MT, M, SC
+* **Prompt:** Friends want to watch a school-safe documentary together. One legal rental costs $4.99; each person could also rent separately.
+* **Choices:**
+
+  * **A. One rental, everyone chips in.** Req: supportCircle.friend. Outcome: Cost split fairly if rules are clear. Effects: Trust rises. Feedback: “Five people splitting $4.99 pay about $1 each.” Reflect: “How do you collect fairly?”
+  * **B. Everyone rents separately.** Req: none. Outcome: Simple ownership, higher total group cost. Effects: Trust steady; group total rises. Feedback: “Simple can cost more.” Reflect: “What does simplicity buy?”
+  * **C. Pick a free library/school option.** Req: schoolResourceAccess. Outcome: No cash cost, fewer title choices. Effects: Cash protected. Feedback: “Free resources may trade cost for selection.” Reflect: “What mattered more: title choice or cost?”
+* **Randomized outcome?** No.
+* **Future flag set?** No.
+* **Glossary terms:** Shared cost — cost divided among people; Legal access — permission to use content; Cost split — dividing payment fairly.
+* **Tradeoff note:** Cheapest for the group may require the most coordination.
+
+## 21. `caregiver-list-swap` — [NEW] “The Grocery Swap Text”
+
+* **Age range:** 13–15
+* **Topics:** substitutions, budget, percent
+* **Tags:** MT, M, SC, FF
+* **Prompt:** A caregiver texts that one item on a grocery list is out of stock. The replacement costs 30% more.
+* **Choices:**
+
+  * **A. Approve the replacement.** Req: none. Outcome: Meal plan stays the same. Effects: Cash drops more; wellbeing steady. Feedback: “A 30% increase on $5 is $1.50 more.” Reflect: “Was keeping the plan worth $1.50?”
+  * **B. Choose a cheaper substitute.** Req: none. Outcome: Cost stays lower; plan changes. Effects: Money Know-How rises. Feedback: “Substituting is a real consumer skill.” Reflect: “What made the substitute acceptable?”
+  * **C. Ask the caregiver for priorities.** Req: supportCircle.family. Outcome: Better shared decision. Effects: Trust rises. Feedback: “A quick question can prevent money and meal mistakes.” Reflect: “What information did you need?”
+* **Randomized outcome?** No.
+* **Future flag set?** Yes: `usesSubstitutionThinking`
+* **Glossary terms:** Substitute — a replacement choice; Percent increase — how much a price rises compared to the original; Budget priority — what matters most in a spending plan.
+* **Tradeoff note:** The “cheaper” choice may not meet the same need.
+
+## 22. `mentor-resume-proofread` — [NEW] “The Resume Second Look”
+
+* **Age range:** 15–18
+* **Topics:** career, opportunity, support
+* **Tags:** L, SC, FF, EXT
+* **Prompt:** You want to apply for a teen job or volunteer role. A mentor offers to review your resume, but you need to send it two days before the deadline.
+* **Choices:**
+
+  * **A. Send it early for feedback.** Req: supportCircle.mentor. Outcome: Resume improves. Effects: Opportunity rises; Discipline rises. Feedback: “Help works best when you leave time to use it.” Reflect: “What did early action unlock?”
+  * **B. Submit it yourself at the last minute.** Req: none. Outcome: Faster, but fewer improvements. Effects: Opportunity may stay lower. Feedback: “Independence is useful, but deadlines reduce options.” Reflect: “What did rushing cost?”
+  * **C. Ask for a quick text review.** Req: Locked until mentorTrust ≥ 50. Outcome: Some help, less depth. Effects: Opportunity rises slightly. Feedback: “A smaller ask may fit a tight timeline.” Reflect: “What was the best quick fix?”
+* **Randomized outcome?** No.
+* **Future flag set?** Yes: `preparedResumeEarly`
+* **Glossary terms:** Resume — a summary of skills and experience; Deadline — latest time something is due; Opportunity — a possible path or chance.
+* **Tradeoff note:** Getting feedback takes time, but it can raise future options.
+
+## 23. `thank-you-reference` — [NEW] “The Reference Thank-You”
+
+* **Age range:** 15–18
+* **Topics:** professional habits, trust, opportunity
+* **Tags:** SC, FF, EXT
+* **Prompt:** A teacher or mentor served as a reference for a program. You got the spot and are deciding how to follow up.
+* **Choices:**
+
+  * **A. Send a short thank-you.** Req: none. Outcome: Trust strengthens. Effects: Opportunity rises slightly. Feedback: “Professional relationships grow through follow-through.” Reflect: “What did the note show?”
+  * **B. Say nothing because you are busy.** Req: none. Outcome: No immediate cost. Effects: Trust unchanged or slightly lower. Feedback: “Silence is not terrible, but it misses a relationship moment.” Reflect: “What might they wonder?”
+  * **C. Ask how to keep them updated.** Req: supportCircle.mentor. Outcome: Ongoing support route opens. Effects: Opportunity rises. Feedback: “Updating people helps them support you better.” Reflect: “What update would be useful later?”
+* **Randomized outcome?** No.
+* **Future flag set?** Yes: `maintainsReferences`
+* **Glossary terms:** Reference — someone who can speak about your reliability; Professional habit — behavior that helps in work or school settings; Social capital — helpful trust built with people.
+* **Tradeoff note:** Relationship maintenance costs time but can create future opportunity.
+
+## 24. `work-shoe-choice` — [NEW] “The Standing Shift Shoes”
+
+* **Age range:** 16–18
+* **Topics:** job costs, health, asset
+* **Tags:** MT, M, AN, EXT
+* **Prompt:** A weekend job requires standing for long shifts. Cheap shoes cost $24 and may hurt; supportive shoes cost $68 and may last longer.
+* **Choices:**
+
+  * **A. Buy cheap shoes.** Req: cash ≥ $24. Outcome: Lower upfront cost. Effects: Cash protected; wellbeing risk. Feedback: “Low price can have a hidden comfort cost.” Reflect: “What cost is not on the receipt?”
+  * **B. Buy supportive shoes.** Req: cash ≥ $68. Outcome: Higher upfront cost; better comfort and durability. Effects: Wellbeing rises; cash drops. Feedback: “Work gear can be an asset if it helps you earn.” Reflect: “How many shifts will use them?”
+  * **C. Ask employer/mentor about requirements first.** Req: none. Outcome: Avoid wrong purchase. Effects: Money Know-How rises. Feedback: “Checking rules before buying reduces waste.” Reflect: “What information changed the choice?”
+* **Randomized outcome?** No.
+* **Future flag set?** Yes: `plansWorkGearCost`
+* **Glossary terms:** Work expense — cost connected to earning money; Durability — how long something lasts; Hidden cost — a cost not obvious at purchase.
+* **Tradeoff note:** Spending more can be responsible when it protects health and earning ability.
+
+## 25. `shift-or-rest` — [NEW] “One More Shift?”
+
+* **Age range:** 16–18
+* **Topics:** income, wellbeing, opportunity cost
+* **Tags:** MT, SC, EXT
+* **Prompt:** Your manager offers one extra shift before a big school project is due. You could earn more, but your energy is low.
+* **Choices:**
+
+  * **A. Take the shift.** Req: wellbeing ≥ 45. Outcome: More income, less rest. Effects: Cash rises; wellbeing drops. Feedback: “Earning more can still cost something.” Reflect: “What did the money trade with?”
+  * **B. Decline politely.** Req: none. Outcome: Protects school and rest. Effects: Wellbeing rises; cash unchanged. Feedback: “Saying no can protect future opportunity.” Reflect: “How did you keep the relationship respectful?”
+  * **C. Ask a friend/mentor to help plan the week.** Req: supportCircle.friend or supportCircle.mentor. Outcome: Balanced schedule possible. Effects: Discipline rises. Feedback: “Planning support can turn a hard choice into a schedule.” Reflect: “What did the schedule reveal?”
+* **Randomized outcome?** No.
+* **Future flag set?** No.
+* **Glossary terms:** Opportunity cost — what a choice gives up; Variable income — income that changes; Burnout — being worn down from too much demand.
+* **Tradeoff note:** More work is not always better if it damages school, health, or reliability.
+
+## 26. `cert-retake-fee` — [NEW] “The Retake Fee”
+
+* **Age range:** 16–18
+* **Topics:** certification, human capital, risk
+* **Tags:** MT, R, M, L, FF, EXT, AN
+* **Prompt:** A beginner certification exam costs $45. If you fail, a retake costs $25. Studying 6 more hours raises your chance of passing.
+* **Choices:**
+
+  * **A. Test now.** Req: cash ≥ $45. Outcome: Randomized pass/fail. Effects: Opportunity may rise; cash drops. Feedback: “Taking a chance saves time but may add a retake cost.” Reflect: “What risk did you accept?”
+  * **B. Study 6 more hours first.** Req: Discipline ≥ 45. Outcome: Higher pass chance. Effects: Opportunity rises; time drops. Feedback: “Preparation can be cheaper than a retake.” Reflect: “What did studying protect?”
+  * **C. Ask mentor for a practice test.** Req: Locked until supportCircle.mentor. Outcome: Better information before paying. Effects: Money Know-How rises. Feedback: “Practice turns guessing into evidence.” Reflect: “What score would make you ready?”
+* **Randomized outcome?** Yes.
+* **Future flag set?** Yes: `earnedOrAttemptedCredential`
+* **Glossary terms:** Certification — proof of a skill; Human capital — skills that can create opportunity; Retake fee — cost to try again.
+* **Tradeoff note:** Testing early may be efficient, but preparation can reduce money risk.
+
+## 27. `paid-training-travel` — [NEW] “Paid Training, Far Away”
+
+* **Age range:** 16–18
+* **Topics:** net pay, transportation cost, career
+* **Tags:** MT, R, M, EXT, FF
+* **Prompt:** A paid training program offers $80 per day, but travel costs $11 per day and takes 90 minutes. A closer unpaid workshop has no travel cost.
+* **Choices:**
+
+  * **A. Take paid training.** Req: transportationAccess. Outcome: Net is $69/day before food/time. Effects: Cash rises; wellbeing may drop. Feedback: “$80 − $11 = $69, but time also matters.” Reflect: “What did the wage not show?”
+  * **B. Choose closer workshop.** Req: none. Outcome: No pay, less strain. Effects: Opportunity rises; cash unchanged. Feedback: “Unpaid can still build skill if the cost is low.” Reflect: “What kind of value did it create?”
+  * **C. Ask about travel stipend.** Req: Money Know-How ≥ 40. Outcome: Randomized support. Effects: Opportunity may rise. Feedback: “Questions can reveal hidden supports.” Reflect: “What made the question worth asking?”
+* **Randomized outcome?** Yes.
+* **Future flag set?** Yes: `comparesTrainingNetValue`
+* **Glossary terms:** Net value — benefit after costs; Stipend — money to help cover costs; Travel cost — money spent getting somewhere.
+* **Tradeoff note:** Paid is not automatically better if costs and time are high.
+
+## 28. `meal-prep-container` — [NEW] “The Container Set”
+
+* **Age range:** 14–17
+* **Topics:** meal planning, upfront cost, ownership
+* **Tags:** MT, M, AN
+* **Prompt:** A set of reusable food containers costs $16. Buying convenience lunches costs about $5 more each time than packing food.
+* **Choices:**
+
+  * **A. Buy the containers.** Req: cash ≥ $16. Outcome: Break-even after about 4 packed lunches. Effects: Cash drops; future costs fall. Feedback: “$16 ÷ $5 savings ≈ 4 uses.” Reflect: “Will the habit stick?”
+  * **B. Keep buying convenience lunch.** Req: none. Outcome: More flexibility, higher cost. Effects: Cash drops over time; wellbeing may rise from convenience. Feedback: “Convenience has value, but it repeats.” Reflect: “How often is convenience worth it?”
+  * **C. Pack only twice a week.** Req: none. Outcome: Balanced savings and flexibility. Effects: Discipline rises moderately. Feedback: “Partial habits can still save money.” Reflect: “What smaller routine feels realistic?”
+* **Randomized outcome?** No.
+* **Future flag set?** No.
+* **Glossary terms:** Break-even — when savings equal upfront cost; Upfront cost — money paid at the start; Habit — repeated action.
+* **Tradeoff note:** The math works only if the behavior follows.
+
+## 29. `freezer-space-split` — [NEW] “Bulk Buy, Tiny Freezer”
+
+* **Age range:** 14–16
+* **Topics:** bulk buying, storage, waste
+* **Tags:** MT, R, M, SC
+* **Prompt:** A bulk pack saves $6 compared with smaller packs, but your freezer space is limited. A caregiver says some may go bad if it cannot fit.
+* **Choices:**
+
+  * **A. Buy bulk anyway.** Req: cash ≥ bulkPrice. Outcome: Randomized waste if space is too small. Effects: Cash may be wasted. Feedback: “A low unit price loses if food spoils.” Reflect: “What condition made the deal work?”
+  * **B. Buy smaller pack.** Req: none. Outcome: Higher unit price, lower waste risk. Effects: Cash drops less now. Feedback: “Sometimes the smaller package is the better total plan.” Reflect: “What cost did you avoid?”
+  * **C. Split bulk with family/friend.** Req: supportCircle.family or supportCircle.friend. Outcome: Savings with less storage risk. Effects: Trust rises; coordination needed. Feedback: “Sharing can turn a bad-fit deal into a good-fit deal.” Reflect: “What rule keeps the split fair?”
+* **Randomized outcome?** Yes.
+* **Future flag set?** No.
+* **Glossary terms:** Bulk buying — buying a larger amount at once; Waste — unused value lost; Storage cost — space or care needed to keep something useful.
+* **Tradeoff note:** Unit savings are not real savings if the extra cannot be used.
+
+## 30. `cloud-storage-choice` — [NEW] “Space for Your Files”
+
+* **Age range:** 14–17
+* **Topics:** recurring cost, digital storage, ownership
+* **Tags:** MT, M, AN, FF
+* **Prompt:** Your device is almost full. Cloud storage costs $2.99/month; a local drive costs $38 once.
+* **Choices:**
+
+  * **A. Pay for cloud storage.** Req: paymentMethodAvailable. Outcome: Easy access, recurring cost. Effects: Convenience rises; cash drops monthly. Feedback: “$2.99 × 12 is about $35.88 per year.” Reflect: “How long will you pay?”
+  * **B. Buy the local drive.** Req: cash ≥ $38. Outcome: One-time cost, needs care. Effects: Asset gained; cash drops. Feedback: “Owning storage shifts cost upfront.” Reflect: “How will you protect it?”
+  * **C. Clean up files first.** Req: none. Outcome: Free space, time cost. Effects: Discipline rises; cash protected. Feedback: “The cheapest fix may be organization.” Reflect: “What did you delete or save?”
+* **Randomized outcome?** No.
+* **Future flag set?** Yes: `managesDigitalStorageCost`
+* **Glossary terms:** Recurring cost — repeated charge; One-time cost — paid once; Digital asset — useful digital file or tool.
+* **Tradeoff note:** Cloud convenience is real, but monthly charges add up.
+
+## 31. `used-tablet-battery` — [NEW] “Battery Health Check”
+
+* **Age range:** 15–18
+* **Topics:** used goods, inspection, asset value
+* **Tags:** MT, R, L, AN, EXT
+* **Prompt:** A used tablet is $95. A quick battery check can reveal whether it may need a $45 battery soon.
+* **Choices:**
+
+  * **A. Check battery health first.** Req: Money Know-How ≥ 40. Outcome: Randomized condition revealed. Effects: Safety rises; better decision. Feedback: “Inspection turns hidden risk into information.” Reflect: “What did the check prevent?”
+  * **B. Buy without checking.** Req: cash ≥ $95. Outcome: Randomized repair risk. Effects: Cash drops; asset gained with uncertainty. Feedback: “A low price can hide future repair cost.” Reflect: “What risk did the discount include?”
+  * **C. Ask a knowledgeable adult/mentor to inspect.** Req: Locked until supportCircle.mentor or supportCircle.family. Outcome: Better confidence. Effects: Trust and Safety rise. Feedback: “Support can improve consumer decisions.” Reflect: “What question did they ask?”
+* **Randomized outcome?** Yes.
+* **Future flag set?** No.
+* **Glossary terms:** Inspection — checking condition before buying; Resale value — what an item could sell for later; Repair risk — chance of needing a fix.
+* **Tradeoff note:** Used items can be great value if hidden condition risks are checked.
+
+## 32. `trade-in-data-wipe` — [NEW] “Clear Before Trade-In”
+
+* **Age range:** 15–18
+* **Topics:** data privacy, resale, asset
+* **Tags:** R, AN, FF, EXT
+* **Prompt:** You are trading in an old device. The trade-in value is $60, but personal files and saved logins may still be on it.
+* **Choices:**
+
+  * **A. Back up and factory reset.** Req: none. Outcome: Safer trade. Effects: Safety rises; time drops. Feedback: “Privacy steps are part of selling a device.” Reflect: “What did you protect?”
+  * **B. Trade it quickly.** Req: none. Outcome: Randomized privacy problem. Effects: Safety may drop. Feedback: “Fast money can skip cleanup.” Reflect: “What step did speed remove?”
+  * **C. Keep it as backup.** Req: none. Outcome: No cash now; backup asset remains. Effects: Asset usefulness remains; cash unchanged. Feedback: “Keeping an asset can have option value.” Reflect: “When is backup worth more than cash?”
+* **Randomized outcome?** Yes.
+* **Future flag set?** Yes: `dataWipeHabit`
+* **Glossary terms:** Trade-in — giving an item for credit or cash; Factory reset — clearing a device back to starting settings; Privacy risk — chance private info is exposed.
+* **Tradeoff note:** Resale value matters, but safety and usefulness matter too.
+
+## 33. `repair-cafe-day` — [NEW] “The Repair Café Saturday”
+
+* **Age range:** 13–16
+* **Topics:** repair, community resource, asset life
+* **Tags:** MT, R, SC, AN, FF
+* **Prompt:** A community repair event may help fix your small desk fan for free. A new fan costs $26, but the event is only Saturday morning.
+* **Choices:**
+
+  * **A. Go to the repair event.** Req: communityProgramAccess. Outcome: Randomized repair success. Effects: Cash protected; time used. Feedback: “Free help can still cost time and planning.” Reflect: “What made the resource usable?”
+  * **B. Buy a new fan.** Req: cash ≥ $26. Outcome: Fast replacement. Effects: Cash drops; wellbeing rises. Feedback: “Replacing saves time when repair is uncertain.” Reflect: “What did speed cost?”
+  * **C. Ask family/mentor about a temporary fix.** Req: supportCircle.family or supportCircle.mentor. Outcome: Short-term solution. Effects: Trust rises; comfort partially restored. Feedback: “Temporary fixes can buy decision time.” Reflect: “How did support change the options?”
+* **Randomized outcome?** Yes.
+* **Future flag set?** Yes: `usesRepairResource`
+* **Glossary terms:** Repair — fixing instead of replacing; Community resource — helpful service available through a program; Useful life — how long an item keeps helping.
+* **Tradeoff note:** Repair is not always faster, but it can protect cash and reduce waste.
+
+## 34. `tool-library-pass` — [NEW] “Borrow the Tool”
+
+* **Age range:** 14–17
+* **Topics:** borrowing, ownership, deposits
+* **Tags:** MT, M, L, SC, AN, FF
+* **Prompt:** You need a tool for one project. Buying costs $42; a tool library lends it for free with a $15 refundable deposit.
+* **Choices:**
+
+  * **A. Borrow with deposit.** Req: communityProgramAccess and cash ≥ $15. Outcome: Low cost if returned on time. Effects: Cash temporarily tied up; Discipline rises. Feedback: “Borrowing can be cheap if you follow the rules.” Reflect: “What could make it costly?”
+  * **B. Buy the tool.** Req: cash ≥ $42. Outcome: You own it for future projects. Effects: Asset gained; cash drops. Feedback: “Ownership makes sense if use repeats.” Reflect: “How many future uses do you expect?”
+  * **C. Ask a mentor/caregiver to help plan return.** Req: Locked until supportCircle.mentor or family. Outcome: Deposit-return chance improves. Effects: Safety and Trust rise. Feedback: “Support can protect refundable money.” Reflect: “What reminder would help?”
+* **Randomized outcome?** No.
+* **Future flag set?** Yes: `usesBorrowedTools`
+* **Glossary terms:** Borrow — use and return something; Refundable deposit — money held until rules are met; Ownership — having something as yours.
+* **Tradeoff note:** Borrowing is cheapest when the return system is reliable.
+
+## 35. `bike-light-coupon` — [NEW] “The Safety Light Coupon”
+
+* **Age range:** 13–16
+* **Topics:** safety equipment, discount, asset protection
+* **Tags:** M, AN
+* **Prompt:** A bike light set costs $20, but a coupon takes 25% off. You ride home before sunset most days, but winter is coming.
+* **Choices:**
+
+  * **A. Buy with coupon.** Req: cash ≥ $15. Outcome: Safety improves. Effects: Cash drops $15; Safety rises. Feedback: “25% of $20 is $5, so the sale price is $15.” Reflect: “What future risk did you plan for?”
+  * **B. Wait until winter.** Req: none. Outcome: Cash stays now; coupon may expire. Effects: Cash protected; future price risk. Feedback: “Waiting can be smart if the need is not here yet.” Reflect: “What date changes the need?”
+  * **C. Ask if a community program has free lights.** Req: communityProgramAccess. Outcome: Possible no-cost safety. Effects: Money Know-How rises. Feedback: “Looking for resources is a financial skill.” Reflect: “Where else could resources exist?”
+* **Randomized outcome?** No.
+* **Future flag set?** No.
+* **Glossary terms:** Discount — price reduction; Coupon — code or paper that lowers price; Safety equipment — item that reduces harm risk.
+* **Tradeoff note:** Safety purchases may feel optional until conditions change.
+
+## 36. `roundup-investing` — [NEW] “Round-Up Investing”
+
+* **Age range:** 16–18
+* **Topics:** investing, automation, small amounts
+* **Tags:** MT, M, L, FF, AN, EXT
+* **Prompt:** A simplified investing tool rounds purchases up to the next dollar and invests the difference. Ten small purchases average $0.45 rounded up each.
+* **Choices:**
+
+  * **A. Turn on round-ups.** Req: Locked until hasChecking and moneyKnowledge ≥ 45. Outcome: Small automatic investing begins. Effects: Investments rise slowly; cash drops slightly. Feedback: “10 × $0.45 = $4.50 invested.” Reflect: “Why do small amounts matter over time?”
+  * **B. Save round-ups instead of investing.** Req: hasSavingsAccount. Outcome: Lower risk, more accessible. Effects: Savings rises. Feedback: “Saving may fit short-term goals better than investing.” Reflect: “When do you need the money?”
+  * **C. Skip automation.** Req: none. Outcome: Full control, more memory required. Effects: Discipline burden rises. Feedback: “Manual systems work if you actually use them.” Reflect: “What reminder replaces automation?”
+* **Randomized outcome?** No.
+* **Future flag set?** Yes: `usesMicroInvesting`
+* **Glossary terms:** Round-up — saving/investing spare change from purchases; Automation — system that acts without repeated manual effort; Investment — money put at risk for possible growth.
+* **Tradeoff note:** Automation helps habits but should match time horizon and risk.
+
+## 37. `fake-investing-chat` — [NEW] “The Private Investing Group”
+
+* **Age range:** 16–18
+* **Topics:** investment scams, social proof, risk
+* **Tags:** R, FF, EXT
+* **Prompt:** A private chat claims members are “guaranteed” to beat the market if they join today. They show screenshots of huge gains.
+* **Choices:**
+
+  * **A. Leave and report/block.** Req: none. Outcome: Safety protected. Effects: Safety rises. Feedback: “Guaranteed investing claims are a serious warning sign.” Reflect: “Which word was the red flag?”
+  * **B. Watch quietly for proof.** Req: none. Outcome: Randomized pressure messages appear. Effects: Safety risk remains. Feedback: “Scammers often use screenshots and urgency.” Reflect: “What proof would actually count?”
+  * **C. Ask a trusted mentor/official source.** Req: supportCircle.mentor. Outcome: Source-check habit improves. Effects: Money Know-How rises. Feedback: “Good advice can survive being checked.” Reflect: “Who had no reason to pressure you?”
+* **Randomized outcome?** Yes.
+* **Future flag set?** Yes: `spotsInvestmentScam`
+* **Glossary terms:** Social proof — pressure from seeing others appear to join; Guaranteed return — promised profit, often a warning sign; Investment scam — fake or misleading investment offer.
+* **Tradeoff note:** Curiosity is normal, but pressure and guarantees should stop the action.
+
+## 38. `diversification-shelf` — [NEW] “Three Shelves, One Project”
+
+* **Age range:** 15–18
+* **Topics:** diversification, risk, allocation
+* **Tags:** M, AN, EXT
+* **Prompt:** In a simplified simulation, you can put $90 into one project idea or split it across three different ideas.
+* **Choices:**
+
+  * **A. Put all $90 in one idea.** Req: none. Outcome: Bigger possible gain, bigger loss risk. Effects: Opportunity volatility rises. Feedback: “One outcome controls everything.” Reflect: “What happens if that one fails?”
+  * **B. Split $30/$30/$30.** Req: none. Outcome: Lower single-failure risk. Effects: Safety rises; upside steadier. Feedback: “Diversification spreads risk.” Reflect: “What did spreading protect?”
+  * **C. Put $60 in favorite, $15/$15 in others.** Req: none. Outcome: Balanced confidence and spread. Effects: Mixed risk/reward. Feedback: “Allocation shows priorities.” Reflect: “Why did one get more?”
+* **Randomized outcome?** No.
+* **Future flag set?** No.
+* **Glossary terms:** Diversification — spreading money so one loss hurts less; Allocation — how money is divided; Volatility — how much value can move up or down.
+* **Tradeoff note:** Spreading lowers some risk but may reduce the biggest possible win.
+
+## 39. `inflation-adjusted-goal` — [NEW] “The Goal Got More Expensive”
+
+* **Age range:** 15–18
+* **Topics:** inflation, goal planning, percent
+* **Tags:** MT, M, FF, EXT
+* **Prompt:** A training kit costs $120 this year. Prices may rise about 5% by next year, so it could cost about $126.
+* **Choices:**
+
+  * **A. Save for $126.** Req: none. Outcome: Goal includes inflation cushion. Effects: Discipline rises. Feedback: “5% of $120 is $6.” Reflect: “Why save for the future price?”
+  * **B. Save for $120 only.** Req: none. Outcome: Goal looks easier but may be short. Effects: Cash goal lower; future risk. Feedback: “Old prices can make goals look smaller than they are.” Reflect: “What could close the gap?”
+  * **C. Buy now if cash allows.** Req: cash ≥ $120. Outcome: Avoids price rise, but cash drops now. Effects: Asset gained; cushion lower. Feedback: “Buying now can beat inflation but reduce flexibility.” Reflect: “What did you give up?”
+* **Randomized outcome?** No.
+* **Future flag set?** Yes: `plansForPriceChange`
+* **Glossary terms:** Inflation — prices rising over time; Future price — expected later cost; Cushion — extra amount kept for uncertainty.
+* **Tradeoff note:** Planning for inflation protects goals, but buying early can reduce cash flexibility.
+
+## 40. `paystub-hours-error` — [NEW] “The Missing Half-Hour”
+
+* **Age range:** 16–18
+* **Topics:** pay stubs, wage math, records
+* **Tags:** R, M, FF, EXT
+* **Prompt:** Your pay stub lists 9.5 hours, but your notes say you worked 10 hours at $13/hour.
+* **Choices:**
+
+  * **A. Check records and ask politely.** Req: none. Outcome: Randomized correction or explanation. Effects: Money Know-How rises; trust may rise. Feedback: “0.5 hour × $13 = $6.50 before deductions.” Reflect: “Why did records matter?”
+  * **B. Ignore it because it is small.** Req: none. Outcome: No conflict, but possible lost pay. Effects: Cash lower; Discipline lower. Feedback: “Small errors can repeat.” Reflect: “When is a small amount worth asking about?”
+  * **C. Ask a mentor to practice the wording.** Req: supportCircle.mentor. Outcome: Confidence rises. Effects: Opportunity and Safety rise. Feedback: “Polite money questions are workplace skills.” Reflect: “What phrase kept it respectful?”
+* **Randomized outcome?** Yes.
+* **Future flag set?** Yes: `checksPayStub`
+* **Glossary terms:** Pay stub — record showing pay and deductions; Hourly wage — pay per hour; Gross pay — earnings before deductions.
+* **Tradeoff note:** Speaking up can feel awkward, but records make it fair and professional.
+
+## 41. `overtime-study-balance` — [NEW] “Overtime Week”
+
+* **Age range:** 16–18
+* **Topics:** overtime, opportunity cost, wellbeing
+* **Tags:** MT, M, EXT
+* **Prompt:** You can work 4 extra hours at $15/hour during exam week. You need study time too.
+* **Choices:**
+
+  * **A. Work all 4 hours.** Req: wellbeing ≥ 50. Outcome: $60 gross added. Effects: Cash rises; wellbeing and study time drop. Feedback: “Gross pay is not the same as take-home pay.” Reflect: “What did extra pay cost?”
+  * **B. Work 2 hours.** Req: none. Outcome: $30 gross added, more study time. Effects: Balanced outcome. Feedback: “A partial yes can be a strong choice.” Reflect: “What balance did you choose?”
+  * **C. Decline overtime.** Req: none. Outcome: Protects study and rest. Effects: Wellbeing rises; cash unchanged. Feedback: “Not earning extra can protect future opportunity.” Reflect: “What future result mattered?”
+* **Randomized outcome?** No.
+* **Future flag set?** No.
+* **Glossary terms:** Overtime — extra work hours; Gross pay — earnings before deductions; Opportunity cost — what is given up.
+* **Tradeoff note:** Extra income is useful, but not free if it harms school or health.
+
+## 42. `tax-record-folder` — [NEW] “The Little Tax Folder”
+
+* **Age range:** 16–18
+* **Topics:** taxes, records, organization
+* **Tags:** FF, EXT
+* **Prompt:** Your first job and small gigs create pay stubs, forms, and receipts. You can organize them now or wait until tax time.
+* **Choices:**
+
+  * **A. Create a simple tax folder.** Req: none. Outcome: Future filing easier. Effects: Discipline rises. Feedback: “Records reduce stress later.” Reflect: “What belongs in the folder?”
+  * **B. Save only the biggest documents.** Req: none. Outcome: Less effort, some missing details. Effects: Discipline rises slightly. Feedback: “Partial organization helps but may leave gaps.” Reflect: “Which small records might matter?”
+  * **C. Ask a trusted adult/mentor what to keep.** Req: supportCircle.family or supportCircle.mentor. Outcome: Better list. Effects: Money Know-How rises. Feedback: “Tax questions are easier with guidance.” Reflect: “What did you learn to save?”
+* **Randomized outcome?** No.
+* **Future flag set?** Yes: `keepsTaxRecords`
+* **Glossary terms:** Tax record — document that helps explain income or taxes; Deduction — amount that may reduce taxable income in some situations; Filing — submitting tax forms.
+* **Tradeoff note:** Organization is boring until it prevents confusion.
+
+## 43. `aid-offer-gap-line` — [NEW] “The Gap Line”
+
+* **Age range:** 16–18
+* **Topics:** financial aid, loans, grants, college/career school
+* **Tags:** L, M, FF, EXT
+* **Prompt:** A fictional aid offer lists $2,000 grant, $1,000 scholarship, $1,500 work-study, and a $3,000 gap.
+* **Choices:**
+
+  * **A. Accept free aid first and plan the gap.** Req: pathwayIncludesSchool. Outcome: Borrowing reduced. Effects: Money Know-How rises. Feedback: “Grants and scholarships usually do not need repayment.” Reflect: “Which lines were not loans?”
+  * **B. Borrow the whole gap immediately.** Req: age ≥ 17. Outcome: Simple, but debt rises. Effects: Debt increases; stress may rise. Feedback: “Loans solve cash today and create payments later.” Reflect: “What future cost did you accept?”
+  * **C. Ask aid office/school counselor about options.** Req: Locked until supportAccess ≥ medium. Outcome: More options may appear. Effects: Opportunity rises. Feedback: “Aid offers are documents you can ask questions about.” Reflect: “What question would you ask first?”
+* **Randomized outcome?** No.
+* **Future flag set?** Yes: `readsAidGap`
+* **Glossary terms:** Grant — aid that usually does not need repayment; Scholarship — aid based on criteria and usually not repaid; Gap — cost left after aid.
+* **Tradeoff note:** Borrowing can be reasonable, but students should identify free aid and remaining gap first.
+
+## 44. `transfer-map-savings` — [NEW] “The Transfer Map”
+
+* **Age range:** 16–18
+* **Topics:** community college transfer, pathway costs, planning
+* **Tags:** MT, M, FF, EXT
+* **Prompt:** A two-year start plus transfer could lower costs, but only if credits transfer. A four-year start is simpler but more expensive upfront.
+* **Choices:**
+
+  * **A. Start with transfer map.** Req: Money Know-How ≥ 45. Outcome: Lower cost if planned carefully. Effects: Opportunity rises; Discipline needed. Feedback: “A cheaper path needs credit planning.” Reflect: “What must match?”
+  * **B. Start four-year directly.** Req: none. Outcome: Simpler path, higher possible cost. Effects: Opportunity rises; debt risk rises. Feedback: “Simplicity can be valuable but may cost more.” Reflect: “What does simplicity buy?”
+  * **C. Work first and revisit.** Req: none. Outcome: More time, delayed school. Effects: Cash may rise; opportunity delayed. Feedback: “Waiting can build savings or slow credentials.” Reflect: “What would make waiting strategic?”
+* **Randomized outcome?** No.
+* **Future flag set?** Yes: `comparesPathwayCost`
+* **Glossary terms:** Transfer credit — class credit accepted by another school; Pathway — route after high school; Upfront cost — money needed at the start.
+* **Tradeoff note:** A lower-cost route can require more planning.
+
+## 45. `apprentice-toolbelt` — [NEW] “The Starter Toolbelt”
+
+* **Age range:** 16–18
+* **Topics:** apprenticeship, tools, asset
+* **Tags:** MT, M, FF, EXT, AN
+* **Prompt:** An apprenticeship pathway recommends a $110 starter toolbelt. A cheaper $45 kit works for now but may need replacement.
+* **Choices:**
+
+  * **A. Buy starter toolbelt.** Req: cash ≥ $110. Outcome: Better quality, higher upfront cost. Effects: Asset gained; opportunity rises. Feedback: “Tools can be earning assets.” Reflect: “How will this help you earn?”
+  * **B. Buy cheaper kit.** Req: cash ≥ $45. Outcome: Lower barrier, replacement risk. Effects: Cash protected; future cost likely. Feedback: “Starting cheaper can be smart if you are still exploring.” Reflect: “What will tell you to upgrade?”
+  * **C. Ask program about loaner tools.** Req: Money Know-How ≥ 40. Outcome: Possible access without purchase. Effects: Opportunity rises. Feedback: “Programs may have resources if you ask.” Reflect: “What resource did you uncover?”
+* **Randomized outcome?** No.
+* **Future flag set?** Yes: `toolAssetForPathway`
+* **Glossary terms:** Apprenticeship — paid training while learning a trade; Tool asset — owned item that helps earn income; Barrier to entry — cost or requirement to start.
+* **Tradeoff note:** Buying quality can pay off, but borrowing or starting small can reduce risk.
+
+## 46. `pathway-benefits-source` — [NEW] “The Benefits Claim”
+
+* **Age range:** 16–18
+* **Topics:** career pathways, source evaluation, benefits
+* **Tags:** R, FF, EXT
+* **Prompt:** A classmate shares a claim about a post-high-school pathway benefit. The post has no official link and leaves out requirements.
+* **Choices:**
+
+  * **A. Check an official or school source.** Req: none. Outcome: Accurate requirements found. Effects: Money Know-How and Safety rise. Feedback: “Benefits often have rules, deadlines, or service requirements.” Reflect: “What requirement was missing?”
+  * **B. Trust the post.** Req: none. Outcome: Randomized: mostly true, incomplete, or misleading. Effects: Opportunity risk. Feedback: “A true-sounding claim can still be incomplete.” Reflect: “What did the source not show?”
+  * **C. Ask a counselor/mentor to compare options.** Req: supportCircle.mentor. Outcome: Neutral pathway comparison. Effects: Opportunity rises. Feedback: “Pathway decisions deserve careful source checks.” Reflect: “What tradeoff did you compare?”
+* **Randomized outcome?** Yes.
+* **Future flag set?** Yes: `checksPathwaySources`
+* **Glossary terms:** Benefit — helpful feature such as pay, training, aid, or housing; Requirement — rule that must be met; Source evaluation — judging whether information is trustworthy.
+* **Tradeoff note:** Pathway benefits can be real but still misunderstood if requirements are ignored.
+
+## 47. `skill-stack-plan` — [NEW] “The Skill Stack”
+
+* **Age range:** 16–18
+* **Topics:** work-first, credentials, human capital
+* **Tags:** MT, FF, EXT, AN
+* **Prompt:** You plan to work after high school while building skills. You can take one free workshop, one paid certificate, or focus on work hours.
+* **Choices:**
+
+  * **A. Free workshop.** Req: communityProgramAccess. Outcome: Low-cost skill building. Effects: Opportunity rises; time drops. Feedback: “Free does not mean effortless.” Reflect: “What time did it require?”
+  * **B. Paid certificate.** Req: cash ≥ certificateCost. Outcome: Stronger signal, higher cost. Effects: Human capital asset rises; cash drops. Feedback: “Credentials can be assets when employers value them.” Reflect: “Who recognizes this credential?”
+  * **C. Work more hours first.** Req: hasIncome. Outcome: Cash builds; training delayed. Effects: Cash rises; opportunity delayed. Feedback: “Work-first can be strategic if paired with future learning.” Reflect: “When will you revisit training?”
+* **Randomized outcome?** No.
+* **Future flag set?** Yes: `skillStackStarted`
+* **Glossary terms:** Human capital — skills and knowledge that create opportunity; Credential — proof of training or skill; Work-first — earning now while planning next steps.
+* **Tradeoff note:** Skills, cash, and time all matter; the best order depends on constraints.
+
+## 48. `campus-meal-pass` — [NEW] “The Meal Pass Estimate”
+
+* **Age range:** 17–adult planning
+* **Topics:** meal plans, per-use cost, adult budgeting
+* **Tags:** L, M, EXT
+* **Prompt:** A fictional campus meal pass costs $1,200 for 100 meals. Buying meals as needed averages $10.50 each.
+* **Choices:**
+
+  * **A. Buy the pass if you will use 100 meals.** Req: pathwayIncludesSchool. Outcome: $12 per meal, predictable. Effects: Cash committed; convenience rises. Feedback: “$1,200 ÷ 100 = $12 per meal.” Reflect: “How many meals will you really use?”
+  * **B. Pay as needed.** Req: none. Outcome: Lower commitment, possible lower total. Effects: Flexibility rises. Feedback: “At $10.50 each, 100 meals would cost $1,050.” Reflect: “Why might pay-as-needed be cheaper?”
+  * **C. Mix grocery plan and occasional meals.** Req: adultPlanningMode. Outcome: More planning, lower cost. Effects: Discipline rises. Feedback: “Mixed plans often fit real life better than extremes.” Reflect: “What routine would make it work?”
+* **Randomized outcome?** No.
+* **Future flag set?** No.
+* **Glossary terms:** Per-use cost — cost each time something is used; Commitment — money locked into a plan; Adult budget — plan for independent living costs.
+* **Tradeoff note:** A pass is convenient, but only a deal if usage matches.
+
+## 49. `textbook-rent-open` — [NEW] “Rent, Buy, or Open Resource?”
+
+* **Age range:** 16–adult planning
+* **Topics:** education costs, ownership, access
+* **Tags:** MT, M, EXT
+* **Prompt:** A course resource costs $74 to buy, $28 to rent, or $0 as an open resource with fewer practice problems.
+* **Choices:**
+
+  * **A. Buy.** Req: cash ≥ $74. Outcome: Full access and resale possibility. Effects: Cash drops; asset/resale option appears. Feedback: “Buying can work if resale or long-term use matters.” Reflect: “Will you use it again?”
+  * **B. Rent.** Req: cash ≥ $28. Outcome: Lower cost, no ownership. Effects: Cash drops less. Feedback: “Renting fits short-term use.” Reflect: “What do you give up by not owning?”
+  * **C. Use open resource plus tutoring/help.** Req: schoolResourceAccess. Outcome: No cash cost, more effort. Effects: Money Know-How rises; time cost. Feedback: “Free resources can work with support.” Reflect: “What support fills the gaps?”
+* **Randomized outcome?** No.
+* **Future flag set?** No.
+* **Glossary terms:** Open resource — free-to-use learning material; Rent — pay to use temporarily; Resale — selling something later.
+* **Tradeoff note:** Lowest cash cost may require more self-direction.
+
+## 50. `deposit-photo-proof` — [NEW] “Move-In Photos”
+
+* **Age range:** 17–adult planning
+* **Topics:** renter deposit, proof, adult outcomes
+* **Tags:** L, R, EXT, AN, FF
+* **Prompt:** In an adult-planning scenario, you move into a small rental. Taking photos of existing damage takes 20 minutes.
+* **Choices:**
+
+  * **A. Take photos and save notes.** Req: rentedHousingContext. Outcome: Deposit dispute protection. Effects: Safety rises; time drops. Feedback: “Proof protects money you may need back later.” Reflect: “What did you document?”
+  * **B. Skip because the room looks fine.** Req: none. Outcome: Randomized future deposit dispute. Effects: Cash risk rises. Feedback: “No proof can make old damage look new.” Reflect: “What did speed risk?”
+  * **C. Walk through with roommate/landlord.** Req: supportCircle.friend or adultPlanningMode. Outcome: Shared record. Effects: Trust and Safety rise. Feedback: “Shared notes reduce confusion later.” Reflect: “Who saw the same evidence?”
+* **Randomized outcome?** Yes.
+* **Future flag set?** Yes: `documentsHousingCondition`
+* **Glossary terms:** Security deposit — money held against damage or unpaid costs; Documentation — saved proof; Dispute — disagreement about money or responsibility.
+* **Tradeoff note:** Documentation feels unnecessary until it becomes the only evidence.
+
+## 51. `utility-split-meter` — [NEW] “The Space Heater Split”
+
+* **Age range:** 17–adult planning
+* **Topics:** roommate costs, utilities, fairness
+* **Tags:** MT, L, M, SC, EXT
+* **Prompt:** A roommate uses a space heater often, and the electric bill is $24 higher than usual. You need a fair split.
+* **Choices:**
+
+  * **A. Split evenly.** Req: hasRoommateContext. Outcome: Simple, but possibly unfair. Effects: Trust may dip. Feedback: “Equal is not always fair when use differs.” Reflect: “What makes equal feel fair or unfair?”
+  * **B. Ask the heavy user to pay more.** Req: supportCircle.friend or roommateTrust ≥ 45. Outcome: Fairer if handled kindly. Effects: Money Know-How and Trust may rise. Feedback: “Usage-based splits need respectful wording.” Reflect: “How would you say it?”
+  * **C. Set a rule for next month.** Req: none. Outcome: Prevents future conflict. Effects: Discipline rises. Feedback: “A future rule can repair a present awkwardness.” Reflect: “What rule is clear?”
+* **Randomized outcome?** No.
+* **Future flag set?** No.
+* **Glossary terms:** Utility bill — bill for services like electricity or water; Usage-based split — paying based on use; Fairness — choosing a rule people can accept.
+* **Tradeoff note:** Fair math still needs kind communication.
+
+## 52. `laundry-cash-plan` — [NEW] “The Laundry Quarter Problem”
+
+* **Age range:** 16–adult planning
+* **Topics:** recurring costs, cash planning, adult living
+* **Tags:** M, EXT
+* **Prompt:** Laundry costs $2.25 to wash and $1.75 to dry. You do laundry once a week.
+* **Choices:**
+
+  * **A. Budget $4/week.** Req: none. Outcome: Simple weekly plan. Effects: Discipline rises. Feedback: “$2.25 + $1.75 = $4; about $16 per month.” Reflect: “What month has five laundry weeks?”
+  * **B. Wait and pay when needed.** Req: none. Outcome: Less tracking, possible cash scramble. Effects: Convenience rises; risk. Feedback: “Predictable costs are easier when named.” Reflect: “What reminder would help?”
+  * **C. Share loads when appropriate.** Req: supportCircle.friend. Outcome: Lower cost if fair and practical. Effects: Trust and cash improve. Feedback: “Sharing saves money only with clear rules.” Reflect: “What rule prevents conflict?”
+* **Randomized outcome?** No.
+* **Future flag set?** No.
+* **Glossary terms:** Recurring cost — repeated expense; Monthly estimate — expected cost over a month; Cash planning — keeping the right money ready.
+* **Tradeoff note:** Small adult costs are easy to ignore until they repeat.
+
+## 53. `weather-deductible-pocket` — [NEW] “The Hail Deductible”
+
+* **Age range:** 17–adult planning
+* **Topics:** insurance, deductible, savings
+* **Tags:** R, M, L, EXT, FF
+* **Prompt:** In an adult-planning car scenario, a policy has a $500 deductible. You can keep a separate deductible pocket in savings.
+* **Choices:**
+
+  * **A. Save the $500 pocket gradually.** Req: hasInsuranceContext. Outcome: Claim is easier if needed. Effects: Savings reserved; Safety rises. Feedback: “Insurance still requires your part of the cost.” Reflect: “Why save for a deductible?”
+  * **B. Keep only $100 available.** Req: none. Outcome: More flexible cash now, possible claim stress. Effects: Cash flexibility rises; risk rises. Feedback: “Coverage and cash need to work together.” Reflect: “What happens if the claim appears?”
+  * **C. Choose higher deductible for lower premium.** Req: Locked until savings ≥ $500. Outcome: Lower monthly cost if you can carry risk. Effects: Cash flow improves; risk capacity required. Feedback: “Higher deductible works better when saved.” Reflect: “Could you actually pay it?”
+* **Randomized outcome?** Yes.
+* **Future flag set?** Yes: `deductiblePocketBuilt`
+* **Glossary terms:** Deductible — amount you pay before insurance helps; Premium — regular insurance payment; Claim — request for insurance to pay.
+* **Tradeoff note:** Lower premiums can be smart only if the deductible is affordable.
+
+## 54. `find-device-first` — [NEW] “Find It Before Replacing It”
+
+* **Age range:** 13–16
+* **Topics:** asset recovery, digital safety, replacement cost
+* **Tags:** R, AN, FF
+* **Prompt:** Your tablet is missing. Replacing it costs $180, but a find-my-device feature may locate it if enabled.
+* **Choices:**
+
+  * **A. Try locate and lock features.** Req: deviceSecurityEnabled. Outcome: Randomized recovery. Effects: Safety rises; asset may return. Feedback: “Security tools can protect both data and property.” Reflect: “What setup helped now?”
+  * **B. Search manually first.** Req: none. Outcome: Takes time, possible recovery. Effects: Discipline rises. Feedback: “Not every missing item needs immediate replacement.” Reflect: “Where did you check first?”
+  * **C. Replace immediately.** Req: cash ≥ $180. Outcome: Fast solution, high cost. Effects: Cash drops; asset restored. Feedback: “Fast fixes can be expensive.” Reflect: “What did speed cost?”
+* **Randomized outcome?** Yes.
+* **Future flag set?** Yes: `usesDeviceSecurity`
+* **Glossary terms:** Replacement cost — price to get another item; Device lock — feature that blocks access; Asset recovery — getting useful property back.
+* **Tradeoff note:** Replacement solves the problem quickly but may skip cheaper recovery.
+
+## 55. `payment-privacy-settings` — [NEW] “Who Can See Your Payments?”
+
+* **Age range:** 14–17
+* **Topics:** payment apps, privacy, safety
+* **Tags:** FF, EXT
+* **Prompt:** A payment app has a social feed showing who paid whom. Your settings are public by default.
+* **Choices:**
+
+  * **A. Set payments private.** Req: usesPaymentApp. Outcome: Less oversharing. Effects: Safety rises. Feedback: “Money activity does not need an audience.” Reflect: “What should stay private?”
+  * **B. Leave public because friends do.** Req: none. Outcome: Convenience/no change, privacy risk. Effects: Safety slightly drops. Feedback: “Defaults may not match your privacy needs.” Reflect: “Who benefits from public settings?”
+  * **C. Review all app privacy settings.** Req: Discipline ≥ 40. Outcome: Better safety routine. Effects: Safety and Discipline rise. Feedback: “One setting check can reveal several risks.” Reflect: “Which setting surprised you?”
+* **Randomized outcome?** No.
+* **Future flag set?** Yes: `paymentPrivacySet`
+* **Glossary terms:** Privacy setting — control over who can see information; Default — starting setting chosen by the app; Oversharing — revealing more than needed.
+* **Tradeoff note:** Social features can be fun, but money privacy protects students.
+
+## 56. `nickname-payment-risk` — [NEW] “Two Jordans in the App”
+
+* **Age range:** 14–17
+* **Topics:** payment apps, recipient verification, mistakes
+* **Tags:** R, FF, SC, EXT
+* **Prompt:** You owe a friend named Jordan $9. The app shows two Jordans with similar icons.
+* **Choices:**
+
+  * **A. Confirm the username before sending.** Req: none. Outcome: Payment goes to correct person. Effects: Safety rises. Feedback: “Recipient checks prevent expensive awkwardness.” Reflect: “What detail confirmed it?”
+  * **B. Send to the first Jordan.** Req: paymentAppEnabled. Outcome: Randomized wrong-recipient problem. Effects: Cash risk; trust strain. Feedback: “Names alone are not enough.” Reflect: “What would you check next time?”
+  * **C. Ask friend to send a request.** Req: supportCircle.friend. Outcome: Lower wrong-person risk. Effects: Trust and Safety rise. Feedback: “Letting the recipient request can reduce mistakes.” Reflect: “How did this protect both people?”
+* **Randomized outcome?** Yes.
+* **Future flag set?** Yes: `verifiesPaymentRecipient`
+* **Glossary terms:** Recipient — person receiving money; Payment request — request sent by someone to be paid; Reversal — attempt to undo a payment.
+* **Tradeoff note:** A few seconds of checking can prevent a hard-to-reverse mistake.
+
+## 57. `refund-or-dispute-route` — [NEW] “Refund First, Dispute Later”
+
+* **Age range:** 16–18
+* **Topics:** consumer protection, disputes, documentation
+* **Tags:** R, FF, EXT
+* **Prompt:** An online order arrives damaged. You can contact the seller first, start a payment dispute, or give up.
+* **Choices:**
+
+  * **A. Contact seller with photos.** Req: savesPurchaseProof. Outcome: Randomized refund/replacement. Effects: Safety and Money Know-How rise. Feedback: “Clear proof helps solve ordinary problems.” Reflect: “What evidence mattered?”
+  * **B. Start a dispute immediately.** Req: paymentCardUsed. Outcome: Stronger action, may take longer. Effects: Safety rises; time cost. Feedback: “Disputes are useful, but usually after trying the direct route.” Reflect: “When is escalation fair?”
+  * **C. Keep the damaged item.** Req: none. Outcome: Saves time, loses value. Effects: Cash value drops. Feedback: “Sometimes people give up because the process is tiring.” Reflect: “What amount is worth your time?”
+* **Randomized outcome?** Yes.
+* **Future flag set?** Yes: `knowsRefundPath`
+* **Glossary terms:** Refund — money returned; Dispute — formal challenge to a charge; Documentation — proof saved for later.
+* **Tradeoff note:** Protecting your money takes effort; not every small loss is worth a long process.
+
+## 58. `safe-copy-folder` — [NEW] “The Important Document Copy”
+
+* **Age range:** 15–18
+* **Topics:** identity protection, records, safety
+* **Tags:** FF, EXT
+* **Prompt:** In a future-planning activity, your character needs copies of important documents for a job or program. You must store them safely.
+* **Choices:**
+
+  * **A. Keep copies in a secure folder.** Req: none. Outcome: Ready for applications. Effects: Safety and Opportunity rise. Feedback: “Important documents should be protected, not scattered.” Reflect: “Who should have access?”
+  * **B. Save photos in a random album.** Req: none. Outcome: Convenient but less secure. Effects: Safety risk. Feedback: “Convenience can create privacy risk.” Reflect: “What makes storage safe?”
+  * **C. Ask a trusted adult/mentor how to store them.** Req: supportCircle.family or supportCircle.mentor. Outcome: Better storage plan. Effects: Trust and Safety rise. Feedback: “Sensitive documents deserve guidance.” Reflect: “What rule did you learn?”
+* **Randomized outcome?** No.
+* **Future flag set?** Yes: `storesDocumentsSafely`
+* **Glossary terms:** Identity document — document that helps prove who someone is; Secure storage — protected place for important information; Access — who can see or use something.
+* **Tradeoff note:** Easy access and strong privacy need to be balanced.
+
+## 59. `medical-estimate-call` — [NEW] “The Before-Visit Estimate”
+
+* **Age range:** 17–adult planning
+* **Topics:** health insurance, estimates, deductibles
+* **Tags:** L, M, EXT
+* **Prompt:** In an adult-planning scenario, a non-urgent visit may cost different amounts depending on network and deductible.
+* **Choices:**
+
+  * **A. Ask for an estimate first.** Req: hasHealthInsuranceContext. Outcome: Cost range becomes clearer. Effects: Money Know-How rises. Feedback: “An estimate is not a promise, but it reduces surprise.” Reflect: “What number was still uncertain?”
+  * **B. Go without checking.** Req: none. Outcome: Faster care planning, surprise bill risk. Effects: Wellbeing may rise; cash risk. Feedback: “Care matters, but cost questions can be part of planning.” Reflect: “When is speed most important?”
+  * **C. Ask a trusted adult/mentor to help read benefits.** Req: supportCircle.family or supportCircle.mentor. Outcome: Better understanding. Effects: Safety rises. Feedback: “Insurance language can be hard; asking is smart.” Reflect: “Which word confused you?”
+* **Randomized outcome?** No.
+* **Future flag set?** No.
+* **Glossary terms:** Network — providers covered under a plan’s rules; Estimate — best guess of cost; Benefits — what insurance may cover.
+* **Tradeoff note:** Cost planning should not block needed care, but it can reduce avoidable surprises.
+
+## 60. `deductible-savings-pocket` — [NEW] “The Deductible Pocket”
+
+* **Age range:** 16–adult planning
+* **Topics:** insurance, saving, risk capacity
+* **Tags:** L, M, FF, EXT
+* **Prompt:** You choose a plan with a $250 deductible. You can create a savings pocket for it or leave savings general.
+* **Choices:**
+
+  * **A. Save $25/month for 10 months.** Req: hasInsuranceContext. Outcome: Deductible pocket funded. Effects: Safety rises; cash flow tighter. Feedback: “$25 × 10 = $250.” Reflect: “Why match savings to the deductible?”
+  * **B. Keep savings general.** Req: none. Outcome: Flexible but less protected. Effects: Cash flexible; safety lower. Feedback: “General savings works if you remember the possible claim.” Reflect: “What might spend this money first?”
+  * **C. Pick lower deductible plan.** Req: Locked until monthlyCashFlow ≥ higherPremium. Outcome: Higher premium, lower surprise. Effects: Monthly cash drops; risk lowers. Feedback: “Insurance choices trade monthly cost and surprise cost.” Reflect: “Which cost can you carry?”
+* **Randomized outcome?** No.
+* **Future flag set?** Yes: `matchesSavingsToRisk`
+* **Glossary terms:** Deductible — your part before insurance pays; Premium — regular payment for coverage; Risk capacity — ability to handle a loss.
+* **Tradeoff note:** The “best” plan depends on cash flow and savings, not just price.
+
+## 61. `pet-food-price-plan` — [NEW] “The Pet Food Price Jump”
+
+* **Age range:** 13–16
+* **Topics:** pet responsibility, recurring costs, substitution
+* **Tags:** MT, M, SC, AN
+* **Prompt:** Your pet’s food rises from $18 to $21 per bag. One bag lasts about 3 weeks.
+* **Choices:**
+
+  * **A. Keep same food and adjust budget.** Req: hasPet. Outcome: Pet routine stable. Effects: Cash drops more; wellbeing steady. Feedback: “$3 more every 3 weeks is about $52 more per year.” Reflect: “Why does recurring math matter?”
+  * **B. Ask caregiver/vet-safe source about alternatives.** Req: supportCircle.family. Outcome: Possible lower cost without harm. Effects: Money Know-How rises. Feedback: “Pet savings should still protect pet health.” Reflect: “What made the substitute safe?”
+  * **C. Buy larger bag if storage works.** Req: cash ≥ largeBagPrice. Outcome: Lower per-serving cost, higher upfront cost. Effects: Cash drops now; future cost lower. Feedback: “Bulk works only if you can store and use it.” Reflect: “What condition makes it a deal?”
+* **Randomized outcome?** No.
+* **Future flag set?** No.
+* **Glossary terms:** Recurring cost — repeated expense; Annual cost — cost across a year; Substitute — replacement choice.
+* **Tradeoff note:** Saving money on pet care should never ignore the pet’s wellbeing.
+
+## 62. `pet-sitting-quote` — [NEW] “Quoting a Pet-Sitting Job”
+
+* **Age range:** 14–17
+* **Topics:** side hustle, pricing, responsibility
+* **Tags:** MT, R, M, SC, FF
+* **Prompt:** A neighbor asks you to pet-sit for two days. You must price visits, travel time, and responsibility.
+* **Choices:**
+
+  * **A. Charge $8 per visit, 4 visits.** Req: none. Outcome: $32 revenue before travel/time. Effects: Cash rises; responsibility rises. Feedback: “4 × $8 = $32, but time is part of the job.” Reflect: “What did the price include?”
+  * **B. Charge a flat $40 with clear tasks.** Req: Money Know-How ≥ 45. Outcome: Randomized acceptance. Effects: Opportunity may rise. Feedback: “A clear quote helps both sides know the deal.” Reflect: “Which task needed to be named?”
+  * **C. Ask a mentor/caregiver to review safety and schedule.** Req: supportCircle.family or supportCircle.mentor. Outcome: Safer plan. Effects: Safety rises. Feedback: “Responsibility jobs need planning, not just pricing.” Reflect: “What safety rule mattered?”
+* **Randomized outcome?** Yes.
+* **Future flag set?** Yes: `pricesResponsibilityWork`
+* **Glossary terms:** Quote — price offered for work; Revenue — money coming in; Responsibility cost — effort and risk carried by a job.
+* **Tradeoff note:** Higher pay must match clear expectations and safe logistics.
+
+## 63. `family-plan-audit` — [NEW] “The Shared Tech Plan”
+
+* **Age range:** 14–17
+* **Topics:** family support, recurring cost, plan audit
+* **Tags:** MT, M, SC, FF
+* **Prompt:** A fictional family tech plan has one unused add-on costing $6/month. Removing it saves money but one person worries they might need it later.
+* **Choices:**
+
+  * **A. Remove the add-on.** Req: supportCircle.family. Outcome: Saves $72/year. Effects: Cash improves; trust depends on communication. Feedback: “$6 × 12 = $72 per year.” Reflect: “How did you include everyone affected?”
+  * **B. Keep it for one more month and review.** Req: none. Outcome: Buys time, costs $6. Effects: Trust steady; cash drops slightly. Feedback: “A review date can prevent endless delay.” Reflect: “What evidence will decide?”
+  * **C. Replace with a cheaper option.** Req: Money Know-How ≥ 40. Outcome: Partial savings. Effects: Cash improves; convenience may drop. Feedback: “Right-sizing often beats all-or-nothing.” Reflect: “What need stayed covered?”
+* **Randomized outcome?** No.
+* **Future flag set?** Yes: `auditsSharedRecurringCost`
+* **Glossary terms:** Add-on — extra feature with extra cost; Plan audit — checking whether a plan still fits; Right-size — adjust to match actual need.
+* **Tradeoff note:** Cutting costs affects people; good budgeting includes communication.
+
+## 64. `caregiver-bill-vocab` — [NEW] “Translate the Bill”
+
+* **Age range:** 15–18
+* **Topics:** vocabulary, support, consumer documents
+* **Tags:** L, SC, FF, EXT
+* **Prompt:** A fictional bill uses confusing words: balance, minimum due, due date, and service fee. A caregiver asks you to help read it.
+* **Choices:**
+
+  * **A. Use Money Words to label each part.** Req: Money Know-How ≥ 40. Outcome: Understanding rises. Effects: Money Know-How and Trust rise. Feedback: “Naming parts makes the document less scary.” Reflect: “Which word mattered most?”
+  * **B. Guess from the biggest number.** Req: none. Outcome: Possible misunderstanding. Effects: Money Know-How risk. Feedback: “The biggest number is not always the amount due now.” Reflect: “What did guessing miss?”
+  * **C. Ask mentor/official help source.** Req: Locked until supportCircle.mentor or officialResourceAccess. Outcome: Correct explanation. Effects: Safety rises. Feedback: “Hard documents deserve trustworthy help.” Reflect: “What source was reliable?”
+* **Randomized outcome?** No.
+* **Future flag set?** Yes: `readsBillParts`
+* **Glossary terms:** Balance — amount currently owed or held; Minimum due — smallest payment required now; Due date — date payment is required.
+* **Tradeoff note:** Helping with money words builds confidence, but guessing can create costly mistakes.
+
+## 65. `mock-interview-choice` — [NEW] “The Practice Interview”
+
+* **Age range:** 15–18
+* **Topics:** career skills, mentor support, opportunity
+* **Tags:** R, SC, FF, EXT
+* **Prompt:** A mentor offers a 20-minute practice interview. You feel awkward practicing, but the real interview is next week.
+* **Choices:**
+
+  * **A. Practice with mentor.** Req: supportCircle.mentor. Outcome: Randomized confidence boost. Effects: Opportunity rises; wellbeing may dip then recover. Feedback: “Practice makes the real moment less new.” Reflect: “Which answer improved?”
+  * **B. Practice alone.** Req: none. Outcome: Some preparation. Effects: Discipline rises. Feedback: “Solo practice helps, but feedback catches blind spots.” Reflect: “What could you not judge alone?”
+  * **C. Skip practice.** Req: none. Outcome: Saves time, more uncertainty. Effects: Wellbeing may stay; opportunity risk. Feedback: “Avoiding awkward practice can make the real thing harder.” Reflect: “What feeling drove the choice?”
+* **Randomized outcome?** Yes.
+* **Future flag set?** Yes: `practicedInterview`
+* **Glossary terms:** Interview — conversation for a job or program; Soft skills — communication and reliability skills; Preparation — work done before a challenge.
+* **Tradeoff note:** Practice costs comfort now to reduce risk later.
+
+## 66. `friend-no-spend-check` — [NEW] “The No-Spend Check-In”
+
+* **Age range:** 13–16
+* **Topics:** habits, friendship, values
+* **Tags:** MT, SC, FF
+* **Prompt:** A friend wants to try a one-week “no unnecessary spending” challenge. You are interested but do not want it to feel strict or judgy.
+* **Choices:**
+
+  * **A. Join with kind rules.** Req: supportCircle.friend. Outcome: Habit support. Effects: Discipline rises; trust rises. Feedback: “A challenge works better when it allows needs and joy.” Reflect: “What rule kept it kind?”
+  * **B. Decline but choose one personal limit.** Req: none. Outcome: Smaller habit. Effects: Discipline rises slightly. Feedback: “You can use the idea without copying the whole challenge.” Reflect: “What limit fits you?”
+  * **C. Turn it into a competition.** Req: none. Outcome: Motivation rises, shame risk. Effects: Discipline may rise; wellbeing may drop. Feedback: “Competition can motivate or pressure.” Reflect: “Did it feel supportive?”
+* **Randomized outcome?** No.
+* **Future flag set?** Yes: `usesSpendingHabitSupport`
+* **Glossary terms:** Spending habit — repeated money behavior; Accountability — support to follow through; Need — something important for health, school, or safety.
+* **Tradeoff note:** Challenges should build awareness, not shame.
+
+## 67. `group-fund-treasurer` — [NEW] “The Field Trip Fund Treasurer”
+
+* **Age range:** 13–15
+* **Topics:** records, trust, shared money
+* **Tags:** M, SC, FF
+* **Prompt:** Your class group collects $3 from each of 18 students for a project activity. You help track the total.
+* **Choices:**
+
+  * **A. Use a simple list and total.** Req: none. Outcome: $54 tracked clearly. Effects: Trust and Discipline rise. Feedback: “18 × $3 = $54; records protect everyone.” Reflect: “How did the list build trust?”
+  * **B. Keep the total in your head.** Req: none. Outcome: Less effort, higher mistake risk. Effects: Discipline drops. Feedback: “Memory is not a record.” Reflect: “What could go wrong?”
+  * **C. Ask a teacher/mentor to verify the count.** Req: supportCircle.mentor or schoolResourceAccess. Outcome: Shared accountability. Effects: Safety rises. Feedback: “Verification protects the person handling money.” Reflect: “Why should the treasurer not be alone?”
+* **Randomized outcome?** No.
+* **Future flag set?** Yes: `handlesSharedMoneyCarefully`
+* **Glossary terms:** Treasurer — person tracking shared money; Verification — checking for accuracy; Accountability — being responsible and checkable.
+* **Tradeoff note:** Records may feel formal, but shared money needs clarity.
+
+## 68. `art-table-fee` — [NEW] “The Art Table Fee”
+
+* **Age range:** 15–18
+* **Topics:** entrepreneurship, table fees, profit
+* **Tags:** MT, R, M, FF, EXT, AN
+* **Prompt:** A school-safe art fair table costs $18. Your prints cost $0.80 each to make and sell for $3.
+* **Choices:**
+
+  * **A. Reserve table and bring 20 prints.** Req: cash ≥ $34. Outcome: Randomized demand. Effects: Opportunity rises; inventory risk. Feedback: “20 prints cost $16, plus $18 table fee.” Reflect: “How many must sell to break even?”
+  * **B. Share table with a friend.** Req: supportCircle.friend. Outcome: Lower fee, shared space. Effects: Trust and cash improve. Feedback: “Splitting fixed costs lowers break-even.” Reflect: “What rule keeps the table fair?”
+  * **C. Skip and sell by commission later.** Req: none. Outcome: No table risk, slower sales. Effects: Safety rises; opportunity delayed. Feedback: “Avoiding a fixed cost lowers risk.” Reflect: “What opportunity did you give up?”
+* **Randomized outcome?** Yes.
+* **Future flag set?** Yes: `calculatesBreakEvenSales`
+* **Glossary terms:** Fixed cost — cost paid no matter how much sells; Break-even — point where revenue covers costs; Inventory — items available to sell.
+* **Tradeoff note:** Paying for opportunity can be smart, but only if sales can cover fixed costs.
+
+## 69. `snack-inventory-spoilage` — [NEW] “The Snack Box That Expires”
+
+* **Age range:** 14–17
+* **Topics:** inventory, spoilage, profit/loss
+* **Tags:** MT, R, M, FF, AN
+* **Prompt:** You buy 30 packaged snacks for a fundraiser simulation at $0.70 each and sell for $1.25, but they expire in two weeks.
+* **Choices:**
+
+  * **A. Buy all 30.** Req: cash ≥ $21. Outcome: High possible profit, spoilage risk. Effects: Opportunity rises; risk rises. Feedback: “Max profit is 30 × $0.55 = $16.50 before losses.” Reflect: “What demand are you assuming?”
+  * **B. Buy 15 first.** Req: cash ≥ $10.50. Outcome: Lower risk, lower upside. Effects: Safety rises. Feedback: “Smaller batches test demand.” Reflect: “What will you learn?”
+  * **C. Take preorders first.** Req: Discipline ≥ 45. Outcome: Demand clearer. Effects: Money Know-How rises. Feedback: “Preorders reduce guessing.” Reflect: “How did information lower risk?”
+* **Randomized outcome?** Yes.
+* **Future flag set?** Yes: `usesDemandBeforeInventory`
+* **Glossary terms:** Spoilage — value lost when goods expire or go bad; Margin — difference between selling price and cost; Preorder — order before buying inventory.
+* **Tradeoff note:** Bigger orders can earn more, but time-sensitive inventory raises risk.
+
+## 70. `return-window-calendar` — [NEW] “The 14-Day Window”
+
+* **Age range:** 13–16
+* **Topics:** return windows, reminders, consumer skills
+* **Tags:** R, FF
+* **Prompt:** You buy a school-safe hobby item, but you will not know if it fits your project until next week. The return window is 14 days.
+* **Choices:**
+
+  * **A. Set a check-by date on day 10.** Req: none. Outcome: Return option protected. Effects: Discipline rises. Feedback: “A reminder keeps the window open.” Reflect: “Why not wait until day 14?”
+  * **B. Decide later without reminder.** Req: none. Outcome: Randomized missed window. Effects: Cash risk. Feedback: “Good intentions need systems.” Reflect: “What closed the option?”
+  * **C. Keep packaging and receipt together.** Req: none. Outcome: Return easier. Effects: Safety rises. Feedback: “Proof plus condition protects choices.” Reflect: “What did the package prove?”
+* **Randomized outcome?** Yes.
+* **Future flag set?** Yes: `tracksReturnWindows`
+* **Glossary terms:** Return window — time allowed to return an item; Condition — item’s state; Reminder — system that helps you remember.
+* **Tradeoff note:** A return policy only helps if the student preserves time and proof.
+
+## 71. `warranty-transfer-value` — [NEW] “The Transferable Warranty”
+
+* **Age range:** 15–18
+* **Topics:** warranty, resale value, ownership
+* **Tags:** MT, M, FF, EXT, AN
+* **Prompt:** A used instrument has a transferable warranty for $25 more than another similar one. You may resell it next year.
+* **Choices:**
+
+  * **A. Pay $25 more for transferable warranty.** Req: cash ≥ higherPrice. Outcome: More protection and possible resale appeal. Effects: Asset quality rises; cash drops. Feedback: “Transferable benefits can affect resale value.” Reflect: “Who else values the warranty?”
+  * **B. Buy cheaper one.** Req: cash ≥ lowerPrice. Outcome: Lower upfront cost, more repair risk. Effects: Cash protected. Feedback: “A lower price may shift risk to you.” Reflect: “What repair could erase the savings?”
+  * **C. Ask seller for repair history.** Req: Money Know-How ≥ 40. Outcome: Better information. Effects: Safety rises. Feedback: “History can matter as much as price.” Reflect: “What fact changed the value?”
+* **Randomized outcome?** No.
+* **Future flag set?** Yes: `valuesTransferableProtection`
+* **Glossary terms:** Warranty — promise to fix or replace under rules; Transferable — can pass to a new owner; Resale value — likely sale price later.
+* **Tradeoff note:** Paying extra for protection can help if it reduces risk or improves resale.
+
+## 72. `credit-limit-increase` — [NEW] “Your Limit Went Up”
+
+* **Age range:** 18+ planning
+* **Topics:** credit limit, utilization, spending temptation
+* **Tags:** L, M, FF, EXT
+* **Prompt:** Your simplified credit account limit rises from $500 to $800. Your balance is $120.
+* **Choices:**
+
+  * **A. Keep spending the same.** Req: creditActive. Outcome: Utilization drops from 24% to 15%. Effects: Credit score may improve. Feedback: “$120 ÷ $500 = 24%; $120 ÷ $800 = 15%.” Reflect: “Why did the score improve without spending?”
+  * **B. Spend more because limit is higher.** Req: none. Outcome: Balance rises. Effects: Debt risk rises. Feedback: “A higher limit is not extra income.” Reflect: “What made it feel spendable?”
+  * **C. Decline increase for now.** Req: none. Outcome: Less temptation, utilization unchanged. Effects: Discipline rises. Feedback: “Avoiding temptation can be a valid strategy.” Reflect: “What did you protect?”
+* **Randomized outcome?** No.
+* **Future flag set?** Yes: `understandsLimitIncrease`
+* **Glossary terms:** Credit limit — maximum borrowing amount; Utilization — percent of credit limit being used; Balance — amount owed.
+* **Tradeoff note:** A higher limit can help or hurt depending on behavior.
+
+## 73. `autopay-date-mismatch` — [NEW] “Autopay Before Payday”
+
+* **Age range:** 17–adult planning
+* **Topics:** autopay, due dates, cash flow
+* **Tags:** R, M, L, FF, EXT
+* **Prompt:** Autopay is set for the 2nd, but payday is the 3rd. The bill is $64.
+* **Choices:**
+
+  * **A. Move autopay to after payday.** Req: billAllowsDateChange. Outcome: Timing risk lower. Effects: Safety rises. Feedback: “Autopay helps only when the date fits cash flow.” Reflect: “What date mismatch mattered?”
+  * **B. Keep it and hope balance is enough.** Req: none. Outcome: Randomized low-balance problem. Effects: Fee risk. Feedback: “Automation can fail if timing is wrong.” Reflect: “What did autopay not know?”
+  * **C. Keep a $75 buffer.** Req: Locked until savings or checking buffer ≥ $75. Outcome: Bill covered even before payday. Effects: Cash reserved; Safety rises. Feedback: “A buffer protects automatic systems.” Reflect: “Why $75 for a $64 bill?”
+* **Randomized outcome?** Yes.
+* **Future flag set?** Yes: `alignsAutopayWithPayday`
+* **Glossary terms:** Autopay — automatic bill payment; Due date — when payment is required; Buffer — extra kept for safety.
+* **Tradeoff note:** Automation is powerful but not a substitute for timing awareness.
+
+## 74. `avalanche-snowball-mini` — [NEW] “Which Debt First?”
+
+* **Age range:** 17–adult planning
+* **Topics:** debt payoff, interest, motivation
+* **Tags:** MT, M, L, FF, EXT
+* **Prompt:** You have two simplified debts: $90 at 8% and $40 at 20%. You have $20 extra this month.
+* **Choices:**
+
+  * **A. Pay the 20% debt first.** Req: hasDebt. Outcome: Mathematically saves more interest. Effects: Debt cost falls; Money Know-How rises. Feedback: “Higher percent debt grows faster.” Reflect: “Why did rate matter?”
+  * **B. Pay the $40 debt first because it is smaller.** Req: hasDebt. Outcome: Faster emotional win. Effects: Wellbeing rises; interest savings lower. Feedback: “Small wins can keep motivation alive.” Reflect: “How much is motivation worth?”
+  * **C. Save $10 and pay $10 extra.** Req: Locked until emergencyCushion < $50. Outcome: Builds tiny cushion and reduces debt. Effects: Safety and debt progress both rise. Feedback: “Splitting can protect against new borrowing.” Reflect: “Why not use all $20?”
+* **Randomized outcome?** No.
+* **Future flag set?** Yes: `choosesDebtStrategy`
+* **Glossary terms:** Debt payoff — plan to reduce what is owed; Interest rate — percent cost of borrowing; Motivation — energy to keep going.
+* **Tradeoff note:** The math-best payoff and the behavior-best payoff may differ.
+
+## 75. `net-worth-not-worth` — [NEW] “The Money Snapshot”
+
+* **Age range:** end-of-run / adult outcome
+* **Topics:** net worth, reflection, values
+* **Tags:** M, AN, FF, SC, EXT
+* **Prompt:** Your run ends with assets, debts, habits, support, and one big lesson. The game asks you to read net worth as a money snapshot, not a measure of who your character is.
+* **Choices:**
+
+  * **A. Calculate assets minus debts.** Req: none. Outcome: Net worth shown. Effects: Money Know-How rises. Feedback: “Net worth = assets − debts.” Reflect: “What does this number show?”
+  * **B. Compare habits, not just money.** Req: completedReflectionFlags ≥ 5. Outcome: Values report appears. Effects: Wellbeing and Money Know-How rise. Feedback: “Habits explain direction better than one number.” Reflect: “Which habit mattered most?”
+  * **C. Ask mentor/support circle for one next-step goal.** Req: supportCircle.mentor or family. Outcome: Recovery/growth goal appears. Effects: Opportunity rises. Feedback: “Support can help turn a snapshot into a plan.” Reflect: “What is the next small step?”
+* **Randomized outcome?** No.
+* **Future flag set?** Yes: `completedMoneySnapshot`
+* **Glossary terms:** Net worth — assets minus debts; Asset — owned item or account with value; Debt — money owed; Snapshot — one moment, not the whole story.
+* **Tradeoff note:** Net worth is useful information, but it must never become self-worth.
+
+**Scenario bank count check:**
+
+* Mixed-tradeoff scenarios: 47+
+* Locked-choice scenarios: 21
+* Randomized-outcome scenarios: 25
+* Future-flag scenarios: 56
+* Support-circle scenarios: 23
+* Explicit math scenarios: 45+
+* 8th–10th / early high-school extension scenarios: 37
+* Asset, ownership, or net-worth scenarios: 24
+
+---
+
+# 5. Relationship and Support Circle Ideas
+
+1. **Caregiver budget translation** — Benefit: confusing bills become readable. Cost: time and patience. Reflection: “Which word needed translation?”
+2. **Caregiver deadline buddy** — Benefit: return windows, deposits, and forms are less likely to be missed. Cost: student must communicate early. Reflection: “What did asking early protect?”
+3. **Caregiver transportation backup** — Benefit: fewer missed shifts or programs. Cost: schedule coordination. Reflection: “What was the backup plan?”
+4. **Caregiver shared-cost talk** — Benefit: phone, pet, or supply costs become clearer. Cost: may require compromise. Reflection: “What split felt fair?”
+5. **Caregiver repair second opinion** — Benefit: avoids replacing too soon. Cost: slower decision. Reflection: “What information changed the plan?”
+6. **Friend fair-split calculator** — Benefit: group costs stay transparent. Cost: some awkwardness. Reflection: “What rule protected the friendship?”
+7. **Friend spending pause** — Benefit: friend helps wait before impulse buy. Cost: student accepts feedback. Reflection: “Did the pause change the choice?”
+8. **Friend shared-resource rules** — Benefit: borrowed tools, workspace, or supplies are easier to manage. Cost: written expectations. Reflection: “What rule prevented conflict?”
+9. **Friend accountability challenge** — Benefit: habits improve. Cost: challenge can become pressure if framed badly. Reflection: “How did you keep it kind?”
+10. **Friend repayment reminder** — Benefit: small IOUs do not become resentment. Cost: clear record. Reflection: “Was this a loan, gift, or split?”
+11. **Mentor source check** — Benefit: student compares viral advice with trusted guidance. Cost: delay before acting. Reflection: “What made the source trustworthy?”
+12. **Mentor mock interview** — Benefit: opportunity stat rises. Cost: discomfort and time. Reflection: “Which answer improved?”
+13. **Mentor negotiation practice** — Benefit: better pricing or pay conversation. Cost: role-play feels awkward. Reflection: “What phrase was respectful?”
+14. **Mentor aid offer decoder** — Benefit: grants, work-study, loans, and gaps become clearer. Cost: reading carefully. Reflection: “Which line was borrowed money?”
+15. **Mentor recovery ladder** — Benefit: setback becomes repairable. Cost: follow-through. Reflection: “Which repair step happens first?”
+16. **Pet routine budget** — Benefit: recurring pet costs become predictable. Cost: money reserved monthly. Reflection: “What cost repeats?”
+17. **Pet wellbeing boost** — Benefit: wellbeing rises after responsible care. Cost: time and supplies. Reflection: “How did responsibility support wellbeing?”
+18. **Pet emergency planning** — Benefit: savings purpose becomes concrete. Cost: less free cash. Reflection: “What surprise did the fund prepare for?”
+19. **Pet supply comparison** — Benefit: students compare per-serving cost and storage. Cost: bulk may not fit. Reflection: “What made the bigger bag a deal or not?”
+20. **Pet-sitting responsibility work** — Benefit: income and reliability practice. Cost: safety planning and schedule. Reflection: “What did the quote include?”
+21. **Caregiver privacy check** — Benefit: safer document storage and app settings. Cost: conversation about digital habits. Reflection: “What should stay private?”
+22. **Friend group treasurer verification** — Benefit: shared money is counted by two people. Cost: more formal process. Reflection: “Why does verification protect everyone?”
+23. **Mentor career pathway comparison** — Benefit: neutral view of multiple routes. Cost: more research. Reflection: “What tradeoff mattered most?”
+24. **Caregiver grocery substitution talk** — Benefit: real household budgeting skill. Cost: compromise on preference. Reflection: “What made the substitute good enough?”
+25. **Pet adoption readiness gate** — Benefit: game prevents impulsive pet choice without supplies/time. Cost: delayed reward. Reflection: “What does a pet need besides love?”
+
+---
+
+# 6. Score Ranges and Life Context
+
+## Money Know-How, 0–100
+
+* **0–20:** You are mostly guessing. Money Words, math helpers, and source checks appear often.
+* **21–40:** You know some basics but may miss hidden fees, timing, or long-term totals.
+* **41–60:** You can handle common choices and explain simple tradeoffs.
+* **61–80:** You compare cost, timing, risk, and source quality before acting.
+* **81–100:** You use strong money habits and can explain choices clearly to others.
+
+## Wellbeing, 0–100
+
+* **0–20:** Your character is stretched thin. Recovery, rest, and support choices should appear.
+* **21–40:** Stress is high; money choices may feel harder.
+* **41–60:** You are managing, but big surprises still hit hard.
+* **61–80:** You usually balance money, time, energy, and relationships.
+* **81–100:** Your routines protect both goals and health.
+
+## Safety, 0–100
+
+* **0–20:** Scam, privacy, fee, and account-risk events need extra warnings.
+* **21–40:** You notice some warning signs but may rush under pressure.
+* **41–60:** You pause for many risky choices.
+* **61–80:** You verify, document, and ask for help before major risks.
+* **81–100:** You have strong safety habits and help your support circle spot risks.
+
+## Discipline, 0–100
+
+* **0–20:** You need reminders, automation, and small steps.
+* **21–40:** You start plans but often miss dates, records, or routines.
+* **41–60:** You can follow simple systems with support.
+* **61–80:** You maintain budgets, reminders, documents, and savings habits.
+* **81–100:** You build systems that make good choices easier.
+
+## Opportunity, 0–100
+
+* **0–20:** Few routes are open; community resources and support matter.
+* **21–40:** Some options exist, but locks and costs appear often.
+* **41–60:** You can access common resources and build skills.
+* **61–80:** You unlock training, mentor, job, and pathway choices.
+* **81–100:** You have many routes and can compare them thoughtfully.
+
+## Credit, 300–850 simplified model
+
+CFPB notes that many credit scores range from 300 to 850, while different companies may use different scoring systems or ranges; the app should label credit as a simplified learning model. ([Consumer Financial Protection Bureau][2])
+
+* **300–579: Rebuilding zone.** Focus on on-time payments, low balances, checking reports, and recovery steps.
+* **580–669: Getting steadier.** Some borrowing may be available, but terms may cost more.
+* **670–739: Solid range.** Habits are helping; keep balances low and pay on time.
+* **740–799: Strong range.** In the simplified model, better offers may appear.
+* **800–850: Excellent range.** Keep using credit carefully; the score is still only one tool.
+
+## Fictional context variables that avoid sensitive identity data
+
+1. `supportAccess` — low/medium/high availability of fictional support-circle help.
+2. `transportationReliability` — steady/mixed/limited.
+3. `localCostLevel` — low/average/high fictional prices.
+4. `schoolResourceAccess` — availability of school supplies, devices, tutoring, or clubs.
+5. `internetReliability` — steady/limited/spotty.
+6. `startingCushion` — small fictional emergency savings amount.
+7. `mentorAccess` — none/occasional/steady.
+8. `schedulePressure` — low/medium/high demands on time.
+9. `communityProgramAccess` — resource programs available or limited.
+10. `deviceReliability` — strong/aging/shared.
+11. `financialDocumentConfidence` — low/medium/high reading comfort.
+12. `safeStorageAccess` — secure place for documents/assets.
+13. `workHourFlexibility` — fixed/mixed/flexible.
+14. `transportCostLevel` — low/average/high fictional commute costs.
+15. `priceVolatility` — stable/mixed/rising fictional prices.
+
+---
+
+# 7. Assets and Net Worth Ideas
+
+1. **Bike or scooter** — Gains value through maintenance and usefulness; loses value through damage or theft risk. Teaches depreciation, upkeep, and transportation savings.
+2. **Helmet/lights/lock bundle** — Does not create much resale value but protects a transportation asset. Teaches prevention cost vs. replacement cost.
+3. **School laptop/tablet** — Gains usefulness through care and backups; loses resale through age and damage. Teaches asset condition and productivity value.
+4. **Local backup drive** — Gains value by protecting files; loses value if misplaced or outdated. Teaches one-time vs. recurring digital costs.
+5. **Calculator** — Holds usefulness across courses; loses value if model becomes outdated. Teaches rent vs. buy and break-even.
+6. **Tool kit** — Gains value by unlocking repairs or work; loses value if tools are lost. Teaches human capital plus physical assets.
+7. **Starter work gear** — Shoes, bag, apron, or safety gear. Gains value by supporting employment; loses value through wear. Teaches work expenses.
+8. **Certification placeholder** — Not a physical asset, but a human-capital asset. Can expire or unlock jobs. Teaches cost/time vs. opportunity.
+9. **Portfolio samples** — Digital art, code, writing, or project evidence. Gains value through quality; loses relevance if outdated. Teaches non-cash opportunity assets.
+10. **Emergency supplies kit** — Gains value during surprise events; otherwise sits unused. Teaches preparedness and avoided cost.
+11. **Pet care kit** — Food container, leash, brush, or carrier. Gains value through responsible use; loses through wear. Teaches recurring care costs.
+12. **Small inventory box** — Supplies for a side hustle. Gains value if sold; loses value through spoilage or trends. Teaches inventory and profit/loss.
+13. **Reusable meal containers** — Gains value by enabling packed meals; loses through lost pieces. Teaches break-even.
+14. **Transit card balance** — Stored value that improves access; loses value if unused or misplaced. Teaches prepaid value and planning.
+15. **Named savings jars** — Cash assets with jobs. Gain value through deposits; lose value when spent. Teaches goal allocation.
+16. **Deductible pocket** — Savings reserved for insurance deductible. Gains protective value; loses flexibility. Teaches risk capacity.
+17. **Renter deposit placeholder** — Asset-like money held by someone else. Gains value if returned; loses value if damage/dispute. Teaches refundable vs. nonrefundable.
+18. **Training seat deposit** — Holds an opportunity; may become nonrefundable. Teaches commitment and deadline math.
+19. **Savings certificate placeholder** — Locked savings with fixed return. Gains interest; loses liquidity. Teaches time, interest, and access.
+20. **Diversified fund placeholder** — May grow or drop. Teaches risk, volatility, fees, and long horizons.
+21. **Low-fee fund placeholder** — Similar growth with lower cost drag. Teaches small percentages over time.
+22. **Useful furniture** — Desk, chair, lamp. Gains usefulness for school/work; loses resale. Teaches use value vs. resale value.
+23. **Phone** — Useful but depreciates quickly. Teaches insurance, repair, trade-in, and privacy.
+24. **Professional outfit or interview kit** — Unlocks opportunity; resale may be low. Teaches hidden costs of work and pathway access.
+25. **Document folder** — No resale value, high safety value. Teaches proof, identity protection, and readiness.
+
+---
+
+# 8. Teacher Discussion Prompts
+
+## Quick warm-ups
+
+1. What is one cost that is not always on the price tag?
+2. Why might the cheapest choice today cost more later?
+3. What is a financial decision where timing matters?
+4. Why is “free” sometimes not fully free?
+5. What is one reason a person might choose convenience over savings?
+6. When can waiting be a smart money move?
+7. Why should a game separate luck from decision quality?
+8. What does an asset do besides “sell for money”?
+
+## Pair-share questions
+
+9. Compare borrowing, renting, and buying. When is each reasonable?
+10. How would you ask a friend to split a cost without making it awkward?
+11. What makes a source trustworthy when it gives money advice?
+12. What is the difference between helping someone and overextending yourself?
+13. Why might a higher upfront cost be better over time?
+14. What reminder system would help a student avoid missed deadlines?
+15. How can support from a mentor change a financial choice?
+16. Why is a pet a financial responsibility, not just a fun choice?
+
+## Exit-ticket reflections
+
+17. Today I noticed that money decisions also involve ______.
+18. One choice that had no perfect answer was ______ because ______.
+19. A hidden cost I will watch for is ______.
+20. One Money Word I understand better now is ______.
+21. One safe recovery step after a mistake is ______.
+22. A financial habit that protects future options is ______.
+23. Net worth is useful because ______, but it does not show ______.
+24. One way to avoid shame in money conversations is ______.
+
+## Compare-outcomes prompts
+
+25. Two players made different choices and both ended okay. What values did each protect?
+26. One player got lucky after a risky choice. Should the game call it a good decision?
+27. One player made a careful choice and still had a bad random outcome. What should feedback say?
+28. Which mattered more in this scenario: cash, time, safety, or support?
+29. How did an early flag change a later locked choice?
+30. What recovery route would you add for a player who had a fee, scam loss, or missed deadline?
+
+---
+
+# 9. Glossary and Vocabulary Supports
+
+1. **Budget** — A plan for how money will be used. Math connection: categories must add to the total. Misconception: “A budget means no fun.” App location: spending and paycheck choices. Source category: CFPB/FDIC.
+2. **Cash flow** — Money moving in and out over time. Math: compare dates and amounts. Misconception: “If I have enough this month, timing does not matter.” App location: bills, paydays, pending charges. Source category: CFPB/FDIC.
+3. **Available balance** — Money ready to use right now. Math: subtract pending charges. Misconception: “Pending money is spendable.” App location: banking. Source category: FDIC/CFPB.
+4. **Pending charge** — A payment started but not fully finished. Math: future subtraction. Misconception: “It disappeared because I do not see it yet.” App location: checking events. Source category: FDIC/CFPB.
+5. **Buffer** — Extra money or time kept for surprises. Math: target amount above zero. Misconception: “Unused money is wasted.” App location: cash-flow and emergency events. Source category: CFPB/FDIC.
+6. **Deposit** — Money held to reserve something or protect against damage. Math: upfront cash tied up. Misconception: “Refundable means it does not affect me.” App location: rentals, borrowed tools, programs. Source category: CFPB/consumer education.
+7. **Refundable** — Able to be returned if rules are followed. Math: compare temporary cash loss vs. permanent cost. Misconception: “I always get it back.” App location: deposit events. Source category: consumer education.
+8. **Nonrefundable** — Not returned after certain rules or deadlines. Math: sunk cost if plans change. Misconception: “I can always cancel.” App location: camp, program, rental events. Source category: consumer education.
+9. **Opportunity cost** — What you give up when choosing one option. Math: compare benefits of alternatives. Misconception: “Only money counts.” App location: all mixed-tradeoff scenarios. Source category: CFPB/FDIC.
+10. **Break-even** — The point where savings or revenue covers cost. Math: upfront cost ÷ savings per use. Misconception: “A deal is immediate.” App location: reusable items, side hustles. Source category: FDIC/math education.
+11. **Recurring cost** — A cost that repeats. Math: monthly × 12. Misconception: “Small monthly costs do not matter.” App location: apps, plans, pets, utilities. Source category: CFPB/FDIC.
+12. **Annualize** — Convert a cost or income to a yearly amount. Math: month × 12, week × 52. Misconception: “Monthly price is the whole story.” App location: subscriptions and plans. Source category: CFPB/FDIC.
+13. **Gross pay** — Earnings before deductions. Math: hours × wage. Misconception: “This is what I take home.” App location: jobs and pay stubs. Source category: IRS.
+14. **Net pay** — Take-home pay after deductions. Math: gross pay − deductions. Misconception: “Net and gross are the same.” App location: paycheck reveals. Source category: IRS.
+15. **Withholding** — Money taken from pay for taxes before take-home pay. Math: percent or table-based deduction. Misconception: “Taxes only happen in April.” App location: job/tax events. Source category: IRS.
+16. **Tax refund** — Money returned when too much was withheld or paid. Math: paid − owed. Misconception: “It is free money.” App location: tax events. Source category: IRS.
+17. **Receipt** — Proof of purchase. Math: confirms amount and date. Misconception: “I only need it for expensive things.” App location: return/dispute events. Source category: consumer education.
+18. **Return window** — Time allowed to return an item. Math: count days from purchase. Misconception: “Returns are always allowed.” App location: consumer choices. Source category: consumer education.
+19. **Store credit** — Refund value usable only with that seller. Math: money restricted by location. Misconception: “It is the same as cash.” App location: return events. Source category: consumer education.
+20. **Verification** — Checking details before trusting or paying. Math: compare names, amounts, and dates. Misconception: “Looks familiar means safe.” App location: payment/scam events. Source category: FTC.
+21. **Phishing** — Fake message that tries to steal information. Math: potential loss and recovery cost. Misconception: “Only email phishing exists.” App location: safety events. Source category: FTC.
+22. **Impostor scam** — A scam where someone pretends to be trusted. Math: loss amount and recovery steps. Misconception: “I would always know.” App location: scam inbox. Source category: FTC.
+23. **Pressure tactic** — A push to act fast so you do not think. Math: compare rushed cost vs. delayed check. Misconception: “Urgency proves importance.” App location: scam and impulse events. Source category: FTC.
+24. **2FA** — A second step to prove it is really you. Math: risk reduction concept. Misconception: “A strong password is enough.” App location: account security. Source category: FTC/consumer cybersecurity.
+25. **Credit limit** — Maximum amount you can borrow on a credit account. Math: balance ÷ limit. Misconception: “Limit is extra income.” App location: credit events. Source category: CFPB.
+26. **Utilization** — Percent of available credit being used. Math: balance ÷ limit × 100. Misconception: “Only payment history matters.” App location: credit score meter. Source category: CFPB.
+27. **APR** — Yearly cost of borrowing shown as a percent. Math: compare rates across loans. Misconception: “Monthly payment tells the whole cost.” App location: loan comparison. Source category: CFPB.
+28. **Minimum payment** — Smallest required payment by due date. Math: less paid now can mean more interest later. Misconception: “Minimum means recommended.” App location: credit/debt events. Source category: CFPB.
+29. **Principal** — Original amount borrowed or invested. Math: interest is based on principal. Misconception: “Payment all reduces principal.” App location: loan and investing events. Source category: CFPB/Investor.gov.
+30. **Compound interest** — Growth that earns growth on earlier growth. Math: repeated percent increase. Misconception: “Interest is always simple addition.” App location: savings/investing. Source category: Investor.gov.
+31. **Diversification** — Spreading money so one loss hurts less. Math: allocation percentages. Misconception: “Diversification guarantees gains.” App location: investing. Source category: Investor.gov/SEC.
+32. **Volatility** — How much value moves up or down. Math: percent change. Misconception: “Down this month means bad forever.” App location: investing downturns. Source category: Investor.gov/SEC.
+33. **Investment fee** — Cost paid for investment services or products. Math: percent fee × balance. Misconception: “Small fees do not matter.” App location: investing choices. Source category: Investor.gov/SEC.
+34. **Inflation** — Prices rising over time. Math: percent increase. Misconception: “A dollar always buys the same.” App location: price changes and wages. Source category: CFPB/economic education.
+35. **Premium** — Regular payment for insurance coverage. Math: monthly × 12. Misconception: “Premium means everything is covered.” App location: insurance choices. Source category: NAIC/state insurance.
+36. **Deductible** — Amount you pay before insurance helps. Math: claim cost minus deductible. Misconception: “Insurance means no out-of-pocket cost.” App location: insurance claims. Source category: NAIC/state insurance.
+37. **Claim** — Request for insurance to pay after a covered loss. Math: compare claim size, deductible, and premium effects. Misconception: “Always file every small claim.” App location: insurance events. Source category: NAIC/state insurance.
+38. **Grant** — Aid for school that usually does not need repayment. Math: subtract from cost. Misconception: “All aid is debt.” App location: aid offers. Source category: Federal Student Aid.
+39. **Work-study** — Aid where a student earns money through eligible work. Math: hours × wage. Misconception: “It automatically pays the bill upfront.” App location: pathway planning. Source category: Federal Student Aid.
+40. **Human capital** — Skills, knowledge, and credentials that can create opportunity. Math: cost/time now vs. possible future income. Misconception: “Only physical things are assets.” App location: career and certification events. Source category: career/financial education.
+
+---
+
+# 10. Balance and Ethics Notes
+
+1. **Wealth never equals character.** Praise planning, curiosity, recovery, kindness, and clear thinking—not being rich.
+2. **Net worth is a money snapshot, not self-worth.** Assets minus debts should never measure intelligence, effort, kindness, or future potential.
+3. **Constraints change routes, not value.** Low transportation access or small starting cushion should create different gameplay, not shame.
+4. **Never ask sensitive identity questions.** Use fictional context variables only.
+5. **Every setback needs a recovery route.** Debt, fees, scam loss, missed deadline, or low wellbeing should unlock repair steps.
+6. **Locked choices must be kind.** Show “Needs $50 cushion” or “Needs mentor support,” not “You failed.”
+7. **Randomness must name luck.** Good plans can have bad luck; risky plans can get lucky.
+8. **Do not rig every lesson.** Insurance should sometimes help; self-insuring should sometimes work; waiting should sometimes pay off.
+9. **Wants and joy are legitimate.** The game teaches planning, not joyless saving.
+10. **Support is mutual.** Help from family, friends, mentors, or pet-care networks should involve trust, communication, time, or responsibility.
+11. **All pathways stay viable.** Work-first, trade, apprenticeship, community college, four-year, military, and entrepreneurship should all have strengths and tradeoffs.
+12. **Credit is not the final boss.** A high credit score should not outrank wellbeing, safety, net worth, or money knowledge.
+13. **Label simplified models.** Credit, tax, insurance, investing, and aid simulations should visibly say “simplified for learning.”
+14. **Protect classroom privacy by default.** localStorage only, clear-save controls, no analytics, no rosters, no grades, no student-data exports.
+15. **Originality is a production requirement.** Check duplicate slugs, copied wording, real brands, sensitive identifiers, mature themes, and missing source categories before shipping.
+
+---
+
+# 11. Source and Originality Notes
+
+This batch uses public source categories for topic inspiration and factual orientation only. It does **not** copy wording, definitions, worksheets, answer keys, lesson scripts, slides, UI, branding, artwork, source code, or protected expression from BitLife, NGPF, Banzai, Napkin Finance, Humble Math, or any other source. The uploaded prior-batch file was used as a duplication guard and contains its own originality and source-category notes. 
+
+Public source categories used:
+
+1. **CFPB consumer education and youth financial education** — credit, credit scores, credit reports, BNPL, debt, borrowing, consumer protection. CFPB states that many credit scores range from 300 to 850 and that different companies may use different ranges; CFPB also notes that BNPL loans may carry late fees if payments are missed. ([Consumer Financial Protection Bureau][2])
+2. **FDIC Money Smart for Young People** — age-banded K–12 financial education topics, including grades 6–8 and grades 9–12 connections for earning, spending, saving, banking, and decision-making. ([FDIC][1])
+3. **FTC Consumer Advice** — scams, phishing, impostor pressure, payment-app risk, trusted-adult verification, and reporting/recovery habits. ([Consumer Advice][3])
+4. **Investor.gov / SEC investor education** — compound interest, diversification, investment risk, fees, and long time horizons. ([Investor][7])
+5. **Federal Student Aid** — grants, scholarships, work-study, loans, FAFSA concepts, aid offers, and pathway planning vocabulary. ([Federal Student Aid][8])
+6. **IRS Understanding Taxes** — gross pay, net pay, deductions, withholding, and first-job tax concepts. ([IRS Applications][4])
+7. **NAIC and state insurance education pages** — premiums, deductibles, claims, out-of-pocket costs, and consumer insurance concepts. ([NAIC][6])
+8. **NGPF and Banzai public topic hubs** — broad topic-scope awareness only. Do not copy lesson text, worksheet text, assessment items, scripts, slide wording, definitions, or UI.
+
+The app should attribute sources only as broad topic categories for teacher transparency. It should not imply endorsement, sponsorship, partnership, review, approval, or affiliation by any cited organization.
+
+---
+
+# 12. Implementation Handoff for Codex
+
+1. **Create scenario data file:** `src/data/scenarios/scenariosGlassFern91.ts` with 75 scenario objects.
+2. **Scenario schema:** support `id`, `title`, `ageRange`, `topics`, `prompt`, `choices`, `randomized`, `futureFlag`, `glossaryTerms`, `tradeoffNote`, and `tags`.
+3. **Choice schema:** include `label`, `description`, `visibleLockedRequirement`, `outcomeSummary`, `effectsPlainLanguage`, `feedback`, and `reflectionPrompt`.
+4. **Requirement model:** support `ageMin`, `ageMax`, `cashMin`, `savingsMin`, `statMin`, `flagRequired`, `contextRequired`, `supportRoleRequired`, and `visibleLockedText`.
+5. **Effects model:** store numeric changes separately from student-facing language: `effectsNumeric` and `effectsText`.
+6. **Add Tradeoff Compass:** `src/components/TradeoffCompass.tsx`, using `choice.tradeoffTags`.
+7. **Add Stat Diff Panel:** `src/components/ChoiceOutcomeDiff.tsx`, comparing pre/post snapshots.
+8. **Add Budget Stress Test:** `src/components/BudgetStressTest.tsx`, using fictional surprise events only.
+9. **Add Fictional Bills Inbox:** `src/features/inbox/FictionalBillsInbox.tsx` with safe mail cards.
+10. **Add Math Scratchpad Drawer:** `src/components/math/MathScratchpadDrawer.tsx` for percent, split, annualize, and break-even helpers.
+11. **Add Opportunity Lock Preview:** `src/components/LockedChoicePreview.tsx` with kind unlock hints.
+12. **Add Scam Pressure Meter:** `src/components/safety/ScamPressureMeter.tsx` with signals: urgency, secrecy, unusual payment, too-good-to-be-true, unknown source.
+13. **Add Ownership Shelf:** `src/features/assets/OwnershipShelf.tsx` tracking useful assets, resale value, condition, and usefulness.
+14. **Add Repair-or-Replace Lens:** `src/components/assets/RepairReplaceLens.tsx`.
+15. **Add Recovery Choice Deck:** `src/features/recovery/RecoveryChoiceDeck.tsx` for fees, debt, scams, missed deadlines, and low wellbeing.
+16. **Add Source Check Stamp:** `src/components/sources/SourceCheckStamp.tsx` with fictional source categories.
+17. **Add Fee Receipt Unstacker:** `src/components/receipts/FeeReceiptUnstacker.tsx`.
+18. **Add Insurance What-If Slider:** `src/components/insurance/InsuranceWhatIfSlider.tsx`, labeled simplified.
+19. **Add glossary file:** `src/data/glossary/glossaryGlassFern91.ts` with 40 entries, source categories, app locations, misconceptions, and math connections.
+20. **Add originality/safety lint:** `src/utils/contentSafetyOriginalityLint.ts` to check duplicate slugs, missing tradeoff notes, missing source categories, real brands, sensitive identity fields, copied boilerplate, and mature-theme terms.
+
+[1]: https://www.fdic.gov/consumer-resource-center/money-smart-young-people "https://www.fdic.gov/consumer-resource-center/money-smart-young-people"
+[2]: https://www.consumerfinance.gov/consumer-tools/credit-reports-and-scores/understand-your-credit-score/ "https://www.consumerfinance.gov/consumer-tools/credit-reports-and-scores/understand-your-credit-score/"
+[3]: https://consumer.ftc.gov/articles/how-avoid-scam "https://consumer.ftc.gov/articles/how-avoid-scam"
+[4]: https://apps.irs.gov/app/understandingTaxes/hows/tax_tutorials/mod01/tt_mod01_03.jsp "https://apps.irs.gov/app/understandingTaxes/hows/tax_tutorials/mod01/tt_mod01_03.jsp"
+[5]: https://www.consumerfinance.gov/ask-cfpb/do-buy-now-pay-later-bnpl-loans-have-fees-en-2118/ "https://www.consumerfinance.gov/ask-cfpb/do-buy-now-pay-later-bnpl-loans-have-fees-en-2118/"
+[6]: https://content.naic.org/consumer "https://content.naic.org/consumer"
+[7]: https://www.investor.gov/additional-resources/information/youth/teachers-classroom-resources/what-compound-interest "https://www.investor.gov/additional-resources/information/youth/teachers-classroom-resources/what-compound-interest"
+[8]: https://studentaid.gov/understand-aid/types "https://studentaid.gov/understand-aid/types"
+
+**Creative Seed: `TIDE-LOOM-64`**
+Newness guard: I treated the uploaded prior-batch markdown as the duplicate-avoidance baseline. It already contains earlier seeds and mechanics such as MAPLE-SPARROW-72, RIVER-LANTERN-36, ACORN-FERRY-19, MOSAIC-COMPASS-58, ORBIT-HARBOR-47, GLASS-FERN-91, subscription creep, basic emergency funds, credit history, apartments, car ownership, payment apps, investing downturns, default traps, proof/documentation, source evaluation, fee stacks, cash-flow weather, and more, so this batch uses new slugs, new framing, and different student-facing conflicts wherever possible. 
+Theme: **weaving options before the “tide” comes in** — students build buffers, backup plans, support threads, and repair routes before a timing crunch, surprise fee, scam pressure, or opportunity deadline arrives.
+
+---
+
+# 1. Executive Research Synthesis
+
+1. **Decision quality and outcome quality need separate labels.** A good plan can meet bad luck, and a risky plan can get lucky. For 7th graders, separating “choice quality” from “result” prevents one random outcome from teaching the wrong lesson.
+
+2. **“Available now” should be a first-class money concept.** Students often understand that they “have money” but not whether it is spendable today, pending, held, locked, invested, or tied up in an asset. This matters because the app already tracks cash, checking, savings, investments, debt, and net worth.
+
+3. **Repair routes are more motivating than punishment routes.** A missed payment, fee, scam, or bad purchase should unlock a calm recovery chain. Middle-school classrooms need mistakes to become teachable, not run-ending.
+
+4. **Financial vocabulary works best when attached to an action.** Students remember “deductible” better when they choose whether to file a claim than when they only read a definition. Money Words cards should appear at the exact moment the word affects a choice.
+
+5. **Credit should be delayed, simplified, and de-moralized.** CFPB notes many credit scores range from 300–850, but different companies can use different ranges; in-game credit should therefore stay visibly “simplified for learning,” not a real-world prediction or a character grade. ([Consumer Financial Protection Bureau][1])
+
+6. **Cash-flow timing is as important as budgeting totals.** A budget can “work” on paper and fail because a bill clears before pay arrives. This is classroom-useful because it turns calendars, subtraction, and sequencing into financial reasoning.
+
+7. **Scam safety should be a practiced routine, not a fear lesson.** FTC phishing guidance emphasizes not clicking suspicious links and verifying through trusted channels; in-game scam events should repeatedly practice “pause, verify, document, report, recover.” ([Consumer Advice][2])
+
+8. **Gross vs. net pay should recur across multiple systems.** IRS Understanding Taxes materials explicitly teach payroll withholding and gross-versus-net pay; the app should use that distinction in jobs, side hustles, budgets, tax refunds, transportation, and loan decisions. ([IRS Applications][3])
+
+9. **Investing scenarios should lead with risk, fees, time, and diversification.** Investor.gov explains diversification, asset allocation, and fees as core investor concepts; the game should avoid “get rich” framing and instead show long-horizon percent changes, fee drag, and volatility. ([Investor][4])
+
+10. **Aid and pathway planning must avoid real eligibility data.** Federal Student Aid materials distinguish grants, scholarships, work-study, and loans, but the app should model them with fictional aid tiers and no family-income entry. ([Federal Student Aid][5])
+
+11. **Insurance is clearest as “small certain cost vs. rare large cost.”** NAIC consumer resources define deductibles as what you pay before insurance starts sharing costs; scenarios should ask whether savings can handle that first-dollar amount. ([NAIC][6])
+
+12. **Money decisions are social without needing sensitive identity.** Family/caregiver, friend, mentor, and pet support can shape options through time, trust, transportation, advice, or shared costs without asking students about real demographics.
+
+13. **Comparison skills should include “same unit, same time, same risk.”** A choice is not comparable until students know whether it is per month, per use, per year, refundable, risky, or guaranteed.
+
+14. **School-safe authenticity means adult outcomes without adult themes.** Early high school extension scenarios can include rent planning, car repair estimates, work-study, insurance, and credit reports while avoiding dating, alcohol, drugs, gambling, mature family drama, or crime-as-gameplay.
+
+15. **Teachers need discussion objects, not answer keys.** The most useful classroom artifact is a compare-outcomes prompt: “What changed the route?” not “Which choice was correct?”
+
+16. **Originality must be operationalized.** Scenario slugs, source categories, real-brand checks, sensitive-field bans, and quota checks should live in code, not only in writing guidelines.
+
+---
+
+# 2. New Feature Recommendations
+
+## 1. Choice Quality Label
+
+* **Student-facing purpose:** Shows “strong plan,” “reasonable tradeoff,” “risky but understandable,” or “needs recovery.”
+* **Teacher value:** Helps discuss reasoning without judging students.
+* **Data/state needed:** `choiceQuality`, `riskTags`, `outcomeLuckLabel`.
+* **Risk or privacy concern:** Avoid moral labels like “bad person.”
+* **MVP version:** One label after outcome.
+* **Stretch version:** Compare choice quality vs. outcome quality over a full run.
+
+## 2. Available Money Meter
+
+* **Student-facing purpose:** Separates spendable money from pending, locked, saved, invested, or asset value.
+* **Teacher value:** Clarifies liquidity vs. net worth.
+* **Data/state needed:** `cash`, `checking.available`, `checking.pending`, `lockedFunds[]`, `assets[]`.
+* **Risk or privacy concern:** None; fictional/local only.
+* **MVP version:** “Spendable today” card.
+* **Stretch version:** Timeline showing when locked money becomes available.
+
+## 3. Repair Route Drawer
+
+* **Student-facing purpose:** After a setback, students choose a recovery route: money, habit, support, or safety.
+* **Teacher value:** Reinforces resilience.
+* **Data/state needed:** `setbackType`, `recoveryOptions[]`, `recoveryProgress`.
+* **Risk or privacy concern:** Avoid shame language.
+* **MVP version:** Three repair choices after major setback.
+* **Stretch version:** Multi-step recovery chains with badges for repair.
+
+## 4. Tradeoff Threads
+
+* **Student-facing purpose:** Shows which future routes a choice “threads” into: safety, opportunity, savings, trust, wellbeing.
+* **Teacher value:** Makes compounding visible.
+* **Data/state needed:** `futureThreads[]`, `flagLinks[]`.
+* **Risk or privacy concern:** None.
+* **MVP version:** “This may matter later” chips.
+* **Stretch version:** End-of-run woven route map.
+
+## 5. Support Ask Cards
+
+* **Student-facing purpose:** Gives safe sentence starters for asking fictional support roles for help.
+* **Teacher value:** Builds communication skills.
+* **Data/state needed:** `supportRole`, `scenarioType`, `trustScore`.
+* **Risk or privacy concern:** Do not ask about real family.
+* **MVP version:** Static scripts.
+* **Stretch version:** Scripts adapt to trust, urgency, and topic.
+
+## 6. Locked Choice Preview
+
+* **Student-facing purpose:** Locked options say what would unlock them later.
+* **Teacher value:** Turns constraints into goals.
+* **Data/state needed:** `requirements`, `visibleLockedText`, `unlockHint`.
+* **Risk or privacy concern:** Avoid scolding.
+* **MVP version:** “Needs: $40 cushion.”
+* **Stretch version:** “Two ways to unlock this route.”
+
+## 7. Risk Signals Meter
+
+* **Student-facing purpose:** Highlights urgency, secrecy, unusual payment, unknown sender, too-good claim.
+* **Teacher value:** Builds scam-pattern recognition.
+* **Data/state needed:** `riskSignals[]`, `studentTaggedSignals[]`.
+* **Risk or privacy concern:** Fictional senders only.
+* **MVP version:** 0–5 signal meter.
+* **Stretch version:** Students tag which clue they noticed.
+
+## 8. Estimate Then Reveal
+
+* **Student-facing purpose:** Students guess total, fee, or percent range before the exact number appears.
+* **Teacher value:** Builds number sense.
+* **Data/state needed:** `estimatePrompt`, `estimateRange`, `actual`.
+* **Risk or privacy concern:** Do not store free-text.
+* **MVP version:** Three range buttons.
+* **Stretch version:** Classroom histogram with no names.
+
+## 9. Payment Confirmation Pause
+
+* **Student-facing purpose:** Before sending money, students confirm recipient, amount, and purpose.
+* **Teacher value:** Teaches safe digital payment habits.
+* **Data/state needed:** `recipient`, `amount`, `purpose`, `confirmSteps`.
+* **Risk or privacy concern:** Fictional payment apps only.
+* **MVP version:** Three-checkbox modal.
+* **Stretch version:** Random “similar name” challenge.
+
+## 10. Policy Limit Card
+
+* **Student-facing purpose:** Shows that insurance may cover up to a limit, not everything.
+* **Teacher value:** Adds realism beyond premium/deductible.
+* **Data/state needed:** `coverageLimit`, `deductible`, `claimAmount`.
+* **Risk or privacy concern:** Label simplified.
+* **MVP version:** One claim comparison.
+* **Stretch version:** Multiple plans with different limits.
+
+## 11. Aid Offer Decoder
+
+* **Student-facing purpose:** Sorts fictional aid into “free if rules met,” “earned,” “borrowed,” and “gap.”
+* **Teacher value:** Prevents “all aid is a loan” misconception.
+* **Data/state needed:** `aidLines[]`, `pathwayCost`, `gap`.
+* **Risk or privacy concern:** No real income or FAFSA data.
+* **MVP version:** Drag four aid labels.
+* **Stretch version:** Scenario chain with deadlines and renewal rules.
+
+## 12. Useful Asset Shelf
+
+* **Student-facing purpose:** Tracks items that are useful even if resale value is low.
+* **Teacher value:** Separates utility, resale, and net worth.
+* **Data/state needed:** `asset.usefulness`, `resaleValue`, `condition`, `maintenance`.
+* **Risk or privacy concern:** None.
+* **MVP version:** Shelf with value/usefulness bars.
+* **Stretch version:** Asset condition events.
+
+## 13. Fee Stack Viewer
+
+* **Student-facing purpose:** Breaks total cost into base price, tax, service fee, delivery, late fee, or convenience fee.
+* **Teacher value:** Multi-step arithmetic.
+* **Data/state needed:** `priceComponents[]`.
+* **Risk or privacy concern:** No real receipts.
+* **MVP version:** Expand/collapse fee details.
+* **Stretch version:** “Predict total first.”
+
+## 14. Reliability Ledger
+
+* **Student-facing purpose:** Tracks fictional follow-through: showing up, communicating, rescheduling, repaying.
+* **Teacher value:** Connects soft skills to opportunity.
+* **Data/state needed:** `commitments[]`, `reliabilityScore`, `references[]`.
+* **Risk or privacy concern:** Fictional only; avoid behavior grading real students.
+* **MVP version:** Small opportunity modifier.
+* **Stretch version:** Mentor/job reference routes.
+
+## 15. Boundary Builder
+
+* **Student-facing purpose:** Helps choose kind money boundaries with friends or partners.
+* **Teacher value:** Social-emotional learning plus finance.
+* **Data/state needed:** `relationshipRole`, `askAmount`, `boundaryChoice`.
+* **Risk or privacy concern:** Avoid real peer data.
+* **MVP version:** Three sentence stems.
+* **Stretch version:** Relationship trust changes based on clarity.
+
+## 16. Source Trust Ladder
+
+* **Student-facing purpose:** Compares official, school/teacher, mentor, sponsored, anonymous, and viral claims.
+* **Teacher value:** Media literacy.
+* **Data/state needed:** `sourceType`, `claim`, `verificationAction`.
+* **Risk or privacy concern:** Fictional sources only.
+* **MVP version:** Rank three sources.
+* **Stretch version:** Conflicting-source chain.
+
+## 17. Budget Stress Test
+
+* **Student-facing purpose:** Tests whether a plan survives a fictional surprise.
+* **Teacher value:** Teaches margin and cushion.
+* **Data/state needed:** `budgetPlan`, `stressEvent`, `buffer`.
+* **Risk or privacy concern:** No real budget entry.
+* **MVP version:** One $25–$75 surprise.
+* **Stretch version:** Light/medium/heavy stress settings.
+
+## 18. Benefits vs. Wage Panel
+
+* **Student-facing purpose:** Compares higher wage with fewer benefits vs. lower wage with useful benefits.
+* **Teacher value:** Gross vs. total compensation.
+* **Data/state needed:** `hourlyRate`, `hours`, `benefitValue`, `schedule`.
+* **Risk or privacy concern:** Simplified label.
+* **MVP version:** Two job cards.
+* **Stretch version:** Net-pay and time-cost simulator.
+
+## 19. Renewal Radar
+
+* **Student-facing purpose:** Tracks renewals, certifications, memberships, passes, and warranty windows.
+* **Teacher value:** Planning and deadlines.
+* **Data/state needed:** `renewalItems[]`, `deadlineAge`, `cost`.
+* **Risk or privacy concern:** Fictional only.
+* **MVP version:** One upcoming reminder.
+* **Stretch version:** Calendar view.
+
+## 20. Content Originality & Safety Linter
+
+* **Student-facing purpose:** Invisible; keeps the game school-safe.
+* **Teacher value:** Reduces licensing, privacy, and brand risks.
+* **Data/state needed:** scenario/glossary text, source category, banned fields, quota tags.
+* **Risk or privacy concern:** Developer-only.
+* **MVP version:** Duplicate slug, real-brand, sensitive-field checks.
+* **Stretch version:** Similarity checks and quota reports.
+
+---
+
+# 3. Scenario Systems and Chains
+
+## Chain 1 — Pending Balance Puzzle
+
+* **Learning target:** Available balance, pending charges, transfer timing.
+* **Trigger ages/life stages:** 15–17.
+* **Required flags:** `hasChecking`.
+* **Events in order:** Pending debit appears → transfer from savings is delayed → purchase decision → fee or avoided fee → alert setup.
+* **How choices compound:** Students who track pending money avoid overdraft-style crunches later.
+* **Possible endings:** Balance Watcher, Fee but Recovered, Alert Builder.
+
+## Chain 2 — Custom Order Boundary
+
+* **Learning target:** Deposits, cancellation policy, inventory risk.
+* **Trigger ages:** 14–17.
+* **Required flags:** `startedSideHustle`.
+* **Events:** Friend requests custom item → student sets deposit/no deposit → buyer cancels or follows through → inventory reused or loss taken → policy updated.
+* **How choices compound:** Clear terms preserve both friendship and cash.
+* **Possible endings:** Clear Terms, Generous but Stretched, Policy Learned.
+
+## Chain 3 — Helpful Mentor, Conflicting Source
+
+* **Learning target:** Source trust, sponsored advice, official verification.
+* **Trigger ages:** 14–18.
+* **Required flags:** `hasMentor`.
+* **Events:** Mentor gives conservative advice → viral source disagrees → sponsored source offers “shortcut” → verify official/neutral source → choose route.
+* **How choices compound:** Students who verify unlock source-savvy routes and reduce scam odds.
+* **Possible endings:** Verified Decision, Trend-Chaser, Mentor-Plus-Research.
+
+## Chain 4 — Available vs. Valuable
+
+* **Learning target:** Liquidity and net worth.
+* **Trigger ages:** 15–18.
+* **Required flags:** owns any asset.
+* **Events:** Student owns useful asset → surprise cash need → try to sell/borrow/keep → resale value differs from purchase value → net worth reflection.
+* **How choices compound:** High net worth but low liquidity changes options.
+* **Possible endings:** Liquid Planner, Valuable-but-Stuck, Sold and Rebuilt.
+
+## Chain 5 — Work Reliability Reference
+
+* **Learning target:** Soft skills, schedule communication, opportunity.
+* **Trigger ages:** 15–18.
+* **Required flags:** `hasIncome`.
+* **Events:** Shift conflict → communicate early or no-show → manager response → reference opportunity → future job/pathway unlock.
+* **How choices compound:** Reliability raises opportunity even if immediate cash is lower.
+* **Possible endings:** Strong Reference, Repaired Trust, Missed Opportunity.
+
+## Chain 6 — Insurance Limit Lesson
+
+* **Learning target:** Premium, deductible, policy limit, uncovered amount.
+* **Trigger ages:** 17–adult planning.
+* **Required flags:** `hasPolicy`.
+* **Events:** Choose plan → covered event occurs → deductible paid → policy limit applied → decide whether emergency fund handles gap.
+* **How choices compound:** Higher coverage costs more but reduces uncovered risk.
+* **Possible endings:** Covered Enough, Under-Limited, High Premium Peace.
+
+## Chain 7 — Aid Offer Decoder
+
+* **Learning target:** Grant vs. scholarship vs. work-study vs. loan.
+* **Trigger ages:** 16–18.
+* **Required flags:** `pathwayChosen`.
+* **Events:** Fictional aid offer arrives → sort aid lines → identify gap → choose work hours/loan/scholarship search → first-semester budget preview.
+* **How choices compound:** Misreading borrowed money as free creates later debt pressure.
+* **Possible endings:** Gap Mapper, Over-Borrowed but Recovering, Work-Study Balancer.
+
+## Chain 8 — Public Wi-Fi Purchase
+
+* **Learning target:** Account security, safe networks, 2FA backup.
+* **Trigger ages:** 13–16.
+* **Required flags:** `usesDigitalWallet`.
+* **Events:** Need to buy on public Wi-Fi → use secure method/wait/rush → login challenge → backup code available or not → account safety update.
+* **How choices compound:** Prior 2FA/backup choices reduce lockout and fraud risk.
+* **Possible endings:** Secure Buyer, Locked but Recovered, Risky Rush.
+
+## Chain 9 — Benefits vs. Hourly Wage
+
+* **Learning target:** Total compensation, net pay, schedule fit.
+* **Trigger ages:** 16–18.
+* **Required flags:** `hasJobOffer`.
+* **Events:** Two job offers → compare wage and benefits → schedule pressure appears → calculate monthly net difference → choose/renegotiate.
+* **How choices compound:** Higher wage can lose to reliable schedule or useful benefits.
+* **Possible endings:** Total-Comp Thinker, Wage-Only Surprise, Schedule Saver.
+
+## Chain 10 — Pet-Sitting Responsibility
+
+* **Learning target:** Earning, liability, scheduling, trust.
+* **Trigger ages:** 13–16.
+* **Required flags:** `supportCircle.pet` or `petCareAccess`.
+* **Events:** Neighbor pet-sitting offer → set clear duties → unexpected pet supply issue → ask for help or improvise → trust/referral result.
+* **How choices compound:** Clear records and support protect income and trust.
+* **Possible endings:** Trusted Sitter, Underpriced Work, Repaired Mistake.
+
+## Chain 11 — Small Business Markdown
+
+* **Learning target:** Inventory, margin, markdowns, break-even.
+* **Trigger ages:** 15–18.
+* **Required flags:** `startedSideHustle`.
+* **Events:** Buy inventory → demand lower than expected → hold/markdown/bundle → calculate margin → decide whether to restock.
+* **How choices compound:** Markdown may lower margin but recover cash.
+* **Possible endings:** Cash Recovered, Inventory Stuck, Smart Restock.
+
+## Chain 12 — Credit Report Error, Not Credit Card
+
+* **Learning target:** Credit reports, dispute, documentation.
+* **Trigger ages:** 18+ planning.
+* **Required flags:** `hasCreditProfile`.
+* **Events:** Error appears → gather fictional proof token → dispute or ignore → wait period → correction or follow-up.
+* **How choices compound:** Fast action protects future apartment/loan options.
+* **Possible endings:** Corrected Report, Delayed Fix, Follow-Up Needed.
+
+## Chain 13 — Certification Renewal
+
+* **Learning target:** Human capital, renewal costs, deadlines.
+* **Trigger ages:** 16–18.
+* **Required flags:** `hasCertification`.
+* **Events:** Certification opens job route → renewal deadline appears → pay/let lapse/ask program → opportunity check → update credential shelf.
+* **How choices compound:** Missing renewal closes routes temporarily but recovery is possible.
+* **Possible endings:** Current Credential, Lapsed but Recovered, Program Support.
+
+## Chain 14 — Loan Co-Sign Boundary
+
+* **Learning target:** Co-sign risk, relationships, full responsibility.
+* **Trigger ages:** 18+ planning.
+* **Required flags:** `hasCreditProfile`.
+* **Events:** Friend asks for co-sign → student learns responsibility → choose boundary/co-sign/alternative help → borrower struggles or pays → relationship and credit outcome.
+* **How choices compound:** Clear boundaries protect credit and trust.
+* **Possible endings:** Support Without Co-Signing, Co-Sign Stress, Shared Plan.
+
+## Chain 15 — Final Repair-and-Reflect Route
+
+* **Learning target:** Recovery, net worth vs. self-worth, values.
+* **Trigger ages:** End-of-run.
+* **Required flags:** any setback flag.
+* **Events:** Review one setback → choose repair action → compare old/new route → update score narrative → final reflection.
+* **How choices compound:** Repair becomes part of success, not an exception.
+* **Possible endings:** Rebuilder, Planner, Helper.
+
+---
+
+# 4. Fresh Scenario Bank
+
+**Legend:** MT = mixed tradeoff, L = locked choice, R = randomized, FF = future flag, SC = support circle, M = explicit 7th-grade math, EXT = 8th–10th extension, AN = asset/net worth.
+**Choice format:** label — description; locked requirement; outcome/effects; feedback; reflection.
+
+## 1. `pending-snack-hold` — “The Purchase That Hasn’t Cleared”
+
+* **Age range:** 15–16
+* **Topics:** checking, pending transactions, available balance
+* **Tags:** MT, M, FF, EXT
+* **Prompt:** Your checking app shows $42, but a $17.80 purchase is still pending. You want to buy supplies for $27. The screen total is not the same as spendable money.
+* **Choices:**
+  A. Wait one day — no lock; avoids guessing; cash unchanged, discipline +2; “Pending money can still leave soon.” Reflect: “What number was truly available?”
+  B. Buy now — no lock; may run short; checking risk +; “$42 − $17.80 − $27 = −$2.80.” Reflect: “Why did the app balance mislead you?”
+  C. Transfer $10 first — locked: needs savings ≥ $10; avoids shortfall; savings −$10, checking buffer +; “A small buffer changes the route.” Reflect: “When is moving savings worth it?”
+* **Randomized outcome?** No
+* **Future flag:** Yes — `tracksPendingBalance`
+* **Glossary:** pending transaction — a purchase started but not fully processed; available balance — money safe to spend after holds and pending charges.
+* **Tradeoff note:** Waiting is safer; transferring protects the purchase but uses savings.
+
+## 2. `check-hold-timeline` — “The Held Deposit”
+
+* **Age range:** 16–18
+* **Topics:** deposits, holds, cash flow
+* **Tags:** MT, M, L, FF, EXT
+* **Prompt:** You deposit a $96 check from a weekend job, but only $40 is available today. The rest unlocks in two days. A $58 bill is due tomorrow.
+* **Choices:**
+  A. Pay $40 now, ask to schedule the rest — no lock; partial payment; trust +, fee risk down; “Communication can protect you.” Reflect: “What did timing change?”
+  B. Pay the $58 assuming the check clears — no lock; risky; possible fee; “Deposited is not always available.” Reflect: “What does a hold do?”
+  C. Use savings to cover the gap — locked: needs savings ≥ $18; avoids fee; savings −$18; “$58 − $40 = $18 gap.” Reflect: “When is savings a timing bridge?”
+* **Randomized outcome?** No
+* **Future flag:** Yes — `understandsDepositHold`
+* **Glossary:** deposit hold — a delay before deposited money is spendable; cash flow — timing of money in and out.
+* **Tradeoff note:** Using savings protects timing, but it reduces your cushion.
+
+## 3. `shift-swap-reference` — “The Shift You Can’t Make”
+
+* **Age range:** 16–18
+* **Topics:** work, reliability, opportunity
+* **Tags:** MT, SC, FF, EXT
+* **Prompt:** You cannot make a shift because of a school event. A mentor once told you that reliability is partly about communication, not perfection. Your choice affects future references.
+* **Choices:**
+  A. Message early and offer two swap options — no lock; trust +, opportunity +; “Early communication gives people time.” Reflect: “How did planning protect trust?”
+  B. Wait until the last minute — no lock; stress +, opportunity −; “A real issue became harder because timing shrank.” Reflect: “What did delay cost?”
+  C. Ask mentor to help script the message — locked: mentor available; trust +, money know-how +; “Support can improve the wording.” Reflect: “When should you ask for help?”
+* **Randomized outcome?** No
+* **Future flag:** Yes — `strongReferencePossible`
+* **Glossary:** reference — someone who can speak about your reliability; opportunity — future options opened by skills, trust, or timing.
+* **Tradeoff note:** Asking for help takes time, but it can protect future opportunities.
+
+## 4. `custom-order-cancel` — “The Canceled Custom Order”
+
+* **Age range:** 14–17
+* **Topics:** entrepreneurship, deposits, inventory
+* **Tags:** MT, L, R, FF, SC, M, AN
+* **Prompt:** A friend asks you to make a custom item that costs $14 in materials and sells for $28. They might change their mind. You need a policy before buying supplies.
+* **Choices:**
+  A. Ask for a $7 deposit — no lock; reduces loss if canceled; cash +$7 now; “Half the material cost is protected.” Reflect: “Why ask before spending?”
+  B. Buy supplies first — no lock; friend may cancel; randomized loss/trust; “Generosity is kind, but inventory risk is real.” Reflect: “What risk did you take?”
+  C. Use a simple written agreement — locked: money know-how ≥ 45; trust +, risk down; “Clear terms protect the friendship.” Reflect: “Why can clarity feel kinder?”
+* **Randomized outcome?** Yes
+* **Future flag:** Yes — `setsCustomOrderTerms`
+* **Glossary:** deposit — money paid upfront toward a cost; inventory — items or supplies held for sale.
+* **Tradeoff note:** Deposits can feel awkward, but they make custom work safer.
+
+## 5. `template-license-choice` — “Can You Sell That Design?”
+
+* **Age range:** 15–18
+* **Topics:** licensing, entrepreneurship, originality
+* **Tags:** MT, L, FF, EXT, AN
+* **Prompt:** You find a design template for a side-hustle product. One version is free for personal use only; a commercial license costs $18. You plan to sell items using it.
+* **Choices:**
+  A. Buy the $18 commercial license — locked: cash ≥ $18; legal/safety +, cash −$18; “Rights matter when selling.” Reflect: “Why does use type matter?”
+  B. Use only your own design — no lock; time cost, no license cost; opportunity +; “Original work avoids permission risk.” Reflect: “What did time replace?”
+  C. Use the free personal template anyway — no lock; risk +; “Free personal use does not mean sellable.” Reflect: “What was the hidden rule?”
+* **Randomized outcome?** No
+* **Future flag:** Yes — `respectsCommercialLicense`
+* **Glossary:** commercial license — permission to use something for selling; intellectual property — creative work someone owns rights to.
+* **Tradeoff note:** Paying for rights costs cash; making your own costs time.
+
+## 6. `service-fee-total` — “The Fee Stack”
+
+* **Age range:** 13–15
+* **Topics:** fees, total cost, percentages
+* **Tags:** MT, M
+* **Prompt:** A $32 event ticket has an 8% service fee plus a $3 processing fee. The advertised price is not the final price. You have $38.
+* **Choices:**
+  A. Calculate before buying — no lock; money know-how +; “8% of $32 is $2.56; total is $37.56.” Reflect: “Which fee surprised you?”
+  B. Click buy without checking — no lock; cash almost gone; “You stayed under $38, but barely.” Reflect: “Why estimate first?”
+  C. Skip and find a free event — no lock; cash saved, wellbeing depends on values; “Saving is useful, but fun matters too.” Reflect: “Was the event worth $37.56?”
+* **Randomized outcome?** No
+* **Future flag:** No
+* **Glossary:** service fee — extra charge for processing or access; total cost — the full amount after all charges.
+* **Tradeoff note:** The event may be worth it; the key is seeing the full price.
+
+## 7. `rainy-route-backup` — “The Backup Route”
+
+* **Age range:** 15–17
+* **Topics:** transportation, planning, opportunity
+* **Tags:** MT, R, FF, SC, EXT
+* **Prompt:** You need to arrive on time for a paid training. Your usual ride is free but sometimes late. A backup route costs $6.
+* **Choices:**
+  A. Take the free usual route — no lock; saves cash, random lateness; “Free can still carry timing risk.” Reflect: “How much was on-time worth?”
+  B. Pay $6 for the backup route — no lock; cash −$6, opportunity protected; “You bought reliability.” Reflect: “When is reliability worth paying for?”
+  C. Ask a caregiver to help plan both routes — locked: family/caregiver support; trust +, risk down; “Support improves the plan, not magic.” Reflect: “How did backup planning help?”
+* **Randomized outcome?** Yes
+* **Future flag:** Yes — `hasBackupRoute`
+* **Glossary:** reliability — how likely something is to work as expected; opportunity cost — what you give up by choosing one route.
+* **Tradeoff note:** Paying for reliability can be smart when an opportunity is on the line.
+
+## 8. `useful-shoes-repair` — “Repair the Shoes or Replace Them?”
+
+* **Age range:** 13–15
+* **Topics:** repair, depreciation, useful assets
+* **Tags:** MT, M, AN
+* **Prompt:** Your everyday shoes need a $16 repair. New ones cost $58. The old ones are not worth much to sell, but they are still useful if repaired.
+* **Choices:**
+  A. Repair for $16 — no lock; cash −$16, useful asset restored; “You saved $42 compared with new.” Reflect: “How can usefulness differ from resale?”
+  B. Replace for $58 — locked: cash/savings ≥ $58; cash −$58, wellbeing +; “New may last longer.” Reflect: “What did higher cost buy?”
+  C. Wait and risk worse damage — no lock; randomized later cost; “Waiting keeps cash now but may raise cost.” Reflect: “When does delay help or hurt?”
+* **Randomized outcome?** Yes
+* **Future flag:** No
+* **Glossary:** useful asset — something valuable because it helps you, even if resale is low; depreciation — loss of value over time or use.
+* **Tradeoff note:** Repair is cheaper now; replacement may last longer.
+
+## 9. `battery-care-choice` — “The Battery Habit”
+
+* **Age range:** 14–16
+* **Topics:** asset maintenance, technology, habits
+* **Tags:** MT, R, FF, AN
+* **Prompt:** Your school laptop battery is weakening. A settings change and careful charging might stretch its life, but a replacement battery costs $74 later.
+* **Choices:**
+  A. Change habits now — no lock; discipline +, random repair risk down; “Care can slow decline.” Reflect: “What habit protected value?”
+  B. Ignore it — no lock; time saved, random failure risk; “Skipping care may be fine, or not.” Reflect: “How did luck matter?”
+  C. Start a $10/month repair fund — locked: hasIncome; savings goal +; “$10 for 8 months covers most of $74.” Reflect: “Why plan before failure?”
+* **Randomized outcome?** Yes
+* **Future flag:** Yes — `maintainsTechAsset`
+* **Glossary:** maintenance — actions that keep an item working; repair fund — savings for a likely future fix.
+* **Tradeoff note:** Maintenance costs attention; ignoring it saves effort but raises risk.
+
+## 10. `public-sale-plan` — “Selling Safely”
+
+* **Age range:** 15–18
+* **Topics:** resale, safety, support
+* **Tags:** MT, L, SC, AN, EXT
+* **Prompt:** You want to sell a used tablet worth about $110. A buyer asks to meet quickly in an unfamiliar place. Safety and money both matter.
+* **Choices:**
+  A. Meet only in a public, supervised place — locked: family/caregiver or mentor support; safety +, sale slower; “A safe plan is part of the sale.” Reflect: “What made the sale safer?”
+  B. Ship after verified payment clears — no lock; slower, safer; “Cleared payment matters.” Reflect: “Why wait before shipping?”
+  C. Rush the meetup — no lock; safety risk +, chance of loss; “Speed increased risk.” Reflect: “When is quick money not worth it?”
+* **Randomized outcome?** No
+* **Future flag:** Yes — `usesSafeResalePlan`
+* **Glossary:** resale value — what someone might pay later; cleared payment — money confirmed and available.
+* **Tradeoff note:** The fastest sale may not be the safest sale.
+
+## 11. `calendar-invite-trick` — “The Weird Calendar Invite”
+
+* **Age range:** 13–16
+* **Topics:** scams, digital safety, verification
+* **Tags:** R, FF, SC
+* **Prompt:** A calendar invite appears with a note that says you won a prize and must open a link. It looks like it came from a calendar, not a text. That makes it feel more official.
+* **Choices:**
+  A. Delete/report without clicking — no lock; safety +; “A strange link can arrive in many formats.” Reflect: “What made it suspicious?”
+  B. Ask mentor/caregiver to check — locked: support available; safety +, trust +; “A second set of eyes helps.” Reflect: “Who can help verify?”
+  C. Click to see the prize — no lock; randomized exposure risk; “Curiosity can be expensive.” Reflect: “What signal did you miss?”
+* **Randomized outcome?** Yes
+* **Future flag:** Yes — `calendarScamAware`
+* **Glossary:** phishing — a fake message trying to get money or information; verification — checking through a safer source before acting.
+* **Tradeoff note:** Curiosity is normal; the safer move is checking without clicking.
+
+## 12. `backup-code-card` — “Locked Out at the Worst Time”
+
+* **Age range:** 13–16
+* **Topics:** 2FA, account safety, backup codes
+* **Tags:** MT, L, R, FF
+* **Prompt:** You turned on 2FA, but your phone battery dies before you need to log in. Backup codes would help, but only if you saved them earlier.
+* **Choices:**
+  A. Use saved backup code — locked: `savedBackupCodes`; access restored; safety +; “Security works best with a recovery plan.” Reflect: “Why prepare for lockout?”
+  B. Wait until phone charges — no lock; time lost, safety intact; “Waiting is annoying but safe.” Reflect: “When is delay better than risky shortcuts?”
+  C. Try a shortcut link from an email — no lock; randomized scam risk; “Shortcut pressure can be a trap.” Reflect: “What should you verify?”
+* **Randomized outcome?** Yes
+* **Future flag:** Yes — `valuesRecoveryCodes`
+* **Glossary:** 2FA — an extra login step beyond a password; backup code — a saved code used if your main login method fails.
+* **Tradeoff note:** Strong security needs a backup so it does not block you.
+
+## 13. `health-plan-network` — “In-Network or Out?”
+
+* **Age range:** 17–adult planning
+* **Topics:** insurance, networks, out-of-pocket cost
+* **Tags:** MT, L, M, EXT
+* **Prompt:** A future adult health plan lists two clinics. One is in-network with a $25 visit cost. One is out-of-network and could cost $95. The closer clinic is the expensive one.
+* **Choices:**
+  A. Choose in-network, travel farther — no lock; cash −$25, time cost; “You saved $70 but spent time.” Reflect: “What did distance cost?”
+  B. Choose closer out-of-network — no lock; cash −$95, time saved; “Convenience has a price.” Reflect: “When is convenience worth it?”
+  C. Ask insurer/mentor to confirm first — locked: safety ≥ 55 or mentor; money know-how +; “Checking prevents surprises.” Reflect: “Why verify coverage?”
+* **Randomized outcome?** No
+* **Future flag:** No
+* **Glossary:** in-network — providers with lower agreed costs in a plan; out-of-pocket — money you pay yourself.
+* **Tradeoff note:** Lower cost may require more time and transportation.
+
+## 14. `policy-limit-gap` — “Covered, But Not Fully”
+
+* **Age range:** 18+ planning
+* **Topics:** insurance, policy limits, emergency fund
+* **Tags:** MT, M, R, FF, EXT
+* **Prompt:** A renter-style policy covers up to $1,000 for certain belongings after a $250 deductible. Your covered loss is estimated between $800 and $1,400.
+* **Choices:**
+  A. File claim — no lock; randomized claim amount; deductible paid, partial help; “Coverage has limits.” Reflect: “What did insurance not cover?”
+  B. Use emergency fund for smaller loss — locked: emergency fund ≥ $800; avoids claim, savings drop; “Self-paying keeps policy quiet but uses cushion.” Reflect: “When can savings self-insure?”
+  C. Review higher-limit plan later — no lock; future premium +, risk down; “Higher protection costs more.” Reflect: “What limit fits your assets?”
+* **Randomized outcome?** Yes
+* **Future flag:** Yes — `understandsPolicyLimit`
+* **Glossary:** policy limit — maximum an insurance policy pays for a covered loss; deductible — what you pay before insurance shares cost.
+* **Tradeoff note:** More coverage costs more; lower coverage leaves more gap risk.
+
+## 15. `scholarship-reuse-ethics` — “Reuse or Rewrite?”
+
+* **Age range:** 16–18
+* **Topics:** scholarships, originality, time management
+* **Tags:** MT, L, FF, EXT
+* **Prompt:** Two scholarship prompts are similar but not identical. You can reuse parts of an essay, but copying without adapting may miss the question. You have one evening.
+* **Choices:**
+  A. Reuse structure, rewrite details — no lock; time saved, quality +; “Reusing your own ideas is fine when adapted.” Reflect: “What needed changing?”
+  B. Submit the same essay unchanged — no lock; time saved, lower fit; “Fast is not always strong.” Reflect: “How did fit matter?”
+  C. Ask mentor for feedback — locked: mentor support; opportunity +; “Feedback improves clarity.” Reflect: “What did another reader catch?”
+* **Randomized outcome?** No
+* **Future flag:** Yes — `adaptsScholarshipEssay`
+* **Glossary:** scholarship — aid that may reduce school cost; fit — how well an answer matches a prompt.
+* **Tradeoff note:** Reuse saves time; adapting protects quality and originality.
+
+## 16. `aid-gap-sort` — “What Is Still Owed?”
+
+* **Age range:** 17–18
+* **Topics:** financial aid, grants, loans, work-study
+* **Tags:** M, L, FF, EXT
+* **Prompt:** A fictional program costs $4,600. Aid offer: $1,200 grant, $800 scholarship, $900 work-study estimate, and $1,000 loan. You need to know the remaining gap and what must be repaid.
+* **Choices:**
+  A. Sort free/earned/borrowed first — no lock; money know-how +; “Grant + scholarship = $2,000; work-study is earned; loan is borrowed.” Reflect: “Which aid is debt?”
+  B. Treat all $3,900 as free — no lock; future debt surprise; “A loan is not the same as a grant.” Reflect: “What label mattered?”
+  C. Ask aid office/mentor to explain — locked: source check skill; opportunity +; “Asking can prevent expensive confusion.” Reflect: “What question would you ask?”
+* **Randomized outcome?** No
+* **Future flag:** Yes — `decodesAidOffer`
+* **Glossary:** grant — aid that usually does not need repayment if rules are met; work-study — aid earned through eligible work.
+* **Tradeoff note:** More aid lines can look comforting, but labels change the real cost.
+
+## 17. `work-study-schedule` — “Earned Aid Takes Hours”
+
+* **Age range:** 17–18
+* **Topics:** work-study, schedules, wellbeing
+* **Tags:** MT, M, L, EXT, SC
+* **Prompt:** A fictional work-study award could let you earn up to $900, but you must work hours to receive it. Your class schedule is already full.
+* **Choices:**
+  A. Work 6 hours/week — no lock; income +, wellbeing − if overloaded; “$12 × 6 × 12 weeks = $864.” Reflect: “What did hours cost?”
+  B. Work 3 hours/week — no lock; less income, more balance; “Half the hours means about half the earnings.” Reflect: “How did balance matter?”
+  C. Ask advisor for a better shift — locked: mentor/advisor support; opportunity +; “Schedule fit can change the value.” Reflect: “Why ask before quitting?”
+* **Randomized outcome?** No
+* **Future flag:** No
+* **Glossary:** earned aid — aid received by working; schedule fit — how well work hours match your other responsibilities.
+* **Tradeoff note:** Earning more can cost sleep, study time, or wellbeing.
+
+## 18. `open-textbook-route` — “The Free Textbook Option”
+
+* **Age range:** 16–18
+* **Topics:** education costs, source checking, savings
+* **Tags:** MT, M, EXT
+* **Prompt:** A course lists a $78 textbook, but the teacher says an approved free open resource is acceptable. You want to make sure it is the right edition before skipping the book.
+* **Choices:**
+  A. Confirm the free resource with teacher — no lock; savings +; “Checking makes free safer.” Reflect: “Why verify before skipping?”
+  B. Buy the $78 book immediately — no lock; cash −$78, certainty +; “Certainty costs money.” Reflect: “Was certainty worth $78?”
+  C. Use the free resource without checking — no lock; possible mismatch; “Free still needs fit.” Reflect: “What risk did you accept?”
+* **Randomized outcome?** No
+* **Future flag:** No
+* **Glossary:** open resource — free material allowed for learning; edition — a specific version of a book or resource.
+* **Tradeoff note:** Free is best only if it meets the requirement.
+
+## 19. `apprentice-tool-stipend` — “The Tool Stipend”
+
+* **Age range:** 16–18
+* **Topics:** apprenticeship, tools, human capital
+* **Tags:** MT, R, FF, EXT, AN
+* **Prompt:** A training program offers a $120 tool stipend after you complete the first month. Buying basic tools now costs $95. Borrowing tools is possible but not guaranteed.
+* **Choices:**
+  A. Buy basic tools now — locked: savings ≥ $95; asset +, cash −$95; “You bridge the month yourself.” Reflect: “Why was timing important?”
+  B. Borrow tools — no lock; randomized availability; cash saved, reliability risk; “Borrowing lowers cost but adds uncertainty.” Reflect: “What backup would help?”
+  C. Ask mentor/program for loaner tools — locked: mentor or program access; opportunity +; “Support can reduce upfront barriers.” Reflect: “How did asking change options?”
+* **Randomized outcome?** Yes
+* **Future flag:** Yes — `toolStipendPlanned`
+* **Glossary:** stipend — money provided for a specific purpose; human capital — skills and training that can create opportunity.
+* **Tradeoff note:** Buying builds independence; borrowing protects cash but adds reliability risk.
+
+## 20. `paid-training-choice` — “Lower Wage, Paid Training”
+
+* **Age range:** 16–18
+* **Topics:** job offers, training, benefits
+* **Tags:** MT, M, R, FF, EXT
+* **Prompt:** Job A pays $15/hour with no training. Job B pays $13/hour but includes 20 paid training hours that may unlock a raise later. You can work 10 hours/week.
+* **Choices:**
+  A. Choose Job A — no lock; more cash now; “$2/hour more × 10 hours = $20/week.” Reflect: “Why choose immediate pay?”
+  B. Choose Job B — no lock; randomized raise later; opportunity +; “Training can be an investment.” Reflect: “What future option did you buy?”
+  C. Ask about raise timeline — locked: confidence/opportunity ≥ 50; money know-how +; “Questions reduce uncertainty.” Reflect: “What detail did you need?”
+* **Randomized outcome?** Yes
+* **Future flag:** Yes — `valuesPaidTraining`
+* **Glossary:** paid training — learning time that is also paid; raise timeline — when pay may increase.
+* **Tradeoff note:** Higher pay now can beat training; training can beat higher pay later.
+
+## 21. `interview-outfit-borrow` — “Borrow, Thrift, or Buy?”
+
+* **Age range:** 16–18
+* **Topics:** job prep, needs/wants, assets
+* **Tags:** MT, SC, M, EXT, AN
+* **Prompt:** You need a neat outfit for an interview. Buying new is $74, thrifting is about $28, and borrowing is free if it fits. You want to look prepared without overspending.
+* **Choices:**
+  A. Borrow from support circle — locked: friend/family support; cash saved, trust +; “Support can replace spending.” Reflect: “What made borrowing work?”
+  B. Thrift for $28 — no lock; cash −$28, asset +; “Lower cost, more effort.” Reflect: “What did time save?”
+  C. Buy new for $74 — locked: cash ≥ $74; confidence +, cash −; “New buys certainty.” Reflect: “Was certainty worth it?”
+* **Randomized outcome?** No
+* **Future flag:** No
+* **Glossary:** thrift — buying used at lower cost; professional appearance — clothing that fits the setting.
+* **Tradeoff note:** Borrowing is cheapest, but fit and availability matter.
+
+## 22. `uniform-deposit-return` — “The Uniform Deposit”
+
+* **Age range:** 16–18
+* **Topics:** deposits, work, condition
+* **Tags:** MT, M, FF, EXT
+* **Prompt:** A job requires a $35 uniform deposit. It is returned if the uniform comes back clean and undamaged. You can also buy your own approved shirt for $22, but that money is not returned.
+* **Choices:**
+  A. Pay deposit and track return rules — no lock; cash locked, possible return; “Deposit is not the same as a fee.” Reflect: “What makes money returnable?”
+  B. Buy the $22 shirt — no lock; lower upfront, no refund; “$22 is gone, but simpler.” Reflect: “Why choose nonrefundable?”
+  C. Ask manager to write return rules — locked: discipline ≥ 45; safety +; “Clear rules prevent conflict.” Reflect: “What proof matters?”
+* **Randomized outcome?** No
+* **Future flag:** Yes — `tracksDepositRules`
+* **Glossary:** refundable deposit — money held and returned if rules are met; nonrefundable — money you cannot get back.
+* **Tradeoff note:** A deposit may cost more today but can return later.
+
+## 23. `carshare-membership` — “Car-Share or Occasional Rides?”
+
+* **Age range:** 18+ planning
+* **Topics:** transportation, break-even, recurring costs
+* **Tags:** MT, M, EXT
+* **Prompt:** In a future adult scenario, a car-share membership is $19/month plus lower ride rates. Without membership, each ride costs more. You expect 3–7 rides per month.
+* **Choices:**
+  A. Join membership — no lock; recurring cost, cheaper if frequent; “The more rides, the better it looks.” Reflect: “What ride count breaks even?”
+  B. Pay per ride — no lock; flexible, may cost more; “No membership means no monthly commitment.” Reflect: “Why value flexibility?”
+  C. Track one month first — no lock; discipline +; “Real usage beats guessing.” Reflect: “What data would you collect?”
+* **Randomized outcome?** No
+* **Future flag:** No
+* **Glossary:** break-even — point where two costs are equal; membership — regular payment for access or lower rates.
+* **Tradeoff note:** Memberships reward frequent use but punish overestimation.
+
+## 24. `laundry-autoload` — “The Auto-Reload Card”
+
+* **Age range:** 18+ planning
+* **Topics:** auto-reload, recurring charges, cash flow
+* **Tags:** MT, M, R, EXT
+* **Prompt:** Your future apartment laundry card can auto-reload $20 when the balance falls below $3. Convenient, but it could reload right before rent. You do laundry about four times a month.
+* **Choices:**
+  A. Turn on auto-reload with alert — no lock; convenience +, surprise risk down; “Automation needs visibility.” Reflect: “Why pair auto with alerts?”
+  B. Reload manually — no lock; control +, forgetting risk; “Manual control takes attention.” Reflect: “Which risk fits you?”
+  C. Turn on auto-reload without alerts — no lock; randomized cash-flow crunch; “Convenience can surprise you.” Reflect: “What did the alert prevent?”
+* **Randomized outcome?** Yes
+* **Future flag:** No
+* **Glossary:** auto-reload — automatic add-money feature; alert — a warning before or after account activity.
+* **Tradeoff note:** Automation can help discipline or create surprises.
+
+## 25. `roommate-supply-rotation` — “The Supply Rotation”
+
+* **Age range:** 18+ planning
+* **Topics:** shared costs, fairness, rotation
+* **Tags:** MT, SC, M, EXT
+* **Prompt:** Three roommates use shared supplies costing about $24/month. One person keeps buying everything and feels annoyed. You need a fair system.
+* **Choices:**
+  A. Split monthly: $8 each — no lock; simple; “$24 ÷ 3 = $8.” Reflect: “Why is simple helpful?”
+  B. Rotate who buys each month — no lock; less math, uneven months; “Rotation is easy but not exact.” Reflect: “When is exact fairness less important?”
+  C. Track actual use — locked: discipline ≥ 55; fairer, more work; “Precision costs attention.” Reflect: “Which costs more: math or conflict?”
+* **Randomized outcome?** No
+* **Future flag:** No
+* **Glossary:** rotation — taking turns; shared cost — a cost paid by more than one person.
+* **Tradeoff note:** Fairness can mean equal, rotating, or usage-based.
+
+## 26. `pet-sitting-rate` — “Pricing Pet Sitting”
+
+* **Age range:** 13–16
+* **Topics:** earning, pet responsibility, rates
+* **Tags:** MT, SC, M, R, FF
+* **Prompt:** A neighbor asks you to pet-sit. It takes 30 minutes twice a day for 4 days. You are deciding whether to charge $20 total, $8/day, or ask a mentor what is fair.
+* **Choices:**
+  A. Charge $20 total — no lock; easier yes, lower hourly value; “4 hours total means $5/hour.” Reflect: “Did you price your time?”
+  B. Charge $8/day — no lock; $32 total, maybe accepted; “$8 × 4 = $32.” Reflect: “What rate feels fair?”
+  C. Ask mentor to help price duties — locked: mentor support; randomized acceptance improves; “Clear duties support fair pricing.” Reflect: “What should be included?”
+* **Randomized outcome?** Yes
+* **Future flag:** Yes — `pricesPetCareWork`
+* **Glossary:** rate — pay per time or task; responsibility — duties you agree to complete.
+* **Tradeoff note:** Lower price may get the job; fairer price respects your time.
+
+## 27. `pet-supply-advance` — “Who Pays for the Supplies?”
+
+* **Age range:** 13–16
+* **Topics:** reimbursements, pet care, records
+* **Tags:** MT, SC, FF, M
+* **Prompt:** During pet sitting, you need to buy $9.40 of approved supplies. You can pay now and ask for reimbursement, or contact the owner first.
+* **Choices:**
+  A. Contact owner before buying — no lock; trust +, time cost; “Approval protects reimbursement.” Reflect: “Why ask first?”
+  B. Buy and keep receipt — no lock; cash −$9.40, reimbursement likely; “A receipt supports the ask.” Reflect: “What proof helped?”
+  C. Buy without tracking — no lock; cash risk; “No record makes repayment awkward.” Reflect: “Why do small receipts matter?”
+* **Randomized outcome?** No
+* **Future flag:** Yes — `tracksReimbursements`
+* **Glossary:** reimbursement — getting paid back for approved spending; receipt — proof of purchase.
+* **Tradeoff note:** Acting fast helps the pet; approval protects your money.
+
+## 28. `family-calendar-money` — “The Shared Calendar”
+
+* **Age range:** 14–17
+* **Topics:** support, schedule pressure, work
+* **Tags:** MT, SC, FF, EXT
+* **Prompt:** You and your caregiver share transportation sometimes. A paid shift conflicts with a family appointment. A shared calendar could prevent surprises, but it takes coordination.
+* **Choices:**
+  A. Add work and appointments to shared calendar — no lock; trust +, conflict down; “Coordination can be a money tool.” Reflect: “How did planning help?”
+  B. Keep your own notes only — no lock; independence +, conflict risk; “Private planning may miss shared needs.” Reflect: “Who else is affected?”
+  C. Ask mentor for a weekly planning routine — locked: mentor support; discipline +; “A routine reduces repeated conflict.” Reflect: “What should the routine include?”
+* **Randomized outcome?** No
+* **Future flag:** Yes — `usesSharedPlanning`
+* **Glossary:** schedule pressure — when time demands compete; coordination — planning with others so plans fit.
+* **Tradeoff note:** Sharing plans can feel less independent but can protect opportunities.
+
+## 29. `friend-business-roles` — “Friends as Business Partners”
+
+* **Age range:** 15–18
+* **Topics:** entrepreneurship, roles, relationships
+* **Tags:** MT, R, SC, FF, EXT, AN
+* **Prompt:** You and a friend want to sell approved handmade keychains. You buy materials; they design. Before selling, you need roles and profit split.
+* **Choices:**
+  A. Split profit 50/50 — no lock; simple, possible resentment; “Simple is easy but may not match costs.” Reflect: “What did each person contribute?”
+  B. Pay back materials first, then split profit — no lock; cash protected; “Costs return before profit.” Reflect: “Why separate cost from profit?”
+  C. Write roles and exit plan — locked: money know-how ≥ 50; trust +, risk down; “Clear roles prevent future conflict.” Reflect: “What should be written?”
+* **Randomized outcome?** Yes
+* **Future flag:** Yes — `setsPartnerRoles`
+* **Glossary:** profit split — how leftover money is divided; material cost — money spent to make products.
+* **Tradeoff note:** Friendship helps teamwork, but clarity protects the friendship.
+
+## 30. `donation-match-day` — “The Match Day”
+
+* **Age range:** 14–16
+* **Topics:** giving, matching funds, values
+* **Tags:** MT, M, SC
+* **Prompt:** A community program has a match day: every $1 donated becomes $2, up to $25. You want to help, but you are saving for a goal.
+* **Choices:**
+  A. Donate $10 — no lock; impact $20, savings slower; “The match doubles impact.” Reflect: “Why give now?”
+  B. Volunteer instead — no lock; cash saved, time used; “Time can be a contribution.” Reflect: “When is time better than money?”
+  C. Donate $25 max — locked: cash ≥ $25; impact $50, cash −$25; “Maximum match creates bigger impact.” Reflect: “Did this fit your budget?”
+* **Randomized outcome?** No
+* **Future flag:** No
+* **Glossary:** match — extra money added when you give; contribution — money, time, or effort given to help.
+* **Tradeoff note:** Giving is valuable; so is protecting your own plan.
+
+## 31. `summer-stipend-delay` — “The Stipend Arrives Late”
+
+* **Age range:** 16–18
+* **Topics:** stipend, cash flow, savings
+* **Tags:** MT, R, FF, EXT
+* **Prompt:** A summer program offers a $300 stipend, but payment may arrive 2–4 weeks after the program starts. You need transportation money before then.
+* **Choices:**
+  A. Build a $60 transit buffer first — locked: savings ≥ $60; opportunity protected; “A buffer bridges delayed pay.” Reflect: “Why plan before payment?”
+  B. Start without buffer — no lock; randomized cash crunch; “Promised money is not spendable yet.” Reflect: “What did timing change?”
+  C. Ask program about emergency transit help — no lock; possible support; “Programs may have resources if you ask.” Reflect: “What question helped?”
+* **Randomized outcome?** Yes
+* **Future flag:** Yes — `plansForDelayedStipend`
+* **Glossary:** stipend — money paid for participation or support; buffer — small amount kept ready for timing gaps.
+* **Tradeoff note:** Starting faster may work, but delayed pay can strain cash.
+
+## 32. `rain-cancel-refund` — “The Rain Cancellation”
+
+* **Age range:** 14–16
+* **Topics:** refunds, policies, planning
+* **Tags:** MT, R, M
+* **Prompt:** You prepaid $18 for an outdoor workshop. Rain may cancel it. The policy says full refund if the organizer cancels, no refund if you skip.
+* **Choices:**
+  A. Attend if held — no lock; value gained; “Your payment becomes the experience.” Reflect: “What did the policy say?”
+  B. Skip because weather looks bad — no lock; possible loss; “Choosing not to go may not trigger refund.” Reflect: “Why read the rule?”
+  C. Wait for official cancellation notice — no lock; refund likely if canceled; “Official status matters.” Reflect: “What proof would you keep?”
+* **Randomized outcome?** Yes
+* **Future flag:** No
+* **Glossary:** cancellation policy — rules for refunds when plans change; prepaid — paid before receiving the service.
+* **Tradeoff note:** Skipping protects comfort; waiting protects refund rights.
+
+## 33. `medical-bill-plan` — “The No-Interest Bill Plan”
+
+* **Age range:** 18+ planning
+* **Topics:** bills, payment plans, cash flow
+* **Tags:** MT, M, L, EXT
+* **Prompt:** A future adult medical bill is $240. The office offers four no-interest payments of $60, or a 10% discount for paying all at once. You have $300 in emergency savings.
+* **Choices:**
+  A. Pay all now for 10% off — locked: savings ≥ $240; pay $216, cushion drops; “10% of $240 is $24 saved.” Reflect: “What did the discount cost?”
+  B. Use $60/month plan — no lock; cash flow smoother; “No interest makes spreading reasonable.” Reflect: “Can your budget carry $60?”
+  C. Ask for written terms first — no lock; safety +; “No-interest should be clear in writing.” Reflect: “What would you confirm?”
+* **Randomized outcome?** No
+* **Future flag:** No
+* **Glossary:** payment plan — scheduled payments over time; discount — price reduction.
+* **Tradeoff note:** Paying now saves money but weakens your cushion.
+
+## 34. `bank-temporary-lock` — “Lock the Card?”
+
+* **Age range:** 16–18
+* **Topics:** debit cards, fraud prevention, safety
+* **Tags:** MT, FF, EXT
+* **Prompt:** You cannot find your debit card. It may be in your backpack, or it may be lost. Your banking app has a temporary lock button.
+* **Choices:**
+  A. Temporarily lock card, then search — no lock; safety +, small inconvenience; “Locking buys time.” Reflect: “Why is temporary useful?”
+  B. Search first, leave card active — no lock; convenience +, risk +; “Waiting may be fine, but risk stays open.” Reflect: “What risk did you accept?”
+  C. Report permanently lost immediately — no lock; safety +, replacement delay; “Strong action if loss seems real.” Reflect: “How sure were you?”
+* **Randomized outcome?** No
+* **Future flag:** Yes — `usesCardLock`
+* **Glossary:** temporary lock — pausing card use without closing the account; debit card — card that spends from bank funds.
+* **Tradeoff note:** A lock creates inconvenience but limits possible damage.
+
+## 35. `credit-report-mismatch` — “The Address That Isn’t Yours”
+
+* **Age range:** 18+ planning
+* **Topics:** credit reports, disputes, identity safety
+* **Tags:** MT, L, FF, EXT
+* **Prompt:** A simplified credit report shows an address you do not recognize. No money is missing, but errors can matter later.
+* **Choices:**
+  A. Dispute the error — no lock; safety +, paperwork time; “Small errors deserve attention.” Reflect: “Why fix before borrowing?”
+  B. Ignore it — no lock; time saved, future risk; “Errors can follow you.” Reflect: “What future route might be affected?”
+  C. Freeze credit while checking — locked: safety ≥ 60; risk down; “A freeze blocks new credit openings.” Reflect: “What does a freeze not do?”
+* **Randomized outcome?** No
+* **Future flag:** Yes — `checksCreditReportError`
+* **Glossary:** credit report — record of borrowing history and related information; credit freeze — block that makes new credit harder to open.
+* **Tradeoff note:** Fixing errors takes effort before the payoff is visible.
+
+## 36. `cosign-friend-boundary` — “Can You Co-Sign?”
+
+* **Age range:** 18+ planning
+* **Topics:** co-signing, relationships, credit
+* **Tags:** MT, L, R, SC, EXT
+* **Prompt:** A friend asks you to co-sign a small loan. They are trustworthy, but co-signing means you may owe the full amount if they cannot pay.
+* **Choices:**
+  A. Decline kindly, offer budget help — no lock; credit protected, relationship depends on wording; “Support does not have to be co-signing.” Reflect: “What boundary helped?”
+  B. Co-sign — locked: credit profile active; randomized repayment outcome; “Your credit is tied to their payments.” Reflect: “What risk did you share?”
+  C. Ask mentor to role-play response — locked: mentor support; trust +, safety +; “Practice makes hard conversations kinder.” Reflect: “What sentence worked?”
+* **Randomized outcome?** Yes
+* **Future flag:** Yes — `setsCosignBoundary`
+* **Glossary:** co-sign — promise to repay if someone else does not; borrower — person who receives borrowed money.
+* **Tradeoff note:** Helping a friend can be kind; co-signing is a serious financial promise.
+
+## 37. `credit-builder-loan` — “Build Credit Without a Card”
+
+* **Age range:** 18+ planning
+* **Topics:** credit building, loans, payments
+* **Tags:** MT, L, M, R, FF, EXT
+* **Prompt:** A small credit-builder loan holds $300 in a savings account while you make $25 monthly payments. It may help build history, but missed payments can hurt.
+* **Choices:**
+  A. Use it with autopay and cushion — locked: checking + buffer; credit + if paid; “Systems protect payment history.” Reflect: “Why need a cushion?”
+  B. Use it without a cushion — no lock; randomized missed-payment risk; “A good tool can hurt if timing fails.” Reflect: “What made it risky?”
+  C. Wait until income is steadier — no lock; credit delayed, safety +; “Waiting can be a strong choice.” Reflect: “When is not starting wise?”
+* **Randomized outcome?** Yes
+* **Future flag:** Yes — `usesCreditBuilderCarefully`
+* **Glossary:** credit-builder loan — a small loan designed to build payment history; payment history — record of on-time or late payments.
+* **Tradeoff note:** Building credit is useful only if the payment plan is realistic.
+
+## 38. `debt-payoff-map` — “Extra $30: Which Debt?”
+
+* **Age range:** 17–18
+* **Topics:** debt payoff, interest, strategy
+* **Tags:** MT, M, EXT
+* **Prompt:** You have two simplified debts: $90 at 5% and $180 at 18%. You have an extra $30 this month. One strategy saves the most interest; another feels motivating.
+* **Choices:**
+  A. Pay extra on 18% debt — no lock; interest saved; “Higher rate usually costs more.” Reflect: “Why did rate matter?”
+  B. Pay off smaller $90 debt faster — no lock; motivation +; “Small wins can build discipline.” Reflect: “What did motivation buy?”
+  C. Split $15/$15 — no lock; balanced; “Splitting is simple but slower.” Reflect: “Why split?”
+* **Randomized outcome?** No
+* **Future flag:** No
+* **Glossary:** interest rate — percent cost of borrowing; payoff strategy — plan for reducing debt.
+* **Tradeoff note:** Mathematically efficient and emotionally motivating can differ.
+
+## 39. `repair-estimate-approval` — “Approve the Car Repair?”
+
+* **Age range:** 18+ planning
+* **Topics:** repair estimates, transportation, savings
+* **Tags:** MT, L, R, M, EXT, AN
+* **Prompt:** A future car repair estimate is $420, but the mechanic says an extra issue may appear after inspection. You need transportation for work.
+* **Choices:**
+  A. Approve repair with $100 buffer — locked: emergency fund ≥ $520; lower stress; “A buffer handles estimate changes.” Reflect: “Why add a buffer?”
+  B. Approve only the known $420 — no lock; randomized extra cost risk; “Estimates are not guarantees.” Reflect: “What changed after inspection?”
+  C. Get second estimate — no lock; time cost, possible savings; “Checking can save money but delays repair.” Reflect: “When is delay worth it?”
+* **Randomized outcome?** Yes
+* **Future flag:** No
+* **Glossary:** estimate — expected cost before final work; buffer — extra money set aside for uncertainty.
+* **Tradeoff note:** Fast repair protects work access; second opinions protect cash.
+
+## 40. `tire-pressure-savings` — “Small Maintenance, Real Savings”
+
+* **Age range:** 18+ planning
+* **Topics:** maintenance, transportation, fuel cost
+* **Tags:** MT, M, EXT, AN
+* **Prompt:** A future vehicle costs about $48/month in fuel. Keeping tires properly inflated may save around 5% in this simplified model, but it takes attention.
+* **Choices:**
+  A. Check monthly — no lock; discipline +, small savings; “5% of $48 is $2.40/month.” Reflect: “Why do small savings matter?”
+  B. Ignore it — no lock; time saved, possible repair/fuel cost; “Convenience has a quiet cost.” Reflect: “What did attention save?”
+  C. Ask mentor to teach the check — locked: mentor support; skill +; “Skill lowers future dependence.” Reflect: “What skill became an asset?”
+* **Randomized outcome?** No
+* **Future flag:** No
+* **Glossary:** fuel cost — money spent to power transportation; maintenance habit — repeated care that protects value.
+* **Tradeoff note:** The savings are small, but habits can compound.
+
+## 41. `portfolio-rebalance-choice` — “The Portfolio Drift”
+
+* **Age range:** 17–18
+* **Topics:** investing, allocation, rebalancing
+* **Tags:** MT, L, R, M, EXT, AN
+* **Prompt:** Your simplified investment mix was 70% broad fund and 30% safer cash-like option. After growth, it drifted to 85/15. More growth feels exciting, but risk changed too.
+* **Choices:**
+  A. Rebalance to 70/30 — locked: hasInvestments; risk back to plan; “Rebalancing follows your plan.” Reflect: “Why not just keep what rose?”
+  B. Keep 85/15 — no lock; higher risk, randomized outcome; “Winners can make your mix riskier.” Reflect: “What changed besides value?”
+  C. Ask mentor/source card to explain — locked: mentor or source skill; money know-how +; “Understanding before moving money helps.” Reflect: “What question did you ask?”
+* **Randomized outcome?** Yes
+* **Future flag:** Yes — `understandsRebalancing`
+* **Glossary:** allocation — percent split across types of investments; rebalancing — adjusting back to target mix.
+* **Tradeoff note:** Keeping winners may grow more, but it can raise risk.
+
+## 42. `dividend-reinvest` — “Take Cash or Reinvest?”
+
+* **Age range:** 17–18
+* **Topics:** investing, compounding, income
+* **Tags:** MT, M, R, EXT, AN
+* **Prompt:** A simplified fund pays a $12 dividend. You can take it as cash or reinvest it. The amount is small now, but repeated choices matter.
+* **Choices:**
+  A. Reinvest — no lock; investment +, cash unchanged; “Small amounts can join the growth engine.” Reflect: “Why reinvest small money?”
+  B. Take cash — no lock; cash +$12; “Cash is useful now.” Reflect: “When is cash better?”
+  C. Split $6/$6 — no lock; balanced; “Half supports now, half later.” Reflect: “Why split?”
+* **Randomized outcome?** Yes
+* **Future flag:** No
+* **Glossary:** dividend — money paid from an investment; reinvest — put earnings back into the investment.
+* **Tradeoff note:** Reinvesting favors future growth; cash favors present flexibility.
+
+## 43. `quote-lock-inflation` — “The Quote Expires”
+
+* **Age range:** 15–17
+* **Topics:** inflation, price quotes, deadlines
+* **Tags:** MT, M, FF, EXT
+* **Prompt:** A repair quote is $133 but expires in 14 days. The shop says prices may rise 6% next month. You are still saving.
+* **Choices:**
+  A. Book before quote expires — locked: savings ≥ $133; price protected; “You avoid possible increase.” Reflect: “What did certainty cost?”
+  B. Wait and risk higher quote — no lock; cash time +, possible cost +; “6% of $133 is about $7.98.” Reflect: “Was waiting worth $8 risk?”
+  C. Ask for a partial deposit to lock price — no lock; cash partly locked; “A smaller deposit may protect price.” Reflect: “What rule would you confirm?”
+* **Randomized outcome?** No
+* **Future flag:** Yes — `understandsQuoteExpiration`
+* **Glossary:** price quote — estimated price offered for a limited time; inflation — prices rising over time.
+* **Tradeoff note:** Waiting helps saving but can expose you to higher prices.
+
+## 44. `useful-vs-resale-capstone` — “Useful Value Is Not Cash”
+
+* **Age range:** 17–18
+* **Topics:** net worth, assets, liquidity
+* **Tags:** M, AN, EXT
+* **Prompt:** Your asset shelf shows a laptop useful for school/work, resale value $180, and replacement value $650. Your net worth uses resale value, but usefulness is higher.
+* **Choices:**
+  A. Keep and maintain it — no lock; usefulness protected; “Useful value can exceed resale.” Reflect: “Why not sell it?”
+  B. Sell for $180 — no lock; cash +, opportunity risk; “Cash rises, useful tool disappears.” Reflect: “What did cash cost?”
+  C. Save toward replacement — no lock; future route protected; “Replacement planning avoids crisis.” Reflect: “What goal amount matters?”
+* **Randomized outcome?** No
+* **Future flag:** No
+* **Glossary:** replacement value — cost to buy a similar item; liquidity — how easily value becomes spendable cash.
+* **Tradeoff note:** Selling raises cash but may lower opportunity.
+
+## 45. `invoice-due-date` — “The Late Invoice”
+
+* **Age range:** 15–18
+* **Topics:** side hustle, invoices, deadlines
+* **Tags:** MT, L, FF, EXT
+* **Prompt:** You completed a small approved project for $54. You can send a clear invoice today or casually remind the client later. Payment timing affects your budget.
+* **Choices:**
+  A. Send clear invoice today — no lock; cash arrives sooner; “Due dates help both sides.” Reflect: “Why be specific?”
+  B. Casual reminder — no lock; relationship relaxed, payment slower; “Friendly can be unclear.” Reflect: “What was missing?”
+  C. Use invoice template — locked: money know-how ≥ 45; professionalism +; “A template reduces confusion.” Reflect: “What should an invoice include?”
+* **Randomized outcome?** No
+* **Future flag:** Yes — `usesInvoices`
+* **Glossary:** invoice — request for payment listing what is owed; due date — date payment is expected.
+* **Tradeoff note:** Formality can feel awkward, but it protects payment timing.
+
+## 46. `inventory-markdown` — “Markdown Before It Sits”
+
+* **Age range:** 15–18
+* **Topics:** inventory, markdowns, cash recovery
+* **Tags:** MT, R, M, FF, EXT, AN
+* **Prompt:** You made 30 items at $2 cost each and planned to sell for $5. Only 12 sold. You can keep price, mark down, or bundle.
+* **Choices:**
+  A. Keep price at $5 — no lock; higher margin, slower sales; randomized demand; “Margin stays strong but cash is stuck.” Reflect: “What did unsold inventory cost?”
+  B. Mark down to $3.50 — no lock; lower margin, cash recovery; “$3.50 − $2 = $1.50 margin.” Reflect: “Why lower price?”
+  C. Bundle 3 for $10 — no lock; moves units; “Bundle changes price per item.” Reflect: “What was the per-item price?”
+* **Randomized outcome?** Yes
+* **Future flag:** Yes — `usesMarkdownStrategy`
+* **Glossary:** markdown — lowering a price; margin — selling price minus cost.
+* **Tradeoff note:** Lower prices can reduce profit per item but free trapped cash.
+
+## 47. `customer-review-repair` — “The Review After a Mistake”
+
+* **Age range:** 15–18
+* **Topics:** entrepreneurship, trust, recovery
+* **Tags:** MT, SC, FF, EXT
+* **Prompt:** You delivered an item one day late. The customer is disappointed. You can ignore it, apologize, or offer a small fix.
+* **Choices:**
+  A. Apologize and explain new plan — no lock; trust repair +; “Clear communication can recover trust.” Reflect: “What made the apology useful?”
+  B. Offer $4 discount next time — no lock; cash future −, trust +; “A small cost may protect reputation.” Reflect: “Was the discount worth it?”
+  C. Ask mentor to review message — locked: mentor support; quality +; “Tone matters.” Reflect: “What wording helped?”
+* **Randomized outcome?** No
+* **Future flag:** Yes — `repairsCustomerTrust`
+* **Glossary:** reputation — what others expect based on past actions; recovery action — step taken to fix a mistake.
+* **Tradeoff note:** Repairing trust may cost time or money, but it protects opportunity.
+
+## 48. `source-sponsored-tip` — “The Sponsored Money Tip”
+
+* **Age range:** 14–17
+* **Topics:** source evaluation, sponsored content, scams
+* **Tags:** MT, R, FF, EXT
+* **Prompt:** A video explains a money app and says “sponsored.” It is not automatically false, but it is not neutral either. You need to judge the claim.
+* **Choices:**
+  A. Compare with official/source card — no lock; source savvy +; “Sponsored means check incentives.” Reflect: “What did the sponsor want?”
+  B. Follow the tip immediately — no lock; randomized outcome; “Fast trust can be risky.” Reflect: “What did you skip?”
+  C. Ask mentor what sponsored means — locked: mentor support; money know-how +; “Understanding incentives helps.” Reflect: “How can ads teach and sell?”
+* **Randomized outcome?** Yes
+* **Future flag:** Yes — `checksSponsoredClaims`
+* **Glossary:** sponsored content — content paid for by an advertiser; incentive — reward that shapes behavior.
+* **Tradeoff note:** Sponsored content can be useful, but it needs extra checking.
+
+## 49. `ai-resume-privacy` — “AI Resume Help”
+
+* **Age range:** 16–18
+* **Topics:** career, privacy, editing
+* **Tags:** MT, L, FF, EXT
+* **Prompt:** A tool can help improve a resume, but it asks you to paste personal details. The game uses fictional data only, so you choose how to model safe use.
+* **Choices:**
+  A. Use fictional/sample details first — no lock; privacy +, quality practice; “Practice without personal data.” Reflect: “What did you keep private?”
+  B. Ask mentor for feedback instead — locked: mentor support; opportunity +; “Human feedback can catch tone.” Reflect: “What did the mentor notice?”
+  C. Paste everything quickly — no lock; privacy risk; “Convenience can expose information.” Reflect: “What should stay out?”
+* **Randomized outcome?** No
+* **Future flag:** Yes — `protectsCareerPrivacy`
+* **Glossary:** privacy — control over personal information; resume — summary of skills and experience for work.
+* **Tradeoff note:** AI can help, but privacy and editing still matter.
+
+## 50. `credential-renewal` — “The Certificate Is Expiring”
+
+* **Age range:** 16–18
+* **Topics:** certifications, renewal, human capital
+* **Tags:** MT, L, M, FF, EXT, AN
+* **Prompt:** A certificate that helped you earn more expires soon. Renewal costs $42 and takes 3 hours. Letting it lapse closes one job route for now.
+* **Choices:**
+  A. Renew now — locked: cash ≥ $42; opportunity protected; “Human capital sometimes needs upkeep.” Reflect: “Why maintain a credential?”
+  B. Let it lapse, renew later — no lock; cash saved now, opportunity −; “Routes can close temporarily.” Reflect: “When is delaying okay?”
+  C. Ask program about fee waiver — no lock; possible support; “Asking can reveal options.” Reflect: “What support route did you try?”
+* **Randomized outcome?** No
+* **Future flag:** Yes — `maintainsCredential`
+* **Glossary:** renewal — paying or completing steps to keep something active; credential — proof of a skill or qualification.
+* **Tradeoff note:** Renewing protects opportunity; waiting protects cash today.
+
+## 51. `pathway-benefit-card` — “Lower Pay, Better Fit?”
+
+* **Age range:** 16–18
+* **Topics:** pathways, benefits, opportunity
+* **Tags:** MT, M, EXT
+* **Prompt:** A work-first job pays $16/hour. A training pathway pays $14/hour but includes a transit pass worth $40/month and certification support. You work 40 hours/month.
+* **Choices:**
+  A. Take $16/hour job — no lock; $640 gross; “More cash now.” Reflect: “Why choose wage?”
+  B. Take $14/hour plus benefits — no lock; $560 gross + $40 transit + credential support; “Benefits can narrow the gap.” Reflect: “What benefit mattered?”
+  C. Compare one-year route — no lock; money know-how +; “Short-term and long-term can differ.” Reflect: “What did a year reveal?”
+* **Randomized outcome?** No
+* **Future flag:** No
+* **Glossary:** benefit — non-wage value from a job or program; gross pay — pay before deductions.
+* **Tradeoff note:** Higher wage is not always the highest total value.
+
+## 52. `parking-ticket-choice` — “Pay, Appeal, or Delay?”
+
+* **Age range:** 18+ planning
+* **Topics:** fees, deadlines, evidence
+* **Tags:** MT, R, M, EXT
+* **Prompt:** A future parking ticket is $38. You think it may be wrong because the sign was unclear. You can pay, appeal with evidence, or delay.
+* **Choices:**
+  A. Pay now — no lock; cash −$38, stress down; “Simple and final.” Reflect: “Why pay even if unsure?”
+  B. Appeal with photo/evidence token — locked: saved evidence; randomized result; “Evidence can change outcomes.” Reflect: “What proof mattered?”
+  C. Delay — no lock; late fee risk; “Deadlines can add cost.” Reflect: “What did waiting risk?”
+* **Randomized outcome?** Yes
+* **Future flag:** No
+* **Glossary:** appeal — asking for a decision to be reviewed; late fee — extra charge for missing a deadline.
+* **Tradeoff note:** Appealing can save money but takes time and may fail.
+
+## 53. `digital-wallet-nickname` — “Same Name, Wrong Person”
+
+* **Age range:** 14–17
+* **Topics:** digital payments, confirmation, safety
+* **Tags:** MT, R, FF, SC
+* **Prompt:** You need to send $18 to a friend for shared supplies. Two similar names appear. Your friend says “just send it fast.”
+* **Choices:**
+  A. Confirm username and amount — no lock; safety +; “Confirming avoids wrong recipient.” Reflect: “What three things did you check?”
+  B. Send fast — no lock; randomized wrong-person risk; “Speed raised risk.” Reflect: “What did pressure cost?”
+  C. Ask friend to send request instead — no lock; slower, safer; “Letting the right person request reduces mismatch.” Reflect: “How did process help?”
+* **Randomized outcome?** Yes
+* **Future flag:** Yes — `confirmsDigitalPayments`
+* **Glossary:** digital wallet — app or account for sending/spending money; recipient — person receiving payment.
+* **Tradeoff note:** Fast payment helps the group, but confirmation protects money.
+
+## 54. `fake-refund-code` — “The Refund Code Message”
+
+* **Age range:** 14–17
+* **Topics:** scams, refunds, verification
+* **Tags:** R, FF, EXT
+* **Prompt:** A message says your refund is waiting and asks for a code sent to your phone. You did return something recently, so it feels possible.
+* **Choices:**
+  A. Check refund through original account/site — no lock; safety +; “Use the real route, not the message.” Reflect: “Why not share the code?”
+  B. Share the code — no lock; randomized account risk; “Codes can unlock accounts.” Reflect: “What did the code protect?”
+  C. Ask support/mentor to verify — locked: support available; safety +; “Help reduces pressure.” Reflect: “Who can you ask?”
+* **Randomized outcome?** Yes
+* **Future flag:** Yes — `protectsVerificationCodes`
+* **Glossary:** verification code — code used to prove identity; refund — money returned after a qualifying return or correction.
+* **Tradeoff note:** Recent real activity can make fake messages more convincing.
+
+## 55. `benefit-cliff-hours` — “More Hours, Less Support?”
+
+* **Age range:** 16–18
+* **Topics:** work hours, fictional support, tradeoffs
+* **Tags:** MT, M, EXT
+* **Prompt:** In a fictional program, working more than 12 hours/week reduces a transportation support pass. More hours pay more, but the lost support changes the math.
+* **Choices:**
+  A. Work 10 hours — no lock; lower income, keeps pass; “Support can be part of the budget.” Reflect: “What non-wage value mattered?”
+  B. Work 15 hours — no lock; more gross pay, pass lost; “More hours may still win, but calculate.” Reflect: “What was the true gain?”
+  C. Ask program about gradual step-down — no lock; opportunity +; “Rules may have options.” Reflect: “Why ask before deciding?”
+* **Randomized outcome?** No
+* **Future flag:** No
+* **Glossary:** support pass — fictional benefit reducing a cost; gross income — money earned before costs/deductions.
+* **Tradeoff note:** More work can be good, but lost support may shrink the gain.
+
+## 56. `side-hustle-tax-calendar` — “Set Aside by Date”
+
+* **Age range:** 16–18
+* **Topics:** taxes, records, side income
+* **Tags:** MT, M, L, FF, EXT
+* **Prompt:** Your approved side work earns $420 profit over a season. A mentor suggests setting aside a simplified 20% for taxes and marking a deadline.
+* **Choices:**
+  A. Set aside 20% now — no lock; savings locked for tax; “20% of $420 is $84.” Reflect: “Why separate tax money?”
+  B. Spend now, plan to save later — no lock; cash flexible, future stress; “Later saving needs discipline.” Reflect: “What could go wrong?”
+  C. Use tax calendar reminder — locked: discipline ≥ 45; deadline risk down; “Dates make obligations visible.” Reflect: “What reminder helps?”
+* **Randomized outcome?** No
+* **Future flag:** Yes — `usesTaxCalendar`
+* **Glossary:** profit — money left after expenses; tax set-aside — money reserved for future taxes.
+* **Tradeoff note:** Set-aside reduces spending money but prevents later scramble.
+
+## 57. `net-pay-transport` — “The Job Farther Away”
+
+* **Age range:** 16–18
+* **Topics:** net pay, commuting, job comparison
+* **Tags:** MT, M, EXT
+* **Prompt:** Job A pays $15/hour and costs $5/day to reach. Job B pays $14/hour and costs $1/day to reach. You work 4-hour shifts.
+* **Choices:**
+  A. Choose Job A — no lock; $60 gross − $5 = $55 per shift; “Higher wage still wins by $3.” Reflect: “What did commute subtract?”
+  B. Choose Job B — no lock; $56 gross − $1 = $55 per shift; better convenience; “Same net, closer route.” Reflect: “Why not choose higher wage?”
+  C. Ask about remote/admin shift — locked: opportunity ≥ 55; route may improve; “Questions can change options.” Reflect: “What would you ask?”
+* **Randomized outcome?** No
+* **Future flag:** No
+* **Glossary:** net after commute — pay left after travel cost; commute cost — money spent getting to work.
+* **Tradeoff note:** Equal net pay can make time and reliability decide.
+
+## 58. `emergency-fund-or-fee` — “Pay the Fee or Use the Fund?”
+
+* **Age range:** 17–18
+* **Topics:** emergency funds, fees, cash flow
+* **Tags:** MT, M, L, EXT
+* **Prompt:** A $72 bill is due today. Paying late costs $9. Your emergency fund has $90, but using it feels frustrating.
+* **Choices:**
+  A. Use emergency fund, rebuild $9/week — locked: emergency fund ≥ $72; no fee; “A fund exists for timing shocks.” Reflect: “Why rebuild?”
+  B. Pay late fee — no lock; fund untouched, cash −$9 later; “You paid to preserve the cushion.” Reflect: “Was that worth $9?”
+  C. Ask for one-time due-date move — no lock; possible fee avoided; “Asking may solve timing.” Reflect: “What would you say?”
+* **Randomized outcome?** No
+* **Future flag:** No
+* **Glossary:** emergency fund — savings for surprises or timing gaps; rebuild — saving again after using a fund.
+* **Tradeoff note:** Sometimes paying a small fee to preserve a cushion can be reasonable.
+
+## 59. `authorized-user-offer` — “A Credit Shortcut?”
+
+* **Age range:** 18+ planning
+* **Topics:** credit history, trust, boundaries
+* **Tags:** MT, L, R, SC, EXT
+* **Prompt:** A trusted adult in the fictional story offers to add you as an authorized user to help your credit history. Their payment habits could help or hurt.
+* **Choices:**
+  A. Ask about balance and payment habits first — no lock; safety +; “Their habits affect your route.” Reflect: “What did you need to know?”
+  B. Accept without asking — locked: credit profile active; randomized help/hurt; “Shortcuts depend on someone else’s behavior.” Reflect: “What risk was shared?”
+  C. Decline and build independently — no lock; slower, control +; “Slow can be safer.” Reflect: “Why choose control?”
+* **Randomized outcome?** Yes
+* **Future flag:** Yes — `evaluatesAuthorizedUser`
+* **Glossary:** authorized user — person allowed on another credit account; credit history — record of borrowing and repayment.
+* **Tradeoff note:** Support can help, but shared credit risk needs trust and information.
+
+## 60. `store-card-discount` — “15% Off Today”
+
+* **Age range:** 18+ planning
+* **Topics:** credit, discounts, total cost
+* **Tags:** MT, M, L, EXT
+* **Prompt:** A store offers 15% off a $140 purchase if you open a store credit account. You can pay cash today or open the account and risk carrying a balance.
+* **Choices:**
+  A. Pay cash, skip account — no lock; no discount, no debt risk; “Simple can be strong.” Reflect: “What risk did you avoid?”
+  B. Open only if paying full immediately — locked: cash ≥ $119; saves $21, credit complexity +; “$140 × 15% = $21.” Reflect: “What system prevents interest?”
+  C. Open and pay later — no lock; discount now, interest risk; “A discount can disappear if interest grows.” Reflect: “What total cost matters?”
+* **Randomized outcome?** No
+* **Future flag:** No
+* **Glossary:** store credit account — credit tied to a store; interest — cost of borrowing.
+* **Tradeoff note:** Discounts are useful only if repayment stays controlled.
+
+## 61. `renter-neighbor-damage` — “Who Pays for the Damage?”
+
+* **Age range:** 18+ planning
+* **Topics:** renter insurance, liability, support
+* **Tags:** MT, R, EXT
+* **Prompt:** A visitor accidentally damages something in your future apartment. The cost might be $80 or $300. You are unsure whether insurance applies.
+* **Choices:**
+  A. Check policy before paying — no lock; money know-how +; “Coverage depends on rules.” Reflect: “What did the policy answer?”
+  B. Pay out of pocket quickly — locked: emergency fund ≥ $300; stress down, savings −; “Quick payment buys peace.” Reflect: “What did speed cost?”
+  C. File claim immediately — no lock; randomized usefulness; “Claims may not fit small losses.” Reflect: “When should you file?”
+* **Randomized outcome?** Yes
+* **Future flag:** No
+* **Glossary:** liability — responsibility for damage or loss; claim — request for insurance help.
+* **Tradeoff note:** A fast fix may protect relationships; checking rules protects money.
+
+## 62. `utility-start-deposit` — “Starting Service”
+
+* **Age range:** 18+ planning
+* **Topics:** deposits, utilities, cash flow
+* **Tags:** MT, M, EXT
+* **Prompt:** Starting a utility account requires either a $75 refundable deposit or a $9/month no-deposit plan for 12 months. You expect to stay one year.
+* **Choices:**
+  A. Pay $75 deposit — locked: savings ≥ $75; cash locked, maybe returned; “Refundable if rules met.” Reflect: “Why is locked money different?”
+  B. Pay $9/month — no lock; $108 over year, no big upfront; “$9 × 12 = $108.” Reflect: “Why accept higher total?”
+  C. Ask whether on-time payments return deposit early — no lock; knowledge +; “Rules can change the math.” Reflect: “What question mattered?”
+* **Randomized outcome?** No
+* **Future flag:** No
+* **Glossary:** utility — service like electricity or water; refundable deposit — money held and returned if conditions are met.
+* **Tradeoff note:** Lower total cost can be harder if upfront cash is tight.
+
+## 63. `source-ladder-aid` — “Which Aid Advice?”
+
+* **Age range:** 16–18
+* **Topics:** source evaluation, aid, sponsored claims
+* **Tags:** MT, FF, EXT
+* **Prompt:** Three sources explain aid: an official page, a school counselor, and an anonymous post claiming “loans are always better.” You need a source ladder.
+* **Choices:**
+  A. Trust official + counselor first — no lock; safety +; “Known sources beat anonymous claims.” Reflect: “Which source was strongest?”
+  B. Follow anonymous post — no lock; risk +; “Confidence is not evidence.” Reflect: “What proof was missing?”
+  C. Compare all three, list agreements — locked: source check skill; money know-how +; “Triangulation finds common facts.” Reflect: “Where did sources agree?”
+* **Randomized outcome?** No
+* **Future flag:** Yes — `usesSourceLadder`
+* **Glossary:** source ladder — ranking sources by trust and purpose; anonymous source — source without a known accountable author.
+* **Tradeoff note:** Fast advice can be tempting, but source quality changes risk.
+
+## 64. `subscription-class-tool` — “Monthly Tool for One Project”
+
+* **Age range:** 14–16
+* **Topics:** subscriptions, school projects, total cost
+* **Tags:** MT, M
+* **Prompt:** A digital tool costs $11/month or $4 for a one-week pass. Your project lasts two weeks, but you may use the tool later.
+* **Choices:**
+  A. Buy two weekly passes — no lock; $8 total, no renewal; “Short need, short access.” Reflect: “Why match time to need?”
+  B. Buy monthly — no lock; $11, more flexibility; “Extra $3 buys more time.” Reflect: “Will you use it?”
+  C. Use free school alternative — no lock; cash saved, fewer features; “Free can be enough.” Reflect: “Which features matter?”
+* **Randomized outcome?** No
+* **Future flag:** No
+* **Glossary:** access period — how long you can use a service; renewal — a charge or access period repeating.
+* **Tradeoff note:** Monthly is not bad if extra time has value.
+
+## 65. `skills-portfolio-hosting` — “Free Portfolio or Paid Hosting?”
+
+* **Age range:** 16–18
+* **Topics:** career portfolio, recurring cost, opportunity
+* **Tags:** MT, R, M, FF, EXT, AN
+* **Prompt:** A free portfolio site includes ads and limited storage. A paid student-safe option is $5/month. Your portfolio may help with internships or gigs.
+* **Choices:**
+  A. Use free option — no lock; cash saved, less polish; “Free may be enough.” Reflect: “What did free cost?”
+  B. Pay $5/month for 3 months — locked: income or savings ≥ $15; opportunity +; “$5 × 3 = $15 experiment.” Reflect: “What result would justify it?”
+  C. Ask mentor to review free version first — locked: mentor support; randomized opportunity odds improve; “Feedback before spending.” Reflect: “What did review change?”
+* **Randomized outcome?** Yes
+* **Future flag:** Yes — `testsPortfolioValue`
+* **Glossary:** portfolio — collection showing work or skills; hosting — service that makes digital work available online.
+* **Tradeoff note:** Paid polish can help, but testing free first may be wiser.
+
+## 66. `tool-library-membership` — “Borrowing Tools by Membership”
+
+* **Age range:** 15–18
+* **Topics:** borrowing, membership, break-even
+* **Tags:** MT, M, EXT, AN
+* **Prompt:** A tool library membership is $36/year. Renting the same tools separately would cost $8 per project. You expect 3–6 projects.
+* **Choices:**
+  A. Join for $36 — locked: cash ≥ $36; worth it at 5+ projects; “$36 ÷ $8 = 4.5 projects.” Reflect: “How many uses break even?”
+  B. Rent per project — no lock; flexible, may cost more; “Good if you use it only 3 times.” Reflect: “Why avoid membership?”
+  C. Share membership with friend if allowed — locked: friend support + policy allows; lower cost, rule-check needed; “Rules matter.” Reflect: “Why check permission?”
+* **Randomized outcome?** No
+* **Future flag:** No
+* **Glossary:** tool library — place to borrow tools; per-use cost — cost each time something is used.
+* **Tradeoff note:** Ownership is not always needed; access can be enough.
+
+## 67. `safety-gear-choice` — “Protect the Asset”
+
+* **Age range:** 14–17
+* **Topics:** protective gear, assets, risk
+* **Tags:** MT, M, R, AN
+* **Prompt:** You use a $220 tablet for school and small projects. A protective case costs $24. You are careful, but accidents happen.
+* **Choices:**
+  A. Buy case — locked: cash ≥ $24; cash −, damage risk down; “Protection is not exciting, but it lowers risk.” Reflect: “What asset did you protect?”
+  B. Skip case — no lock; cash saved, randomized damage risk; “Care helps, but luck still matters.” Reflect: “What risk stayed?”
+  C. Use cheaper sleeve for $9 — no lock; partial protection; “Lower cost, lower protection.” Reflect: “What did partial protection do?”
+* **Randomized outcome?** Yes
+* **Future flag:** No
+* **Glossary:** protection cost — money spent to reduce damage risk; risk reduction — lowering chance or size of loss.
+* **Tradeoff note:** Protection can feel like wasted money until damage happens.
+
+## 68. `class-fee-waiver-fictional` — “Ask About Program Support”
+
+* **Age range:** 14–17
+* **Topics:** school resources, support, opportunity
+* **Tags:** MT, L, SC, FF
+* **Prompt:** A future enrichment program has a $45 activity fee. The game uses fictional program-support variables, not real family income. You can pay, skip, or ask whether support exists.
+* **Choices:**
+  A. Pay fee — locked: cash ≥ $45; opportunity +, cash −; “Paying is simple if affordable.” Reflect: “What did cash unlock?”
+  B. Skip program — no lock; cash protected, opportunity missed; “Skipping can be reasonable.” Reflect: “What did you preserve?”
+  C. Ask about program support — no lock; support route possible; “Asking uses resources without sharing sensitive details.” Reflect: “How did asking help?”
+* **Randomized outcome?** No
+* **Future flag:** Yes — `asksProgramSupport`
+* **Glossary:** program support — fictional help that reduces barriers; activity fee — cost to join or participate.
+* **Tradeoff note:** Asking is not weakness; it is resource navigation.
+
+## 69. `community-repair-night` — “Repair Night”
+
+* **Age range:** 13–16
+* **Topics:** repair, community resources, assets
+* **Tags:** MT, SC, R, FF, AN
+* **Prompt:** A community repair night might fix your backpack zipper for free, but there is no guarantee. A replacement backpack costs $39.
+* **Choices:**
+  A. Try repair night — no lock; randomized repair success, cash saved; “Free help may work.” Reflect: “What did you risk?”
+  B. Replace now for $39 — locked: cash ≥ $39; certainty +, cash −; “Certainty costs money.” Reflect: “Why buy now?”
+  C. Ask friend/caregiver to help sew temporary fix — locked: support available; useful life extended; “Support can create a bridge.” Reflect: “What did a bridge solution do?”
+* **Randomized outcome?** Yes
+* **Future flag:** Yes — `usesRepairResource`
+* **Glossary:** repair resource — place/person that helps fix items; temporary fix — short-term repair until a stronger solution.
+* **Tradeoff note:** Free repair can fail; buying avoids uncertainty.
+
+## 70. `fare-cap-math` — “When the Pass Caps Out”
+
+* **Age range:** 16–18
+* **Topics:** transit, fare caps, proportional reasoning
+* **Tags:** MT, M, EXT
+* **Prompt:** A transit card charges $2/ride but caps at $28 per month. A monthly pass is $32. Your ride count changes each month.
+* **Choices:**
+  A. Use fare cap card — no lock; best if rides reach cap; “14 rides reaches $28.” Reflect: “Why compare cap to pass?”
+  B. Buy $32 pass — no lock; certainty, slightly higher than cap; “Pass may still be simpler.” Reflect: “What is convenience worth?”
+  C. Track rides for a month — no lock; data +; “Usage data beats guessing.” Reflect: “How many rides do you expect?”
+* **Randomized outcome?** No
+* **Future flag:** No
+* **Glossary:** fare cap — maximum charged in a period; monthly pass — prepaid access for a month.
+* **Tradeoff note:** The lowest-cost option depends on real usage.
+
+## 71. `installment-carrying-capacity` — “Can Your Budget Carry It?”
+
+* **Age range:** 16–18
+* **Topics:** installments, cash flow, commitments
+* **Tags:** MT, M, L, EXT
+* **Prompt:** A $156 needed item can be paid as $39 today or four payments of $39. The total is the same, but your next month already has tight bills.
+* **Choices:**
+  A. Pay full $156 — locked: savings ≥ $156; no future payments, cushion drops; “You remove future obligation.” Reflect: “What did full payment protect?”
+  B. Four payments — no lock; cash smoother now, future commitment; “$39 × 4 = $156.” Reflect: “Can next month carry it?”
+  C. Delay purchase two weeks — no lock; need waits, cash builds; “Delay can reduce pressure.” Reflect: “What did waiting cost?”
+* **Randomized outcome?** No
+* **Future flag:** No
+* **Glossary:** installment — one payment in a series; commitment — future obligation you must plan for.
+* **Tradeoff note:** Same total cost can feel different across time.
+
+## 72. `price-match-window` — “The Price Drops After You Buy”
+
+* **Age range:** 14–16
+* **Topics:** consumer skills, receipts, price match
+* **Tags:** MT, L, R, M
+* **Prompt:** You bought a $64 item. Three days later, the same store lists it for $52. A price-match policy may refund the difference if you have proof.
+* **Choices:**
+  A. Use receipt and request adjustment — locked: savedReceipt; cash +$12; “$64 − $52 = $12.” Reflect: “Why save proof?”
+  B. Ignore it — no lock; time saved, cash unchanged; “Sometimes time is worth more than $12.” Reflect: “Was it worth asking?”
+  C. Ask without receipt — no lock; randomized success; “Proof improves odds.” Reflect: “What evidence was missing?”
+* **Randomized outcome?** Yes
+* **Future flag:** No
+* **Glossary:** price match — store policy adjusting price to match a lower one; proof — record showing what happened.
+* **Tradeoff note:** Chasing every price drop can waste time; some are worth it.
+
+## 73. `refund-to-store-credit` — “Cash Back or Store Credit?”
+
+* **Age range:** 14–17
+* **Topics:** refunds, liquidity, store credit
+* **Tags:** MT, M
+* **Prompt:** A store offers $30 cash refund or $36 store credit. You may not shop there again soon. The larger number is not automatically better.
+* **Choices:**
+  A. Take $30 cash — no lock; liquid money +; “Cash works anywhere.” Reflect: “Why is cash flexible?”
+  B. Take $36 store credit — no lock; higher value, locked to store; “20% more, but less flexible.” Reflect: “Will you use it?”
+  C. Ask if credit expires — no lock; money know-how +; “Expiration changes value.” Reflect: “What condition matters?”
+* **Randomized outcome?** No
+* **Future flag:** No
+* **Glossary:** liquidity — how easily value becomes spendable; store credit — value usable only at that store.
+* **Tradeoff note:** Higher value is not always better if it is hard to use.
+
+## 74. `final-values-route` — “What Did Your Choices Protect?”
+
+* **Age range:** end-of-run
+* **Topics:** reflection, values, tradeoffs
+* **Tags:** MT, FF
+* **Prompt:** Your run ends with a mix of wins, repairs, and unfinished goals. Instead of ranking yourself, the game asks what your choices protected most: safety, opportunity, relationships, wellbeing, or flexibility.
+* **Choices:**
+  A. Name your strongest thread — no lock; reflection +; “Patterns are information, not grades.” Reflect: “What did you protect often?”
+  B. Name one route to repair next time — no lock; recovery +; “A next step keeps learning going.” Reflect: “What would you try?”
+  C. Compare with a classmate’s fictional route — no lock; empathy +; “Different constraints create different smart choices.” Reflect: “What changed their route?”
+* **Randomized outcome?** No
+* **Future flag:** Yes — `completedValuesReflection`
+* **Glossary:** reflection — thinking about choices and reasons; values — what matters when choices conflict.
+* **Tradeoff note:** A lower score in one area can reflect a tradeoff, not failure.
+
+## 75. `money-snapshot-not-worth` — “Money Snapshot, Not Self-Worth”
+
+* **Age range:** end-of-run
+* **Topics:** net worth, recovery, ethics
+* **Tags:** M, AN, FF
+* **Prompt:** The final screen shows assets, debts, cash, and net worth. It also shows repairs completed, support used, scams avoided, and choices explained. Money totals measure money, not your value as a person.
+* **Choices:**
+  A. Calculate net worth — no lock; money know-how +; “Assets − debts = net worth.” Reflect: “What does this number leave out?”
+  B. Review recovery wins — no lock; wellbeing +; “Repair is part of the story.” Reflect: “Which repair mattered most?”
+  C. Pick one habit to carry forward — no lock; discipline +; “Small habits are future tools.” Reflect: “What habit would help most?”
+* **Randomized outcome?** No
+* **Future flag:** Yes — `completedMoneySnapshot`
+* **Glossary:** net worth — assets minus debts; self-worth — personal value, which money numbers do not measure.
+* **Tradeoff note:** Net worth is useful information, not a scoreboard for character.
+
+**Scenario bank quota check:** MT 50+, locked-choice scenarios 22+, randomized scenarios 25+, future-flag scenarios 40+, support-circle scenarios 16+, explicit math scenarios 38+, extension scenarios 45+, asset/net-worth scenarios 20+. No student PII, mature themes, dating/sex, drugs, alcohol, gambling, or crime-as-gameplay.
+
+---
+
+# 5. Relationship and Support Circle Ideas
+
+1. **Caregiver calendar help** — Benefit: fewer missed shifts. Cost: less independence. Reflection: “When does shared planning help?”
+2. **Friend payment confirmation** — Benefit: avoids wrong recipient. Cost: slows group spending. Reflection: “Why confirm before sending?”
+3. **Mentor message script** — Benefit: clearer work or money conversations. Cost: time. Reflection: “What wording changed the outcome?”
+4. **Pet-sitting trust route** — Benefit: earning and responsibility. Cost: schedule commitment. Reflection: “What duties should be clear?”
+5. **Caregiver route backup** — Benefit: protects opportunity. Cost: coordination. Reflection: “What backup plan is fair?”
+6. **Friend business role card** — Benefit: clearer partnership. Cost: less casual. Reflection: “What should partners write down?”
+7. **Mentor source ladder** — Benefit: better source judgment. Cost: slower decision. Reflection: “Which source was strongest?”
+8. **Pet supply reimbursement** — Benefit: teaches records. Cost: fronting small cash. Reflection: “Why keep the receipt?”
+9. **Caregiver deposit rule review** — Benefit: fewer lost deposits. Cost: asking for help. Reflection: “What condition returns the deposit?”
+10. **Friend support without loaning** — Benefit: relationship protected. Cost: may disappoint friend. Reflection: “How can boundaries be kind?”
+11. **Mentor interview practice** — Benefit: opportunity stat gain. Cost: preparation time. Reflection: “Why practice before a money conversation?”
+12. **Pet emergency plan** — Benefit: predictable cushion target. Cost: monthly saving. Reflection: “How do pets create recurring costs?”
+13. **Caregiver transport cost-share** — Benefit: cheaper commute. Cost: schedule dependency. Reflection: “How do shared rides affect independence?”
+14. **Friend price-check buddy** — Benefit: fewer impulse buys. Cost: slower purchases. Reflection: “Would a second opinion help?”
+15. **Mentor certification advice** — Benefit: avoids useless credential. Cost: research time. Reflection: “What makes a credential worth it?”
+16. **Pet routine discipline** — Benefit: habit stat boost. Cost: daily time. Reflection: “How do routines transfer to money?”
+17. **Caregiver no-PII support choice** — Benefit: fictional support modeling. Cost: none. Reflection: “How can games show help without asking private facts?”
+18. **Friend group supply rotation** — Benefit: fairness. Cost: tracking. Reflection: “What is fair: equal, rotating, or by use?”
+19. **Mentor scam pause** — Benefit: safety. Cost: delayed action. Reflection: “Why do scams rush people?”
+20. **Pet-care referral** — Benefit: future earning route. Cost: reliability pressure. Reflection: “How does trust create opportunity?”
+21. **Caregiver repair skill** — Benefit: saves money and builds human capital. Cost: time. Reflection: “What could you learn to fix?”
+22. **Friend donation match discussion** — Benefit: values talk. Cost: possible disagreement. Reflection: “How do values shape giving?”
+23. **Mentor loan-boundary roleplay** — Benefit: protects credit. Cost: uncomfortable conversation. Reflection: “What boundary was clear?”
+24. **Pet supply bulk split** — Benefit: lower unit cost. Cost: storage/planning. Reflection: “When does bulk buying fail?”
+25. **Support-circle celebration** — Benefit: wellbeing after goal. Cost: none. Reflection: “How did support change the route?”
+
+---
+
+# 6. Score Ranges and Life Context
+
+## Money Know-How
+
+* **0–20:** “You are collecting the basics. Every Money Word helps.”
+* **21–40:** “You recognize common choices and are starting to compare.”
+* **41–60:** “You can explain everyday tradeoffs and ask useful questions.”
+* **61–80:** “You plan ahead, check totals, and notice hidden costs.”
+* **81–100:** “You think in systems and can coach a peer through a choice.”
+
+## Wellbeing
+
+* **0–20:** “Stretched thin. Rest, support, and recovery routes matter.”
+* **21–40:** “Some pressure is building. Small repairs can help.”
+* **41–60:** “A workable balance with normal ups and downs.”
+* **61–80:** “Steady enough to handle most surprises.”
+* **81–100:** “Strong, supported, and ready for new challenges.”
+
+## Safety
+
+* **0–20:** “Lots of open risk. Start with pause-and-verify habits.”
+* **21–40:** “Some safety habits exist, but gaps remain.”
+* **41–60:** “You usually check before risky money moves.”
+* **61–80:** “Strong habits: alerts, confirmation, verification, records.”
+* **81–100:** “Very hard to rush or trick.”
+
+## Discipline
+
+* **0–20:** “Plans are hard to keep right now. Use systems, not shame.”
+* **21–40:** “Some follow-through, especially with reminders.”
+* **41–60:** “Most routines work when life is normal.”
+* **61–80:** “Reliable routines protect goals.”
+* **81–100:** “Strong habits quietly compound.”
+
+## Opportunity
+
+* **0–20:** “Few routes open now, but skills and support can change that.”
+* **21–40:** “A few options are forming.”
+* **41–60:** “Several realistic paths are available.”
+* **61–80:** “Strong routes from skills, reliability, and support.”
+* **81–100:** “Many doors open; you have choices.”
+
+## Credit
+
+* **300–579:** “Starting or rebuilding; steady habits matter.”
+* **580–669:** “Fair range; progress is possible with on-time payments and low balances.”
+* **670–739:** “Good; many borrowing routes may be easier.”
+* **740–799:** “Very strong; favorable terms are more likely.”
+* **800–850:** “Excellent; still only one part of money health.”
+  Credit should remain labeled “simplified for learning,” because real credit-score models vary. ([Consumer Financial Protection Bureau][1])
+
+## 15 fictional context variables
+
+1. Pay timing: weekly / biweekly / delayed stipend
+2. Pending-charge frequency: low / medium / high
+3. Support availability: none / occasional / strong
+4. Transportation reliability: steady / variable / weather-sensitive
+5. Repair resource access: none / occasional / strong
+6. Community program access: limited / standard / rich
+7. Internet reliability: steady / spotty
+8. Starting cushion: $0 / $50 / $150 / $300 fictional
+9. Schedule pressure: light / medium / heavy
+10. Local cost level: low / medium / high
+11. Safe resale access: none / supervised / strong
+12. Mentor access: none / occasional / regular
+13. Digital safety habits: beginner / improving / strong
+14. Pathway info access: limited / school support / mentor support
+15. Asset condition: worn / average / well-maintained
+
+---
+
+# 7. Assets and Net Worth Ideas
+
+1. **Useful laptop** — Resale falls, usefulness may stay high. Math: resale vs. replacement value.
+2. **Protective case** — Loses resale value but reduces risk. Math: prevention cost vs. possible loss.
+3. **Repair fund** — Grows monthly, drops when used. Math: target ÷ monthly saving.
+4. **Tool stipend balance** — Temporarily held for tools. Math: upfront bridge vs. reimbursement.
+5. **Uniform deposit** — Locked money that may return. Math: deposit vs. nonrefundable purchase.
+6. **Commercial license** — Intangible asset allowing sales. Math: license cost vs. sales margin.
+7. **Portfolio website** — Opportunity asset, recurring cost. Math: monthly × months.
+8. **Credential** — Human-capital asset that can expire. Math: renewal cost vs. pay boost.
+9. **Transit pass or fare-cap card** — Used-up access value. Math: rides × fare vs. cap.
+10. **Gift/store credit balance** — Value locked to one place. Math: cash value vs. store value.
+11. **Inventory batch** — May sell, sit, or be marked down. Math: units × cost, margin.
+12. **Customer trust/reputation** — Intangible opportunity asset. Math: repeat sales probability.
+13. **Pet-sitting supplies record** — Not an asset itself, but protects reimbursement. Math: receipt total.
+14. **Backup route fund** — Small cash set aside for transportation. Math: rides covered.
+15. **Emergency fund** — Stable protective asset. Math: expenses covered.
+16. **Repair skill** — Human capital that lowers future costs. Math: repairs avoided.
+17. **Shared tool agreement** — Access value without ownership. Math: per-use savings.
+18. **Car-share membership** — Access right with recurring cost. Math: break-even rides.
+19. **Dividend reinvestment balance** — Grows with reinvested earnings. Math: repeated percent growth.
+20. **Insurance policy value** — Protection, not resale. Math: deductible/limit/claim comparison.
+21. **Safe resale plan** — Raises chance of converting asset to cash safely. Math: resale estimate.
+22. **Payment confirmation habit** — Avoided-loss value. Math: possible wrong payment avoided.
+23. **Aid offer package** — Mix of free, earned, borrowed, and gap. Math: cost − aid.
+24. **Work reference** — Opportunity asset from reliability. Math: not direct; unlocks route.
+25. **Money snapshot** — Assets minus debts, plus useful-value notes. Math: net worth and liquidity.
+
+---
+
+# 8. Teacher Discussion Prompts
+
+## Quick warm-ups
+
+1. “What is the difference between money you own and money you can spend today?”
+2. “Why might a $36 store credit be worse than $30 cash?”
+3. “What does it mean for a choice to be reasonable but risky?”
+4. “Find 8% of $32. What fee would that be?”
+5. “What is one money decision where timing matters?”
+6. “Why might asking for help be a smart financial move?”
+7. “What does ‘simplified for learning’ mean in a game?”
+8. “Name one thing that has useful value but low resale value.”
+
+## Pair-share
+
+9. “Compare two ways to handle a pending transaction.”
+10. “Discuss when a deposit is better than a fee.”
+11. “How could a friend business split become unfair?”
+12. “What makes a safe resale plan?”
+13. “Compare a higher wage job with a lower wage job plus benefits.”
+14. “Which source would you trust first: official page, mentor, sponsored video, anonymous post?”
+15. “When is it okay to choose convenience over lowest cost?”
+16. “How can insurance help without covering everything?”
+17. “What is a kind way to say no to co-signing?”
+18. “What does a repair route teach after a mistake?”
+
+## Exit tickets
+
+19. “Write one Money Word you used today and what choice it affected.”
+20. “What is one choice where luck and planning were different?”
+21. “Explain liquidity in one sentence.”
+22. “Why should credit not be the final goal?”
+23. “What is one way to protect a future opportunity?”
+24. “How can a support circle help without solving everything?”
+25. “What is one fee you would check before buying?”
+26. “What is one recovery action after a scam or fee?”
+
+## Compare-outcomes
+
+27. “Compare a player who used a backup route with one who saved the $6.”
+28. “Compare store credit vs. cash refund outcomes.”
+29. “Compare a student who sets custom-order terms with one who does not.”
+30. “Compare final runs: high net worth but low wellbeing vs. lower net worth with strong safety and support.”
+
+---
+
+# 9. Glossary and Vocabulary Supports
+
+1. **Available balance** — Money safe to spend after pending charges and holds. Math: balance − pending. Misconception: “Displayed balance is always spendable.” App: checking events. Source: FDIC/CFPB.
+2. **Pending transaction** — A purchase started but not fully processed. Math: subtract pending from balance. Misconception: “Pending does not count.” App: banking. Source: FDIC/CFPB.
+3. **Deposit hold** — A delay before deposited money is spendable. Math: available now vs. later. Misconception: “Deposited means ready.” App: bank deposits. Source: FDIC.
+4. **Liquidity** — How easily value becomes spendable cash. Math: cash vs. resale value. Misconception: “Valuable means spendable.” App: asset shelf. Source: CFPB/Investor.gov.
+5. **Useful value** — How much something helps you, even if resale is low. Math: replacement cost vs. resale. Misconception: “Only resale matters.” App: assets. Source: consumer education.
+6. **Resale value** — What someone might pay for an item later. Math: original price − resale. Misconception: “You get back what you paid.” App: selling assets. Source: Investor.gov/consumer education.
+7. **Replacement value** — Cost to buy a similar item now. Math: compare to repair/resale. Misconception: “Replacement equals resale.” App: asset shelf. Source: insurance/consumer education.
+8. **Commercial license** — Permission to use creative work for selling. Math: license cost vs. profit. Misconception: “Free online means free to sell.” App: side hustles. Source: licensing/consumer education.
+9. **Invoice** — A request for payment listing work, amount, and due date. Math: totals and due dates. Misconception: “A text reminder is enough.” App: side hustle. Source: consumer/business education.
+10. **Due date** — Date a payment or action is expected. Math: days until deadline. Misconception: “Close enough is fine.” App: bills/invoices. Source: CFPB.
+11. **Reimbursement** — Getting paid back for approved spending. Math: receipt total. Misconception: “People remember small amounts.” App: pet sitting/support. Source: consumer education.
+12. **Receipt** — Proof of purchase. Math: totals, refunds, reimbursements. Misconception: “Receipts stop mattering after purchase.” App: refunds. Source: FTC/consumer education.
+13. **Policy limit** — Maximum insurance pays for a covered event. Math: loss − deductible − coverage. Misconception: “Insurance covers everything.” App: insurance. Source: NAIC/state insurance.
+14. **Deductible** — What you pay before insurance starts sharing covered costs. Math: claim cost − deductible. Misconception: “Insurance pays first dollar.” App: insurance claims. Source: NAIC.
+15. **Premium** — Regular payment to keep insurance active. Math: monthly × 12. Misconception: “Premium is the only cost.” App: insurance plans. Source: NAIC.
+16. **Claim** — Request for insurance to help with a covered loss. Math: claim amount vs. deductible/limit. Misconception: “Always claim every loss.” App: insurance events. Source: NAIC.
+17. **In-network** — Provider or service with lower agreed plan cost. Math: compare visit costs. Misconception: “All providers cost the same.” App: health-plan extension. Source: insurance education.
+18. **Out-of-pocket** — Money you pay yourself. Math: total paid by player. Misconception: “Covered means free.” App: insurance. Source: NAIC/state insurance.
+19. **Stipend** — Money paid for a specific purpose or participation. Math: stipend − costs. Misconception: “Promised means available today.” App: summer program. Source: Federal Student Aid/program education.
+20. **Grant** — Aid that usually does not need repayment if rules are met. Math: cost − grant. Misconception: “All aid is borrowed.” App: aid decoder. Source: Federal Student Aid.
+21. **Scholarship** — Aid often based on criteria, effort, skill, or need. Math: reduce cost gap. Misconception: “Scholarships are only huge awards.” App: pathway planning. Source: Federal Student Aid.
+22. **Work-study** — Aid earned through eligible work. Math: hours × wage. Misconception: “Work-study is automatic cash.” App: aid offer. Source: Federal Student Aid.
+23. **Loan** — Borrowed money to repay later. Math: principal + interest. Misconception: “Loan aid is free aid.” App: aid/credit. Source: CFPB/Federal Student Aid.
+24. **Co-sign** — Promise to repay if another borrower does not. Math: possible full amount owed. Misconception: “Co-signing only helps approval.” App: relationship credit. Source: CFPB.
+25. **Credit report** — Record of borrowing and related credit information. Math: range/reading, not arithmetic. Misconception: “Reports are always correct.” App: credit report errors. Source: CFPB.
+26. **Credit freeze** — A block that makes new credit harder to open. Math: risk reduction. Misconception: “Freeze stops all spending.” App: identity safety. Source: CFPB/FTC.
+27. **Credit-builder loan** — Small loan structure designed to build payment history. Math: monthly payment × months. Misconception: “All credit building is safe.” App: credit extension. Source: CFPB.
+28. **Payment history** — Record of on-time or late payments. Math: count on-time vs. late. Misconception: “One tool guarantees good credit.” App: credit score. Source: CFPB.
+29. **Installment** — One payment in a series. Math: payment × number. Misconception: “Smaller now means cheaper.” App: installment choices. Source: CFPB.
+30. **Commitment** — Future obligation you agree to carry. Math: total future payments. Misconception: “Only today’s payment matters.” App: payment plans. Source: CFPB.
+31. **Break-even** — Point where two choices cost the same. Math: upfront ÷ per-use savings. Misconception: “Membership always saves.” App: membership/pass. Source: consumer/math education.
+32. **Fare cap** — Maximum transportation charge in a period. Math: rides × fare vs. cap. Misconception: “A pass is always cheaper.” App: transit. Source: consumer/transit education.
+33. **Auto-reload** — Automatic refill when a balance gets low. Math: threshold and reload amount. Misconception: “Automation cannot surprise me.” App: laundry/transit. Source: consumer education.
+34. **Verification code** — Code used to prove identity. Math: avoided-loss reasoning. Misconception: “A code is safe to share with support.” App: scam events. Source: FTC.
+35. **Phishing** — Fake message trying to get login, money, or information. Math: possible loss vs. prevention. Misconception: “If it fits my situation, it is real.” App: safety events. Source: FTC.
+36. **Sponsored content** — Content paid for by an advertiser. Math: compare claims and incentives. Misconception: “Sponsored means false” or “sponsored means trusted.” App: source ladder. Source: FTC/consumer education.
+37. **Incentive** — Reward that shapes a choice. Math: benefit vs. cost to others. Misconception: “A reward for me is free for everyone.” App: referrals/sponsored tips. Source: consumer education.
+38. **Rebalancing** — Adjusting investments back to a target mix. Math: percent allocation. Misconception: “Keep whatever rose most.” App: investing. Source: Investor.gov/SEC.
+39. **Dividend** — Money paid from an investment. Math: cash received or reinvested. Misconception: “Dividends are guaranteed spending money.” App: investing. Source: Investor.gov.
+40. **Human capital** — Skills, knowledge, or credentials that create opportunity. Math: cost/time now vs. possible future income. Misconception: “Only physical things are assets.” App: careers/certifications. Source: career/financial education.
+
+---
+
+# 10. Balance and Ethics Notes
+
+1. **Wealth never equals character.** Praise planning, repair, curiosity, kindness, and clear reasoning.
+2. **Net worth is not self-worth.** Final reports must say this plainly.
+3. **Constraints change routes, not dignity.** Fictional context variables create variety, not judgment.
+4. **No sensitive identifiers.** Never ask students for race, ethnicity, sex, gender identity, exact location, family income, religion, disability, immigration status, or household structure.
+5. **Every setback needs a repair route.** Fees, debt, scams, missed deadlines, and low wellbeing unlock recovery.
+6. **Locked choices must be kind.** Show “Needs: $50 cushion,” not “You failed.”
+7. **Randomness must name luck.** Separate good plan/bad luck from risky plan/good luck.
+8. **Do not rig every lesson.** Insurance, self-insuring, waiting, asking, and paying for convenience can each be reasonable.
+9. **Wants and joy are legitimate.** The game teaches planning, not joyless saving.
+10. **Support is helpful, not magical.** Support improves options but can require time, communication, trust, or responsibility.
+11. **Credit is one tool.** It should not outrank wellbeing, safety, savings, trust, or knowledge.
+12. **Pathways stay neutral.** Work-first, trade, apprenticeship, community college, four-year, military, and entrepreneurship all need viable routes.
+13. **Teacher materials are not answer keys.** Use prompts, facilitation notes, and comparison questions.
+14. **Local-only privacy.** localStorage saves should be clearable; no analytics, rosters, grades, uploaded documents, or student-data exports.
+15. **Originality is a production requirement.** Lint for duplicate slugs, copied-like wording, real brands, sensitive fields, mature themes, and missing source categories.
+
+---
+
+# 11. Source and Originality Notes
+
+Public source categories used for topic inspiration and factual orientation only: CFPB youth and consumer finance education, FDIC Money Smart for Young People, FTC Consumer Advice and IdentityTheft.gov-related guidance, Investor.gov/SEC investor education, Federal Student Aid, IRS Understanding Taxes, NAIC/state insurance education, and public topic hubs from financial-literacy organizations such as NGPF and Banzai. FDIC’s Money Smart for Young People page explicitly includes grade-banded materials including Grades 6–8 and Grades 9–12, which fits the middle-school-to-early-high-school bridge. ([FDIC][7])
+
+The specific factual anchors used here are official-source concepts: CFPB’s credit-score range guidance, FTC phishing verification advice, IRS gross/net/withholding education, Investor.gov diversification and fee materials, Federal Student Aid’s aid-type explanations, and NAIC’s deductible/insurance consumer guidance. ([Consumer Financial Protection Bureau][1])
+
+All scenario prompts, choices, feedback, reflection questions, feature concepts, score explanations, and glossary wording in this batch are original MoneyLife Quest text. They should not be treated as source text from CFPB, FDIC, FTC, Investor.gov, Federal Student Aid, IRS, NAIC, NGPF, Banzai, BitLife, Napkin Finance, Humble Math, or any other source. The app should attribute broad source categories for teacher transparency only and should not imply endorsement, sponsorship, partnership, approval, review, or affiliation by any source. The uploaded prior batches likewise emphasize using previous content as a duplication guard and maintaining original student-facing text. 
+
+---
+
+# 12. Implementation Handoff for Codex
+
+1. **Create `scenariosTideLoom64.ts`** — Store all 75 scenarios with `id`, `title`, `ageRange`, `topics`, `prompt`, `choices`, `randomized`, `futureFlag`, `glossaryTerms`, `tradeoffNote`, and `tags`.
+2. **Extend `ScenarioChoice` type** — Include `label`, `description`, `visibleLockedRequirement`, `outcomeSummary`, `effectsPlainLanguage`, `feedback`, `reflectionPrompt`, `effectsNumeric`.
+3. **Add `choiceQuality` model** — Values: `strongPlan`, `reasonableTradeoff`, `riskyUnderstandable`, `needsRecovery`.
+4. **Add `luckLabel` to random outcomes** — Values: `goodPlanBadLuck`, `goodPlanGoodLuck`, `riskyPlanLucky`, `riskyPlanCostly`.
+5. **Build `AvailableMoneyMeter.tsx`** — Display spendable cash/checking separately from pending, held, savings, investments, and assets.
+6. **Build `PendingTransactionSystem.ts`** — Track pending charges, deposit holds, and delayed availability.
+7. **Create `RepairRouteDrawer.tsx`** — After setbacks, show money/habit/support/safety recovery routes.
+8. **Create `SupportAskCard.tsx`** — Fixed sentence stems for family/caregiver, friend, mentor, and pet-care helper.
+9. **Create `PaymentConfirmationPause.tsx`** — Confirm recipient, amount, and purpose before digital sends.
+10. **Create `RiskSignalsMeter.tsx`** — Urgency, secrecy, unknown sender, unusual payment method, too-good claim.
+11. **Create `PolicyLimitCard.tsx`** — Compare claim amount, deductible, policy limit, and uncovered gap.
+12. **Create `AidOfferDecoder.tsx`** — Sort aid lines into grant, scholarship, work-study, loan, and gap.
+13. **Create `UsefulAssetShelf.tsx`** — Track usefulness, resale value, replacement value, condition, liquidity.
+14. **Create `CredentialShelf.tsx`** — Track certifications, renewal costs, expiration ages, and opportunity locks.
+15. **Create `SourceTrustLadder.tsx`** — Rank fictional official, school, mentor, sponsored, anonymous, and viral sources.
+16. **Create `FeeStackViewer.tsx`** — Show base price, percent fee, flat fee, tax, delivery, late fee, final total.
+17. **Add `ReliabilityLedger.ts`** — Track fictional commitments, reschedules, communication, and references.
+18. **Create `ScoreGuide.ts` updates** — Add the range descriptions from §6 and keep credit separate at 300–850.
+19. **Update `glossaryTideLoom64.ts`** — Add the 40 terms from §9 with source-category fields and original definitions.
+20. **Add `contentQuotaOriginalityLint.ts`** — Validate scenario counts for MT/L/R/FF/SC/M/EXT/AN, duplicate slugs, missing tradeoff notes, real brand names, sensitive identifiers, mature themes, missing source categories, and endorsement language.
+
+[1]: https://www.consumerfinance.gov/consumer-tools/credit-reports-and-scores/understand-your-credit-score/?utm_source=chatgpt.com "Understand your credit score"
+[2]: https://consumer.ftc.gov/articles/how-recognize-avoid-phishing-scams?utm_source=chatgpt.com "How To Recognize and Avoid Phishing Scams"
+[3]: https://apps.irs.gov/app/understandingTaxes/teacher/hows_mod01.jsp?utm_source=chatgpt.com "Payroll Taxes and Federal Income Tax Withholding"
+[4]: https://www.investor.gov/introduction-investing/getting-started/asset-allocation?utm_source=chatgpt.com "Asset Allocation and Diversification"
+[5]: https://studentaid.gov/articles/financial-aid-dictionary/?utm_source=chatgpt.com "Financial Aid Dictionary: Top Terms Related to Grants, ..."
+[6]: https://content.naic.org/article/consumer-insight-understand-your-health-plans-deductible?utm_source=chatgpt.com "Understand Your Health Plan's Deductible"
+[7]: https://www.fdic.gov/consumer-resource-center/money-smart-young-people?utm_source=chatgpt.com "Money Smart for Young People"
+

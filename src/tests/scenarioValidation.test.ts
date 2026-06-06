@@ -1,5 +1,7 @@
 import { describe, expect, it } from "vitest";
+import { contextGlossaryTerms } from "../data/contextGlossary";
 import { glossaryTerms } from "../data/glossaryTerms";
+import { contextScenariosEvents } from "../data/scenarioPacks/contextScenarios";
 import { scenarioEvents } from "../data/scenarioPacks/middleSchoolCore";
 import { validateScenarioEvents } from "../features/events/eventValidation";
 
@@ -86,5 +88,29 @@ describe("scenario validation", () => {
     expect(glossaryTerms.some((term) => term.id === "unit-price")).toBe(true);
     expect(glossaryTerms.some((term) => term.id === "net-worth")).toBe(true);
     expect(glossaryTerms.every((term) => term.sources.length > 0)).toBe(true);
+  });
+
+  it("imports the updated FINLITBITLIFE context as curated playable content", () => {
+    const ids = contextScenariosEvents.map((event) => event.id);
+    const lockedChoices = contextScenariosEvents.flatMap((event) => event.choices).filter((choice) => choice.requirements?.length);
+    const randomChoices = contextScenariosEvents.flatMap((event) => event.choices).filter((choice) => choice.outcomes.length > 1);
+    const flagEffects = contextScenariosEvents.flatMap((event) =>
+      event.choices.flatMap((choice) => choice.outcomes.flatMap((outcome) => outcome.effects.filter((effect) => effect.type === "flag")))
+    );
+
+    expect(contextScenariosEvents.length).toBeGreaterThanOrEqual(590);
+    expect(ids).toContain("ctx-mosaic-earbud-case-choice");
+    expect(ids).toContain("ctx-glass-club-supply-captain");
+    expect(ids).toContain("ctx-tide-pending-snack-hold");
+    expect(contextScenariosEvents.every((event) => event.sourceNote?.includes("original synthesized"))).toBe(true);
+    expect(contextScenariosEvents.every((event) => event.title !== "Untitled")).toBe(true);
+    expect(contextScenariosEvents.every((event) => event.reflectionPrompt.length > 12)).toBe(true);
+    expect(lockedChoices.length).toBeGreaterThanOrEqual(100);
+    expect(randomChoices.length).toBeGreaterThanOrEqual(90);
+    expect(flagEffects.every((effect) => effect.type === "flag" && effect.key.length > 3)).toBe(true);
+    expect(contextGlossaryTerms.length).toBeGreaterThanOrEqual(600);
+    expect(contextGlossaryTerms.some((term) => term.term === "Available balance")).toBe(true);
+    expect(contextGlossaryTerms.some((term) => term.term === "Cash flow")).toBe(true);
+    expect(contextGlossaryTerms.some((term) => term.term === "Deductible")).toBe(true);
   });
 });
