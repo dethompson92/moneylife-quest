@@ -2,10 +2,12 @@ import { useMemo, useState } from "react";
 import {
   Copy,
   BookOpen,
+  Bug,
   Clock,
   MessageSquare,
   ExternalLink,
   Check,
+  Download,
   FileText,
   Globe,
   GraduationCap,
@@ -28,11 +30,14 @@ import {
 } from "../../data/teacherResources";
 import { sourceCategories } from "../../data/sourceIndex";
 import { buildClassLink, topicOptions } from "../../lib/queryParams";
+import { clearDebugReports, deleteDebugReport, loadDebugReports } from "../../lib/storage";
+import type { IssueReport } from "../../types/reporting";
+import { formatIssue, labelForType } from "../reporting/reportingUtils";
 import { goals } from "../goals/goalDefinitions";
 import { decodeReflectionCode } from "../summary/summaryGenerator";
 import { formatMoney } from "../../lib/formatMoney";
 
-type Tab = "planner" | "prompts" | "resources" | "decoder";
+type Tab = "planner" | "prompts" | "resources" | "decoder" | "debug";
 
 const discussionQuestions = [
   { id: "q1", text: "What made one choice safer, cheaper, or more flexible than another?" },
@@ -52,6 +57,8 @@ export function TeacherGuide({ onCopy, onLock }: { onCopy: (text: string) => voi
   const [inputCode, setInputCode] = useState("");
   const [decodeError, setDecodeError] = useState<string | null>(null);
   const [decodedList, setDecodedList] = useState<Array<{ nickname: string; netWorth: number; objectives: number; badges: number; credit: number | null }>>([]);
+  const [debugReports, setDebugReports] = useState<IssueReport[]>(() => loadDebugReports());
+  const [copiedDebugId, setCopiedDebugId] = useState<string | null>(null);
 
   const [seed, setSeed] = useState("period-3-moneylife");
   const [topic, setTopic] = useState("all");
@@ -229,6 +236,30 @@ export function TeacherGuide({ onCopy, onLock }: { onCopy: (text: string) => voi
     setTimeout(() => setCopiedPromptId(null), 2000);
   };
 
+  const refreshDebugReports = () => {
+    setDebugReports(loadDebugReports());
+  };
+
+  const handleCopyDebugReport = (report: IssueReport) => {
+    onCopy(formatIssue(report));
+    setCopiedDebugId(report.id);
+    setTimeout(() => setCopiedDebugId(null), 2000);
+  };
+
+  const handleDownloadDebugReports = () => {
+    const text =
+      debugReports.length > 0
+        ? debugReports.map((report) => formatIssue(report)).join("\n\n---\n\n")
+        : "No MoneyLife Quest debug reports saved on this browser.";
+    const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `moneylife-debug-log-${new Date().toISOString().slice(0, 10)}.txt`;
+    link.click();
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <section className="screen-panel teacher-dashboard">
       <div className="section-heading section-heading--split">
@@ -282,6 +313,17 @@ export function TeacherGuide({ onCopy, onLock }: { onCopy: (text: string) => voi
         >
           <Search size={18} aria-hidden="true" />
           <span>Code Decoder</span>
+        </button>
+        <button
+          className={`tab-btn ${activeTab === "debug" ? "is-active" : ""}`}
+          onClick={() => {
+            setActiveTab("debug");
+            setSearchTerm("");
+            refreshDebugReports();
+          }}
+        >
+          <Bug size={18} aria-hidden="true" />
+          <span>Debug Log</span>
         </button>
       </div>
 
@@ -787,6 +829,84 @@ export function TeacherGuide({ onCopy, onLock }: { onCopy: (text: string) => voi
                 )}
               </div>
             </div>
+          </div>
+        )}
+
+        {activeTab === "debug" && (
+          <div className="debug-log-view">
+            <div className="dashboard-card debug-log-card">
+              <div className="debug-log-header">
+                <div>
+                  <h3>Saved Debug Reports</h3>
+                  <p>Reports submitted from the bottom-right button are saved on this browser. For reports from student devices, configure the GitHub issue or support email handoff and have students tap Send & Save.</p>
+                </div>
+                <div className="debug-log-actions">
+                  <Button variant="secondary" onClick={refreshDebugReports}>Refresh</Button>
+                  <Button variant="secondary" icon={<Download size={16} aria-hidden="true" />} onClick={handleDownloadDebugReports}>
+                    Download Log
+                  </Button>
+                  <Button
+                    variant="danger"
+                    onClick={() => {
+                      clearDebugReports();
+                      setDebugReports([]);
+                    }}
+                    disabled={debugReports.length === 0}
+                  >
+                    Clear Log
+                  </Button>
+                </div>
+              </div>
+
+              <div className="debug-log-summary">
+                <strong>{debugReports.length}</strong>
+                <span>{debugReports.length === 1 ? "saved report" : "saved reports"}</span>
+              </div>
+            </div>
+
+            {debugReports.length === 0 ? (
+              <div className="dashboard-card debug-empty-state">
+                <Bug size={28} aria-hidden="true" />
+                <h3>No reports saved on this browser yet.</h3>
+                <p>Use the Bug or issue button to submit a test report, or configure the deployment handoff so student reports can reach you outside their own devices.</p>
+              </div>
+            ) : (
+              <div className="debug-report-list">
+                {debugReports.map((report) => (
+                  <article className="debug-report-card" key={report.id}>
+                    <div className="debug-report-card__body">
+                      <div className="debug-report-meta">
+                        <span>{labelForType(report.issueType)}</span>
+                        <span>{new Date(report.createdAt).toLocaleString()}</span>
+                        <span>{report.status === "handoff-opened" ? "Handoff opened" : "Local only"}</span>
+                      </div>
+                      <h3>{report.description.trim() || "No description provided"}</h3>
+                      {report.steps.trim() ? <p><strong>Steps:</strong> {report.steps.trim()}</p> : null}
+                      {report.contact.trim() ? <p><strong>Optional contact:</strong> {report.contact.trim()}</p> : null}
+                      {report.diagnostics ? (
+                        <details className="debug-diagnostics">
+                          <summary>Safe diagnostics</summary>
+                          <pre>{JSON.stringify(report.diagnostics, null, 2)}</pre>
+                        </details>
+                      ) : null}
+                    </div>
+                    <div className="debug-report-actions">
+                      <Button variant="secondary" icon={<Copy size={16} aria-hidden="true" />} onClick={() => handleCopyDebugReport(report)}>
+                        {copiedDebugId === report.id ? "Copied!" : "Copy"}
+                      </Button>
+                      <Button
+                        variant="danger"
+                        onClick={() => {
+                          setDebugReports(deleteDebugReport(report.id));
+                        }}
+                      >
+                        Delete
+                      </Button>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            )}
           </div>
         )}
       </div>

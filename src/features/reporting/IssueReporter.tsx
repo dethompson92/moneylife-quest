@@ -1,40 +1,16 @@
 import { useMemo, useState } from "react";
-import { Bug, Clipboard, Download, ExternalLink, X } from "lucide-react";
+import { Bug, Clipboard, Download, Send, X } from "lucide-react";
 import { Button } from "../../components/ui/Button";
+import { saveDebugReport } from "../../lib/storage";
 import type { GameState } from "../../types/game";
-
-const APP_VERSION = "1.0.0";
-
-type IssueDraft = {
-  issueType: "bug" | "content" | "accessibility" | "confusing" | "other";
-  description: string;
-  steps: string;
-  contact: string;
-  includeDiagnostics: boolean;
-};
-
-type IssueReport = IssueDraft & {
-  id: string;
-  createdAt: string;
-  app: string;
-  diagnostics?: {
-    appVersion: string;
-    url: string;
-    browser: string;
-    screenSize: string;
-    gameAge?: number;
-    gameTurn?: number;
-    gameMode?: string;
-    gameStatus?: string;
-    activeGoalId?: string;
-    pendingEventId?: string;
-    achievements?: number;
-  };
-};
+import type { IssueDraft, IssueReport } from "../../types/reporting";
+import { buildIssueReport, buildReportDestination, formatIssue } from "./reportingUtils";
 
 export function IssueReporter({ game, onCopy }: { game: GameState | null; onCopy: (text: string) => void }) {
   const [open, setOpen] = useState(false);
   const [copiedReport, setCopiedReport] = useState<string | null>(null);
+  const [savedNotice, setSavedNotice] = useState<string | null>(null);
+  const [saveError, setSaveError] = useState<string | null>(null);
   const [draft, setDraft] = useState<IssueDraft>({
     issueType: "bug",
     description: "",
@@ -53,9 +29,27 @@ export function IssueReporter({ game, onCopy }: { game: GameState | null; onCopy
     onCopy(reportText);
   }
 
-  function openReportDestination() {
-    if (!reportDestination) return;
-    window.open(reportDestination, "_blank", "noopener,noreferrer");
+  function sendAndSaveReport() {
+    if (!canSubmit) return;
+    const storedReport: IssueReport = {
+      ...report,
+      status: reportDestination ? "handoff-opened" : "saved-local"
+    };
+    const result = saveDebugReport(storedReport);
+    if (!result.ok) {
+      setSaveError(result.error);
+      setSavedNotice(null);
+      return;
+    }
+
+    const storedText = formatIssue(storedReport);
+    setCopiedReport(storedText);
+    setSaveError(null);
+    setSavedNotice(reportDestination ? "Saved locally and opened the report handoff." : "Saved locally on this browser for teacher review or export.");
+
+    if (reportDestination) {
+      window.open(reportDestination, "_blank", "noopener,noreferrer");
+    }
   }
 
   function downloadReport() {
@@ -82,7 +76,7 @@ export function IssueReporter({ game, onCopy }: { game: GameState | null; onCopy
               <X aria-hidden="true" />
             </button>
           </div>
-          <p>Reports are never sent automatically. Do not include student names, private information, or class rosters.</p>
+          <p>Reports save locally when you send them. Do not include student names, private information, or class rosters.</p>
           <label>
             Issue type
             <select value={draft.issueType} onChange={(event) => setDraft({ ...draft, issueType: event.target.value as IssueDraft["issueType"] })}>
@@ -115,15 +109,17 @@ export function IssueReporter({ game, onCopy }: { game: GameState | null; onCopy
             <span>Include safe app diagnostics</span>
             <input type="checkbox" checked={draft.includeDiagnostics} onChange={(event) => setDraft({ ...draft, includeDiagnostics: event.target.checked })} />
           </label>
+          {savedNotice ? <p className="issue-panel__status" role="status">{savedNotice}</p> : null}
+          {saveError ? <p className="issue-panel__error" role="alert">Could not save report: {saveError}</p> : null}
           <div className="button-row">
-            <Button icon={<Clipboard aria-hidden="true" />} onClick={copyReport} disabled={!canSubmit}>Copy Report</Button>
-            <Button variant="secondary" icon={<ExternalLink aria-hidden="true" />} onClick={openReportDestination} disabled={!canSubmit || !reportDestination}>
-              Open Issue
+            <Button icon={<Send aria-hidden="true" />} onClick={sendAndSaveReport} disabled={!canSubmit}>
+              Send & Save
             </Button>
+            <Button variant="secondary" icon={<Clipboard aria-hidden="true" />} onClick={copyReport} disabled={!canSubmit}>Copy</Button>
             <Button variant="secondary" icon={<Download aria-hidden="true" />} onClick={downloadReport} disabled={!canSubmit}>Download</Button>
           </div>
           {!reportDestination ? (
-            <p className="issue-panel__hint">Set VITE_GITHUB_ISSUES_URL or VITE_SUPPORT_EMAIL during deployment to enable direct report handoff.</p>
+            <p className="issue-panel__hint">This deployment has no outside handoff URL configured yet, so Send & Save stores the report in this browser only.</p>
           ) : null}
           <details className="issue-preview" open={Boolean(copiedReport)}>
             <summary>{copiedReport ? "Copied report text" : "Preview report text"}</summary>
@@ -133,86 +129,4 @@ export function IssueReporter({ game, onCopy }: { game: GameState | null; onCopy
       ) : null}
     </>
   );
-}
-
-function buildIssueReport(draft: IssueDraft, game: GameState | null): IssueReport {
-  return {
-    ...draft,
-    id: Math.random().toString(36).slice(2, 8).toUpperCase(),
-    createdAt: new Date().toISOString(),
-    app: "MoneyLife Quest",
-    diagnostics: draft.includeDiagnostics
-      ? {
-          appVersion: APP_VERSION,
-          url: window.location.href,
-          browser: navigator.userAgent,
-          screenSize: `${window.innerWidth}x${window.innerHeight}`,
-          gameAge: game?.character.age,
-          gameTurn: game?.turn,
-          gameMode: game?.mode,
-          gameStatus: game?.status,
-          activeGoalId: game?.activeGoalId,
-          pendingEventId: game?.pendingEventId,
-          achievements: game?.achievements.length
-        }
-      : undefined
-  };
-}
-
-function buildReportDestination(report: IssueReport, reportText: string): string | null {
-  const githubIssueUrl = import.meta.env.VITE_GITHUB_ISSUES_URL?.trim();
-  const supportEmail = import.meta.env.VITE_SUPPORT_EMAIL?.trim();
-  const title = `MoneyLife Quest ${labelForType(report.issueType)}: ${shortTitle(report.description)}`;
-
-  if (githubIssueUrl) {
-    try {
-      const url = new URL(githubIssueUrl);
-      url.searchParams.set("title", title);
-      url.searchParams.set("body", reportText);
-      return url.toString();
-    } catch {
-      return null;
-    }
-  }
-
-  if (supportEmail) {
-    return `mailto:${encodeURIComponent(supportEmail)}?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(reportText)}`;
-  }
-
-  return null;
-}
-
-function formatIssue(issue: IssueReport): string {
-  return [
-    "MoneyLife Quest Issue Report",
-    `ID: ${issue.id}`,
-    `Created: ${issue.createdAt}`,
-    `Type: ${labelForType(issue.issueType)}`,
-    `Optional contact: ${issue.contact.trim() || "(not provided)"}`,
-    "",
-    "What happened:",
-    issue.description.trim() || "(blank)",
-    "",
-    "Steps to repeat:",
-    issue.steps.trim() || "(not provided)",
-    "",
-    "Safe diagnostics:",
-    issue.diagnostics ? JSON.stringify(issue.diagnostics, null, 2) : "Not included",
-    "",
-    "Privacy note: this report was created locally in the browser and was not automatically sent anywhere."
-  ].join("\n");
-}
-
-function shortTitle(description: string): string {
-  const trimmed = description.trim().replace(/\s+/g, " ");
-  if (!trimmed) return "Report";
-  return trimmed.length > 54 ? `${trimmed.slice(0, 54)}...` : trimmed;
-}
-
-function labelForType(type: IssueDraft["issueType"]): string {
-  if (type === "accessibility") return "Accessibility";
-  if (type === "confusing") return "Confusing Moment";
-  if (type === "content") return "Content";
-  if (type === "other") return "Other";
-  return "Bug";
 }

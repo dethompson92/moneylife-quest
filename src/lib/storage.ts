@@ -1,10 +1,13 @@
 import type { GameSettings, GameState, StorageResult } from "../types/game";
+import type { IssueReport } from "../types/reporting";
 import { createSeededRng } from "./rng";
 import { createSupportCircle } from "../features/character/supportCircle";
 
 export const SAVE_KEY = "moneylife.save.v1";
 export const SETTINGS_KEY = "moneylife.settings.v1";
+export const DEBUG_REPORTS_KEY = "moneylife.debugReports.v1";
 export const CURRENT_SAVE_VERSION = 1;
+const MAX_DEBUG_REPORTS = 100;
 
 export const defaultSettings: GameSettings = {
   reducedMotion: false,
@@ -65,4 +68,52 @@ export function loadSettings(): GameSettings {
   } catch {
     return defaultSettings;
   }
+}
+
+export function loadDebugReports(): IssueReport[] {
+  try {
+    const raw = localStorage.getItem(DEBUG_REPORTS_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return [];
+    return parsed.filter(isStoredIssueReport).slice(0, MAX_DEBUG_REPORTS);
+  } catch {
+    return [];
+  }
+}
+
+export function saveDebugReport(report: IssueReport): StorageResult<IssueReport[]> {
+  try {
+    const existing = loadDebugReports().filter((item) => item.id !== report.id);
+    const next = [report, ...existing].slice(0, MAX_DEBUG_REPORTS);
+    localStorage.setItem(DEBUG_REPORTS_KEY, JSON.stringify(next));
+    return { ok: true, value: next };
+  } catch (error) {
+    return { ok: false, error: error instanceof Error ? error.message : "Debug report save failed" };
+  }
+}
+
+export function deleteDebugReport(id: string): IssueReport[] {
+  const next = loadDebugReports().filter((item) => item.id !== id);
+  localStorage.setItem(DEBUG_REPORTS_KEY, JSON.stringify(next));
+  return next;
+}
+
+export function clearDebugReports(): void {
+  localStorage.removeItem(DEBUG_REPORTS_KEY);
+}
+
+function isStoredIssueReport(value: unknown): value is IssueReport {
+  if (!value || typeof value !== "object") return false;
+  const item = value as Partial<IssueReport>;
+  return (
+    typeof item.id === "string" &&
+    typeof item.createdAt === "string" &&
+    typeof item.app === "string" &&
+    typeof item.issueType === "string" &&
+    typeof item.description === "string" &&
+    typeof item.steps === "string" &&
+    typeof item.contact === "string" &&
+    typeof item.includeDiagnostics === "boolean"
+  );
 }

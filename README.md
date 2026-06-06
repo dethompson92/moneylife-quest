@@ -46,9 +46,11 @@ If no hash is configured, the Teacher Tools panel stays locked.
 
 Important: because this is a static public site, this is a classroom gate, not high-security authentication. A determined student can inspect and modify client-side JavaScript. Do not put confidential teacher-only answers, student data, rosters, grades, or private records in the deployed app.
 
-## Bug Reporter
+## Bug Reporter and Debug Log
 
-The bottom-right Bug or issue button creates a local report. It never sends data automatically.
+The bottom-right Bug or issue button lets a player write a debug note, then tap Send & Save. The report is saved in `localStorage` under `moneylife.debugReports.v1` on that browser. Teacher Tools includes a protected Debug Log tab for reviewing, copying, downloading, deleting, or clearing those locally saved reports.
+
+Reports never upload silently. To receive reports from student devices, configure a handoff URL or support email so Send & Save can open a prefilled issue/email after saving locally.
 
 Optional deployment variables:
 
@@ -57,7 +59,7 @@ VITE_GITHUB_ISSUES_URL=https://github.com/YOUR-USER/YOUR-REPO/issues/new?templat
 VITE_SUPPORT_EMAIL=you@example.com
 ```
 
-If either is set, the app can open a prefilled issue or email. Copy and download still work without any configuration.
+If either is set, the app can open a prefilled issue or email. Local save, copy, and download still work without any configuration.
 
 ## GitHub Pages
 

@@ -2,7 +2,7 @@ import { describe, expect, it, beforeEach } from "vitest";
 import { createNewGame, checkGoalProgress } from "../features/game/gameActions";
 import { checkAchievements } from "../features/achievements/achievementEngine";
 import { generateSummary } from "../features/summary/summaryGenerator";
-import { clearGame, loadGame, resetGame, SAVE_KEY, saveGame } from "../lib/storage";
+import { DEBUG_REPORTS_KEY, clearDebugReports, clearGame, loadDebugReports, loadGame, resetGame, SAVE_KEY, saveDebugReport, saveGame } from "../lib/storage";
 
 describe("goals, achievements, and storage", () => {
   beforeEach(() => {
@@ -60,5 +60,26 @@ describe("goals, achievements, and storage", () => {
     expect(() => resetGame()).not.toThrow();
     localStorage.setItem(SAVE_KEY, "{bad json");
     expect(loadGame().ok).toBe(false);
+  });
+
+  it("saves, loads, clears, and recovers from corrupt debug report data", () => {
+    const result = saveDebugReport({
+      id: "DBG123",
+      createdAt: "2026-06-06T00:00:00.000Z",
+      app: "MoneyLife Quest",
+      issueType: "bug",
+      description: "The debug message should be saved.",
+      steps: "Open reporter and send.",
+      contact: "",
+      includeDiagnostics: false,
+      status: "saved-local"
+    });
+    expect(result.ok).toBe(true);
+    expect(loadDebugReports()).toHaveLength(1);
+    expect(loadDebugReports()[0].description).toContain("debug message");
+    clearDebugReports();
+    expect(loadDebugReports()).toEqual([]);
+    localStorage.setItem(DEBUG_REPORTS_KEY, "{bad json");
+    expect(loadDebugReports()).toEqual([]);
   });
 });

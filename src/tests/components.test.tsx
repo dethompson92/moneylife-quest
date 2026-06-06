@@ -67,7 +67,14 @@ describe("app components", () => {
     expect(screen.getByRole("dialog", { name: /bug or issue reporter/i })).toBeInTheDocument();
     expect(screen.getByText(/not include student names/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/optional contact/i)).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /copy report/i })).toBeDisabled();
+    expect(screen.getByRole("button", { name: /send & save/i })).toBeDisabled();
+    expect(screen.getByRole("button", { name: /^copy$/i })).toBeDisabled();
+    await userEvent.type(screen.getByLabelText(/what happened/i), "The activity button did not open.");
+    await userEvent.click(screen.getByRole("button", { name: /send & save/i }));
+    expect(screen.getByText(/saved locally on this browser/i)).toBeInTheDocument();
+    const reports = JSON.parse(localStorage.getItem("moneylife.debugReports.v1") ?? "[]");
+    expect(reports).toHaveLength(1);
+    expect(reports[0].description).toContain("activity button");
   });
 
   it("shows walkthrough modal on start and respects skip action", async () => {

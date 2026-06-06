@@ -2004,6 +2004,26 @@ textarea {
   font-size: 0.92rem;
 }
 
+.issue-panel__status,
+.issue-panel__error {
+  padding: 10px 12px;
+  border-radius: var(--radius);
+  font-size: 0.92rem;
+  font-weight: 800;
+}
+
+.issue-panel__status {
+  border: 1px solid rgba(16, 148, 132, 0.22);
+  color: var(--teal-dark);
+  background: rgba(16, 148, 132, 0.08);
+}
+
+.issue-panel__error {
+  border: 1px solid rgba(244, 92, 67, 0.25);
+  color: var(--coral);
+  background: rgba(244, 92, 67, 0.08);
+}
+
 .issue-panel label {
   margin: 0;
 }
@@ -2038,6 +2058,125 @@ textarea {
   min-height: 160px;
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 0.86rem;
+}
+
+.debug-log-view {
+  display: grid;
+  gap: 18px;
+}
+
+.debug-log-card,
+.debug-empty-state,
+.debug-report-card {
+  padding: 18px;
+}
+
+.debug-log-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: start;
+}
+
+.debug-log-header h3,
+.debug-empty-state h3,
+.debug-report-card h3 {
+  margin: 0 0 6px;
+  color: var(--navy);
+}
+
+.debug-log-header p,
+.debug-empty-state p,
+.debug-report-card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.debug-log-actions,
+.debug-report-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.debug-log-summary {
+  display: inline-flex;
+  gap: 8px;
+  align-items: baseline;
+  width: fit-content;
+  margin-top: 14px;
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  color: var(--teal-dark);
+  background: rgba(16, 148, 132, 0.08);
+}
+
+.debug-log-summary strong {
+  font-size: 1.4rem;
+}
+
+.debug-empty-state {
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.debug-empty-state svg {
+  color: var(--yellow);
+}
+
+.debug-report-list {
+  display: grid;
+  gap: 12px;
+}
+
+.debug-report-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: start;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.debug-report-card__body {
+  display: grid;
+  gap: 10px;
+}
+
+.debug-report-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.debug-report-meta span {
+  padding: 5px 9px;
+  border-radius: 999px;
+  color: var(--muted);
+  background: var(--surface-2);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.debug-diagnostics summary {
+  min-height: 38px;
+  color: var(--teal-dark);
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.debug-diagnostics pre {
+  max-height: 260px;
+  overflow: auto;
+  padding: 12px;
+  border-radius: var(--radius);
+  background: var(--navy);
+  color: white;
+  font-size: 0.78rem;
+  white-space: pre-wrap;
 }
 
 @media (max-width: 860px) {
@@ -2111,6 +2250,16 @@ textarea {
   .issue-panel {
     bottom: 246px;
     max-height: min(620px, calc(100vh - 276px));
+  }
+
+  .debug-log-header,
+  .debug-report-card {
+    grid-template-columns: 1fr;
+  }
+
+  .debug-log-actions,
+  .debug-report-actions {
+    justify-content: stretch;
   }
 
   .section-heading--split {
