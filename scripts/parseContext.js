@@ -7,6 +7,7 @@ const __dirname = path.dirname(__filename);
 
 const contextPath = path.resolve(__dirname, "../Context/FINLITBITLIFE.md");
 const outputPath = path.resolve(__dirname, "../src/data/scenarioPacks/contextScenarios.ts");
+const generatedDir = path.resolve(__dirname, "../src/data/scenarioPacks/context/generated");
 const glossaryOutputPath = path.resolve(__dirname, "../src/data/contextGlossary.ts");
 const reportOutputPath = path.resolve(__dirname, "../docs/context-import-report.md");
 
@@ -765,8 +766,25 @@ for (const scenario of scenarios) {
 
 deduped.sort((a, b) => a.id.localeCompare(b.id));
 
-const fileHeader = `import type { ScenarioEvent } from "../../types/game";\n\n`;
-const tsCode = `${fileHeader}export const contextScenariosEvents: ScenarioEvent[] = ${JSON.stringify(deduped, null, 2)};\n`;
+fs.rmSync(generatedDir, { recursive: true, force: true });
+fs.mkdirSync(generatedDir, { recursive: true });
+
+const batchFiles = [];
+for (const batch of BATCH_PATTERNS) {
+  const batchScenarios = deduped.filter((scenario) => scenario.id.startsWith(`ctx-${batch.id}-`));
+  if (!batchScenarios.length) continue;
+
+  const constantName = `${batch.id}ContextScenarios`;
+  const batchPath = path.join(generatedDir, `${batch.id}.ts`);
+  const batchCode = `import type { ScenarioEvent } from "../../../../types/game";\n\nexport const ${constantName}: ScenarioEvent[] = ${JSON.stringify(batchScenarios, null, 2)};\n`;
+  fs.writeFileSync(batchPath, batchCode, "utf8");
+  batchFiles.push({ batch, constantName, importPath: `./context/generated/${batch.id}` });
+}
+
+const fileHeader = `import type { ScenarioEvent } from "../../types/game";\n`;
+const imports = batchFiles.map((file) => `import { ${file.constantName} } from "${file.importPath}";`).join("\n");
+const spreadLines = batchFiles.map((file) => `  ...${file.constantName}`).join(",\n");
+const tsCode = `${fileHeader}${imports}\n\nexport const contextScenariosEvents: ScenarioEvent[] = [\n${spreadLines}\n];\n`;
 fs.writeFileSync(outputPath, tsCode, "utf8");
 
 const glossaryTerms = Array.from(glossaryMap.values()).sort((a, b) => a.term.localeCompare(b.term));
@@ -802,5 +820,5 @@ fs.writeFileSync(reportOutputPath, `${report}\n`, "utf8");
 
 console.log(`Imported ${deduped.length} scenarios and ${glossaryTerms.length} glossary terms.`);
 console.log(`Skipped ${skipped.length} blocks. Report: ${reportOutputPath}`);
-console.log(`Wrote scenarios to ${outputPath}`);
+console.log(`Wrote scenarios to ${outputPath} and ${batchFiles.length} generated batch files`);
 console.log(`Wrote glossary to ${glossaryOutputPath}`);
