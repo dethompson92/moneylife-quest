@@ -27,27 +27,54 @@ export function buildIssueReport(draft: IssueDraft, game: GameState | null): Iss
   };
 }
 
-export function buildReportDestination(report: IssueReport, reportText: string): string | null {
-  const githubIssueUrl = import.meta.env.VITE_GITHUB_ISSUES_URL?.trim();
-  const supportEmail = import.meta.env.VITE_SUPPORT_EMAIL?.trim();
-  const title = `MoneyLife Quest ${labelForType(report.issueType)}: ${shortTitle(report.description)}`;
+export type RemoteReportResult =
+  | { ok: true; mode: "cors" | "no-cors" }
+  | { ok: false; skipped?: boolean; error: string };
 
-  if (githubIssueUrl) {
+export async function sendReportToEndpoint(report: IssueReport, reportText: string, endpoint = getDebugReportEndpoint()): Promise<RemoteReportResult> {
+  if (!endpoint) {
+    return { ok: false, skipped: true, error: "No debug report endpoint is configured." };
+  }
+
+  const payload = JSON.stringify({
+    id: report.id,
+    createdAt: report.createdAt,
+    app: report.app,
+    issueType: report.issueType,
+    description: report.description,
+    steps: report.steps,
+    contact: report.contact,
+    status: report.status ?? "draft",
+    remoteError: report.remoteError ?? null,
+    diagnostics: report.diagnostics ?? null,
+    reportText
+  });
+
+  try {
+    const response = await fetch(endpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: payload,
+      keepalive: true
+    });
+    if (!response.ok) {
+      return { ok: false, error: `Report endpoint returned ${response.status}.` };
+    }
+    return { ok: true, mode: "cors" };
+  } catch {
     try {
-      const url = new URL(githubIssueUrl);
-      url.searchParams.set("title", title);
-      url.searchParams.set("body", reportText);
-      return url.toString();
-    } catch {
-      return null;
+      await fetch(endpoint, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: payload,
+        keepalive: true
+      });
+      return { ok: true, mode: "no-cors" };
+    } catch (error) {
+      return { ok: false, error: error instanceof Error ? error.message : "Report endpoint failed." };
     }
   }
-
-  if (supportEmail) {
-    return `mailto:${encodeURIComponent(supportEmail)}?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(reportText)}`;
-  }
-
-  return null;
 }
 
 export function formatIssue(issue: IssueReport): string {
@@ -80,13 +107,12 @@ export function labelForType(type: IssueType): string {
   return "Bug";
 }
 
-export function shortTitle(description: string): string {
-  const trimmed = description.trim().replace(/\s+/g, " ");
-  if (!trimmed) return "Report";
-  return trimmed.length > 54 ? `${trimmed.slice(0, 54)}...` : trimmed;
+function labelForStatus(status: NonNullable<IssueReport["status"]>): string {
+  if (status === "sent-remote") return "Saved locally and sent to debug inbox";
+  if (status === "remote-failed") return "Saved locally; debug inbox send failed";
+  return "Saved locally";
 }
 
-function labelForStatus(status: NonNullable<IssueReport["status"]>): string {
-  if (status === "handoff-opened") return "Saved locally and report handoff opened";
-  return "Saved locally";
+export function getDebugReportEndpoint(): string {
+  return import.meta.env.VITE_DEBUG_REPORT_ENDPOINT?.trim() ?? "";
 }

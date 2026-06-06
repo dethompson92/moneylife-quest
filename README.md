@@ -50,24 +50,24 @@ Important: because this is a static public site, this is a classroom gate, not h
 
 The bottom-right Bug or issue button lets a player write a debug note, then tap Send & Save. The report is saved in `localStorage` under `moneylife.debugReports.v1` on that browser. Teacher Tools includes a protected Debug Log tab for reviewing, copying, downloading, deleting, or clearing those locally saved reports.
 
-Reports never upload silently. To receive reports from student devices, configure a handoff URL or support email so Send & Save can open a prefilled issue/email after saving locally.
+Reports do not open GitHub Issues or email. To receive reports from student devices, configure `VITE_DEBUG_REPORT_ENDPOINT` so Send & Save can automatically POST the report to your debug inbox after saving locally.
 
 Optional deployment variables:
 
 ```text
-VITE_GITHUB_ISSUES_URL=https://github.com/YOUR-USER/YOUR-REPO/issues/new?template=bug_report.yml
-VITE_SUPPORT_EMAIL=you@example.com
+VITE_DEBUG_REPORT_ENDPOINT=https://script.google.com/macros/s/YOUR-DEPLOYMENT-ID/exec
 ```
 
-If either is set, the app can open a prefilled issue or email. Local save, copy, and download still work without any configuration.
+If the endpoint is set, the app saves locally and sends to that inbox. If the endpoint is missing or unavailable, local save, copy, and download still work.
+
+See [docs/DEBUG_REPORT_INBOX.md](docs/DEBUG_REPORT_INBOX.md) for a Google Sheets + Apps Script setup that creates a no-login teacher-accessible inbox.
 
 ## GitHub Pages
 
 The repository includes `.github/workflows/deploy.yml`. After pushing to `main`, configure GitHub Pages to use GitHub Actions, then set repository variables if desired:
 
 - Secret: `TEACHER_TOOLS_PASSWORD`
-- Variable: `VITE_GITHUB_ISSUES_URL`
-- Variable: `VITE_SUPPORT_EMAIL`
+- Variable: `VITE_DEBUG_REPORT_ENDPOINT`
 
 The workflow installs dependencies, runs unit tests, installs Playwright Chromium, runs the browser smoke test, builds the Vite app, uploads `dist`, and deploys Pages.
 

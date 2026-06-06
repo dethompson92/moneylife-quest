@@ -71,7 +71,7 @@ describe("app components", () => {
     expect(screen.getByRole("button", { name: /^copy$/i })).toBeDisabled();
     await userEvent.type(screen.getByLabelText(/what happened/i), "The activity button did not open.");
     await userEvent.click(screen.getByRole("button", { name: /send & save/i }));
-    expect(screen.getByText(/saved locally on this browser/i)).toBeInTheDocument();
+    expect(await screen.findByText(/saved locally on this browser/i)).toBeInTheDocument();
     const reports = JSON.parse(localStorage.getItem("moneylife.debugReports.v1") ?? "[]");
     expect(reports).toHaveLength(1);
     expect(reports[0].description).toContain("activity button");

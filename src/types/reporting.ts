@@ -28,6 +28,7 @@ export type IssueReport = IssueDraft & {
   id: string;
   createdAt: string;
   app: string;
-  status?: "saved-local" | "handoff-opened";
+  status?: "saved-local" | "sent-remote" | "remote-failed";
+  remoteError?: string;
   diagnostics?: IssueDiagnostics;
 };

@@ -838,7 +838,7 @@ export function TeacherGuide({ onCopy, onLock }: { onCopy: (text: string) => voi
               <div className="debug-log-header">
                 <div>
                   <h3>Saved Debug Reports</h3>
-                  <p>Reports submitted from the bottom-right button are saved on this browser. For reports from student devices, configure the GitHub issue or support email handoff and have students tap Send & Save.</p>
+                  <p>Reports submitted from the bottom-right button are saved on this browser. To collect reports from student devices automatically, configure the debug inbox endpoint and have students tap Send & Save.</p>
                 </div>
                 <div className="debug-log-actions">
                   <Button variant="secondary" onClick={refreshDebugReports}>Refresh</Button>
@@ -868,7 +868,7 @@ export function TeacherGuide({ onCopy, onLock }: { onCopy: (text: string) => voi
               <div className="dashboard-card debug-empty-state">
                 <Bug size={28} aria-hidden="true" />
                 <h3>No reports saved on this browser yet.</h3>
-                <p>Use the Bug or issue button to submit a test report, or configure the deployment handoff so student reports can reach you outside their own devices.</p>
+                <p>Use the Bug or issue button to submit a test report, or configure the deployment debug inbox endpoint so student reports can reach you outside their own devices.</p>
               </div>
             ) : (
               <div className="debug-report-list">
@@ -878,7 +878,7 @@ export function TeacherGuide({ onCopy, onLock }: { onCopy: (text: string) => voi
                       <div className="debug-report-meta">
                         <span>{labelForType(report.issueType)}</span>
                         <span>{new Date(report.createdAt).toLocaleString()}</span>
-                        <span>{report.status === "handoff-opened" ? "Handoff opened" : "Local only"}</span>
+                        <span>{debugStatusLabel(report)}</span>
                       </div>
                       <h3>{report.description.trim() || "No description provided"}</h3>
                       {report.steps.trim() ? <p><strong>Steps:</strong> {report.steps.trim()}</p> : null}
@@ -925,4 +925,10 @@ function formatQuestionUrl(url: string): string {
     .replace(/-/g, " ");
   if (!slug) return "Question of the Day";
   return slug.charAt(0).toUpperCase() + slug.slice(1);
+}
+
+function debugStatusLabel(report: IssueReport): string {
+  if (report.status === "sent-remote") return "Sent to inbox";
+  if (report.status === "remote-failed") return "Send failed";
+  return "Local only";
 }
