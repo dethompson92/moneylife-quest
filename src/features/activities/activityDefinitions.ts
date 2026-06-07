@@ -2,6 +2,7 @@ import type { Effect, GameState, Topic } from "../../types/game";
 import { applyEffects } from "../finance/financeEngine";
 import { checkAchievements } from "../achievements/achievementEngine";
 import { checkGoalProgress } from "../game/gameActions";
+import { hasRelationship } from "../character/supportCircle";
 
 export type Activity = {
   id: string;
@@ -25,9 +26,9 @@ export const activities: Activity[] = [
   { id: "protect-2fa", category: "Protect", title: "Enable Two-Step Login", description: "Make important accounts safer.", topic: "scams", effects: [{ type: "stat", stat: "trustSafety", amount: 5 }, { type: "achievement", achievementId: "scam-spotted" }] },
   { id: "future-plan", category: "Future", title: "Compare Future Paths", description: "Look at cost, training time, and opportunity.", topic: "life-after-high-school", effects: [{ type: "stat", stat: "opportunity", amount: 4 }, { type: "stat", stat: "moneyKnowledge", amount: 3 }, { type: "achievement", achievementId: "future-planner" }] },
   { id: "support-family-budget", category: "Support", title: "Talk Budget With Family", description: "Ask a trusted adult how they compare needs, wants, and bills.", topic: "money-values", effects: [{ type: "relationship", relationshipId: "family", closeness: 4, support: 5 }, { type: "stat", stat: "moneyKnowledge", amount: 2 }, { type: "stat", stat: "wellbeing", amount: 2 }] },
-  { id: "support-friend-plan", category: "Support", title: "Suggest a Low-Cost Hangout", description: "Keep the friendship strong without overspending.", topic: "consumer-skills", effects: [{ type: "relationship", relationshipId: "friend", closeness: 5, support: 2 }, { type: "stat", stat: "discipline", amount: 2 }, { type: "savings", amount: 10 }] },
-  { id: "support-mentor-career", category: "Support", title: "Ask a Mentor About Careers", description: "Get advice about training, interviews, and future paths.", topic: "career", effects: [{ type: "relationship", relationshipId: "mentor", closeness: 4, support: 6 }, { type: "stat", stat: "opportunity", amount: 4 }, { type: "achievement", achievementId: "career-explorer" }] },
-  { id: "support-pet-care", category: "Support", title: "Care for Your Pet", description: "Practice responsibility with a small care cost.", topic: "budgeting", effects: [{ type: "cash", amount: -15 }, { type: "relationship", relationshipId: "pet", closeness: 6, support: 2 }, { type: "stat", stat: "wellbeing", amount: 4 }], lockReason: (state) => (state.finances.cash < 15 ? "Needs $15 cash" : null) }
+  { id: "support-friend-plan", category: "Support", title: "Suggest a Low-Cost Hangout", description: "Keep the friendship strong without overspending.", topic: "consumer-skills", effects: [{ type: "relationship", relationshipId: "friend", closeness: 5, support: 2 }, { type: "stat", stat: "discipline", amount: 2 }, { type: "savings", amount: 10 }], lockReason: (state) => (hasRelationship(state.relationships, "friend") ? null : "Meet a friend through a story event first") },
+  { id: "support-mentor-career", category: "Support", title: "Ask a Mentor About Careers", description: "Get advice about training, interviews, and future paths.", topic: "career", effects: [{ type: "relationship", relationshipId: "mentor", closeness: 4, support: 6 }, { type: "stat", stat: "opportunity", amount: 4 }, { type: "achievement", achievementId: "career-explorer" }], lockReason: (state) => (hasRelationship(state.relationships, "mentor") ? null : "Meet a mentor through a school or career event first") },
+  { id: "support-pet-care", category: "Support", title: "Care for Your Pet", description: "Practice responsibility with a small care cost.", topic: "budgeting", effects: [{ type: "cash", amount: -15 }, { type: "relationship", relationshipId: "pet", closeness: 6, support: 2 }, { type: "stat", stat: "wellbeing", amount: 4 }], lockReason: (state) => (!hasRelationship(state.relationships, "pet") ? "A pet can appear through a life event later" : state.finances.cash < 15 ? "Needs $15 cash" : null) }
 ];
 
 export function runActivity(state: GameState, activityId: string): GameState {

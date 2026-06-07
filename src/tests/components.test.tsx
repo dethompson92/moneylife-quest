@@ -60,6 +60,25 @@ describe("app components", () => {
     expect(screen.getByRole("heading", { name: /bank \/ save/i })).toBeInTheDocument();
   });
 
+  it("keeps unavailable activities out of the main activity list", async () => {
+    localStorage.clear();
+    localStorage.setItem("moneylife.skipTutorial", "true");
+    render(<App />);
+    await userEvent.click(screen.getByRole("button", { name: /start new life/i }));
+    await userEvent.click(screen.getByRole("button", { name: /choose goal/i }));
+    await userEvent.click(screen.getByRole("button", { name: /start life/i }));
+    await userEvent.click(screen.getByRole("button", { name: /activities/i }));
+
+    const available = screen.getByTestId("available-activities");
+    const comingLater = screen.getByTestId("coming-later-activities");
+    expect(available.textContent).toMatch(/talk budget with family/i);
+    expect(available.textContent).not.toMatch(/suggest a low-cost hangout/i);
+    expect(available.textContent).not.toMatch(/ask a mentor about careers/i);
+    expect(available.textContent).not.toMatch(/care for your pet/i);
+    expect(comingLater.textContent).toMatch(/suggest a low-cost hangout/i);
+    expect(comingLater.textContent).toMatch(/meet a friend through a story event first/i);
+  });
+
   it("opens the static-safe issue reporter", async () => {
     localStorage.clear();
     render(<App />);

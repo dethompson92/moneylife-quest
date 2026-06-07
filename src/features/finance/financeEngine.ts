@@ -1,6 +1,6 @@
 import { clamp, clampMoney } from "../../lib/clamp";
 import { createSeededRng, type Rng } from "../../lib/rng";
-import { updateRelationship } from "../character/supportCircle";
+import { upsertRelationship } from "../character/supportCircle";
 import type { Effect, FinanceProfile, GameState, PlayerStats } from "../../types/game";
 
 export function getInitialStats(startingMoneyKnowledge = 45): PlayerStats {
@@ -116,10 +116,23 @@ export function applyEffects(state: GameState, effects: Effect[]): GameState {
         next.flags[effect.key] = effect.value;
         break;
       case "relationship":
-        next.relationships = updateRelationship(next.relationships, effect.relationshipId, {
-          closeness: effect.closeness,
-          support: effect.support
-        });
+        {
+          const result = upsertRelationship(next.relationships, effect.relationshipId, {
+            closeness: effect.closeness,
+            support: effect.support
+          });
+          next.relationships = result.relationships;
+          if (result.created) {
+            next.log = [
+              createSystemLog(
+                next,
+                "Support Circle Update",
+                `${result.relationship.name} joined your support circle through a story choice.`
+              ),
+              ...next.log
+            ].slice(0, 80);
+          }
+        }
         break;
       case "achievement":
         if (!next.achievements.includes(effect.achievementId)) next.achievements.push(effect.achievementId);

@@ -3,6 +3,7 @@ import { createNewGame, ageUp } from "../features/game/gameActions";
 import { applyEffects, applyPassiveFinancialUpdates, calculateCreditScore, calculateNetWorth } from "../features/finance/financeEngine";
 import { resolveChoice } from "../features/events/eventEngine";
 import { scenarioEvents } from "../data/scenarioPacks/middleSchoolCore";
+import { runActivity } from "../features/activities/activityDefinitions";
 
 describe("game engine", () => {
   it("creates deterministic starting lives from a seed", () => {
@@ -11,6 +12,8 @@ describe("game engine", () => {
     expect(first.character.displayName).toBe(second.character.displayName);
     expect(first.character.avatarEmoji).toBe(second.character.avatarEmoji);
     expect(first.character.age).toBe(12);
+    expect(first.relationships).toHaveLength(1);
+    expect(first.relationships[0].role).toBe("family");
   });
 
   it("clamps stats and converts cash shortfalls into debt", () => {
@@ -44,6 +47,23 @@ describe("game engine", () => {
     const updatedFamily = next.relationships.find((relationship) => relationship.id === "family")!;
     expect(updatedFamily.closeness).toBeGreaterThan(family.closeness);
     expect(updatedFamily.support).toBeGreaterThan(family.support);
+  });
+
+  it("unlocks support circle relationships through story effects", () => {
+    const game = createNewGame({ seed: "support-unlock" });
+    expect(game.relationships.some((relationship) => relationship.id === "friend")).toBe(false);
+    const unchanged = runActivity(game, "support-friend-plan");
+    expect(unchanged).toBe(game);
+
+    const withFriend = applyEffects(game, [{ type: "relationship", relationshipId: "friend", closeness: 3 }]);
+    expect(withFriend.relationships.some((relationship) => relationship.id === "friend" && relationship.role === "friend")).toBe(true);
+    expect(withFriend.log.some((entry) => entry.title === "Support Circle Update")).toBe(true);
+
+    const afterFriendActivity = runActivity(withFriend, "support-friend-plan");
+    expect(afterFriendActivity).not.toBe(withFriend);
+    expect(afterFriendActivity.relationships.find((relationship) => relationship.id === "friend")?.closeness).toBeGreaterThan(
+      withFriend.relationships.find((relationship) => relationship.id === "friend")!.closeness
+    );
   });
 
   it("age up selects an event and resolving it updates log and saveable state", () => {

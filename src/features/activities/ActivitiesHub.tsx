@@ -1,4 +1,4 @@
-import { activities } from "./activityDefinitions";
+import { activities, type Activity } from "./activityDefinitions";
 import { ChevronRight } from "lucide-react";
 import { highlightGlossaryTerms } from "../glossary/GlossaryTooltip";
 import type { GameState } from "../../types/game";
@@ -51,7 +51,13 @@ export function ActivitiesHub({
   onRunActivity: (activityId: string) => void;
   onNavigate: (screen: ActivityShortcut["screen"]) => void;
 }) {
-  const categories = Array.from(new Set(activities.map((activity) => activity.category)));
+  const activityRows = activities.map((activity) => ({
+    activity,
+    lockReason: activity.lockReason?.(game) ?? null
+  }));
+  const availableActivities = activityRows.filter((row) => !row.lockReason);
+  const lockedActivities = activityRows.filter((row) => row.lockReason);
+  const categories = Array.from(new Set(availableActivities.map((row) => row.activity.category)));
   return (
     <section className="screen-panel list-screen">
       <div className="section-heading">
@@ -70,30 +76,60 @@ export function ActivitiesHub({
           </button>
         ))}
       </nav>
-      <div className="activity-list">
-        {categories.map((category) => (
-          <section className="activity-section" key={category}>
-            <h3>{category}</h3>
-            {activities
-              .filter((activity) => activity.category === category)
-              .map((activity) => {
-                const lockReason = activity.lockReason?.(game);
-                return (
-                  <article className={`menu-row activity-row${lockReason ? " is-locked" : ""}`} key={activity.id}>
-                    <span className="menu-row__icon" aria-hidden="true">{categoryIcons[activity.category] ?? "💡"}</span>
-                    <span className="menu-row__copy">
-                      <strong>{highlightGlossaryTerms(activity.title)}</strong>
-                      <small>{highlightGlossaryTerms(lockReason ?? activity.description)}</small>
-                    </span>
-                    <button type="button" className="menu-row__action" disabled={Boolean(lockReason)} onClick={() => onRunActivity(activity.id)} aria-label={`${lockReason ?? "Do activity"}: ${activity.title}`}>
-                      <ChevronRight aria-hidden="true" />
-                    </button>
-                  </article>
-                );
-              })}
-          </section>
-        ))}
+      <div className="activity-list" data-testid="available-activities">
+        {categories.length ? (
+          categories.map((category) => (
+            <section className="activity-section" key={category}>
+              <h3>{category}</h3>
+              {availableActivities
+                .filter((row) => row.activity.category === category)
+                .map((row) => (
+                  <AvailableActivityRow activity={row.activity} key={row.activity.id} onRunActivity={onRunActivity} />
+                ))}
+            </section>
+          ))
+        ) : (
+          <p className="empty-note">No activities are available yet. Age up to unlock more choices.</p>
+        )}
       </div>
+      {lockedActivities.length ? (
+        <details className="coming-later-activities">
+          <summary>Coming Later ({lockedActivities.length})</summary>
+          <p>These actions can unlock when your money, relationships, or life stage changes.</p>
+          <div className="activity-list" data-testid="coming-later-activities">
+            {lockedActivities.map(({ activity, lockReason }) => (
+              <article className="menu-row activity-row is-locked" key={activity.id}>
+                <span className="menu-row__icon" aria-hidden="true">{categoryIcons[activity.category] ?? "💡"}</span>
+                <span className="menu-row__copy">
+                  <strong>{highlightGlossaryTerms(activity.title)}</strong>
+                  <small>{highlightGlossaryTerms(lockReason ?? "Available later")}</small>
+                </span>
+              </article>
+            ))}
+          </div>
+        </details>
+      ) : null}
     </section>
+  );
+}
+
+function AvailableActivityRow({
+  activity,
+  onRunActivity
+}: {
+  activity: Activity;
+  onRunActivity: (activityId: string) => void;
+}) {
+  return (
+    <article className="menu-row activity-row" key={activity.id}>
+      <span className="menu-row__icon" aria-hidden="true">{categoryIcons[activity.category] ?? "💡"}</span>
+      <span className="menu-row__copy">
+        <strong>{highlightGlossaryTerms(activity.title)}</strong>
+        <small>{highlightGlossaryTerms(activity.description)}</small>
+      </span>
+      <button type="button" className="menu-row__action" onClick={() => onRunActivity(activity.id)} aria-label={`Do activity: ${activity.title}`}>
+        <ChevronRight aria-hidden="true" />
+      </button>
+    </article>
   );
 }
