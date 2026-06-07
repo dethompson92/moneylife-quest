@@ -12,7 +12,7 @@ export type ScoreRange = {
 export type SkillScoreGuide = {
   key: SkillScoreKey;
   label: string;
-  studentName: string;
+  studentLabel: string;
   ranges: ScoreRange[];
 };
 
@@ -28,7 +28,7 @@ export const skillScoreGuides: SkillScoreGuide[] = [
   {
     key: "moneyKnowledge",
     label: "Money Know-How",
-    studentName: "financial vocabulary and decision skill",
+    studentLabel: "financial vocabulary and decision skill",
     ranges: [
       { ...standardRanges.early, label: "Collecting basics", meaning: "Money words, totals, and tradeoffs are still new. Every definition and small comparison helps." },
       { ...standardRanges.growing, label: "Recognizing choices", meaning: "You recognize common choices and are starting to compare prices, fees, risks, and timing." },
@@ -40,7 +40,7 @@ export const skillScoreGuides: SkillScoreGuide[] = [
   {
     key: "wellbeing",
     label: "Wellbeing",
-    studentName: "money stress and life balance",
+    studentLabel: "money stress and life balance",
     ranges: [
       { ...standardRanges.early, label: "Stretched thin", meaning: "Money pressure is high. Rest, support, and recovery routes matter more than trying to be perfect." },
       { ...standardRanges.growing, label: "Pressure building", meaning: "Some pressure is building. Small repairs, reminders, or help from the support circle can steady the run." },
@@ -52,7 +52,7 @@ export const skillScoreGuides: SkillScoreGuide[] = [
   {
     key: "trustSafety",
     label: "Safety",
-    studentName: "scam awareness and protection habits",
+    studentLabel: "scam awareness and protection habits",
     ranges: [
       { ...standardRanges.early, label: "Open risk", meaning: "Lots of risk is open. Start with pause-and-verify habits before sending money or sharing information." },
       { ...standardRanges.growing, label: "Gaps remain", meaning: "Some safety habits exist, but pressure, unknown links, and payment shortcuts can still create gaps." },
@@ -64,7 +64,7 @@ export const skillScoreGuides: SkillScoreGuide[] = [
   {
     key: "discipline",
     label: "Discipline",
-    studentName: "follow-through with plans and habits",
+    studentLabel: "follow-through with plans and habits",
     ranges: [
       { ...standardRanges.early, label: "Needs systems", meaning: "Plans are hard to keep right now. Use reminders, alerts, and small routines instead of shame." },
       { ...standardRanges.growing, label: "Some follow-through", meaning: "You follow through sometimes, especially when reminders or clear deadlines are in place." },
@@ -76,7 +76,7 @@ export const skillScoreGuides: SkillScoreGuide[] = [
   {
     key: "opportunity",
     label: "Opportunity",
-    studentName: "future options from school, work, and support",
+    studentLabel: "future options from school, work, and support",
     ranges: [
       { ...standardRanges.early, label: "Few routes open", meaning: "Few routes are open now, but skills, support, records, and planning can change that." },
       { ...standardRanges.growing, label: "Options forming", meaning: "A few options are forming, though timing, cost, confidence, or preparation may still limit them." },

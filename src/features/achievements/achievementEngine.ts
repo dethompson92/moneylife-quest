@@ -54,6 +54,7 @@ export function checkAchievements(state: GameState): GameState {
   if (next.flags.priceChecklist === true) add("smart-shopper-guide");
   if (next.flags.bankAlerts === true || next.flags.autoSaveOn === true) add("alert-setter");
   if (next.flags.autoSaveOn === true || hasFlag("autoSaves", "usesPaycheckSplit")) add("auto-pilot-saver");
+  if (next.flags.autoSaveOn === true || hasFlag("autoSaves", "usesPaycheckSplit") || (next.finances.savings >= 100 && next.stats.discipline >= 60)) add("pay-yourself-first");
   if (next.flags.creditPlan === true) add("apr-aware");
   if (next.flags.investingPlan === true) add("long-game-investor");
   if (next.flags.securityChecklist === true) add("security-shield");
@@ -64,6 +65,7 @@ export function checkAchievements(state: GameState): GameState {
   if (next.flags.aidPlan === true || hasFlag("decodedAidOffer", "decodesAidOffer")) add("aid-decoder");
   if (next.flags.taxChecklist === true) add("tax-translator");
   if (next.flags.businessBudget === true) add("entrepreneurial-thinker");
+  if (next.flags.businessBudget === true || hasFlag("keepsIncomeLedger", "pricesPetCareWork", "testsSmallBusinessIdea")) add("young-entrepreneur");
   if (next.flags.businessBudget === true || hasFlag("keepsIncomeLedger", "usesInvoices", "pricesPetCareWork")) add("knows-the-profit");
   if (hasFlag("keepsIncomeLedger", "tracksReimbursements", "usesInvoices", "usesTaxCalendar") || next.stats.discipline >= 72) add("record-keeper");
   if (next.finances.debtTotal < 500 && next.stats.opportunity >= 55) add("smaller-and-smarter");

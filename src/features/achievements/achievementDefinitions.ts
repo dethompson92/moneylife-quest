@@ -3,8 +3,8 @@ import type { AchievementDefinition } from "../../types/game";
 export const achievements: AchievementDefinition[] = [
   { id: "first-budget", title: "First Budget", description: "Created or adjusted a budget plan." },
   { id: "saved-100", title: "Saved Your First $100", description: "Built savings past $100." },
-  { id: "emergency-started", title: "Emergency Fund Started", description: "Set aside money for surprises." },
-  { id: "emergency-fund-started", title: "Emergency Fund Started", description: "Calculated and started a future emergency cushion." },
+  { id: "emergency-started", title: "Starter Emergency Fund", description: "Set aside money for surprises." },
+  { id: "emergency-fund-started", title: "Emergency Fund Math", description: "Calculated and started a future emergency cushion." },
   { id: "scam-spotted", title: "Scam Spotted", description: "Avoided a suspicious message or offer." },
   { id: "paid-in-full", title: "Paid in Full", description: "Handled a credit balance responsibly." },
   { id: "credit-climber", title: "Credit Climber", description: "Improved your credit score." },

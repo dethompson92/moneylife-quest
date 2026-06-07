@@ -24,7 +24,7 @@ export function ScoreGuidePanel({ stats }: { stats: PlayerStats }) {
                 </span>
               </summary>
               <p>{highlightGlossaryTerms(currentRange.meaning)}</p>
-              <small>{highlightGlossaryTerms(guide.studentName)}</small>
+              <small>{highlightGlossaryTerms(guide.studentLabel)}</small>
               <ol className="score-guide__ranges" aria-label={`${guide.label} score ranges`}>
                 {guide.ranges.map((range) => (
                   <li key={`${guide.key}-${range.min}`}>
