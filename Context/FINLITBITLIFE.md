@@ -18922,3 +18922,33 @@ A run now boots with loadOrCreate(), which either rebuilds the exact saved GameS
 A few honest notes to wire up cleanly: the RNG resume replays draws (fine at this scale, swap to storing the raw accumulator if you ever go high-volume); saveGame can fail on QuotaExceededError and returns { ok: false, reason } rather than throwing, so your UI should surface a gentle "couldn't save" toast; and remember to add accountExposed / sentToWrongPerson to the GameFlag union from the Verify-First chain before this all compiles.
 
 Want me to (1) write the seeded-RNG-aware "compare outcomes" teacher view that runs the same chain under two seeds and diffs the results, (2) build the React hook (useGameSession) that ties loadOrCreate, ChainRunner, autosave-on-choice, and the "clear my data" button together, or (3) draft a save-migration example (v1→v2) end-to-end so Codex has a concrete template when the schema changes?
+
+---
+
+## Context Addendum: Transcript Meta-Progression Integration
+
+Source reviewed: `pasted-text.txt` from the June 2026 MoneyLife Quest chat transcript.
+
+Curated integration decision: the transcript adds the most new value through a meta-progression layer, not by asking for another plain scenario dump. The app should help students see the pattern of their completed run: what kind of financial decision-maker they became, what values their choices protected, which skills they practiced, and what kind of replay would stretch a different skill.
+
+Student-facing additions to prioritize:
+
+- Financial Identity: derive a local-only profile such as Planner, Explorer, Helper, Investigator, Builder, Balancer, Protector, or Reflector from gameplay choices and outcomes.
+- Values Compass: summarize whether a run protected security, growth, freedom, community, learning, balance, creativity, or service.
+- Ending Ribbons: give a short final title for the run, similar to a life-sim ending pattern, while avoiding shame or wealth-equals-worth messaging.
+- Mastery Maps: show topic-based skill progress across consumer skills, saving, credit, investing, digital safety, pathways, and resilience.
+- Financial Museum: keep a small local-only portfolio of completed run cards in the browser so a student can compare their own replays without accounts, leaderboards, analytics, or student identifiers.
+
+Design and ethics guardrails:
+
+- Keep the feature local-only and private to the browser.
+- Do not rank students, collect names, or publish class results.
+- Use this layer to reward reflection, recovery, and skill variety, not just high net worth.
+- Keep reminders that net worth is a math and planning tool, not a measure of a person's worth.
+- Teacher-facing uses can discuss patterns and tradeoffs, but should not expose student save data or require a backend.
+
+Implementation status note:
+
+- The first implementation slice should derive progression from the existing `GameState` instead of adding sensitive identity fields.
+- Store only safe run-card summaries such as archetype title, ribbons, top values, strongest stats, key achievements, biggest lesson, and next-run suggestion.
+- Continue to use the existing scenario and glossary import pipeline for scenario content; this addendum is design guidance rather than a scenario batch.

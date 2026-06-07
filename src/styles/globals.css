@@ -1827,6 +1827,122 @@ textarea {
   resize: vertical;
 }
 
+.progression-card {
+  display: grid;
+  gap: 12px;
+  margin: 14px 0;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.progression-card small {
+  color: var(--muted);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.progression-card h3,
+.progression-card p {
+  margin: 0;
+}
+
+.progression-card--identity {
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 0.8fr);
+  align-items: center;
+  border-color: rgba(15, 157, 138, 0.28);
+  background:
+    linear-gradient(135deg, rgba(15, 157, 138, 0.1), rgba(248, 191, 22, 0.08)),
+    var(--surface);
+}
+
+.progression-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.identity-score-list,
+.value-stack,
+.ribbon-list,
+.museum-card-list {
+  display: grid;
+  gap: 10px;
+}
+
+.mini-progress {
+  display: grid;
+  grid-template-columns: minmax(90px, 1fr) minmax(90px, 1.2fr) auto;
+  gap: 10px;
+  align-items: center;
+  color: var(--navy);
+  font-weight: 800;
+}
+
+.mini-progress__track {
+  height: 12px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #d9e4ec;
+}
+
+.mini-progress__track span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--teal), var(--age-green));
+}
+
+.ribbon-list article,
+.museum-card {
+  display: grid;
+  gap: 4px;
+  padding: 12px;
+  border: 1px solid rgba(11, 31, 58, 0.1);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+}
+
+.ribbon-list span,
+.museum-card span,
+.museum-card small {
+  color: var(--muted);
+}
+
+.mastery-map-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 12px;
+}
+
+.mastery-map {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+}
+
+.mastery-map > div:first-child {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.mastery-map.is-complete {
+  border-color: rgba(24, 120, 79, 0.35);
+  background: #edf9f2;
+}
+
+.museum-card-list {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
 .reflection-prompts {
   margin: 18px 0;
 }
@@ -2304,6 +2420,15 @@ textarea {
   .summary-stats {
     grid-template-columns: 1fr;
   }
+
+  .progression-card--identity,
+  .progression-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mini-progress {
+    grid-template-columns: minmax(82px, 0.9fr) minmax(80px, 1fr) auto;
+  }
 }
 
 @media (max-width: 560px) {
@@ -2329,6 +2454,18 @@ textarea {
   .choice-card__number {
     width: 34px;
     height: 34px;
+  }
+
+  .progression-card {
+    padding: 14px;
+  }
+
+  .mini-progress {
+    grid-template-columns: 1fr auto;
+  }
+
+  .mini-progress__track {
+    grid-column: 1 / -1;
   }
 
   .choice-card__effects {

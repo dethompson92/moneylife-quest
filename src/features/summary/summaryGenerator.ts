@@ -1,6 +1,7 @@
 import { getAchievement } from "../achievements/achievementDefinitions";
 import { getGoal } from "../goals/goalDefinitions";
 import { calculateNetWorth } from "../finance/financeEngine";
+import { buildProgressionSummary } from "../progression/progressionEngine";
 import type { GameState } from "../../types/game";
 
 export function generateSummary(state: GameState): string {
@@ -26,11 +27,23 @@ export function generateSummary(state: GameState): string {
   const creditBand = creditBandLabel(state.stats.creditScore);
   const biggestWin = pickBiggestWin(state);
   const biggestMistake = pickBiggestMistake(state);
+  const progression = buildProgressionSummary(state);
+  const values = progression.topValues.map((value) => value.label).join(", ");
+  const ribbons = progression.ribbons.map((ribbon) => ribbon.title).join(", ");
+  const masteryLine = progression.masteryMaps
+    .filter((map) => map.completedCount > 0)
+    .slice(0, 4)
+    .map((map) => `${map.title}: ${map.completedCount}/${map.totalCount}`)
+    .join("; ");
 
   return [
     `MoneyLife Quest Reflection`,
     `Character: ${state.character.displayName}, age ${state.character.age}`,
     goalLine,
+    `Financial identity: ${progression.archetype.title}`,
+    `Top values: ${values || "Still emerging"}`,
+    `Ribbons: ${ribbons || "Still building"}`,
+    `Mastery map progress: ${masteryLine || "Just getting started"}`,
     `Net worth: $${netWorth.toLocaleString("en-US")}`,
     `Savings: $${Math.round(state.finances.savings).toLocaleString("en-US")}`,
     `Debt: $${Math.round(state.finances.debtTotal).toLocaleString("en-US")}`,
@@ -40,6 +53,8 @@ export function generateSummary(state: GameState): string {
     `Badges: ${badges || "Still building"}`,
     `Biggest win: ${biggestWin}`,
     `Biggest mistake or hardest tradeoff: ${biggestMistake}`,
+    `Next-run suggestion: ${progression.nextRunSuggestion}`,
+    `Reminder: net worth is a useful number, but it is not self-worth.`,
     `One money lesson I can explain: choices have tradeoffs, and a plan gives future me more options.`,
     `Reflection code: ${encodeReflectionCode(state)}`
   ].join("\n");
