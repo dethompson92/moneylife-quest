@@ -4,6 +4,7 @@ import { applyEffects, applyPassiveFinancialUpdates, calculateCreditScore, calcu
 import { resolveChoice } from "../features/events/eventEngine";
 import { scenarioEvents } from "../data/scenarioPacks/middleSchoolCore";
 import { runActivity } from "../features/activities/activityDefinitions";
+import { getGoalHookNote } from "../features/goals/goalHookNote";
 
 describe("game engine", () => {
   it("creates deterministic starting lives from a seed", () => {
@@ -80,6 +81,20 @@ describe("game engine", () => {
     expect(resolved.pendingEventId).toBeUndefined();
     expect(resolved.log[0].title).toBe(event.title);
     expect(resolved.completedEventIds).toContain(event.id);
+  });
+
+  it("explains why an event matters to the active goal", () => {
+    const game = createNewGame({ seed: "goal-hook", goalId: "emergency-fund-hero" });
+    const savingEvent = scenarioEvents.find((event) => event.topics.includes("saving"))!;
+    const hook = getGoalHookNote(game, savingEvent);
+    expect(hook.title).toBe("Goal connection");
+    expect(hook.body).toContain("Emergency Fund Hero");
+    expect(hook.body.toLowerCase()).toContain("saving");
+
+    const openLife = createNewGame({ seed: "goal-hook-open", goalId: "open-life" });
+    const openHook = getGoalHookNote(openLife, savingEvent);
+    expect(openHook.title).toBe("Open Life connection");
+    expect(openHook.body).toContain("private goal");
   });
 
   it("applies compounding habit flags during passive updates", () => {

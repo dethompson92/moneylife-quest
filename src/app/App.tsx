@@ -251,7 +251,7 @@ export function App() {
   return (
     <AppShell screen={screen} game={game} onNavigate={navigate} onAgeUp={handleAgeUp}>
       {renderScreen()}
-      <IssueReporter game={game} onCopy={copyText} />
+      <IssueReporter game={game} onCopy={copyText} suppressed={Boolean(showWalkthrough || game?.pendingEventId)} />
       {toast ? <div className="toast" role="status">{toast}</div> : null}
       {showWalkthrough && (
         <HowToPlayModal

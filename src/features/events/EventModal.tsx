@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Calculator } from "lucide-react";
+import { Calculator, Compass, Target } from "lucide-react";
 import { scenarioEvents } from "../../data/scenarioPacks/middleSchoolCore";
 import { ChoiceCard } from "../../components/ui/ChoiceCard";
 import { Modal } from "../../components/ui/Modal";
 import { highlightGlossaryTerms } from "../glossary/GlossaryTooltip";
+import { getGoalHookNote } from "../goals/goalHookNote";
 import type { GameState } from "../../types/game";
 
 function findPercentages(text: string): number[] {
@@ -25,6 +26,7 @@ export function EventModal({
   const [mathTotal, setMathTotal] = useState(100);
   const [selectedPercentIndex, setSelectedPercentIndex] = useState(0);
   const [customPercent, setCustomPercent] = useState("");
+  const goalHook = getGoalHookNote(game, event);
 
   const allTexts = [
     event.title,
@@ -43,6 +45,13 @@ export function EventModal({
         <div className="event-modal__topic">{event.topics[0].replace(/-/g, " ")}</div>
         <h3>{highlightGlossaryTerms(event.title)}</h3>
         <p>{highlightGlossaryTerms(event.prompt)}</p>
+        <aside className={`goal-hook-note goal-hook-note--${goalHook.tone}`} aria-label="Goal connection">
+          {goalHook.tone === "open" ? <Compass aria-hidden="true" /> : <Target aria-hidden="true" />}
+          <span>
+            <strong>{highlightGlossaryTerms(goalHook.title)}</strong>
+            <small>{highlightGlossaryTerms(goalHook.body)}</small>
+          </span>
+        </aside>
         <p className="reflection-cue"><strong>Reflect:</strong> {highlightGlossaryTerms(event.reflectionPrompt)}</p>
 
         {percentages.length > 0 && (

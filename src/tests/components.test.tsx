@@ -26,11 +26,14 @@ describe("app components", () => {
     expect(screen.getByText(/score guide and support circle/i)).toBeInTheDocument();
     await userEvent.click(screen.getByRole("button", { name: /age up/i }));
     expect(screen.getByRole("dialog", { name: /new event/i })).toBeInTheDocument();
+    expect(screen.getByLabelText(/goal connection/i)).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /report a bug or issue/i })).not.toBeInTheDocument();
     expect(screen.getAllByText(/effects revealed after you choose/i).length).toBeGreaterThan(0);
     const firstAvailableChoice = container.querySelector<HTMLButtonElement>(".choice-card:not(:disabled)");
     expect(firstAvailableChoice).not.toBeNull();
     await userEvent.click(firstAvailableChoice!);
     expect(container.querySelector('[aria-label="Revealed choice effects"]')).not.toBeNull();
+    expect(screen.getByRole("button", { name: /report a bug or issue/i })).toBeInTheDocument();
   });
 
   it("allows a student to start Open Life free play with no preset checklist", async () => {

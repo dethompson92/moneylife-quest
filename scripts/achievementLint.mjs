@@ -27,8 +27,11 @@ const sourceFiles = walkFiles("src", [".ts", ".tsx"]).filter((file) => !file.end
 const referenced = new Set();
 for (const file of sourceFiles) {
   const text = readFileSync(file, "utf8");
+  const isAchievementEngine = file.endsWith("achievementEngine.ts");
   for (const id of extractMatches(text, /achievementId["']?\s*:\s*["']([^"']+)["']/g)) referenced.add(id);
-  for (const id of extractMatches(text, /\badd\(\s*["']([^"']+)["']\s*\)/g)) referenced.add(id);
+  if (isAchievementEngine) {
+    for (const id of extractMatches(text, /\badd\(\s*["']([^"']+)["']\s*\)/g)) referenced.add(id);
+  }
   for (const idsBlock of extractMatches(text, /achievementIds\s*:\s*\[([^\]]+)\]/g)) {
     for (const id of extractMatches(idsBlock, /["']([^"']+)["']/g)) referenced.add(id);
   }

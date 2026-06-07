@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Bug, Clipboard, Download, Save, X } from "lucide-react";
 import { Button } from "../../components/ui/Button";
 import { saveDebugReport } from "../../lib/storage";
@@ -6,7 +6,7 @@ import type { GameState } from "../../types/game";
 import type { IssueDraft, IssueReport } from "../../types/reporting";
 import { buildIssueReport, formatIssue, getDebugReportEndpoint, sendReportToEndpoint } from "./reportingUtils";
 
-export function IssueReporter({ game, onCopy }: { game: GameState | null; onCopy: (text: string) => void }) {
+export function IssueReporter({ game, onCopy, suppressed = false }: { game: GameState | null; onCopy: (text: string) => void; suppressed?: boolean }) {
   const [open, setOpen] = useState(false);
   const [copiedReport, setCopiedReport] = useState<string | null>(null);
   const [savedNotice, setSavedNotice] = useState<string | null>(null);
@@ -23,6 +23,10 @@ export function IssueReporter({ game, onCopy }: { game: GameState | null; onCopy
   const report = useMemo(() => buildIssueReport(draft, game), [draft, game]);
   const reportText = useMemo(() => formatIssue(report), [report]);
   const canSubmit = draft.description.trim().length > 0;
+
+  useEffect(() => {
+    if (suppressed) setOpen(false);
+  }, [suppressed]);
 
   function copyReport() {
     setCopiedReport(reportText);
@@ -94,10 +98,12 @@ export function IssueReporter({ game, onCopy }: { game: GameState | null; onCopy
 
   return (
     <>
-      <button className="issue-launcher" type="button" onClick={() => setOpen(true)} aria-label="Report a bug or issue">
-        <Bug aria-hidden="true" />
-        <span>Bug or issue</span>
-      </button>
+      {!suppressed ? (
+        <button className="issue-launcher" type="button" onClick={() => setOpen(true)} aria-label="Report a bug or issue">
+          <Bug aria-hidden="true" />
+          <span>Bug or issue</span>
+        </button>
+      ) : null}
       {open ? (
         <div className="issue-panel" role="dialog" aria-modal="false" aria-label="Bug or issue reporter">
           <div className="issue-panel__header">
