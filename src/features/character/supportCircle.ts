@@ -47,14 +47,13 @@ const relationshipDefaults: Record<
 };
 
 export function createSupportCircle(rng: Rng): Relationship[] {
-  return [
-    {
-      ...relationshipDefaults.family,
-      name: rng.pick(familyNames),
-      closeness: rng.nextInt(58, 78),
-      support: rng.nextInt(55, 75)
-    }
-  ];
+  const firstName = rng.pick(familyNames);
+  const relationships = [createFamilyRelationship("family", firstName, rng)];
+  const startsWithSecondGuardian = rng.next() < 0.45;
+  if (startsWithSecondGuardian) {
+    relationships.push(createFamilyRelationship("family-guardian-2", pickDifferentFamilyName(firstName, rng), rng));
+  }
+  return relationships;
 }
 
 export function hasRelationship(relationships: Relationship[], relationshipId: string): boolean {
@@ -110,8 +109,23 @@ function createDefaultRelationship(
   };
 }
 
+function createFamilyRelationship(id: string, name: string, rng: Rng): Relationship {
+  return {
+    ...relationshipDefaults.family,
+    id,
+    name,
+    closeness: rng.nextInt(58, 78),
+    support: rng.nextInt(55, 75)
+  };
+}
+
+function pickDifferentFamilyName(existingName: string, rng: Rng): string {
+  const options = familyNames.filter((name) => name !== existingName);
+  return rng.pick(options.length ? options : familyNames);
+}
+
 function roleForRelationshipId(relationshipId: string): RelationshipRole {
-  if (relationshipId === "family" || relationshipId.includes("guardian") || relationshipId.includes("caregiver")) return "family";
+  if (relationshipId === "family" || relationshipId.includes("family") || relationshipId.includes("guardian") || relationshipId.includes("caregiver")) return "family";
   if (relationshipId === "mentor" || relationshipId.includes("mentor") || relationshipId.includes("teacher") || relationshipId.includes("coach")) return "mentor";
   if (relationshipId === "pet" || relationshipId.includes("pet")) return "pet";
   return "friend";

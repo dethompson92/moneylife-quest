@@ -36,7 +36,7 @@ export function loadGame(): StorageResult<GameState> {
       parsed.relationships = createSupportCircle(createSeededRng(parsed.seed ?? parsed.id));
     } else if (parsed.turn === 0 && !parsed.completedEventIds?.length) {
       const familyOnly = parsed.relationships.filter((relationship) => relationship.role === "family");
-      parsed.relationships = familyOnly.length ? familyOnly.slice(0, 1) : createSupportCircle(createSeededRng(parsed.seed ?? parsed.id));
+      parsed.relationships = familyOnly.length ? familyOnly.slice(0, 2) : createSupportCircle(createSeededRng(parsed.seed ?? parsed.id));
     }
     if (!parsed.financeHistory) {
       parsed.financeHistory = [];

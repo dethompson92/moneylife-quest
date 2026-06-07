@@ -12,8 +12,13 @@ describe("game engine", () => {
     expect(first.character.displayName).toBe(second.character.displayName);
     expect(first.character.avatarEmoji).toBe(second.character.avatarEmoji);
     expect(first.character.age).toBe(12);
-    expect(first.relationships).toHaveLength(1);
-    expect(first.relationships[0].role).toBe("family");
+    expect(first.relationships.length).toBeGreaterThanOrEqual(1);
+    expect(first.relationships.length).toBeLessThanOrEqual(2);
+    expect(first.relationships.every((relationship) => relationship.role === "family")).toBe(true);
+    expect(first.relationships.map((relationship) => relationship.id)).toContain("family");
+    expect(first.relationships).toEqual(second.relationships);
+    const starterCounts = Array.from({ length: 16 }, (_, index) => createNewGame({ seed: `guardian-count-${index}` }).relationships.length);
+    expect(starterCounts).toContain(2);
   });
 
   it("clamps stats and converts cash shortfalls into debt", () => {
