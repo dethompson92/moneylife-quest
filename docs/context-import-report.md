@@ -1,6 +1,6 @@
 # FINLITBITLIFE Context Import Report
 Generated from: `../Context/FINLITBITLIFE.md`
-Context lines scanned: 13237
+Context lines scanned: 18925
 Playable scenarios imported: 594
 Glossary terms imported: 677
 Skipped scenario blocks: 45

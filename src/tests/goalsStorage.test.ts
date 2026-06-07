@@ -1,6 +1,8 @@
 import { describe, expect, it, beforeEach } from "vitest";
 import { createNewGame, checkGoalProgress } from "../features/game/gameActions";
 import { checkAchievements } from "../features/achievements/achievementEngine";
+import { achievements } from "../features/achievements/achievementDefinitions";
+import { goals } from "../features/goals/goalDefinitions";
 import { generateSummary } from "../features/summary/summaryGenerator";
 import { DEBUG_REPORTS_KEY, clearDebugReports, clearGame, loadDebugReports, loadGame, resetGame, SAVE_KEY, saveDebugReport, saveGame } from "../lib/storage";
 
@@ -49,6 +51,38 @@ describe("goals, achievements, and storage", () => {
     expect(progressed.flags.goalCompleted).not.toBe(true);
     expect(summary).toContain("Play style: Open Life - Self-directed playthrough");
     expect(summary).not.toContain("0/0 objectives complete");
+  });
+
+  it("integrates merged-context goals and behavior badges into playable progress", () => {
+    expect(goals.map((goal) => goal.id)).toEqual(expect.arrayContaining([
+      "transportation-planner",
+      "first-apartment-planner",
+      "support-circle-builder",
+      "math-in-real-life-master",
+      "recovery-comeback"
+    ]));
+    expect(achievements.map((achievement) => achievement.id)).toEqual(expect.arrayContaining([
+      "verified-first",
+      "read-the-total",
+      "did-the-math",
+      "asked-for-help",
+      "two-way-support"
+    ]));
+
+    const game = createNewGame({ goalId: "support-circle-builder" });
+    const supported = {
+      ...game,
+      relationships: [
+        ...game.relationships,
+        { id: "friend", name: "Study Friend", role: "friend" as const, icon: "🤝", closeness: 55, support: 62, note: "Unlocked through a school choice." },
+        { id: "mentor", name: "Career Mentor", role: "mentor" as const, icon: "🧭", closeness: 52, support: 64, note: "Unlocked through a future-planning choice." }
+      ],
+      flags: { ...game.flags, asksProgramSupport: true, usesSharedPlanning: true },
+      stats: { ...game.stats, moneyKnowledge: 82, trustSafety: 78, discipline: 76 }
+    };
+    const progressed = checkGoalProgress(checkAchievements(supported));
+    expect(progressed.achievements).toEqual(expect.arrayContaining(["asked-for-help", "two-way-support", "did-the-math", "verified-first"]));
+    expect(progressed.goalObjectives.every((objective) => objective.complete)).toBe(true);
   });
 
   it("saves, loads, clears, and handles corrupt save data", () => {
