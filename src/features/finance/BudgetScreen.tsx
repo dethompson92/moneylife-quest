@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { ArrowLeft } from "lucide-react";
 import { Button } from "../../components/ui/Button";
 import { Modal } from "../../components/ui/Modal";
 import { formatMoney } from "../../lib/formatMoney";
@@ -92,12 +93,14 @@ export function BudgetScreen({
   game,
   onPreset,
   onSaveCustomBudget,
-  onNavigate
+  onNavigate,
+  onBack
 }: {
   game: GameState;
   onPreset: (preset: "balanced" | "save" | "fun") => void;
   onSaveCustomBudget: (budget: Budget) => void;
   onNavigate: (screen: "bank" | "credit" | "invest" | "protect" | "networth") => void;
+  onBack: () => void;
 }) {
   const budget = game.finances.budget;
   const netIncome = Math.max(0, game.finances.annualIncome - game.finances.annualTaxes);
@@ -161,9 +164,12 @@ export function BudgetScreen({
     <section className="screen-panel" style={{ position: "relative", overflow: "hidden" }}>
       <ConfettiCanvas active={confettiActive} />
       
-      <div className="section-heading">
-        <h2>{highlightGlossaryTerms("Money Plan")}</h2>
-        <p>{highlightGlossaryTerms("Use simple percentages so the numbers stay readable in class.")}</p>
+      <div className="section-heading section-heading--split">
+        <div>
+          <h2>{highlightGlossaryTerms("Money Plan")}</h2>
+          <p>{highlightGlossaryTerms("Use simple percentages so the numbers stay readable in class.")}</p>
+        </div>
+        <Button variant="secondary" icon={<ArrowLeft aria-hidden="true" />} onClick={onBack}>Back to Activities</Button>
       </div>
       <div className="money-tabs">
         <Button variant="secondary" onClick={() => onNavigate("bank")}>Bank / Save</Button>

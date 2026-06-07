@@ -1,16 +1,21 @@
+import { ArrowLeft } from "lucide-react";
 import { Badge } from "../../components/ui/Badge";
+import { Button } from "../../components/ui/Button";
 import { achievements } from "../achievements/achievementDefinitions";
 import { getGoal } from "./goalDefinitions";
 import { highlightGlossaryTerms } from "../glossary/GlossaryTooltip";
 import type { GameState } from "../../types/game";
 
-export function GoalsScreen({ game }: { game: GameState }) {
+export function GoalsScreen({ game, onBack }: { game: GameState; onBack?: () => void }) {
   const goal = getGoal(game.activeGoalId);
   return (
     <section className="screen-panel">
-      <div className="section-heading">
-        <h2>{highlightGlossaryTerms(goal.openEnded ? "Open Life / Achievements" : "Goals / Achievements")}</h2>
-        <p>{highlightGlossaryTerms(goal.description)}</p>
+      <div className="section-heading section-heading--split">
+        <div>
+          <h2>{highlightGlossaryTerms(goal.openEnded ? "Open Life / Achievements" : "Goals / Achievements")}</h2>
+          <p>{highlightGlossaryTerms(goal.description)}</p>
+        </div>
+        {onBack ? <Button variant="secondary" icon={<ArrowLeft aria-hidden="true" />} onClick={onBack}>Back to Activities</Button> : null}
       </div>
       {goal.openEnded ? (
         <div className="objective-list objective-list--open">

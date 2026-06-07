@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { TrendingUp, ShieldCheck, PiggyBank, AlertCircle, DollarSign, Info } from "lucide-react";
+import { ArrowLeft, TrendingUp, ShieldCheck, PiggyBank, AlertCircle, DollarSign, Info } from "lucide-react";
 import { Button } from "../../components/ui/Button";
 import { formatMoney } from "../../lib/formatMoney";
 import { highlightGlossaryTerms } from "../glossary/GlossaryTooltip";
@@ -7,10 +7,12 @@ import type { GameState } from "../../types/game";
 
 export function NetWorthScreen({
   game,
-  onNavigate
+  onNavigate,
+  onBack
 }: {
   game: GameState;
   onNavigate: (screen: "money" | "bank" | "credit" | "invest" | "protect") => void;
+  onBack: () => void;
 }) {
   const history = game.financeHistory || [];
   const currentSavings = game.finances.savings;
@@ -93,9 +95,12 @@ export function NetWorthScreen({
 
   return (
     <section className="screen-panel net-worth-screen" style={{ position: "relative" }}>
-      <div className="section-heading">
-        <h2>{highlightGlossaryTerms("Net Worth & Trends")}</h2>
-        <p>{highlightGlossaryTerms("Monitor your assets minus liabilities over the years to track strategy impact.")}</p>
+      <div className="section-heading section-heading--split">
+        <div>
+          <h2>{highlightGlossaryTerms("Net Worth & Trends")}</h2>
+          <p>{highlightGlossaryTerms("Monitor your assets minus liabilities over the years to track strategy impact.")}</p>
+        </div>
+        <Button variant="secondary" icon={<ArrowLeft aria-hidden="true" />} onClick={onBack}>Back to Activities</Button>
       </div>
 
       <div className="money-tabs">

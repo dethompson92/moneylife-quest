@@ -1,13 +1,17 @@
+import { ArrowLeft } from "lucide-react";
 import { Button } from "../../components/ui/Button";
 import { highlightGlossaryTerms } from "../glossary/GlossaryTooltip";
 import type { GameState } from "../../types/game";
 
-export function ProtectScreen({ game, onAction }: { game: GameState; onAction: (activityId: string) => void }) {
+export function ProtectScreen({ game, onAction, onBack }: { game: GameState; onAction: (activityId: string) => void; onBack: () => void }) {
   return (
     <section className="screen-panel">
-      <div className="section-heading">
-        <h2>Protect Yourself</h2>
-        <p>{highlightGlossaryTerms("Practice safer habits around accounts, passwords, scams, and insurance risk.")}</p>
+      <div className="section-heading section-heading--split">
+        <div>
+          <h2>Protect Yourself</h2>
+          <p>{highlightGlossaryTerms("Practice safer habits around accounts, passwords, scams, and insurance risk.")}</p>
+        </div>
+        <Button variant="secondary" icon={<ArrowLeft aria-hidden="true" />} onClick={onBack}>Back to Activities</Button>
       </div>
       <div className="detail-grid">
         <article><small>{highlightGlossaryTerms("Safety")}</small><strong>{game.stats.trustSafety}/100</strong></article>

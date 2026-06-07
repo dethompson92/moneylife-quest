@@ -233,13 +233,13 @@ export function App() {
     if (!game) return <HomeScreen hasSave={false} saveError={null} classMode={false} onStart={() => setScreen("setup")} onContinue={() => undefined} onTeacher={() => setScreen("teacher")} onPrivacy={() => setScreen("privacy")} onClearBadSave={resetGame} onWalkthrough={() => setShowWalkthrough(true)} />;
     if (screen === "summary") return <SummaryScreen game={game} onCopy={copyText} onRestart={resetGame} />;
     if (screen === "activities") return <ActivitiesHub game={game} onRunActivity={(id) => setGame(runActivity(game, id))} onNavigate={setScreen} />;
-    if (screen === "money") return <BudgetScreen game={game} onPreset={runBudgetPreset} onSaveCustomBudget={updateBudget} onNavigate={setScreen} />;
-    if (screen === "bank") return <BankScreen game={game} onAction={(id) => setGame(runActivity(game, id))} />;
-    if (screen === "credit") return <CreditScreen game={game} onAction={(id) => setGame(runActivity(game, id))} />;
-    if (screen === "invest") return <InvestScreen game={game} onAction={(id) => setGame(runActivity(game, id))} />;
-    if (screen === "protect") return <ProtectScreen game={game} onAction={(id) => setGame(runActivity(game, id))} />;
-    if (screen === "networth") return <NetWorthScreen game={game} onNavigate={setScreen} />;
-    if (screen === "goals") return <GoalsScreen game={game} />;
+    if (screen === "money") return <BudgetScreen game={game} onPreset={runBudgetPreset} onSaveCustomBudget={updateBudget} onNavigate={setScreen} onBack={() => setScreen("activities")} />;
+    if (screen === "bank") return <BankScreen game={game} onAction={(id) => setGame(runActivity(game, id))} onBack={() => setScreen("activities")} />;
+    if (screen === "credit") return <CreditScreen game={game} onAction={(id) => setGame(runActivity(game, id))} onBack={() => setScreen("activities")} />;
+    if (screen === "invest") return <InvestScreen game={game} onAction={(id) => setGame(runActivity(game, id))} onBack={() => setScreen("activities")} />;
+    if (screen === "protect") return <ProtectScreen game={game} onAction={(id) => setGame(runActivity(game, id))} onBack={() => setScreen("activities")} />;
+    if (screen === "networth") return <NetWorthScreen game={game} onNavigate={setScreen} onBack={() => setScreen("activities")} />;
+    if (screen === "goals") return <GoalsScreen game={game} onBack={() => setScreen("activities")} />;
     return (
       <Dashboard
         game={game}

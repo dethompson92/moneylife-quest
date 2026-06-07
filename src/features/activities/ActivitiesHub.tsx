@@ -128,6 +128,7 @@ function AvailableActivityRow({
         <small>{highlightGlossaryTerms(activity.description)}</small>
       </span>
       <button type="button" className="menu-row__action" onClick={() => onRunActivity(activity.id)} aria-label={`Do activity: ${activity.title}`}>
+        <span>Do</span>
         <ChevronRight aria-hidden="true" />
       </button>
     </article>

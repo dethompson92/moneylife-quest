@@ -1,14 +1,18 @@
+import { ArrowLeft } from "lucide-react";
 import { Button } from "../../components/ui/Button";
 import { formatMoney } from "../../lib/formatMoney";
 import { highlightGlossaryTerms } from "../glossary/GlossaryTooltip";
 import type { GameState } from "../../types/game";
 
-export function InvestScreen({ game, onAction }: { game: GameState; onAction: (activityId: string) => void }) {
+export function InvestScreen({ game, onAction, onBack }: { game: GameState; onAction: (activityId: string) => void; onBack: () => void }) {
   return (
     <section className="screen-panel">
-      <div className="section-heading">
-        <h2>{highlightGlossaryTerms("Invest")}</h2>
-        <p>{highlightGlossaryTerms("Educational simulation only, not financial advice. Use fake investments to learn risk and time.")}</p>
+      <div className="section-heading section-heading--split">
+        <div>
+          <h2>{highlightGlossaryTerms("Invest")}</h2>
+          <p>{highlightGlossaryTerms("Educational simulation only, not financial advice. Use fake investments to learn risk and time.")}</p>
+        </div>
+        <Button variant="secondary" icon={<ArrowLeft aria-hidden="true" />} onClick={onBack}>Back to Activities</Button>
       </div>
       <div className="detail-grid">
         <article><small>{highlightGlossaryTerms("Investments")}</small><strong>{formatMoney(game.finances.investments)}</strong></article>

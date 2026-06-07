@@ -1670,7 +1670,7 @@ textarea {
 
 .menu-row {
   display: grid;
-  grid-template-columns: 62px minmax(0, 1fr) 34px;
+  grid-template-columns: 62px minmax(0, 1fr) minmax(70px, auto);
   gap: 12px;
   align-items: center;
   min-height: 84px;
@@ -1725,19 +1725,27 @@ textarea {
 }
 
 .menu-row__action {
-  display: grid;
-  place-items: center;
-  width: 38px;
-  min-height: 38px;
-  padding: 0;
-  border: 0;
-  border-radius: 50%;
-  background: transparent;
-  color: inherit;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  width: auto;
+  min-height: 42px;
+  padding: 8px 10px;
+  border: 1px solid rgba(11, 31, 58, 0.16);
+  border-radius: var(--radius);
+  background: var(--yellow);
+  color: var(--navy);
+  font-weight: 900;
+  box-shadow: 0 2px 0 rgba(11, 31, 58, 0.14);
 }
 
 .menu-row__action:disabled {
   opacity: 0.48;
+}
+
+.menu-row__action span {
+  font-size: 0.88rem;
 }
 
 .activity-column h3,

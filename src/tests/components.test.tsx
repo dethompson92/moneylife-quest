@@ -59,8 +59,14 @@ describe("app components", () => {
     await userEvent.click(screen.getByRole("button", { name: /choose goal/i }));
     await userEvent.click(screen.getByRole("button", { name: /start life/i }));
     await userEvent.click(screen.getByRole("button", { name: /activities/i }));
+    expect(screen.getAllByRole("button", { name: /do activity:/i }).length).toBeGreaterThan(0);
     await userEvent.click(screen.getByRole("button", { name: /bank \/ save/i }));
     expect(screen.getByRole("heading", { name: /bank \/ save/i })).toBeInTheDocument();
+    await userEvent.click(screen.getByRole("button", { name: /back to activities/i }));
+    expect(screen.getByRole("heading", { name: /activities/i })).toBeInTheDocument();
+    await userEvent.click(screen.getByRole("button", { name: /protect/i }));
+    expect(screen.getByRole("heading", { name: /protect yourself/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /back to activities/i })).toBeInTheDocument();
   });
 
   it("keeps unavailable activities out of the main activity list", async () => {
