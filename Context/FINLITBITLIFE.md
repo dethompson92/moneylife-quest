@@ -18952,3 +18952,29 @@ Implementation status note:
 - The first implementation slice should derive progression from the existing `GameState` instead of adding sensitive identity fields.
 - Store only safe run-card summaries such as archetype title, ribbons, top values, strongest stats, key achievements, biggest lesson, and next-run suggestion.
 - Continue to use the existing scenario and glossary import pipeline for scenario content; this addendum is design guidance rather than a scenario batch.
+
+---
+
+## Context Addendum: Phase 1-3 Architecture Contract
+
+Source reviewed: `pasted-text.txt` from the June 2026 ChatGPT implementation-plan note.
+
+Curated integration decision: the note should guide architecture, lints, and acceptance tests rather than trigger a blind folder restructure. The existing app already uses `src/features/*`, `src/data/*`, `src/lib/*`, and `scripts/parseContext.js` for many concepts the note describes with generic `src/systems/*` and `src/components/*` paths.
+
+Most important product rule from the note:
+
+- Treat this context file as a source of typed data, engines, lints, tests, and classroom-safe UI, not as raw text to display.
+
+Highest-value remaining technical work:
+
+- Add privacy, content, quota, and achievement lint scripts.
+- Add package scripts so those lints can run before build.
+- Add goal-hook notes that explain why a scenario matters for the current goal.
+- Add a student-facing Mastery Maps page before or during gameplay.
+- Add a local-only run compare view for Financial Museum cards.
+- Add a local-only teacher reflection card/gallery system with no names, rosters, grades, or analytics.
+- Add tiny, noncompetitive legacy unlocks only after balance rules are in place.
+
+Implementation roadmap:
+
+- See `docs/PHASE_1_3_ROADMAP.md` for the current repo-specific mapping and next build order.
