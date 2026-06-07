@@ -1,10 +1,10 @@
 import { useMemo, useState } from "react";
-import { Bug, Clipboard, Download, Send, X } from "lucide-react";
+import { Bug, Clipboard, Download, Save, X } from "lucide-react";
 import { Button } from "../../components/ui/Button";
 import { saveDebugReport } from "../../lib/storage";
 import type { GameState } from "../../types/game";
 import type { IssueDraft, IssueReport } from "../../types/reporting";
-import { buildIssueReport, formatIssue, sendReportToEndpoint } from "./reportingUtils";
+import { buildIssueReport, formatIssue, getDebugReportEndpoint, sendReportToEndpoint } from "./reportingUtils";
 
 export function IssueReporter({ game, onCopy }: { game: GameState | null; onCopy: (text: string) => void }) {
   const [open, setOpen] = useState(false);
@@ -29,7 +29,7 @@ export function IssueReporter({ game, onCopy }: { game: GameState | null; onCopy
     onCopy(reportText);
   }
 
-  async function sendAndSaveReport() {
+  async function submitIssue() {
     if (!canSubmit) return;
     setIsSending(true);
     const localReport: IssueReport = {
@@ -46,14 +46,23 @@ export function IssueReporter({ game, onCopy }: { game: GameState | null; onCopy
     }
 
     setSaveError(null);
-    setSavedNotice("Saved locally. Sending to the debug inbox...");
 
     const localText = formatIssue(localReport);
-    const remoteResult = await sendReportToEndpoint(localReport, localText);
+    const endpoint = getDebugReportEndpoint();
+    if (!endpoint) {
+      setCopiedReport(localText);
+      setSavedNotice("Saved on this browser's game debug log. Connect a teacher inbox to collect reports from every student device.");
+      setIsSending(false);
+      return;
+    }
+
+    setSavedNotice("Saved in the game debug log. Submitting a copy to the teacher debug inbox...");
+
+    const remoteResult = await sendReportToEndpoint(localReport, localText, endpoint);
     const finalReport: IssueReport = {
       ...localReport,
-      status: remoteResult.ok ? "sent-remote" : remoteResult.skipped ? "saved-local" : "remote-failed",
-      remoteError: remoteResult.ok || remoteResult.skipped ? undefined : remoteResult.error
+      status: remoteResult.ok ? "sent-remote" : "remote-failed",
+      remoteError: remoteResult.ok ? undefined : remoteResult.error
     };
     const finalSave = saveDebugReport(finalReport);
     const finalText = formatIssue(finalReport);
@@ -67,11 +76,9 @@ export function IssueReporter({ game, onCopy }: { game: GameState | null; onCopy
     }
 
     if (remoteResult.ok) {
-      setSavedNotice("Sent to the debug inbox and saved locally.");
-    } else if (remoteResult.skipped) {
-      setSavedNotice("Saved locally on this browser. No debug inbox endpoint is configured yet.");
+      setSavedNotice("Submitted to the teacher debug inbox and saved in the game debug log.");
     } else {
-      setSavedNotice(`Saved locally, but the debug inbox send failed: ${remoteResult.error}`);
+      setSavedNotice(`Saved in the game debug log, but the teacher inbox send failed: ${remoteResult.error}`);
     }
   }
 
@@ -99,7 +106,7 @@ export function IssueReporter({ game, onCopy }: { game: GameState | null; onCopy
               <X aria-hidden="true" />
             </button>
           </div>
-          <p>Reports save locally when you send them. Do not include student names, private information, or class rosters.</p>
+          <p>Debug messages save in the game log on this browser. Do not include student names, private information, or class rosters.</p>
           <label>
             Issue type
             <select value={draft.issueType} onChange={(event) => setDraft({ ...draft, issueType: event.target.value as IssueDraft["issueType"] })}>
@@ -135,13 +142,13 @@ export function IssueReporter({ game, onCopy }: { game: GameState | null; onCopy
           {savedNotice ? <p className="issue-panel__status" role="status">{savedNotice}</p> : null}
           {saveError ? <p className="issue-panel__error" role="alert">Could not save report: {saveError}</p> : null}
           <div className="button-row">
-            <Button icon={<Send aria-hidden="true" />} onClick={sendAndSaveReport} disabled={!canSubmit || isSending}>
-              {isSending ? "Sending..." : "Send & Save"}
+            <Button icon={<Save aria-hidden="true" />} onClick={submitIssue} disabled={!canSubmit || isSending}>
+              {isSending ? "Submitting..." : "Submit Issue"}
             </Button>
             <Button variant="secondary" icon={<Clipboard aria-hidden="true" />} onClick={copyReport} disabled={!canSubmit}>Copy</Button>
             <Button variant="secondary" icon={<Download aria-hidden="true" />} onClick={downloadReport} disabled={!canSubmit}>Download</Button>
           </div>
-          <p className="issue-panel__hint">Send & Save uses the classroom debug inbox endpoint when configured. If the inbox is unavailable, the report remains saved on this browser.</p>
+          <p className="issue-panel__hint">Submit Issue keeps the report in the in-game debug log. If a teacher inbox endpoint is connected, the app also sends a copy without opening GitHub or email.</p>
           <details className="issue-preview" open={Boolean(copiedReport)}>
             <summary>{copiedReport ? "Copied report text" : "Preview report text"}</summary>
             <textarea readOnly value={copiedReport ?? reportText} />

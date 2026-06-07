@@ -8,7 +8,7 @@ const report: IssueReport = {
   app: "MoneyLife Quest",
   issueType: "bug",
   description: "The report should send to the inbox.",
-  steps: "Tap Send & Save.",
+  steps: "Tap Submit Issue.",
   contact: "",
   includeDiagnostics: false,
   status: "saved-local"

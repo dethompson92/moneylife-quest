@@ -57,7 +57,7 @@ Value: your Google Apps Script web app URL
 
 ## What Students Experience
 
-When a student taps `Send & Save`, the app:
+When a student taps `Submit Issue`, the app:
 
 1. Saves the report locally in that browser.
 2. Sends the report to the configured debug inbox endpoint.

@@ -2116,6 +2116,15 @@ textarea {
   font-size: 1.4rem;
 }
 
+.debug-inbox-status {
+  margin: 10px 0 0;
+  color: var(--muted);
+}
+
+.debug-inbox-status strong {
+  color: var(--navy);
+}
+
 .debug-empty-state {
   display: grid;
   place-items: center;

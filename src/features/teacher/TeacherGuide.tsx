@@ -32,7 +32,7 @@ import { sourceCategories } from "../../data/sourceIndex";
 import { buildClassLink, topicOptions } from "../../lib/queryParams";
 import { clearDebugReports, deleteDebugReport, loadDebugReports } from "../../lib/storage";
 import type { IssueReport } from "../../types/reporting";
-import { formatIssue, labelForType } from "../reporting/reportingUtils";
+import { formatIssue, getDebugReportEndpoint, labelForType } from "../reporting/reportingUtils";
 import { goals } from "../goals/goalDefinitions";
 import { decodeReflectionCode } from "../summary/summaryGenerator";
 import { formatMoney } from "../../lib/formatMoney";
@@ -59,6 +59,7 @@ export function TeacherGuide({ onCopy, onLock }: { onCopy: (text: string) => voi
   const [decodedList, setDecodedList] = useState<Array<{ nickname: string; netWorth: number; objectives: number; badges: number; credit: number | null }>>([]);
   const [debugReports, setDebugReports] = useState<IssueReport[]>(() => loadDebugReports());
   const [copiedDebugId, setCopiedDebugId] = useState<string | null>(null);
+  const isDebugInboxConnected = Boolean(getDebugReportEndpoint());
 
   const [seed, setSeed] = useState("period-3-moneylife");
   const [topic, setTopic] = useState("all");
@@ -838,7 +839,7 @@ export function TeacherGuide({ onCopy, onLock }: { onCopy: (text: string) => voi
               <div className="debug-log-header">
                 <div>
                   <h3>Saved Debug Reports</h3>
-                  <p>Reports submitted from the bottom-right button are saved on this browser. To collect reports from student devices automatically, configure the debug inbox endpoint and have students tap Send & Save.</p>
+                  <p>Reports submitted from the bottom-right button are saved on this browser. To collect reports from student devices automatically, configure the debug inbox endpoint and have students tap Submit Issue.</p>
                 </div>
                 <div className="debug-log-actions">
                   <Button variant="secondary" onClick={refreshDebugReports}>Refresh</Button>
@@ -862,13 +863,19 @@ export function TeacherGuide({ onCopy, onLock }: { onCopy: (text: string) => voi
                 <strong>{debugReports.length}</strong>
                 <span>{debugReports.length === 1 ? "saved report" : "saved reports"}</span>
               </div>
+              <p className="debug-inbox-status">
+                Central teacher inbox: <strong>{isDebugInboxConnected ? "Connected" : "Not connected"}</strong>
+                {isDebugInboxConnected
+                  ? ". New reports are saved locally and sent to the configured inbox."
+                  : ". New reports are saved only on the device where they are submitted until an inbox endpoint is configured."}
+              </p>
             </div>
 
             {debugReports.length === 0 ? (
               <div className="dashboard-card debug-empty-state">
                 <Bug size={28} aria-hidden="true" />
                 <h3>No reports saved on this browser yet.</h3>
-                <p>Use the Bug or issue button to submit a test report, or configure the deployment debug inbox endpoint so student reports can reach you outside their own devices.</p>
+                <p>Use the Bug or issue button to save a test report in this browser, or configure the deployment debug inbox endpoint so student reports can reach you outside their own devices.</p>
               </div>
             ) : (
               <div className="debug-report-list">

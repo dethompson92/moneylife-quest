@@ -95,7 +95,7 @@ export function formatIssue(issue: IssueReport): string {
     "Safe diagnostics:",
     issue.diagnostics ? JSON.stringify(issue.diagnostics, null, 2) : "Not included",
     "",
-    "Privacy note: this report is saved locally in the browser. It is only handed off outside the app when the user intentionally opens a report link, email, or copied report."
+    "Privacy note: this report is saved locally in the browser. If a teacher debug inbox endpoint is configured, Submit Issue also sends a copy to that teacher-controlled inbox without opening GitHub or email."
   ].join("\n");
 }
 

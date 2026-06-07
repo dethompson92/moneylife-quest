@@ -48,9 +48,9 @@ Important: because this is a static public site, this is a classroom gate, not h
 
 ## Bug Reporter and Debug Log
 
-The bottom-right Bug or issue button lets a player write a debug note, then tap Send & Save. The report is saved in `localStorage` under `moneylife.debugReports.v1` on that browser. Teacher Tools includes a protected Debug Log tab for reviewing, copying, downloading, deleting, or clearing those locally saved reports.
+The bottom-right Bug or issue button lets a player write a debug note, then tap Submit Issue. The report is saved in `localStorage` under `moneylife.debugReports.v1` on that browser. Teacher Tools includes a protected Debug Log tab for reviewing, copying, downloading, deleting, or clearing those locally saved reports.
 
-Reports do not open GitHub Issues or email. To receive reports from student devices, configure `VITE_DEBUG_REPORT_ENDPOINT` so Send & Save can automatically POST the report to your debug inbox after saving locally.
+Reports do not open GitHub Issues or email. To receive reports from student devices, configure `VITE_DEBUG_REPORT_ENDPOINT` so Submit Issue can automatically POST the report to your debug inbox after saving locally.
 
 Optional deployment variables:
 
