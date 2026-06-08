@@ -2,12 +2,15 @@ import { ArrowLeft } from "lucide-react";
 import { Badge } from "../../components/ui/Badge";
 import { Button } from "../../components/ui/Button";
 import { achievements } from "../achievements/achievementDefinitions";
-import { getGoal } from "./goalDefinitions";
+import { getActiveGoalIds, getGoal, getGoalConflictWarnings } from "./goalDefinitions";
+import { getObjectivesForGoal } from "./goalEngine";
 import { highlightGlossaryTerms } from "../glossary/GlossaryTooltip";
 import type { GameState } from "../../types/game";
 
 export function GoalsScreen({ game, onBack }: { game: GameState; onBack?: () => void }) {
-  const goal = getGoal(game.activeGoalId);
+  const activeGoalIds = getActiveGoalIds(game);
+  const goal = getGoal(activeGoalIds[0]);
+  const conflictWarnings = getGoalConflictWarnings(activeGoalIds);
   return (
     <section className="screen-panel">
       <div className="section-heading section-heading--split">
@@ -33,13 +36,34 @@ export function GoalsScreen({ game, onBack }: { game: GameState; onBack?: () => 
           </div>
         </div>
       ) : (
-        <div className="objective-list">
-          {game.goalObjectives.map((objective) => (
-            <div className={objective.complete ? "objective is-complete" : "objective"} key={objective.id}>
-              <span aria-hidden="true">{objective.complete ? "✓" : "○"}</span>
-              <span>{highlightGlossaryTerms(objective.label)}</span>
+        <div className="goal-stack">
+          {activeGoalIds.map((goalId, index) => {
+            const activeGoal = getGoal(goalId);
+            const objectives = getObjectivesForGoal(game, goalId);
+            return (
+              <article className="goal-stack-card" key={goalId}>
+                <div className="goal-stack-card__header">
+                  <span>{index === 0 ? "Main Goal" : "Mini-Goal"}</span>
+                  <strong>{highlightGlossaryTerms(activeGoal.title)}</strong>
+                </div>
+                <div className="objective-list">
+                  {objectives.map((objective) => (
+                    <div className={objective.complete ? "objective is-complete" : "objective"} key={`${goalId}-${objective.id}`}>
+                      <span aria-hidden="true">{objective.complete ? "✓" : "○"}</span>
+                      <span>{highlightGlossaryTerms(objective.label)}</span>
+                    </div>
+                  ))}
+                </div>
+              </article>
+            );
+          })}
+          {conflictWarnings.length ? (
+            <div className="goal-conflict-list">
+              {conflictWarnings.map((warning) => (
+                <p key={warning}>{highlightGlossaryTerms(`Tradeoff: ${warning}`)}</p>
+              ))}
             </div>
-          ))}
+          ) : null}
         </div>
       )}
       <h3>Badges</h3>

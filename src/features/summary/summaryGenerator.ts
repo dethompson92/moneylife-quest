@@ -1,23 +1,27 @@
 import { getAchievement } from "../achievements/achievementDefinitions";
-import { getGoal } from "../goals/goalDefinitions";
+import { getActiveGoalIds, getGoal } from "../goals/goalDefinitions";
+import { getObjectivesForGoal, getPrimaryGoalObjectives } from "../goals/goalEngine";
 import { calculateNetWorth } from "../finance/financeEngine";
 import { buildProgressionSummary } from "../progression/progressionEngine";
 import type { GameState } from "../../types/game";
 
 export function generateSummary(state: GameState): string {
-  const goal = getGoal(state.activeGoalId);
+  const activeGoalIds = getActiveGoalIds(state);
+  const goal = getGoal(activeGoalIds[0]);
   const isOpenLife = goal.openEnded === true;
-  const completeObjectives = state.goalObjectives.filter((objective) => objective.complete).length;
+  const primaryObjectives = getPrimaryGoalObjectives(state);
+  const completeObjectives = primaryObjectives.filter((objective) => objective.complete).length;
   const goalResult = isOpenLife
     ? "Self-directed playthrough"
-    : completeObjectives === state.goalObjectives.length
+    : completeObjectives === primaryObjectives.length
       ? "Completed"
       : completeObjectives > 0
         ? "In progress"
         : "Started";
   const goalLine = isOpenLife
     ? `Play style: ${goal.title} - ${goalResult}; the player chose their own definition of success.`
-    : `Goal result: ${goal.title} - ${goalResult} (${completeObjectives}/${state.goalObjectives.length} objectives complete)`;
+    : `Main goal result: ${goal.title} - ${goalResult} (${completeObjectives}/${primaryObjectives.length} objectives complete)`;
+  const miniGoalLine = buildMiniGoalLine(state, activeGoalIds.slice(1));
   const badges = state.achievements
     .map((id) => getAchievement(id)?.title)
     .filter(Boolean)
@@ -40,6 +44,7 @@ export function generateSummary(state: GameState): string {
     `MoneyLife Quest Reflection`,
     `Character: ${state.character.displayName}, age ${state.character.age}`,
     goalLine,
+    miniGoalLine,
     `Financial identity: ${progression.archetype.title}`,
     `Top values: ${values || "Still emerging"}`,
     `Ribbons: ${ribbons || "Still building"}`,
@@ -58,6 +63,17 @@ export function generateSummary(state: GameState): string {
     `One money lesson I can explain: choices have tradeoffs, and a plan gives future me more options.`,
     `Reflection code: ${encodeReflectionCode(state)}`
   ].join("\n");
+}
+
+function buildMiniGoalLine(state: GameState, miniGoalIds: string[]): string {
+  if (!miniGoalIds.length) return "Mini-goals: none selected";
+  const results = miniGoalIds.map((goalId) => {
+    const goal = getGoal(goalId);
+    const objectives = getObjectivesForGoal(state, goalId);
+    const complete = objectives.filter((objective) => objective.complete).length;
+    return `${goal.title} (${complete}/${objectives.length})`;
+  });
+  return `Mini-goals: ${results.join("; ")}`;
 }
 
 export function encodeReflectionCode(state: GameState): string {

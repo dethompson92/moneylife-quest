@@ -1,4 +1,4 @@
-import { getGoal } from "./goalDefinitions";
+import { getActiveGoalIds, getGoal } from "./goalDefinitions";
 import type { Effect, GameState, ScenarioEvent, Topic } from "../../types/game";
 
 export type GoalHookNote = {
@@ -23,12 +23,15 @@ const topicLabels: Record<Topic, string> = {
 };
 
 export function getGoalHookNote(state: GameState, event: ScenarioEvent): GoalHookNote {
-  const goal = getGoal(state.activeGoalId);
-  const matchedTopics = event.topics.filter((topic) => goal.relatedTopics.includes(topic));
+  const activeGoalIds = getActiveGoalIds(state);
+  const activeGoals = activeGoalIds.map((goalId, index) => ({ goal: getGoal(goalId), role: index === 0 ? "primary" : "mini" as const }));
+  const primaryGoal = activeGoals[0]?.goal ?? getGoal(state.activeGoalId);
+  const matchingGoal = activeGoals.find(({ goal }) => event.topics.some((topic) => goal.relatedTopics.includes(topic)));
+  const matchedTopics = matchingGoal ? event.topics.filter((topic) => matchingGoal.goal.relatedTopics.includes(topic)) : [];
   const effectSignals = summarizeEventEffectSignals(event);
   const signalText = effectSignals.length > 0 ? effectSignals.slice(0, 3).join(", ") : "future choices";
 
-  if (goal.openEnded) {
+  if (primaryGoal.openEnded) {
     return {
       title: "Open Life connection",
       body: `You chose free play, so this event matters if it connects to your private goal. Watch how it may affect ${signalText}.`,
@@ -36,20 +39,21 @@ export function getGoalHookNote(state: GameState, event: ScenarioEvent): GoalHoo
     };
   }
 
-  if (matchedTopics.length > 0) {
+  if (matchingGoal && matchedTopics.length > 0) {
     const topicText = matchedTopics.map((topic) => topicLabels[topic]).slice(0, 3).join(", ");
-    const unfinishedObjective = state.goalObjectives.find((objective) => !objective.complete);
+    const unfinishedObjective = state.goalObjectives.find((objective) => (objective.goalId ?? state.activeGoalId) === matchingGoal.goal.id && !objective.complete);
     const objectiveText = unfinishedObjective ? ` It may help or complicate "${unfinishedObjective.label}."` : "";
+    const roleText = matchingGoal.role === "primary" ? "main goal" : "mini-goal";
     return {
       title: "Goal connection",
-      body: `${goal.title} is connected to ${topicText}. This decision can move ${signalText} in a direction that changes your goal path.${objectiveText}`,
+      body: `${matchingGoal.goal.title} is connected to ${topicText} as a ${roleText}. This decision can move ${signalText} in a direction that changes your goal path.${objectiveText}`,
       tone: "direct"
     };
   }
 
   return {
     title: "Long-game connection",
-    body: `${goal.title} is not mainly about ${topicLabels[event.topics[0]] ?? "this topic"}, but choices here can still affect ${signalText}, which may make your goal easier or harder later.`,
+    body: `${primaryGoal.title} is not mainly about ${topicLabels[event.topics[0]] ?? "this topic"}, but choices here can still affect ${signalText}, which may make your goal easier or harder later.`,
     tone: "indirect"
   };
 }

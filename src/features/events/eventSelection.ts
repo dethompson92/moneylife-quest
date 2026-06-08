@@ -1,5 +1,6 @@
 import { scenarioEvents } from "../../data/scenarioPacks/middleSchoolCore";
 import { weightedPick, type Rng } from "../../lib/rng";
+import { getActiveGoalIds, getGoal, getGoalTopicMatchWeight } from "../goals/goalDefinitions";
 import type { GameState, Requirement, ScenarioEvent } from "../../types/game";
 
 export function requirementsMet(requirements: Requirement[] | undefined, state: GameState): boolean {
@@ -44,20 +45,24 @@ export function selectNextEvent(
   if (!eligible.length) return null;
   const weighted = eligible.map((event) => ({
     item: event,
-    weight: event.baseWeight + goalTopicBonus(event, state) + urgencyBonus(event, state) + adultOutcomeBonus(event, state)
+    weight: Math.max(
+      1,
+      event.baseWeight +
+        goalTopicBonus(event, state) +
+        chainContinuationBonus(event, state) +
+        urgencyBonus(event, state) +
+        adultOutcomeBonus(event, state) -
+        recentTopicPenalty(event, state)
+    )
   }));
   return rng ? weightedPick(weighted, rng) : weighted[0]?.item ?? null;
 }
 
 function goalTopicBonus(event: ScenarioEvent, state: GameState): number {
-  if (state.activeGoalId.includes("emergency") && event.topics.some((topic) => topic === "saving" || topic === "budgeting")) return 8;
-  if (state.activeGoalId.includes("credit") && event.topics.includes("credit")) return 10;
-  if (state.activeGoalId.includes("investor") && event.topics.includes("investing")) return 10;
-  if (state.activeGoalId.includes("scam") && event.topics.some((topic) => topic === "scams" || topic === "insurance")) return 10;
-  if (state.activeGoalId.includes("shopper") && event.topics.includes("consumer-skills")) return 10;
-  if (state.activeGoalId.includes("balanced") && event.topics.some((topic) => ["money-values", "budgeting", "saving", "career"].includes(topic))) return 7;
-  if (state.activeGoalId.includes("career") && event.topics.some((topic) => ["career", "life-after-high-school", "taxes", "budgeting"].includes(topic))) return 10;
-  return 0;
+  return getActiveGoalIds(state).reduce((total, goalId, index) => {
+    const role = index === 0 ? "primary" : "mini";
+    return total + getGoalTopicMatchWeight(getGoal(goalId), event.topics, role);
+  }, 0);
 }
 
 function urgencyBonus(event: ScenarioEvent, state: GameState): number {
@@ -72,4 +77,21 @@ function adultOutcomeBonus(event: ScenarioEvent, state: GameState): number {
   if (state.character.age >= 18) return 14;
   if (state.character.age >= 16) return 8;
   return 2;
+}
+
+function chainContinuationBonus(event: ScenarioEvent, state: GameState): number {
+  if (state.flags.accountExposed === true && event.topics.includes("scams")) return 10;
+  if (state.flags.sentToWrongPerson === true && event.topics.includes("banking")) return 8;
+  if (state.flags.subscriptionCreep === true && event.topics.some((topic) => topic === "budgeting" || topic === "consumer-skills")) return 8;
+  if (state.flags.usedEmergencyFund === true && event.topics.includes("saving")) return 8;
+  if (state.flags.survivedDownturn === true && event.topics.includes("investing")) return 6;
+  return 0;
+}
+
+function recentTopicPenalty(event: ScenarioEvent, state: GameState): number {
+  const recentTopics = state.log.slice(0, 6).map((entry) => entry.topic).filter(Boolean);
+  return event.topics.reduce((penalty, topic) => {
+    const repeats = recentTopics.filter((recentTopic) => recentTopic === topic).length;
+    return penalty + repeats * 2;
+  }, 0);
 }

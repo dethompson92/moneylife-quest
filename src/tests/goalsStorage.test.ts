@@ -37,7 +37,7 @@ describe("goals, achievements, and storage", () => {
     const game = createNewGame({ nickname: "Ace", goalId: "emergency-fund-hero" });
     const summary = generateSummary(game);
     expect(summary).toContain("MoneyLife Quest Reflection");
-    expect(summary).toContain("Goal result");
+    expect(summary).toContain("Main goal result");
     expect(summary).toContain("Credit band");
     expect(summary).not.toContain("@");
   });
@@ -51,6 +51,39 @@ describe("goals, achievements, and storage", () => {
     expect(progressed.flags.goalCompleted).not.toBe(true);
     expect(summary).toContain("Play style: Open Life - Self-directed playthrough");
     expect(summary).not.toContain("0/0 objectives complete");
+  });
+
+  it("supports a primary goal with up to two mini-goals", () => {
+    const game = createNewGame({
+      goalIds: ["emergency-fund-hero", "investor-starter", "scam-defender"]
+    });
+    expect(game.activeGoalId).toBe("emergency-fund-hero");
+    expect(game.activeGoalIds).toEqual(["emergency-fund-hero", "investor-starter", "scam-defender"]);
+    expect(game.goalObjectives.some((objective) => objective.goalRole === "mini" && objective.goalTitle === "Investor Starter")).toBe(true);
+
+    const progressed = checkGoalProgress({
+      ...game,
+      finances: { ...game.finances, savings: 600, debtTotal: 0 },
+      stats: { ...game.stats, discipline: 70 }
+    });
+    expect(progressed.flags.goalCompleted).toBe(true);
+    expect(progressed.goalObjectives.filter((objective) => objective.goalRole === "primary").every((objective) => objective.complete)).toBe(true);
+    expect(progressed.goalObjectives.filter((objective) => objective.goalRole === "mini").some((objective) => !objective.complete)).toBe(true);
+    expect(generateSummary(progressed)).toContain("Mini-goals: Investor Starter");
+  });
+
+  it("migrates old single-goal saves into the goal stack shape", () => {
+    const game = createNewGame({ seed: "old-save", goalId: "credit-builder" });
+    const oldSave = { ...game } as any;
+    delete oldSave.activeGoalIds;
+    oldSave.goalObjectives = oldSave.goalObjectives.map(({ goalId, goalTitle, goalRole, ...objective }: any) => objective);
+    localStorage.setItem(SAVE_KEY, JSON.stringify(oldSave));
+
+    const loaded = loadGame();
+    expect(loaded.ok).toBe(true);
+    if (!loaded.ok || !loaded.value) throw new Error("Expected migrated save");
+    expect(loaded.value.activeGoalIds).toEqual(["credit-builder"]);
+    expect(loaded.value.goalObjectives.every((objective) => objective.goalId === "credit-builder")).toBe(true);
   });
 
   it("integrates merged-context goals and behavior badges into playable progress", () => {

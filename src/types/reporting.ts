@@ -20,6 +20,7 @@ export type IssueDiagnostics = {
   gameMode?: GameState["mode"];
   gameStatus?: GameState["status"];
   activeGoalId?: string;
+  activeGoalIds?: string[];
   pendingEventId?: string;
   achievements?: number;
 };

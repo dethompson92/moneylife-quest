@@ -1,13 +1,15 @@
 import { Compass, Target } from "lucide-react";
-import { getGoal } from "../goals/goalDefinitions";
+import { getActiveGoalIds, getGoal } from "../goals/goalDefinitions";
 import { getGoalProgressPercent } from "../game/gameSelectors";
 import { highlightGlossaryTerms } from "../glossary/GlossaryTooltip";
 import type { GameState } from "../../types/game";
 
 export function CharacterHeader({ game }: { game: GameState }) {
-  const goal = getGoal(game.activeGoalId);
+  const activeGoalIds = getActiveGoalIds(game);
+  const goal = getGoal(activeGoalIds[0]);
   const progress = getGoalProgressPercent(game);
   const isOpenLife = goal.openEnded === true;
+  const miniGoalCount = activeGoalIds.length - 1;
   return (
     <section className="character-strip" aria-label="Character and goal">
       <div className="character-strip__identity">
@@ -26,6 +28,7 @@ export function CharacterHeader({ game }: { game: GameState }) {
         <span>
           <small>{isOpenLife ? "Play style" : "Active goal"}</small>
           <strong>{highlightGlossaryTerms(goal.title)}</strong>
+          {miniGoalCount > 0 ? <small>{miniGoalCount} mini-goal{miniGoalCount === 1 ? "" : "s"} active</small> : null}
         </span>
         {isOpenLife ? (
           <span className="goal-strip__freeplay">{highlightGlossaryTerms("Open-ended")}</span>

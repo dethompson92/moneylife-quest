@@ -20,6 +20,7 @@ export function buildIssueReport(draft: IssueDraft, game: GameState | null): Iss
           gameMode: game?.mode,
           gameStatus: game?.status,
           activeGoalId: game?.activeGoalId,
+          activeGoalIds: game?.activeGoalIds,
           pendingEventId: game?.pendingEventId,
           achievements: game?.achievements.length
         }

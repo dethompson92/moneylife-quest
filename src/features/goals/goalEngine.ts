@@ -1,5 +1,6 @@
 import type { GameState, GoalObjective } from "../../types/game";
 import { calculateNetWorth } from "../finance/financeEngine";
+import { getActiveGoalIds, getGoal } from "./goalDefinitions";
 
 function hasFlag(state: GameState, ...keys: string[]): boolean {
   return keys.some((key) => state.flags[key] === true);
@@ -14,10 +15,39 @@ function relationshipCount(state: GameState, role?: "family" | "friend" | "mento
 }
 
 export function evaluateGoalObjectives(state: GameState): GoalObjective[] {
-  return state.goalObjectives.map((objective) => ({
+  const previous = new Map(
+    state.goalObjectives.map((objective) => [
+      `${objective.goalId ?? state.activeGoalId}:${objective.id}`,
+      objective.complete
+    ])
+  );
+  return buildGoalObjectives(getActiveGoalIds(state)).map((objective) => ({
     ...objective,
-    complete: objective.complete || objectiveMet(objective.id, state)
+    complete: previous.get(`${objective.goalId ?? state.activeGoalId}:${objective.id}`) === true || objectiveMet(objective.id, state)
   }));
+}
+
+export function buildGoalObjectives(goalIds: string[]): GoalObjective[] {
+  return goalIds.flatMap((goalId, index) => {
+    const goal = getGoal(goalId);
+    const role = index === 0 ? "primary" : "mini";
+    return goal.objectives.map((objective) => ({
+      ...objective,
+      goalId: goal.id,
+      goalTitle: goal.title,
+      goalRole: role,
+      complete: false
+    }));
+  });
+}
+
+export function getPrimaryGoalObjectives(state: GameState): GoalObjective[] {
+  const primaryGoalId = getActiveGoalIds(state)[0] ?? state.activeGoalId;
+  return state.goalObjectives.filter((objective) => (objective.goalId ?? primaryGoalId) === primaryGoalId);
+}
+
+export function getObjectivesForGoal(state: GameState, goalId: string): GoalObjective[] {
+  return state.goalObjectives.filter((objective) => (objective.goalId ?? state.activeGoalId) === goalId);
 }
 
 export function objectiveMet(id: string, state: GameState): boolean {
@@ -158,5 +188,8 @@ export function objectiveMet(id: string, state: GameState): boolean {
 }
 
 export function goalCompleted(state: GameState): boolean {
-  return state.goalObjectives.length > 0 && state.goalObjectives.every((objective) => objective.complete);
+  const primaryGoal = getGoal(getActiveGoalIds(state)[0] ?? state.activeGoalId);
+  if (primaryGoal.openEnded) return false;
+  const primaryObjectives = getPrimaryGoalObjectives(state);
+  return primaryObjectives.length > 0 && primaryObjectives.every((objective) => objective.complete);
 }

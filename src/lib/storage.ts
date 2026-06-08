@@ -2,6 +2,8 @@ import type { GameSettings, GameState, StorageResult } from "../types/game";
 import type { IssueReport } from "../types/reporting";
 import { createSeededRng } from "./rng";
 import { createSupportCircle } from "../features/character/supportCircle";
+import { normalizeGoalStack } from "../features/goals/goalDefinitions";
+import { buildGoalObjectives } from "../features/goals/goalEngine";
 
 export const SAVE_KEY = "moneylife.save.v1";
 export const SETTINGS_KEY = "moneylife.settings.v1";
@@ -41,10 +43,27 @@ export function loadGame(): StorageResult<GameState> {
     if (!parsed.financeHistory) {
       parsed.financeHistory = [];
     }
+    parsed.activeGoalIds = normalizeGoalStack(parsed.activeGoalIds?.[0] ?? parsed.activeGoalId, parsed.activeGoalIds?.slice(1) ?? []);
+    parsed.activeGoalId = parsed.activeGoalIds[0];
+    parsed.goalObjectives = migrateGoalObjectives(parsed);
     return { ok: true, value: parsed };
   } catch {
     return { ok: false, error: "Saved game could not be read." };
   }
+}
+
+function migrateGoalObjectives(parsed: GameState): GameState["goalObjectives"] {
+  const previous = parsed.goalObjectives ?? [];
+  const previousCompletion = new Map(
+    previous.map((objective) => [
+      `${objective.goalId ?? parsed.activeGoalId}:${objective.id}`,
+      objective.complete
+    ])
+  );
+  return buildGoalObjectives(parsed.activeGoalIds).map((objective) => ({
+    ...objective,
+    complete: previousCompletion.get(`${objective.goalId ?? parsed.activeGoalId}:${objective.id}`) === true
+  }));
 }
 
 export function clearGame(): void {

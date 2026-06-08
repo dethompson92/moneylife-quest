@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Clipboard, RotateCcw } from "lucide-react";
 import { Button } from "../../components/ui/Button";
 import { formatMoney } from "../../lib/formatMoney";
-import { getGoal } from "../goals/goalDefinitions";
+import { getActiveGoalIds, getGoal } from "../goals/goalDefinitions";
 import { calculateNetWorth } from "../finance/financeEngine";
 import { generateSummary } from "./summaryGenerator";
 import { highlightGlossaryTerms } from "../glossary/GlossaryTooltip";
@@ -20,7 +20,9 @@ export function SummaryScreen({
   onRestart: () => void;
 }) {
   const summary = generateSummary(game);
-  const goal = getGoal(game.activeGoalId);
+  const activeGoalIds = getActiveGoalIds(game);
+  const goal = getGoal(activeGoalIds[0]);
+  const miniGoalTitles = activeGoalIds.slice(1).map((goalId) => getGoal(goalId).title);
   const isOpenLife = goal.openEnded === true;
   const progression = useMemo(() => buildProgressionSummary(game), [game]);
   const [museumCards, setMuseumCards] = useState(() => loadMuseumRunCards());
@@ -47,6 +49,12 @@ export function SummaryScreen({
         <article><small>{highlightGlossaryTerms("Safety")}</small><strong>{game.stats.trustSafety}/100</strong></article>
         <article><small>{highlightGlossaryTerms("Badges")}</small><strong>{game.achievements.length}</strong></article>
       </div>
+      {miniGoalTitles.length ? (
+        <div className="goal-selection__summary">
+          <strong>{highlightGlossaryTerms("Mini-goals")}</strong>
+          <span>{highlightGlossaryTerms(miniGoalTitles.join(", "))}</span>
+        </div>
+      ) : null}
       <div className="progression-card progression-card--identity">
         <div>
           <small>{highlightGlossaryTerms("Financial Identity")}</small>

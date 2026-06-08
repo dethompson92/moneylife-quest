@@ -18978,3 +18978,60 @@ Highest-value remaining technical work:
 Implementation roadmap:
 
 - See `docs/PHASE_1_3_ROADMAP.md` for the current repo-specific mapping and next build order.
+
+---
+
+## Context Addendum: Attachment Instructions for Next Research Prompt
+
+Use this section when attaching `FINLITBITLIFE.md` to GPT 5.5 Pro, Claude Opus, or another research model with the updated MoneyLife Quest prompt.
+
+This file is now a large accumulated context file. It includes multiple prior batches of scenarios, goals, glossary terms, score guidance, relationship/support-circle ideas, achievement/ribbon ideas, architecture sketches, lint requirements, and teacher-tool suggestions. The next model should **not** summarize or repeat the file. It should use the file as prior-art context and produce only fresh, non-duplicative, implementation-ready deltas.
+
+### Current App State to Assume
+
+- MoneyLife Quest is already a static React/Vite/TypeScript GitHub Pages app.
+- It already has a playable age-up loop, scenario data, goals, achievements, glossary popovers, support-circle mechanics, local saves, teacher-gated tools, privacy/settings screens, and a debug-report workflow.
+- The standalone "Money Words" section should remain removed. Finance terms should be surfaced inline as hover/click speech-bubble glossary popovers wherever the terms appear in the app.
+- Teacher-facing pages and tools must remain behind the teacher gate. Student navigation should not expose teacher-only materials.
+- Bug reports should use the configured Google Sheets / Apps Script style inbox flow, not GitHub issue opening as the default student experience.
+- Recent active product direction favors a simpler, BitLife-inspired life-sim surface: clear menu rows, visible action buttons, a large age-up control, readable life log, profile/stats, activities, assets, relationships/support circle, goals, and outcomes.
+
+### What the Next Model Should Focus On
+
+Ask for **new deltas** in these areas:
+
+1. Goal stack improvements: one primary goal, optional mini-goals, sandbox/custom goal mode, conflict previews, and objective progress.
+2. Ribbon and Lantern Report improvements: final titles, values summary, badges, net worth context, replay suggestion, and "net worth is not self-worth" language.
+3. Chain-based scenarios: multi-event chains where early choices set flags that affect later costs, options, relationships, assets, scams, credit, insurance, investing, pathways, and recovery.
+4. Goal-aware scenario selection: active goals should influence which events appear, while a breadth guard prevents one topic from monopolizing the run.
+5. Teacher-gated tools: compare outcomes by seed, anonymized/fake roster simulation, local-only export, discussion prompts, and class seed links.
+6. Guardrails and tests: privacy lint, content lint, quota lint, achievement lint, goal lint, chain lint, teacher-gate tests, glossary-popover tests, and migration tests.
+
+### Avoid Asking For
+
+- Another generic 75-scenario dump unless the response explicitly labels what is new versus already covered.
+- Raw copied source text from NGPF, Banzai, Napkin Finance, Humble Math, BitLife, worksheets, slides, answer keys, or game scripts.
+- Student demographic fields such as ethnicity, race, sex, gender identity, religion, disability status, exact location, immigration status, family income, school ID, email, phone, or full legal name.
+- A backend, accounts, analytics, ads, public leaderboard, or real student data collection.
+- Teacher dashboards that require live student data. Teacher tools should use seeded examples, fake/anonymized simulations, or local-only exports.
+
+### Known Integration Warnings
+
+- If a Verify-First, payment-app, or scam-recovery chain uses `accountExposed` or `sentToWrongPerson`, add those as explicit safe flag/setback identifiers in the app types instead of using `as any`.
+- Keep hidden achievements virtue-only: ask for help, verify before paying, repair a mistake, read terms, reflect honestly. Hidden achievements must never reward risky behavior.
+- Goals and ribbons should never imply that higher net worth equals higher character.
+- Relationship/support-circle features should unlock naturally through gameplay and should remain fictional, school-safe, and finance-connected.
+- Scenario and glossary imports should be curated and validated; do not blindly import malformed blocks or raw research text.
+
+### Best Next Research Output Format
+
+The most useful next response should include:
+
+- A "new vs. already covered" table.
+- A prioritized implementation backlog.
+- Typed-data additions for goals, mini-goals, ribbons, achievements, chains, glossary, and flags.
+- Test/lint acceptance criteria.
+- Student-facing copy samples only where needed.
+- Teacher-facing copy only if explicitly marked teacher-gated.
+
+Treat this context file as the source of product direction, not as student-facing text.

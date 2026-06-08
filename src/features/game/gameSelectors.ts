@@ -1,4 +1,5 @@
 import { calculateNetWorth } from "../finance/financeEngine";
+import { getPrimaryGoalObjectives } from "../goals/goalEngine";
 import type { GameState } from "../../types/game";
 
 export function getPendingEvent(state: GameState) {
@@ -10,6 +11,7 @@ export function getNetWorth(state: GameState): number {
 }
 
 export function getGoalProgressPercent(state: GameState): number {
-  if (!state.goalObjectives.length) return 0;
-  return Math.round((state.goalObjectives.filter((objective) => objective.complete).length / state.goalObjectives.length) * 100);
+  const objectives = getPrimaryGoalObjectives(state);
+  if (!objectives.length) return 0;
+  return Math.round((objectives.filter((objective) => objective.complete).length / objectives.length) * 100);
 }

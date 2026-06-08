@@ -25,6 +25,7 @@ import { SettingsScreen } from "../features/settings/SettingsScreen";
 import { IssueReporter } from "../features/reporting/IssueReporter";
 import { avatarEmoji } from "../data/avatars";
 import { allTopics, createNewGame } from "../features/game/gameActions";
+import { MAX_MINI_GOALS, getGoal } from "../features/goals/goalDefinitions";
 import { resolveChoice } from "../features/events/eventEngine";
 import { ageUp } from "../features/game/gameActions";
 import { runActivity } from "../features/activities/activityDefinitions";
@@ -55,6 +56,7 @@ export function App() {
     mode: classParams.mode ?? "quick-class"
   });
   const [selectedGoal, setSelectedGoal] = useState(classParams.goal ?? "emergency-fund-hero");
+  const [selectedMiniGoals, setSelectedMiniGoals] = useState<string[]>([]);
 
   useEffect(() => {
     const loaded = loadGame();
@@ -103,7 +105,7 @@ export function App() {
       avatarEmoji: draft.avatarEmoji,
       mode: draft.mode,
       seed: classParams.seed,
-      goalId: selectedGoal,
+      goalIds: [selectedGoal, ...selectedMiniGoals],
       topicFilter: classParams.topics ?? allTopics
     });
     setGame(next);
@@ -202,7 +204,27 @@ export function App() {
       return <NewLifeSetup draft={draft} onDraft={setDraft} onNext={() => setScreen("goal-select")} />;
     }
     if (screen === "goal-select") {
-      return <GoalSelection selectedGoal={selectedGoal} onSelect={setSelectedGoal} onStart={startNewGame} />;
+      return (
+        <GoalSelection
+          selectedGoal={selectedGoal}
+          selectedMiniGoals={selectedMiniGoals}
+          onSelect={(goalId) => {
+            setSelectedGoal(goalId);
+            setSelectedMiniGoals((current) => {
+              if (getGoal(goalId).openEnded) return [];
+              return current.filter((id) => id !== goalId);
+            });
+          }}
+          onToggleMini={(goalId) => {
+            setSelectedMiniGoals((current) => {
+              if (current.includes(goalId)) return current.filter((id) => id !== goalId);
+              if (goalId === selectedGoal || getGoal(goalId).openEnded) return current;
+              return [...current, goalId].slice(0, MAX_MINI_GOALS);
+            });
+          }}
+          onStart={startNewGame}
+        />
+      );
     }
     if (screen === "teacher") {
       if (!teacherUnlocked) {

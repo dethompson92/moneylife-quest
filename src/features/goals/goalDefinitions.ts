@@ -1,4 +1,6 @@
-import type { GoalDefinition } from "../../types/game";
+import type { GameState, GoalDefinition, Topic } from "../../types/game";
+
+export const MAX_MINI_GOALS = 2;
 
 export const goals: GoalDefinition[] = [
   {
@@ -377,4 +379,83 @@ export function getGoal(goalId?: string): GoalDefinition {
 
 export function isOpenEndedGoal(goalId?: string): boolean {
   return getGoal(goalId).openEnded === true;
+}
+
+export type GoalConflictPair = {
+  a: string;
+  b: string;
+  note: string;
+};
+
+export const goalConflictPairs: GoalConflictPair[] = [
+  {
+    a: "emergency-fund-hero",
+    b: "investor-starter",
+    note: "Saving a cushion and investing early can both be smart, but investing before a cushion can make emergencies harder."
+  },
+  {
+    a: "emergency-fund-anchor",
+    b: "investor-starter-longgame",
+    note: "The long-game investor and anchor fund goals may compete for the same early dollars."
+  },
+  {
+    a: "first-apartment-planner",
+    b: "investor-starter-longgame",
+    note: "Move-in costs are near-term while investing is long-term, so students will need to choose timing carefully."
+  },
+  {
+    a: "entrepreneur-starter",
+    b: "balanced-life-wellbeing",
+    note: "A side hustle can create opportunity, but it can also add time pressure and stress."
+  },
+  {
+    a: "debt-smart-pathway",
+    b: "first-apartment-planner",
+    note: "Keeping debt low can slow down big adult milestones that require upfront savings."
+  },
+  {
+    a: "comparison-shopper-pro",
+    b: "balanced-life-wellbeing",
+    note: "Checking every detail can save money, but the game should also notice time and stress tradeoffs."
+  }
+];
+
+export function normalizeGoalStack(primaryGoalId?: string, miniGoalIds: string[] = []): string[] {
+  const primary = getGoal(primaryGoalId);
+  if (primary.openEnded) return [primary.id];
+
+  const seen = new Set([primary.id]);
+  const minis: string[] = [];
+  for (const goalId of miniGoalIds) {
+    const goal = getGoal(goalId);
+    if (seen.has(goal.id) || goal.openEnded) continue;
+    seen.add(goal.id);
+    minis.push(goal.id);
+    if (minis.length >= MAX_MINI_GOALS) break;
+  }
+
+  return [primary.id, ...minis];
+}
+
+export function getActiveGoalIds(state: Pick<GameState, "activeGoalId" | "activeGoalIds">): string[] {
+  const raw = state.activeGoalIds?.length ? state.activeGoalIds : [state.activeGoalId];
+  return normalizeGoalStack(raw[0], raw.slice(1));
+}
+
+export function getGoalConflictWarnings(goalIds: string[]): string[] {
+  const selected = new Set(goalIds);
+  return goalConflictPairs
+    .filter((pair) => selected.has(pair.a) && selected.has(pair.b))
+    .map((pair) => pair.note);
+}
+
+export function goalSupportsTopic(goal: GoalDefinition, topic: Topic): boolean {
+  return goal.relatedTopics.includes(topic);
+}
+
+export function getGoalTopicMatchWeight(goal: GoalDefinition, topics: Topic[], role: "primary" | "mini"): number {
+  if (goal.openEnded) return 0;
+  const matches = topics.filter((topic) => goalSupportsTopic(goal, topic)).length;
+  if (!matches) return 0;
+  return role === "primary" ? 8 + matches * 2 : 4 + matches;
 }

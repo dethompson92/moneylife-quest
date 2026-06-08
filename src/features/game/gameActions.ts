@@ -5,8 +5,8 @@ import { createId, generateCharacter, getLifeStage } from "../character/characte
 import { createSupportCircle } from "../character/supportCircle";
 import { checkAchievements } from "../achievements/achievementEngine";
 import { applyPassiveFinancialUpdates, getInitialFinances, getInitialStats, syncFinanceHistory } from "../finance/financeEngine";
-import { getGoal } from "../goals/goalDefinitions";
-import { evaluateGoalObjectives, goalCompleted } from "../goals/goalEngine";
+import { getGoal, normalizeGoalStack } from "../goals/goalDefinitions";
+import { buildGoalObjectives, evaluateGoalObjectives, goalCompleted } from "../goals/goalEngine";
 import { selectNextEvent } from "../events/eventSelection";
 import type { GameState, NewGameOptions, Topic } from "../../types/game";
 
@@ -29,7 +29,8 @@ export function createNewGame(options: NewGameOptions = {}): GameState {
   const seed = options.seed ?? randomSeed();
   const rng = createSeededRng(seed);
   const character = generateCharacter(rng, options.nickname, options.avatarEmoji);
-  const goal = getGoal(options.goalId ?? undefined);
+  const goalIds = normalizeGoalStack(options.goalIds?.[0] ?? options.goalId, options.goalIds?.slice(1) ?? []);
+  const goal = getGoal(goalIds[0]);
   const now = new Date().toISOString();
   const state: GameState = {
     version: 1,
@@ -41,6 +42,7 @@ export function createNewGame(options: NewGameOptions = {}): GameState {
     turn: 0,
     character,
     activeGoalId: goal.id,
+    activeGoalIds: goalIds,
     activeTopicFilter: options.topicFilter?.length ? options.topicFilter : allTopics,
     stats: getInitialStats(character.background.startingMoneyKnowledge),
     finances: getInitialFinances(),
@@ -59,7 +61,7 @@ export function createNewGame(options: NewGameOptions = {}): GameState {
       }
     ],
     achievements: [],
-    goalObjectives: goal.objectives.map((objective) => ({ ...objective, complete: false })),
+    goalObjectives: buildGoalObjectives(goalIds),
     settings: defaultSettings,
     financeHistory: [],
     createdAt: now,
@@ -115,14 +117,15 @@ export function checkGoalProgress(state: GameState): GameState {
   next.goalObjectives = evaluateGoalObjectives(next);
   if (goalCompleted(next) && !next.flags.goalCompleted) {
     next.flags.goalCompleted = true;
+    const primaryGoal = getGoal(next.activeGoalIds[0] ?? next.activeGoalId);
     next.log = [
       {
         id: `goal-complete-${Date.now()}`,
         turn: next.turn,
         age: next.character.age,
         title: "Goal Complete",
-        body: getGoal(next.activeGoalId).completionMessage,
-        topic: getGoal(next.activeGoalId).relatedTopics[0],
+        body: primaryGoal.completionMessage,
+        topic: primaryGoal.relatedTopics[0],
         createdAt: new Date().toISOString()
       },
       ...next.log

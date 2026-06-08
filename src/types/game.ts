@@ -30,6 +30,15 @@ export type PlayerStats = {
   creditScore: number | null;
 };
 
+export type KnownGameFlag =
+  | "accountExposed"
+  | "sentToWrongPerson"
+  | "verifiedFirst"
+  | "subscriptionCreep"
+  | "usedEmergencyFund"
+  | "rebuildsFund"
+  | "survivedDownturn";
+
 export type RelationshipRole = "family" | "friend" | "mentor" | "pet";
 
 export type Relationship = {
@@ -181,6 +190,9 @@ export type GoalObjective = {
   id: string;
   label: string;
   complete: boolean;
+  goalId?: string;
+  goalTitle?: string;
+  goalRole?: "primary" | "mini";
 };
 
 export type GoalDefinition = {
@@ -191,6 +203,7 @@ export type GoalDefinition = {
   objectives: Omit<GoalObjective, "complete">[];
   completionMessage: string;
   openEnded?: boolean;
+  conflictsWith?: string[];
 };
 
 export type AchievementDefinition = {
@@ -224,6 +237,7 @@ export type GameState = {
   turn: number;
   character: Character;
   activeGoalId: string;
+  activeGoalIds: string[];
   activeTopicFilter: Topic[];
   stats: PlayerStats;
   finances: FinanceProfile;
@@ -249,6 +263,7 @@ export type NewGameOptions = {
   mode?: GameMode;
   seed?: string;
   goalId?: string;
+  goalIds?: string[];
   topicFilter?: Topic[];
 };
 
